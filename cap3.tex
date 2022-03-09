@@ -1,0 +1,832 @@
+Si bien algunos de los puntos tratados en los primeros dos capítulos de esta memoria podrían parecer disconexos, el estudio de ecuaciones en derivadas parciales en variedades que da lugar a los formalismos de la teoría de Hodge que presentamos en la sección \ref{seccion 2.5} es precisamente la herramienta que se ha utilizado primordialmente para estudiar la existencia de m\'etricas de K\"ahler-Einstein. Recordemos que una m\'etrica Riemanniana es tambi\'en de Einstein si su tensor de Ricci es proporcional a la métrica en cuesti\'on, y que si en adición, la m\'etrica es de K\"ahler, est\'a se denominar\'a de K\"ahler-Einstein, en otras palabras, buscamos métricas de K\"ahler $\omega \in \cohom^{1,1}(X)$ satisfaciendo la ecuaci\'on
+\[
+\Ric(\omega) = \lambda \omega \tag{KE}\label{Cap3-Eq1-KE}
+\]
+para alg\'un $\lambda \in \real$. En la seccion \ref{cap1sec9} discutimos que reescalando podemos asumir que $\lambda \in \lbrace -1, 0 ,1\rbrace$ de modo que podemos reducirnos a estudiar soluciones para las igualdades de $(1,1)$-formas
+\[
+\Ric(\omega) = -\omega ,\quad \quad \Ric(\omega) = 0 \quad \quad \text{ o } \Ric(\omega)=\omega.
+\]
+Como sabemos mediante la curvatura de Ricci, podemos definir la primera clase de Chern
+\[
+c_1 (X) = \dfrac{1}{2\pi}[ \Ric(\omega) ] \in \cohom^{2}(X, \mathbb{Z})
+\]
+que es independiente de la m\'etrica $\omega$. De esta manera, para estudiar la existencia de m\'etricas de K\"ahler-Einstein sobre $X$, la clase $c_1 (X)$ debe ser positiva, nula o negativa como clase de cohomolog\'ia.\par
+En este cap\'itulo tenemos como objetivo estudiar el caso de una variedad de K\"ahler compacta $X$ con $c_1(X)<0$. Para este caso, recordemos el teorema de Aubin \cite{Aub78} y \cite{Yau78} que asegura la existencia de soluciones.
+\begin{teo}[Aubin-Calabi-Yau]\label{aubin-calabi-yau}\hfill
+
+Sea $X$ una variedad de K\"ahler compacta con $c_1(X)<0$. Entonces existe una \'unica m\'etrica de K\"ahler $\omega \in - 2\pi c_1(X)$ tal que
+\[
+\Ric(\omega) = \omega.
+\]
+\end{teo}
+ Luego de establecer este resultado utilizando las estimaciones de Schauder introducidas en la secci\'on \ref{seccion 2.4} y el m\'etodo de continuidad nos enfocaremos en estudiar el caso $c_1(X)=0$, para el cual el teorema de Yau \cite{Yau78} implica que cada clase de K\"ahler contiene una m\'etrica de K\"ahler-Einstein, que debe ser Ricci plana. Finalmente, y para concluir este cap\'itulo se discutir\'a la existencia de soluciones para el caso $c_1(X)>0$, para el cual se evidenciar\'an las obstrucciones algebro-geom\'etricas para la aplicación del método que proponemos as\'i como para la misma existencia de soluciones.
+\section{Teorema de Yau, existencia de Métricas de K\"ahler Einstein para $c_1(X)<0$.}
+Como mencionamos anteriormente en esta primera secci\'on trataremos el problema de existencia de métricas de K\"ahler-Einstein en variedades de K\"ahler de curvatura negativa. Para esto, dividiremos el trabajo en las siguientes etapas, en primer lugar deduciremos la ecuación de tipo Monge-Amp\`ere cuya solubilidad nos permitir\'a establecer la existencia de m\'etricas y posteriormente, aplicaremos el método de continuidad utilizando estimaciones a priori dadas por las aproximaciones de Schauder y una aplicaci\'on adecuada del teorema de la función impl\'icita concluiremos la existencia de una métrica K\"ahlerianas que satisface la condición de Einstein.
+\subsection*{Deducción de la ecuación Monge-Amp\`ere para métricas de K\"ahler-Einstein}\label{Cap3Sec1}
+Comenzamos reescribiendo la ecuaci\'on \ref{Cap3-Eq1-KE} en términos de potenciales de K\"ahler. Consideremos $\omega_0$ una métrica de K\"ahler cualquiera en la clase $-2\pi c_1(X)$, es decir, $[\omega_0] = -2\pi c_1(X) \in \cohom^{2}(X, \real)$. Aplicando el $\partial\overline{\partial}$-lema obtenemos que existe una función suave $F$ sobre $X$ tal que
+\begin{equation}\label{Cap3Sec1-Eq-1}
+\Ric(\omega_0) = - \omega_0 + \ii \partial \overline{\partial}F
+\end{equation}
+As\'i, si tomamos $\omega = \omega_0 + \ii \partial\overline{\partial}\varphi$ como otra m\'etrica de K\"ahler en la clase $[\omega_0]$. Entonces, 
+\begin{equation}\label{Cap3Sec1-Eq-2}
+\Ric(\omega) - \Ric(\omega_0) = -\ii \partial\overline{\partial}\log \dfrac{\omega^n}{\omega^n_0}.
+\end{equation}
+De esta forma, para asegurar que $\Ric(\omega) = - \omega$ podemos obtener una condición suficiente como sigue  
+\begin{align}\label{Cap3Sec1-Eq-3}
+\nonumber &\Ric(\omega) - \Ric(\omega_0) = -\ii \partial\overline{\partial}\log \dfrac{\omega^n}{\omega^n_0} \\
+\nonumber \Leftrightarrow& -\omega + \omega_0 - \ii\partial \overline{\partial}F = -\ii \partial\overline{\partial}\log \dfrac{\omega^n}{\omega^n_0}. \\
+\Leftrightarrow& -\ii \partial\overline{\partial}\varphi = \ii\partial\overline{\partial}F - \ii \partial	\overline{\partial}\log \dfrac{\omega^n}{\omega^n_0}.
+\end{align}
+Notemos que este es el caso si podemos encontrar soluciones para la ecuaci\'on de tipo Monge-Amp\`ere compleja
+\begin{equation}
+\det(\omega_0 + \ii \partial\overline{\partial}\varphi) = e^{F+\varphi}\omega^n_0 \tag{MA}\label{Cap3-Eq-MA}
+\end{equation}
+Esto pues, podemos derivar \ref{Cap3Sec1-Eq-3} desde \ref{Cap3-Eq-MA}  como sigue
+\begin{align*}
+(\omega_0 + \ii \partial\overline{\partial}\varphi)^n = e^{F+\varphi}\omega^n_0  &\Rightarrow \omega^n = e^{F+\varphi}\omega^n_0 \\
+&\Rightarrow  e^{F+\varphi} = \dfrac{\omega^n}{\omega^n_0} \\
+&\Rightarrow  F+\varphi = \log \dfrac{\omega^n}{\omega^n_0} \\
+&\Rightarrow   -\ii\partial\overline{\partial}(F +\varphi) = \ii\partial\overline{\partial}\log \dfrac{\omega^n}{\omega^n_0} \\ 
+\end{align*}
+Con esta formulaci\'on ya podemos probar la unicidad de soluciones afirmada por el teorema \ref{aubin-calabi-yau}, esto mediante el siguiente lema.
+\begin{lem}[Calabi]\hfill
+
+Sobre una variedad de K\"ahler compacta $X$ existe a lo mas una m\'etrica $\omega \in -2\pi c_1(X)$ tal que $\Ric(\omega) = -\omega$.
+\end{lem}
+\begin{proof}
+Supongamos que $\Ric(\omega_0) = - \omega_0$, de forma que en \ref{Cap3Sec1-Eq-1} podemos tomar $F=0$. Si $\omega = \omega_0 + \ii \partial \overline\partial \varphi$ también satisface que $\Ric(\omega) = - \omega$, entonces por \ref{Cap3-Eq-MA} obtenemos que
+\[
+(\omega_0 + \ii \partial\overline{\partial}\varphi)^n = e^{\varphi}\omega^n_0.
+\]
+Como $\varphi$ es continua sobre la variedad compacta $X$ tenemos que alcanza su m\'inimo, digamos en $p \in X$. Escogemos las coordenadas locales $z_1 , \ldots, z_n$ en torno a $p$, de esta forma
+\[
+\det \left(g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi\right) = e^{\varphi} \det\left(g_{j\overline{k}}\right),
+\]
+pero en $p$ la matriz Hessiana $\partial_{j}\partial_{\overline{k}}\varphi$ es semidefinida positiva (condición necesaria de segundo orden para un extremo local), por lo tanto, para $x\in \comp^{n}$ tenemos que
+\begin{align*}
+	x^\top \left(g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi\right) x &\geq x^\top g_{j\overline{k}} x \\
+	-x^\top\left(g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi\right) x &\leq -x^\top g_{j\overline{k}} x
+\end{align*}
+Utilizando la monotonía de la función exponencial y de la integraci\'on se tiene que
+\begin{align*}
+	\exp\left( -x^\top\left(g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi\right) x\right)  &\leq \exp\left( -x^\top g_{j\overline{k}} x \right) \\
+	\int_X  \exp\left( -x^\top\left(g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi\right) x\right) dx &\leq \int_X \exp\left( -x^\top g_{j\overline{k}} x \right)dx
+\end{align*}
+Finalmente, notando que esta corresponde a una integral Gaussiana podemos encontrar que
+\[
+	\dfrac{1}{\sqrt{\det\left(g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi\right)}} \leq \dfrac{1}{\sqrt{\det(g_{j\overline{k}}}}
+\]
+De lo que concluimos que
+\[
+\det \left(g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi\right)(p) \geq \det(g_{j\overline{k}})(p)
+\]
+y en consecuencia $\varphi (p)\geq 0$, pero como asumimos que $\varphi(p)$ es m\'inimo, se tiene que $\varphi(x) \geq 0$ para todo $x$.
+De la misma forma, podemos ver que si $\varphi$ alcanza su m\'aximo en tal punto $p \in X$ entonces
+\[
+\det \left(g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi\right)(p) \leq \det(g_{j\overline{k}})(p)
+\]
+de lo que podemos concluir que tal m\'aximo $\varphi(p)$ es no positivo, es decir, $\varphi(p)\leq 0$, pero como antes, como este es un m\'aximo en realidad se tiene que $\varphi(x) \leq 0$ para todo $x$. De esta forma vemos que $\varphi =0$ y por lo tanto $\omega = \omega_0$.
+\end{proof}
+Para resolver la ecuación de Monge-Amp\`ere utilizaremos el método de continuidad introducido en \ref{metodo de continuidad}. Para esto introducimos una familia de ecuaciones dependiendo de un parámetro $t\in [0,1]$, que para $t=1$ es la ecuación \ref{Cap3-Eq-MA} y para $t=0$ corresponde a una ecuación mas simple. Utilizaremos la familia dada por
+\begin{align*}\begin{cases}
+\left( \omega_0 + \ii \partial\overline{\partial}\varphi \right)^n &= e^{tF + \varphi} \omega^n_0 \tag{ $\operatorname{MA}_t $} \label{Cap3-Sec1-Eq-MA(t)}\\
+\omega_0 + \ii \partial\overline{\partial}\varphi &\text{ es una forma de K\"ahler}
+\end{cases}
+\end{align*}
+para $t \in [0,1]$. As\'i, para probar el teorema \ref{aubin-calabi-yau} debemos verificar las siguientes 3 condiciones respecto al conjunto
+\begin{equation*}
+S = \left\lbrace s \in [0,1] \, \, \vert \, \, \text{La ecuacion \ref{Cap3-Sec1-Eq-MA(t)} tiene solucion en $t=s$} \right\rbrace
+\end{equation*}
+\begin{enumerate}
+\item[(1)]  $S\neq \emptyset$, que en nuestro caso se tiene pues podemos resolver \ref{Cap3-Sec1-Eq-MA(t)} para $t=0$.
+\item[(2)] Si \ref{Cap3-Sec1-Eq-MA(t)} tiene solución para algún $t<1$, entonces, para un $\varepsilon >0$ suficientemente pequeño también podemos resolver la ecuación para $t+\varepsilon$. En espacios de Banach utilizando el teorema de la función implícita (cuya formulación adecuada presentaremos mas adelante), esta condición se traduce en que $S$ sea un conjunto abierto. 
+\item[(3)] Si para algún $s\in (0,1]$ podemos resolver \ref{Cap3-Sec1-Eq-MA(t)} para todo $t<s$, entonces también podemos resolver la ecuación para $t=s$.\par
+Este \'ultimo punto resulta ser el corazón del problema, pues se traduce en que $S$ es un conjunto cerrado, que pasar\'a por resultados de compacidad y/o convergencia de las estimaciones de H\"older de las soluciones, como adelantábamos en los comentarios hechos sobre el m\'etodo de continuidad.
+\end{enumerate}
+Probaremos que se tiene el punto \textbf{(2)}, para lo cual recordaremos el enunciado del teorema de la funci\'on impl\'icita en espacios de Banach.
+\begin{teo}[Teorema de la funci\'on impl\'icita]\hfill
+
+Sean $X$ un espacio vectorial normado e $Y,Z$ dos espacios de Banach. Sea $\Omega$ un conjunto abierto en $X\times Y$ y sean $(x,y)\in \Omega$ y la aplicaci\'on $F: \Omega \longrightarrow Z$ tal que
+\begin{enumerate}
+	\item[1)] $F \in \mathcal (\Omega, X)$.
+	\item[2)] Existe la derivada $\partial_y F$ sobre $\Omega$, y se tiene que $\partial_y F \in \mathcal{C}(\Omega,Z)$.
+	\item[3)] $F(x_0, y_0)=0 \in Z$ y $\partial_y F(x_0 , y_0)$ es un operador lineal invertible.
+\end{enumerate}
+Entonces existe $U(x_0)$ vecindad abierta de $x_0$ y $V(y_0)$ vecindad abierta de $y_0$, tales que $U(x_0) \times V(y_0) \subset \Omega$ y existe una única función continua $\varphi : U(x_0) \longrightarrow V(y_0)$ tal que
+\begin{enumerate}
+	\item[1)] $\varphi(x_0) = y_0$.
+	\item[2)] $\forall x \in U(x_0), \quad y = \varphi(x) \quad \Leftrightarrow \quad \forall (x,y)\in U(x_0)\times V(y_0),\quad F(x,y)=0$
+\end{enumerate}
+
+\end{teo}
+\begin{prop}\label{Cap3Sec1-Lema2}
+Supongamos que la ecuación \ref{Cap3-Sec1-Eq-MA(t)} tiene una solución suave para algún $t<1$. Entonces para todo $\varepsilon>0$ suficientemente pequeño también podemos encontrar una solución de la ecuación para $t+\varepsilon$
+\end{prop}
+\begin{proof}
+Definamos el operador
+\begin{align*}
+F: \mathcal{C}^{3,\alpha} (X) \times [0,1] &\longrightarrow \mathcal{C}^{1,\alpha}(X) \\
+(\varphi , t ) &\longmapsto \log \dfrac{ (\omega_0 + \ii \partial \overline{\partial}\varphi)^n}{\omega^n_0} - \varphi - tF
+\end{align*}
+Por hip\'otesis tenemos una solución suave $\varphi_t$ tal que $F(\varphi_t ,t)=0$ y $\omega_t = \omega_0 + \ii \partial\overline{\partial}\varphi_t$ es una forma de K\"ahler. Para aplicar el teorema de la función implícita, calcularemos la derivada de $F$ en la dirección $\psi$, en el punto $(\varphi_t ,t)$ 
+\[
+dF\left( (\varphi_t ,t) \right)[(\psi, 0)] =  \dfrac{n\ii \partial\overline{\partial}\psi \wedge \omega^{n-1}_t}{\omega^{n}_t} -\psi = \Delta_t \psi -\psi,
+\]
+donde $\Delta_t$ es el operador Laplaciano respecto a $\omega_t$. Si escribimos \[
+L(\psi) = \Delta_t \psi - \psi.
+\]
+Notemos que si $\Delta_t \psi - \psi =0$ entonces calculamos en función de $\omega_t$ lo siguiente
+\begin{align*}
+\int_M \vert \psi \vert^2 &= \int_M \psi \Delta_t \psi  \\
+&= - \int_M \vert \nabla \psi \vert^2_t  \leq 0
+\end{align*}
+De lo que concluimos que $\Delta_t \psi - \psi = 0$ implica que $\int_M \vert \psi \vert^2 dV_t =0$ y por lo tanto $\psi = 0$, es decir $\ker (L) = \lbrace 0 \rbrace$. Si consideramos $u\in L^{1}_{\operatorname{loc}}(M)$, utilizamos las identidades de Green para ver que
+\begin{align*}
+\int_{M}\left( \Delta_t \psi - \psi \right) u  &= \int_M \left( u\Delta_t \psi - u\psi \right) \\
+&= \int_M \left( \nabla_t u \nabla_t \psi - \psi u \right) \\
+&= \int_M \left( (\Delta_t u) \psi - \psi u \right)
+\end{align*}
+De lo que concluimos que $L^{\ast} = L$ y por lo tanto $\ker (L^{*}) = \lbrace 0 \rbrace$. Se puede probar (ver \cite[Teo. 2.13]{Szeke14}) para $k\in \mathbb{N}$ y $\alpha\in (0,1)$ el isomorfismo
+\[
+L: \left(\ker L\right)^{\perp} \cap \mathcal{C}^{k+2,\alpha}(X) \rightarrow \left(\ker (L^{\ast}\right)^{\perp} \cap \mathcal{C}^{k,\alpha}(X)
+\]
+As\'i, $\ker (L^{\ast}) = \lbrace 0 \rbrace$ implica que
+\[
+L : \mathcal{C}^{3,\alpha}(X)\xrightarrow[]{\sim} \mathcal{C}^{1,\alpha}(X).
+\]
+El teorema de la funci\'on implícita para espacios de Banach implica que para $s$ suficientemente cercano a $t$  existen funciones $\varphi_s \in \mathcal{C}^{3,\alpha}(X)$ tal que $F(\varphi_s , s) =0$. De igual manera, para $s$ suficientemente cercano a $t$ las funciones $\varphi_s$, $\varphi_t \in \mathcal{C}^{3,\alpha}(X)$ tambi\'en se encuentran cerca de tal manera que $\omega_0 + \ii \partial \overline{\partial}\varphi_s$ es una forma positiva.\par
+Antes de entrar de lleno en la regularidad de $\varphi_s$ consideremos lo siguiente, 
+\begin{obs}
+Escribimos la igualdad $F(\varphi_s , s) =0$ en coordenadas locales como sigue
+\[
+\log \det\left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s \right) - \log \det\left( g_{j\overline{k}} \right) - \varphi_s - sF = 0
+\]
+si ahora derivamos esta igualdad respecto a una variable $z^\ell$ obtenemos que
+\[
+\partial_\ell \left(\log \det\left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s \right) \right) - \partial_\ell \left( \log \det\left( g_{j\overline{k}} \right) \right) - \partial_\ell \varphi_s - s\partial_\ell F = 0
+\]
+es decir
+\[
+\det\left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s\right)^{-1} \cdot \partial_\ell \left( \det\left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s \right) \right) - \partial_\ell \left( \log \det\left( g_{j\overline{k}} \right) \right) - \partial_\ell \varphi_s - s\partial_\ell F = 0.
+\]
+Si $(g_s)^{j\overline{k}}$ corresponde a la metrica inversa a $(g_s)_{j\overline{k}} = g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s$, podemos utilizar la igualdad de Jacobi\footnote{ Esta f\'ormula se utiliza para expresar derivadas del determinante de una matriz $A$ en función de su adjunta y las derivadas de $A$, esto es
+\begin{align*}
+\partial_j \det(A(z)) &= \tr \left( \operatorname{adj}(A(z)) \cdot\partial_j A(z) \right) \\
+&= \det(A(z)) \cdot \tr \left( A(z)^{-1} \cdot \partial_j A(z)\right)
+\end{align*}
+} para ver que la igualdad anterior se reduce a
+\begin{align*}
+\det\left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s\right)^{-1} &\left[ \det\left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s \right) \cdot \left( g_s\right)^{j\overline{k}} \partial_\ell \left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s \right)\right]\\
+&- \partial_\ell \left(\log\det\left( g_{j\overline{k}}\right)\right) -\partial_\ell \varphi_s - s\partial_\ell F = 0.
+\end{align*}
+o equivalentemente
+\[
+(g_s)^{j\overline{k}}\left( \partial_\ell g_{j\overline{k}} + \partial_\ell \partial_j\partial_{\overline{k}} \varphi_s\right) - \partial_\ell \log\det(g_{j\overline{k}}) -\partial_\ell \varphi_s - s\partial_\ell F =0
+\]
+\end{obs}
+Veamos ahora que $\varphi_s$ es de hecho suave. Por la aplicación anterior del teorema de la función implícita, sabemos que
+\[
+\log \dfrac{\left(\omega_0 + \ii \partial \overline{\partial}\varphi_s \right)^n}{\omega^n_0} - \varphi_s - sF = 0.
+\]
+En coordenadas locales, es decir con componentes de $\omega_0$ de la forma $g_{j\overline{k}}$ podemos escribir la ecuaci\'on anterior como
+\[
+\log \det \left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_s \right) - \log\det \left(g_{j\overline{k}}\right) -  \varphi_s - sF = 0
+\]
+Como $\varphi_s \in \mathcal{C}^{3,\alpha}(X)$, podemos diferenciar esta igualdad respecto a $\partial_\ell  := \frac{\partial}{\partial z^{\ell}}$, además si consideramos la m\'etrica (asociada a $\omega_t$) $(g_s)_{j\overline{k}}= g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi_s$ y su inversa $(g_s)^{j\overline{k}}$ obtenemos por la observación anterior que
+\[
+	(g_s)^{j\overline{k}}\partial_j \partial_k \left(\partial_{\ell} \varphi_s \right) - \partial_\ell = s\partial_\ell F + \partial_\ell \log \det (g_{j\overline{k}}) - \left(g_s\right)^{j\overline{k}} \partial_\ell g_{j\overline{k}}.
+\]
+Si consideramos el operador lineal el\'iptico definido por la igualdad anterior, es decir, un operador $E(\partial_\ell \varphi_s )= h$ que tiene por argumento $\psi = \partial_\ell \varphi_s$, se tiene que
+\[
+	E := (g_s)^{j\overline{k}} \partial_j \partial_{\overline{k}} - \operatorname{Id}.
+\]
+Como $\varphi_s \in \mathcal{C}^{3,\alpha}(X)$, los coeficientes de $E$ son elementos de $\mathcal{C}^{1,\alpha}$. Luego $\partial_{\overline{\ell}} \in \mathcal{C}^{3,\alpha}$, y por lo tanto, $\varphi_s \in \mathcal{C}^{4,\alpha}$. Si repetimos este proceso podemos concluir que $\varphi_s \in \mathcal{C}^{5,\alpha}$, e inductivamente encontramos que en realidad $\varphi_s$ es suave, por lo que concluimos el resultado del Lema.
+\end{proof}
+La \'ultima parte de la demostraci\'on anterior consiste en un proceso denominado \textit{``Bootstrapping ''}.\par
+Para poder realizar el paso al l\'imite que necesitamos para ver que se verifica el punto \textbf{(3)} del m\'etodo de continuidad, y que nos permite asegurar que la condición de K\"ahler se mantiene para $\omega_t$, esto corresponde a la siguiente proposición, y que lograremos probar a través de los resultados de las siguientes dos secciones.
+\begin{teo}\label{Cap3Sec1-Teo2}\hfill
+
+
+Existe una constante $C>0$ que depende solamente de $X , \omega_0$ y $F$ tal que $\varphi_t$ satisface \ref{Cap3-Sec1-Eq-MA(t)} para algún $t\in [0,1]$, tal que 
+\[
+\left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi_t \right) > C^{-1} \left( g_{j\overline{k}}\right) > 0 
+\]
+Donde los términos $g_{j\overline{k}}$ corresponden a las componentes de $\omega_0$ en coordenadas locales y la desigualdad de matrices anterior significa que la diferencia es definida positiva. Adem\'as, se verifica que
+\[
+ \Vert \varphi_t \Vert_{\mathcal{C}^{3,\alpha}(X)} \leq C,
+\]
+para la norma de H\"older respecto a la métrica $\omega_0$.
+\end{teo}
+Antes de empezar con la prueba de este resultado, veamos que, en efecto este implica la condición $\textbf{(3)}$ del metodo de continuidad.
+\begin{prop}\hfill
+
+Asumiendo que se tienen las condiciones del teorema \ref{Cap3Sec1-Teo2}. Sea $s \in (0,1]$, si se puede resolver \ref{Cap3-Sec1-Eq-MA(t)} para todo $t<s$, entonces, también se puede resolver para $t=s$.
+\end{prop}
+\begin{proof}
+Sea una sucesión de números $\lbrace t_i \rbrace_{i\in\bbN}$ tal que $t_i < s$ y tal que $\lim t_i = s$. Esto da lugar a una sucesión de funciones $\varphi_{i}$ que satisfacen 
+\begin{equation}\label{Cap3Sec1-Eq-4}
+\left( \omega_0 + \ii \partial\overline{\partial}\varphi_i \right)^n = e^{t_i F + \varphi_i} \omega^n_0 .
+\end{equation}
+El teorema \ref{Cap3Sec1-Teo2} nos dice que todas las métricas de la forma
+\[
+\omega_{t_i} = \omega_0 + \ii \partial\overline{\partial} \varphi_i
+\]
+son acotadas inferiormente por una métrica definida positiva, de modo que el l\'imite de la métrica $\omega_{t_i}$, es decir $\omega_0 + \ii \partial\overline{\partial}\varphi$ es también definida positiva. Notemos que a priori, $\varphi \in \mathcal{C}^{3,\alpha}$, de manera que aplicando \textit{boostrapping} como en el \ref{Cap3Sec1-Lema2} para concluir que $\varphi$ es en realidad suave.
+\end{proof}
+
+Como ya comentamos, en las siguientes secciones desarrollaremos estimaciones de operadores diferenciales de distinto orden utilizando las estimaciones de Schauder.
+\subsection*{Estimaciones continuas y de segundo orden.}\label{Cap3Sec2}
+
+Necesitamos probar el teorema \ref{Cap3Sec1-Teo2}. Para esto, simplificaremos la notación de la ecuación en cuestión escribiendo
+\begin{equation}\label{Cap3Sec2-Eq1}
+\left(\omega + \ii \partial\overline{\partial}\varphi \right)^n = e^{F+\varphi} \omega^n
+\end{equation}
+y escribimos $g_{j\overline{k}}$ para las componentes de la m\'etrica $\omega$ en coordenadas locales. As\'i, m\'as adelante aplicaremos los resultados siguientes para $tF$ en vez de $F$.\par
+Comenzaremos presentando estimaciones de tipo $\mathcal{C}^{0}$ mediante el siguiente lema.
+\begin{prop}[Estimaciones $\mathcal{C}^{0}$]\label{Cap3Sec2-LemaEstC0}\hfill\
+
+Si $\varphi$ satisface la ecuaci\'on \ref{Cap3Sec2-Eq1}, entonces 
+\[
+\sup_{X} \vert \varphi \vert \leq \sup_{X} \vert F \vert.
+\]
+\end{prop}
+\begin{proof}
+Supongamos que $\varphi$ alcanza su m\'aximo en $p\in X$. Entonces, en coordenadas locales, la matriz $\partial_j \partial_{\overline{k}} \varphi$ es semidefinida negativa en $p$, entonces
+\[
+\det \left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi \right)(p) \leq \det \left( g_{j\overline{k}} \right)(p)
+\]
+Utilizando la ecuación \ref{Cap3Sec2-Eq1} obtenemos que 
+\[
+\dfrac{\det \left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi \right)(p)}{\det \left( g_{j\overline{k}} \right)(p)} = e^{F(p) + \varphi(p)} \leq 1
+\]
+Y por lo tanto, obtenemos que $F(p) + \varphi(p)\leq 0$, o equivalentemente, $\varphi(p) \leq - F(p)$. Como $\varphi$ alcanza su m\'aximo en $p$, esto nos dice que 
+\[
+\varphi(p) = \sup_{x\in X} \varphi(x) \leq - F(p) \leq \sup_{x\in X} F(x) .
+\]
+De forma an\'aloga, si suponemos que $\varphi(p)$ es minimimal, tenemos que $\partial_j \partial_{\overline{k}}\varphi (p)$ es semidefinida negativa, entonces
+\[
+\det \left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi \right)(p) \geq \det \left( g_{j\overline{k}} \right)(p),
+\]
+y por lo tanto como en el caso anterior, concluimos que
+\[
+	e^{F(p) + \varphi (p)}\geq 1
+\]
+y consecuentemente, $\varphi (p) \geq - F (p)$. Podemos entonces escribir
+\[
+\varphi(p) = \inf_{x\in X}  \varphi(x) \geq -F(p) \geq  \inf_{x\in X} \lbrace -F(x) \rbrace
+\]
+Hemos obtenido que para todo $x'\in X$ 
+\[
+-\sup_{x\in X} F(x) \leq \inf_{x\in X} \varphi(x) \leq \varphi(x') \leq \sup_{x\in X} \varphi(x) \leq \sup_{x\in X}F(x)
+\]
+de lo que concluimos el resultado.
+\end{proof}
+Para obtener estimaciones de las segundas derivadas de $\varphi$, como en la sección 2.4, bastar\'a con encontrar estimaciones del Laplaciano $\Delta \varphi$ para establecer estimaciones de los t\'erminos fuera de la diagonal de la matriz Hessiana de $\varphi$. Si escribimos en coordenadas locales 
+\[
+{g'}_{j\overline{k}} = g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi
+\]
+y utilizamos la convención de Einstein para la suma, podemos escribir para ${{g}^{j\overline{k}}} := g^{-1}_{j\overline{k}}$ 
+\begin{align*}
+	g^{j\overline{k}} {g'}_{j\overline{k}} &= g^{j\overline{k}} g_{j\overline{k}} + g^{j\overline{k}} \partial_j \partial_{\overline{k}} \varphi \\
+	&= tr(\operatorname{Id_n}) + tr(Hess(\varphi)) \\
+	&= n + \Delta\varphi
+\end{align*}
+\begin{notacion}
+En adelante, escribiremos seg\'un las siguientes definiciones
+\begin{align}
+	tr_{g}g' &:= g^{j\overline{k}} {g'}_{j\overline{k}}, \\ 
+	tr_{g'}g &:= {g'}^{j\overline{k}} {g}_{j\overline{k}}.
+\end{align}
+Escribimos adem\'as, $\Delta'$ para el Laplaciano respecto a la m\'etrica $g'$.
+\end{notacion}
+Con esta notaci\'on en mente, el paso clave para establecer estimaciones de segundo orden es el siguiente resultado.
+\begin{prop}\label{Cap3Sec2-LemaEstC2}\hfill
+
+Existe una constante $B$ que solo depende de $M$ y $g$ tal que
+\[
+\Delta' \log \tr_g g' \geq - B \tr_{g'} g - \dfrac{g^{j\overline{k}} R^{'}_{j\overline{k}}}{\tr_g g'}
+\]
+donde $R^{'}_{j\overline{k}}$ es la curvatura de Ricci asociada a la m\'etrica $g'$.
+\end{prop}
+\begin{proof}
+	Calcularemos en coordenadas normales para la m\'etrica g en torno a un punto $p\in X$. ademas podemos asumir que $g'$ es diagonal en $p$ dado que toda matriz Hermitiana puede ser diagonalizada por una transformación unitaria. En particular, en $p$ tendremos que
+	\[
+		\tr_g g' = \sum_{i=1}^{n} {g'}_{i\overline{i}}, \quad \tr_{g'}g = \sum_{j=1}^{n} {g'}^{j\overline{j}} = \sum_{j=1}^{n} \frac{1}{{g'}_{j\overline{j}}}
+	\]
+De esta forma, en el punto $p$ podemos calcular
+\begin{align*}
+	\Delta' \tr_g g' &= {g'}^{p\overline{q}} \partial_p \partial_{\overline{q}} \left( g^{j\overline{k}} {g'}_{j\overline{k}} \right) \\
+	&= {g'}^{p\overline{q}}\left(\partial_p \partial_{\overline{q}} g^{j\overline{k}} \right) {g'}_{j\overline{k}} + {g'}^{p\overline{q}} g^{j\overline{k}} \left(\partial_p \partial_{\overline{q}} {g'}_{j\overline{k}} \right) \\
+	&= {g'}^{p\overline{q}}\left( \partial_p \partial_{\overline{q}} g^{j\overline{k}} \right){g'}_{j\overline{k}} - {g'}^{p\overline{q}}g^{j\overline{k}} {R'}_{j\overline{k}p\overline{q}} + {g'}^{p\overline{q}}g^{j\overline{k}} {g'}^{a\overline{b}} \left( \partial_j {g'}_{p\overline{b}}\right) \left( \partial_{\overline{k}} {g'}_{a\overline{q}}\right).
+\end{align*}
+Usando que $g$ es diagonal podemos ver que 
+\begin{align*}
+	{g'}^{p\overline{q}} \left(\partial_p \partial_{\overline{q}} \right) {g'}_{j\overline{k}} &= \sum_{p,j=1}^{n} {g'}^{p\overline{p}}{g'}_{j\overline{j}} \partial_p \partial_{\overline{p}} g^{j\overline{j}} \\
+	&\geq - B \sum_{p,j=1}^{n} {g'}^{p\overline{p}}{g'}_{j\overline{j}}\\
+	&= -B (\tr_{g'} g ) (\tr_g g')
+\end{align*}
+donde $B$ es el mayor t\'ermino de la forma $-\partial_{p}\partial_{\overline{p}}g^{j\overline{j}}$. Y por otro lado, se verifica que
+\[
+{g'}^{p\overline{q}} {R'}_{j\overline{k}p\overline{q}} = {R'}_{j\overline{k}}
+\]
+Entonces,
+\begin{equation}\label{Cap3Sec2-Eqn4}
+	\Delta' \tr_g g' \geq -B (\tr_{g'} g) (\tr_g g') - g^{j\overline{k}} {R'}_{j\overline{k}} + \sum_{p,j,a=1}^{n} {g'}^{p\overline{p}} {g'}^{a\overline{a}} \left\vert \partial_j {g'}_{p\overline{a}}\right\vert^2.
+\end{equation}
+Notemos que
+\begin{align*}
+\log \left( \tr_g g' \right) = \log \left( \sum_{i=1}^{n} {g'}_{i\overline{i}} \right)
+\end{align*}
+Luego, calculamos los términos del Laplaciano como
+\begin{align*}
+	\partial_{\overline{j}} \log \left(\log \left( \tr_g g' \right)\right) &=\partial_{\overline{j}} \left( \log \left( \sum_{i=1}^{n} {g'}_{i\overline{i}} \right)\right) \\
+	&= \dfrac{\partial_{\overline{j}}\left(\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}} \right)}{\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}} }\\
+	\partial_{j}\partial_{\overline{j}} \log \left(\log \left( \tr_g g' \right)\right) &= \partial_j \left( \dfrac{\partial_{\overline{j}}\left(\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}} \right)}{\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}} } \right) \\
+	&= \dfrac{\partial_j \partial_{\overline{j}} \left( \displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}} \right)\left( \displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}}\right) - \left(\partial_j \left( \displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}}\right) \right) \left( \partial_{\overline{j}} \left(\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}} \right)\right)}{\left(\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}}\right)^2}\\
+	&= \dfrac{\partial_j \partial_{\overline{j}} \left(\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}}\right)}{\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}}} - \dfrac{\left(\partial_j \left( \displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}}\right) \right) \left( \partial_{\overline{j}} \left(\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}} \right)\right)}{\left(\displaystyle\sum_{i=1}^{n} {g'}_{i\overline{i}}\right)^2}
+\end{align*}
+Sumando sobre el \'indice $j$ obtenemos que
+\begin{align}\label{Cap3Sec2-LaplacianoLogaritmo}
+\nonumber \Delta' \log \tr_g {g'} &= \dfrac{\Delta' \tr_g {g'}}{\tr_g {g'}} - \dfrac{\displaystyle \sum_{j=1}^{n} \left[ \left( \partial_j \tr_g {g'} \right) \left( \partial_{\overline{j}} \tr_g {g'} \right)\right]}{(\tr_g {g'})^2} \\
+&=  \dfrac{\Delta' \tr_g {g'}}{\tr_g {g'}} - \dfrac{{g'}^{p\overline{q}} \left( \partial_p \tr_g {g'} \right) \left( \partial_{\overline{q}} \tr_g {g'} \right)}{(\tr_g {g'})^2}
+\end{align}
+De esta manera, concluimos que
+\begin{align*}
+	\Delta' \log \tr_g {g'} \geq - B\tr_{g'} g - \dfrac{g^{j\overline{k}} {R'}_{j\overline{k}}}{\tr_g {g'}} + \dfrac{1}{\tr_g {g'}} \sum_{p,j,a=1}^{n} {g'}^{p\overline{p}} {g'}^{a\overline{a}} \vert \partial_{j} {g'}_{p\overline{a}} \vert^2 - \dfrac{1}{(\tr_g {g'})^2}\sum_{p,a,b=1}^{n} {g'}^{p\overline{p}} \left( \partial_p {g'}_{a\overline{a}} \right) \left( \partial
+_{\overline{p}} {g'}_{b\overline{b}} \right).
+\end{align*}
+Notando que los dos primeros términos del lado derecho de la \'ultima desigualdad corresponden al resultado que buscamos es que notamos que basta probar que el resto de términos sea positivo. En efecto, usando la desigualdad de Cauchy-Schwarz obtenemos lo siguiente
+\begin{align*}
+	\sum_{p,a,b=1}^{n} {g'}^{p\overline{p}}\left( \partial_p {g'}_{a\overline{a}} \right) \left( \partial_{\overline{p}} {g'}_{b\overline{b}} \right) &= \sum_{a,b=1}^{n} \sum_{p=1}^{n} \sqrt{{g'}^{p\overline{p}}} \left( \partial_p {g'}_{a\overline{a}} \right) \sqrt{{g'}^{p\overline{p}}} \left(\partial_{\overline{p}} {g'}_{b\overline{b}}\right) \\
+	&\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny C.S}}}{\leq}} \sum_{a,b=1}^{n} \left( \sum_{p=1}^{n} {g'}^{p\overline{p}} \vert \partial_p {g'}_{a\overline{a}}\vert^2 \right)^{1/2} \left( \sum_{q=1}^{n} {g'}^{q\overline{q}} \vert \partial_q {g'}_{b\overline{b}} \vert^2 \right)^{1/2} \\
+	&= \left( \sum_{a=1}^{n} \left( \sum_{p=1}^{n} {g'}^{p\overline{p}} \vert \partial_p {g'}_{a\overline{a}}\vert^2 \right)^{1/2} \right)^2 \\
+	&= \left( \sum_{a=1}^{n} \sqrt{{g'}_{a\overline{a}}}  \left( \sum_{p=1}^{n} {g'}^{p\overline{p}} {g'}^{a\overline{a}} \vert \partial_p {g'}_{a\overline{a}} \vert^2 \right)^{1/2} \right)^2 \\
+	&\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny C.S}}}{\leq}} \left( \sum_{a=1}^{n} {g'}_{a\overline{a}}\right) \left( \sum_{b,p=1}^{n} {g'}^{p\overline{p}} {g'}^{b\overline{b}} \vert \partial_p {g'}_{b\overline{b}} \vert^2 \right)\\
+	&= \tr_{g}{g'}\left( \sum_{b,p=1}^{n} {g'}^{p\overline{p}} {g'}^{b\overline{b}} \vert \partial_p {g'}_{b\overline{b}} \vert^2 \right)
+\end{align*}
+Dividiendo por $(\tr_{g} {g'})^2$ obtenemos que
+\begin{align*}
+	\dfrac{1}{(\tr_{g} {g'})^2} \sum_{p,a,b=1}^{n} {g'}^{p\overline{p}} \left(\partial_p {g'}_{a\overline{a}} \right) \left( \partial_{\overline{p}}{g'}_{b\overline{b}}\right) &\leq \dfrac{1}{\tr_{g}{g'}} \sum_{a,p =1}^{n} {g'}^{p\overline{p}} {g'}^{a\overline{a}} \vert \partial_p {g'}_{a\overline{a}}\vert^2 \\
+	&\leq \dfrac{1}{\tr_{g}{g'}}\sum_{a,j,p=1}^{n}{g'}^{p\overline{p}} {g'}^{a\overline{a}} \vert \partial_p {g'}_{j\overline{a}}\vert^2
+\end{align*}
+Notemos que los términos de esta última suma son positivos. Además, usando la condición de K\"ahler, es decir $\partial_p {g'}_{j\overline{a}}= \partial_j {g'}_{p\overline{a}}$, obtenemos la cota deseada.
+\end{proof}
+Utilizaremos ahora el resultado anterior para establecer estimaciones para todas las derivadas de segundo orden
+\begin{prop}\label{Cap3Sec2-Prop2}\hfill
+
+Existe una constante $C$ que depende solamente de $X$, $\omega$, $\sup_{X} \vert F \vert$, y una cota inferior para $\Delta F$ tal que la solución $\varphi$ de \ref{Cap3Sec2-Eq1} satisface
+\[
+C^{-1}\left(g_{j\overline{k}}\right) < \left( g_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi \right) < C \left( g_{j\overline{k}} \right)
+\]
+\end{prop}
+\begin{proof}
+	Escribiendo ${g'}_{j\overline{k}} = g_{j\overline{k}} + \partial_j \partial_{\overline{k}} \varphi$ como antes, la ecuación \ref{Cap3Sec2-Eq1} implica
+\begin{equation}\label{Cap3Sec2-Eq2}
+-{R'}_{j\overline{k}} = \partial_j \partial_{\overline{k}} F + \partial_{j} \partial_{\overline{k}} \varphi - {R_{j\overline{k}}} = \partial_j \partial_{\overline{k}}F + {g'}_{j\overline{k}} - g_{j \overline{k}} - {R}_{j\overline{k}}
+\end{equation}
+Usando la proposición anterior, obtenemos la cota siguiente
+\[
+\Delta' \log \tr_{g}{g'} \geq - B \tr_{g'} g + \dfrac{\Delta F + \tr_g {g'} - n- R}{\tr_{g}{g'}},
+\]
+donde $R$ corresponde a la curvatura escalar de $g$. Aplicando la desigualdad de Cauchy-Schwarz se tiene que
+\[
+(\tr_g {g'})(\tr_{g'} g) = \left(\sum_{i=1}^n g^{i\overline{i}} \right)\left( \sum_{j=1}^n \dfrac{1}{g^{i\overline{i}}} \right) \geq \left(\sum_{j=1}^{n}\sum_{i=1}^n 1 \right) = n^2
+\]
+y como estamos asumiendo una cota inferior para $\Delta F$, tenemos una constante tal que
+\[
+	\Delta' \log \tr_{g}{g'} \geq - B \tr_{g'}g - C\tr_{g'}g.
+\]
+Notemos que
+\[
+\Delta' \varphi = {g'}^{j\overline{k}} \partial_j \partial_{\overline{k}}\varphi = {g'}^{j\overline{k}}\left( {g'}_{j\overline{k}} + g_{j\overline{k}} \right) = n- \tr_{g'} g.
+\]
+y por lo tanto, si consideramos $A:= B+C+1$ encontramos que
+\begin{align*}
+	\Delta' \left( \log \tr_{g}{g'} - A\varphi\right) &= \Delta' \left( \log \tr_{g}{g'}\right) -A \Delta' \varphi \\
+	&= \Delta' \left( \log \tr_{g}{g'}\right) - A \left( n - \tr_{g'}g \right) \\
+	&= \Delta' \left( \log \tr_{g}{g'} \right) - An +A \tr_{g'}g \\
+	&\geq - B \tr_{g'}g - C\tr_{g'} g - An + A\tr_{g'}g\\
+	&= \tr_{g'}g - An
+\end{align*}
+Ahora, si suponemos que $\log_{g}g' - A\varphi$ alcanza un máximo en $p \in X$. Entonces
+\[
+ 0 \geq \Delta' \left( \log \tr_{g}{g'} -A\varphi \right)(p) \geq tr_{g'}g (p) - An
+\]
+por lo tanto
+\begin{equation}\label{Cap3Sec2-Eq3}
+\tr_{g'}g (p) \leq An.
+\end{equation}
+Escogiendo coordenadas normales para $g$ en $p\in X$ tal que $g'$ es diagonal sobre $p$. Entonces \ref{Cap3Sec2-Eq3} implica que para $p$ tenemos
+\begin{equation}
+\frac{1}{{g'}_{i\overline{i}}} = {g'}^{i\overline{i}} \leq An, \quad \forall i \in \lbrace 1, \ldots, n\rbrace.
+\end{equation}
+Pero la ecuación \ref{Cap3Sec2-Eq1} nos dice que en $p$
+\begin{equation}
+\prod_{i=1}^{n} {g'}_{i\overline{i}} = e^{F(p) + \varphi(p)} \leq C_1
+\end{equation}
+Para alguna constante $C_1$, cuya existencia es dada por asumir que $\sup \vert F\vert$, luego la proposición \ref{Cap3Sec2-LemaEstC0} implica la estimación correspondiente de $\sup \vert \varphi \vert$. Ahora, los resultados \ref{Cap3Sec2-Eq2} y \ref{Cap3Sec2-Eq3} implica que existe una constante $C_2$ tal que
+\[ 
+	{g'}_{i\overline{i}} \leq C_2,\quad \forall i \in \lbrace 1,\ldots, n\rbrace.
+\]
+En particular 
+\[
+\tr_{g}{g'} (p) \leq n C_2.
+\]
+Dado que $\log \tr_{g}{g'} - A\varphi$ alcanza su máximo en $p$, tenemos que para cada $x\in X$
+\[
+\log \tr_{g}{g'} (x) -A\varphi(x) \leq \log \tr_{g}{g'}(p) - A\varphi (p) \leq \log(n C_2) - A\varphi (p)
+\]
+de forma que la proposición \ref{Cap3Sec2-LemaEstC0} podemos encontrar una cota $\sup \vert F\vert$ y por lo tanto para alguna constante $C_3$ se tiene que
+\[
+\sup_{X} \log \tr_{g}{g'} \leq C_3.
+\]
+Si repetimos el mismo proceso escogiendo coordenadas normales para $g$ para las cuales $g'$ es diagonal, usamos los resultados análogos a los anteriores nos permiten concluir nuestro resultado como sigue:\par
+Como $g'$ es diagonal, existe una cota superior de los términos ${g'}_{i\overline{i}}(x)$ para todo $i$. La desigualdad \ref{Cap3Sec2-Eq3} se tiene para $x$ también, de forma que obtenemos una cota inferior sobre cada ${g'}_{i\overline{i}}(x)$.
+\end{proof}
+Hasta ahora, hemos encontrado estimaciones de orden cero, estimaciones sobre el operador Laplaciano y como extender estas a todas las derivaciones de segundo orden mediante las proposiciones \ref{Cap3Sec2-LemaEstC0} y \ref{Cap3Sec2-LemaEstC2}. En la siguiente sección veremos la construcción para obtener estimaciones de orden superior para una función $\varphi$ que satisface la ecuación \ref{Cap3Sec2-Eq1}.
+
+\subsection*{Estimaciones de orden superior.}\label{Cap3Sec3}
+
+Si denotamos por $\hat{g}_{j\overline{k}}$ a la m\'etrica fija (que en el capitulo anterior escribimos como $g_{j\overline{k}}$) y escribimos nuestra nueva métrica de K\"ahler como
+\[
+g_{j\overline{k}} = \hat{g}_{j\overline{k}} + \partial_j \partial_{\overline{k}}\varphi.
+\]
+Es decir, en la escritura del capítulo anterior.\par
+Usaremos la ecuación \ref{Cap3Sec2-Eq2} para la curvatura de Ricci, que escribimos como sigue
+\begin{equation}\label{Cap3Sec3-eqn1}
+R_{j\overline{k}} = -g_{j\overline{k}} + T_{j\overline{k}}
+\end{equation}
+para
+\[
+T_{j\overline{k}} =  -\partial_j \partial_{\overline{k}} F + \hat{g}_{j\overline{k}} + \hat{R}_{j\overline{k}}
+\]
+Donde $R_{j\overline{k}}$ es la curvatura de Ricci de la m\'etrica (desconocida) $g$. Usando la proposición \ref{Cap3Sec2-Prop2} sabemos que existe una constante $\Lambda$ tal que
+\begin{equation}\label{Cap3Sec3-eqn2}
+\Lambda^{-1} \left( \hat{g}_{j\overline{k}}\right) < \left( g_{j\overline{k}}\right) < \Lambda \left(\hat{g}_{j\overline{k}}\right)
+\end{equation}
+Queremos estimar las derivadas mixtas de tercer orden de $\varphi$. Dado que tenemos una métrica acotada por la proposición \ref{Cap3Sec2-LemaEstC0}, ser\'a equivalente estimar los símbolos de Christoffel 
+\[
+\christoffel{i}{j}{k} = g^{i\overline{\ell}} \partial_j g_{k\overline{\ell}}.
+\]
+Ser\'a mas natural tomar una perspectiva tensorial para estos cálculos, sin embargo, podemos enfocarnos en la diferencia de los símbolos de Christoffel, es decir, el tensor de forma
+\begin{equation}\label{Cap3Sec3-Eq3}
+	S^{i}_{jk} = \christoffel{i}{j}{k} - \hat{\christoffel{i}{j}{k}}
+\end{equation}
+donde $\hat{\christoffel{i}{j}{k}}$ es el símbolo de Christoffel de la conexión de Levi-Civita de $\hat{g}$.\\
+Un resultado clave utilizando la diferencia de los símbolos de Christoffel es el siguiente
+\begin{prop}\label{Cap3Sec3-Prop1}\hfill
+
+Suponiendo que $g$ satisface la ecuación \ref{Cap3Sec3-eqn1} y la cota \ref{Cap3Sec3-eqn2}. Entonces existe una constante $C$ dependiendo de $X$, $T$, $\hat{g}$ y $\Lambda$ tal que
+\[
+\Delta \vert S\vert^2 \geq - C \vert S\vert^2 -C,
+\]
+donde $\vert S \vert$ es la norma del tensor $S$ medido respecto a la métrica $g$ y $\Delta$ corresponde al Laplaciano respecto a la métrica $g$.
+\end{prop}
+\begin{proof}
+Sumando seg\'un la convención de Einstein sobre los indices que se repiten (o bien, seleccionando un punto $p\in X$ tal que $g$ corresponde a la identidad) podemos escribir
+\[
+\vert S\vert^2 = g^{j\overline{k}}g^{a\overline{b}}g_{p\overline{q}}S^{p}_{ja}\overline{S^{q}_{kb}}=: S^{p}_{ja} \overline{S^{p}_{ja}},
+\]
+De esta forma, podemos calcular el Laplaciano de $\vert S\vert^2$ como
+\[
+\Delta \vert S\vert^2 = \nabla_p \nabla_{\overline{p}} \left( S^{p}_{jk}\overline{S^{p}_{jk}} \right)
+\]
+Tenemos entonces
+\begin{align}\label{Cap3Sec3-Eqn4}
+\nonumber \Delta \vert S\vert^2 &= \nabla_p \nabla_{\overline{p}} \left( S^{p}_{jk}\overline{S^{p}_{jk}} \right) \\ 
+\nonumber &= \nabla_p \left( \left( \nabla_{\overline{p}} S^{p}_{jk}\right)\overline{S^{p}_{jk} } +  S^{p}_{jk}\left( \nabla_{\overline{p}} \overline{S^{p}_{jk}}\right)\right) \\
+&= \left( \nabla_p \nabla_{\overline{p}} S^{p}_{jk}\right)\overline{S^{p}_{jk}} + \left( \nabla_{\overline{p}} S^{p}_{jk} \right) \left( \nabla_{p} \overline{S^{p}_{jk}} \right) + \left( \nabla_{p} S^{p}_{jk} \right) \left( \nabla_{\overline{p}} \overline{S^{p}_{jk}} \right) + S^{p}_{jk}\left( \nabla_{p}\nabla_{\overline{p}} \overline{S^{p}_{jk}} \right) \\
+\nonumber &= \left( \nabla_p \nabla_{\overline{p}} S^{p}_{jk}\right)\overline{S^{p}_{jk}} + S^{p}_{jk}\left( \nabla_{p}\nabla_{\overline{p}} \overline{S^{p}_{jk}} \right) + \left( \nabla_{\overline{p}}S^{p}_{jk} \right) \left(\overline{ \nabla_{\overline{p}} S^{p}_{jk} }\right)+ \left( \nabla_{p} S^{p}_{jk}\right) \left( \overline{\nabla_p S^{p}_{jk} }\right) \\
+\nonumber&\geq \left( \nabla_p \nabla_{\overline{p}} S^{p}_{jk}\right)\overline{S^{p}_{jk}} + S^{p}_{jk}\left( \nabla_{p}\nabla_{\overline{p}} \overline{S^{p}_{jk}} \right)
+\end{align}
+Pues los términos de la forma $\left(\nabla_{p} S^{p}_{jk}\right) \left( \overline{\nabla_p S^{p}_{jk} }\right)$ son no negativos. Recordemos que el impedimento para que $\nabla_p$ y $\nabla_{\overline{p}}$ conmuten es codificado por la curvatura, en este caso, utilizamos este hecho como sigue
+\begin{align*}
+\left(\nabla_{\overline{p}}\nabla_{p} - \nabla_p \nabla_{\overline{p}} \right) S^{i}_{jk} &= R^{m}_{jp\overline{p}}S^{i}_{mk} + R^{m}_{jp\overline{p}} S^{i}_{jm} + R^{m}_{jp\overline{p}}S^{m}_{jk}
+\end{align*}
+Por hipótesis existe un $C_1 >0$ que acota al tensor de Ricci, entonces
+\begin{align}\label{Cap3Sec3-Eqn5}
+\nonumber\vert \nabla_{\overline{p}} \nabla_p S^{i}_{jk} \vert  &= \vert\nabla_p \nabla_{\overline{p}} S^{i}_{jk} + R^{m}_{jp\overline{p}}S^{i}_{mk} + R^{m}_{jp\overline{p}} S^{i}_{jm} + R^{m}_{jp\overline{p}}S^{m}_{jk} \vert\\
+ &\leq \vert \nabla_p \nabla_{\overline{p}} S^{i}_{jk} \vert + \vert  R^{m}_{jp\overline{p}}S^{i}_{mk} + R^{m}_{jp\overline{p}} S^{i}_{jm} + R^{m}_{jp\overline{p}}S^{m}_{jk} \vert \\
+\nonumber &\leq \vert \nabla_p \nabla_{\overline{p}} S^{i}_{jk} \vert + C_1 \vert S \vert
+\end{align}
+Por otro lado, utilizando la identidad de Bianchi
+\[
+\nabla_p \RicciCurv{i}{j}{k}{\overline{p}} = \nabla_k \RicciCurv{i}{j}{p}{\overline{p}} = \nabla_k \operatorname{R}^{i}_j
+\] 
+obtenemos que para la conexi\'on de Levi-Civita $\widehat{\nabla}$ y la curvatura de Ricci $\widehat{\operatorname{R}}$ para la m\'etrica $\widehat{g}$ se satisface
+\begin{align*}
+	\nabla_p \nabla_{\overline{p}} S^{i}_{jk} &= \nabla_p \partial_{\overline{p}} \left( \Gamma^{i}_{j k} - \widehat{\Gamma}^{i}_{j k} \right) \\
+	&= -\nabla_{p}\left( \RicciCurv{i}{j}{k}{\overline{p}} - \widehat{\operatorname{R}}^{i}_{jk\overline{p}} \right) \\
+	&= -\nabla_k \operatorname{R}^{i}_{j} + \widehat{\nabla}_p \widehat{\operatorname{R}}^{i}_{jk\overline{p}} + \left( \nabla_p - \widehat{\nabla}_p \right) \widehat{\operatorname{R}}^{i}_{jk\overline{p}}
+\end{align*}
+Luego, la diferencia $\nabla_p - \widehat{\nabla}_p$ es acotada por $S$ por la definición \ref{Cap3Sec3-Eq3}, de donde podemos obtener una cota para la derivada covariante $\nabla_k \operatorname{R}^{i}_j$ desde \ref{Cap3Sec3-eqn1}. Obtenemos entonces, que existen $C_1$ y $C_2$ constantes positivas tales que
+\[
+\vert \nabla_p \nabla_{\overline{p}} S^{i}_{jk} \vert \leq C_2 \vert S \vert + C_3.
+\]
+Combinando esto con los resultados de \ref{Cap3Sec3-Eqn4} y \ref{Cap3Sec3-Eqn5} obtenemos 
+\[
+\Delta \vert S\vert^2 \geq - (C_4 \vert S \vert + C_5 ) \vert S\vert = - C_4 \vert S \vert^2 - C_5 \vert S \vert.
+\]
+Si consideramos en esta \'ultima $C>0$ como el m\'aximo entre $C_4$ y $C_5$ se concluye el resultado.
+\end{proof}
+
+Veamos ahora un \'ultimo resultado que nos permitir\'a verificar que la diferencia $S$ es acotada.
+\begin{lem}\label{Cap3Sec3-Lema1}\hfill
+
+Suponer que $g$ es una métrica satisfaciendo la ecuación \ref{Cap3Sec3-eqn1} y la cota \ref{Cap3Sec3-eqn2}. Entonces existe una constante $C$ dependiendo solo de $X$, $T$, $\hat{g}$, y $\Lambda$ tal que $\vert S\vert \leq C$.
+\end{lem}
+\begin{proof}
+Por la desigualdad \ref{Cap3Sec2-Eqn4} y al ser $g$ y $g'$ uniformemente equivalentes podemos tomar $\varepsilon >0$ y $C_1 >0$ tales que
+\[
+\Delta \tr_{\hat{g}}g \geq  -C_1 + \varepsilon \vert S \vert^2,
+\]
+Usando el lema anterior podemos escoger $A\in \bbR$ suficientemente grande tal que para algún $C_2 \in \bbR$
+\[
+\Delta \left( \vert S\vert^2 + A \tr_{\widehat{g}}g \right) \geq \vert S\vert^2 - C_2
+\]
+Si $\vert S \vert^2 + A\tr_{\widehat{g}}g$ alcanza un m\'aximo en $p\in X$, entonces
+\[
+0 \geq \tr \left( \operatorname{Hess}\left( \vert S\vert^2 + A \tr_{\widehat{g}}g \right) \right) = \Delta\left( \vert S\vert^2 + A \tr_{\widehat{g}}g \right) \geq \vert S\vert^2 (p) - C_2
+\]
+Luego, si consideramos $x\in X$ se tiene que
+\[
+\vert S \vert^2 (x) \leq \vert S\vert^2 (x) + A\tr_{\widehat{g}}g (x) \leq \vert S \vert^2 (p) + A\tr_{\widehat{g}}g (p) \leq C_2+ C_3
+\]
+Que corresponde a nuestro resultado deseado.
+\end{proof}
+
+Con los resultados de estimaciones $\mathcal{C}^{0}$, $\mathcal{C}^2$, $\mathcal{C}^3$ y de orden superior estamos en posición de probar el teorema \ref{aubin-calabi-yau}, para esto reeescribimos el teorema en función de los resultados anteriores como sigue.
+\begin{teo}[Aubin-Yau (78)]\label{aubin-calabi-yau-2}\hfill
+
+Existe una constante $C>0$ dependiendo solo de $X$, $\omega_0$ y $F$ tal que $\varphi_t$ satisface la ecuación
+\begin{equation}\tag{$\operatorname{MA}_t$}\label{MA(t)2}
+	\left( \omega_0 + \ii \partial\overline{\partial}\varphi_t \right)^n = e^{tF + \varphi_t} \omega^n_0
+\end{equation}
+para $t\in [0,1]$, entonces
+\[
+	\left( g_{j\overline{k}} + \partial_j\partial_{\overline{k}} \varphi_t \right) > C^{-1} \left(g_{j\overline{k}} \right)
+\]
+y adem\'as
+\[
+\Vert \varphi_t \Vert_{\mathcal{C}^{3,\alpha}(X)} \leq C
+\]
+donde la norma de H\"older es medida con respecto a la m\'etrica $\omega_0$.
+\end{teo}
+\begin{proof}
+	Las proposiciones \ref{Cap3Sec2-LemaEstC0} y \ref{Cap3Sec2-LemaEstC2} nos permiten afirmar que $g_{j\overline{k}}+ \partial_j \partial_{\overline{k}}$ es uniformemente equivalente a $g_{j\overline{k}}$. Luego el lema \ref{Cap3Sec3-Prop1} muestra que existe una estimación a priori para las derivadas mixtas de tercer orden de la forma $\partial_j \partial_{\overline{k}} \partial_{\ell} \varphi$ y $\partial_{\overline{j}}\partial_{\overline{k}}\partial_{\ell}\varphi$. En particular, esto nos permite establecer cotas de tipo $\mathcal{C}^\alpha (X)$ sobre las derivadas mixtas de segundo orden de la forma $\partial_j \partial_{\overline{k}} \varphi$. Para concluir, debemos utilizar el argumento utilizado en la proposición \ref{Cap3Sec1-Lema2} usando las estimaciones de Schauder  tras diferenciar la ecuaci\'on para encontrar una estimaci\'on a priori para $\Vert \varphi \Vert_{\mathcal{C}^{3,\alpha}}$.
+\end{proof}
+\section{Métricas K\"ahler-Einstein en variedades de Calabi-Yau, el caso $c_1(X)=0$}\label{Cap3Sec4}
+En esta secci\'on consideraremos $X$ una variedad cuya primera clase de chern es nula, en este caso, una m\'etrica de K\"ahler-Einstein necesariamente ser\'a Ricci plana. Dada cualquier m\'etrica $\omega$ sobre $X$, la forma de Ricci de $\omega$ es exacta, de esta forma, por el $\partial\overline{\partial}$-lema debe existir una funci\'on suave $F$ tal que como
+\[
+0 = c_1(X) = \frac{1}{2\pi} \operatorname{Ric}(\omega)
+\]
+entonces se satisface
+\[
+\operatorname{Ric}(\omega) = \ii \partial \overline{\partial}F
+\]
+De la misma forma que en la deducci\'on de la ecuaci\'on \ref{Cap3-Eq-MA} en la primera secci\'on se puede obtener que la existencia de tal métrica de K\"ahler Ricci plana esta dada por la solubilidad de la ecuación
+\begin{equation}\label{Cap3Sec2 MA Calabi-Yau}
+\left( \omega + \ii\partial\overline{\partial}\varphi\right)^n = e^{F} \omega^n \tag{$\operatorname{MA}_2$}
+\end{equation}
+Una ligera pero crucial diferencia es que en esta ecuaci\'on, para empezar estudiar su solubilidad debemos normalizar $F$ sumando una constante. De hecho, integrando la igualdad se tiene que
+\[
+ \int_X e^F \omega^n = \int_X \left( \omega + \ii \partial\overline{\partial}\varphi \right)^n = \int_X \omega^n = \operatorname{vol}_\omega (X)
+\]
+Donde hemos utilizado que
+\begin{align*}
+\left( \omega + \ii \partial \overline{\partial}\varphi \right)^n - \omega^n &= \ii\partial\overline{\partial}\varphi \wedge \left( {\omega'}^{n-1} + {\omega'}^{n-2}\wedge \omega + \ldots + \omega^{n-1} \right)\\
+&= \dd \left( \ii \overline{\partial} \varphi \wedge \left( {\omega'}^{n-1} + \ldots {\omega}^{n-1} \right)\right)
+\end{align*}
+es exacta, de modo que el volumen de $X$ con respecto a ambas m\'etricas debe coincidir.\\
+El siguiente teorema de Yau, responde de forma definitiva la problem\'atica de la existencia de m\'etricas de K\"ahler-Einstein en el caso $c_1(X)=0$.
+\begin{teo}[Yau (78)]\hfill
+
+Sea $(X,\omega)$ una variedad de K\"ahler compacta, y sea $F:X\rightarrow \bbR$ una funci\'on suave tal que
+\[
+\int_X e^F \omega^n = \int_X \omega^n.
+\]
+Entonces existe una función suave $\varphi : X \rightarrow \bbR$, única salvo sumar una constante, tal que $\omega + \ii \partial\overline{\partial}\varphi$ es una forma positiva y se satisface
+\begin{equation}\label{MA CASO CALABI-YAU}
+\left( \omega + \ii\partial\overline{\partial}\varphi \right)^n = e^F \omega^n \tag{$\operatorname{MA}_2$}
+\end{equation}
+\end{teo}
+Pese a que esta ecuación es bastante similar a \ref{Cap3-Eq-MA}, que ya hemos resuelto en la secci\'on anterior, esta ecuaci\'on es fundamentalmente diferente. Dado que \ref{MA CASO CALABI-YAU} no aparece el t\'ermino $e^{F+\varphi}$ no podremos encontrar una estimaci\'on a priori para $\sup_X \vert \varphi\vert$ como lo hemos hecho antes utilizando el principio del m\'aximo. Sin embargo, podemos encontrar estimaciones siguiendo otros m\'etodos siguiendo la soluci\'on original de Yau \cite{Yau78} con modificaciones dadas por Blocki en \cite{Blocki12} y \cite{Blocki13}.\\
+Como ya hemos mencionado, nuestro actual objetivo es probar una estimación  $\mathcal{C}^0$, esto se lograr\'a con el siguiente resultado.
+\begin{prop}\hfill
+
+Sean $F,\varphi : X \rightarrow \bbR$ funciones suaves sobre una variedad de K\"ahler compacta $(X,\omega)$ tales que $\omega - \partial \overline{\partial}\varphi$ es positiva y satisfacen
+\[
+	\left( \omega - \ii \partial\overline{\partial}\varphi \right)^n = e^F \omega^n.
+\]
+Entonces existe una constante $C$ que depende de $M$, $\omega$ y $\sup_X F$ satisfaciendo
+\[
+\operatorname{osc}_X \varphi := \sup_X \varphi - \inf_X \varphi < C.
+\]
+\end{prop}
+\begin{proof}
+Para probar este resultado utilizaremos una t\'ecnica denominada iteraci\'on de Moser, que consiste en estimar las normas $L^p$
+\[
+	\Vert \varphi \Vert_p = \left( \int_X \vert \varphi \vert^p \omega^n \right)^{1/p}
+\]
+de forma iterativa para $p$ cada vez mas grande y tomando finalmente el limite cuando $p\to \infty$. (Consideremos $\omega - \ii \partial \overline{\partial}$ en vez de $\omega +\ii \partial\overline{\partial}\varphi$). Modificando $\varphi$ por una constante y reescalando $\omega$ de forma adecuada, podemos asumir que $\inf_X \varphi =1$ y que $\operatorname{vol}_{\omega} =1$, esto nos permite asegurar que para $p\leq q$ se tiene que
+\[
+\Vert \varphi \Vert_p \leq \Vert \varphi \Vert_q.
+\]
+Como $\omega - \ii\partial\overline{\partial}\varphi$ es positivo, al tomar traza respecto a $\omega$ obtenemos que
+\[
+n - \Delta_{\omega} \partial > 0,
+\]
+para $\Delta_{\omega}$ el Laplaciano de $(X,\omega)$. Supongamos que $\varphi(p)=1$, y sea $G(x,y)$ la funci\'on de Green del Laplaciano (Ver su definición en la ecuación \ref{Green Function Laplacian}) , entonces
+\[
+	\varphi(p) = \int_X \varphi \omega^n - \int_X G(x,p)\Delta \varphi(x) \omega^n(x).
+\]
+Asumiendo que $G\geq 0$ y que $G(x,p)$ es integrable respecto a  $x$, se tiene que
+\[
+1= \varphi(p) \geq \int_X \varphi(x) \omega^n(x) dx - n \int_X G(x,p)\omega^n (x)dx \geq \int_X \varphi\omega^n(x)dx - C_1
+\]
+para alguna constante $C_1>0$, de esta forma obtenemos $\Vert \varphi \Vert_1 \leq C_1+1=: C_2$. Si consideramos $\omega_{\varphi} = \omega - \ii \partial\overline{\partial}\varphi$, se tiene que
+\begin{align*}
+\int_X \varphi \left(\omega^n_\varphi - \omega^n\right) &= \int_X \varphi\left( \omega_\varphi  - \omega\right) \left( \omega^{n-1}_{\varphi}+ \ldots + \omega^n \right)\\
+&= \int_X - \varphi \ii \partial\overline{\partial}\varphi\wedge \left(\omega^{n-1}_{\varphi} + \ldots + \omega^n \right)\\
+&= \int_{\partial X} -\ii\varphi\overline{\partial}\varphi \wedge\left( \omega^{n-1}_{\varphi} + \ldots + \omega^n \right) + \int_X \ii \partial\varphi \wedge \overline{\partial}\varphi \wedge \left(\omega^{n-1}_{\varphi} + \ldots + \omega^n \right) \\
+&= \int_X \ii \partial\varphi \wedge \overline{\partial}\varphi \wedge \left(\omega^{n-1}_{\varphi} + \ldots + \omega^n \right)
+\end{align*}
+Las formas $\ii \partial \varphi \wedge \varphi \wedge \overline{\partial}\varphi \wedge \omega^k_{\varphi} \wedge \omega^{n-1-k}$ son no negativas, para ver esto podemos calcular en coordenadas locales en torno a un punto $p\in X$ en el que $\omega$ y $\omega_\varphi$ son diagonales (como en \ref{4.17 Szeke}). Luego, se tiene que
+\[
+\int_X \varphi \left( \omega^n_{\varphi} - \omega^n\right) \geq \int_X \ii\partial \varphi \wedge \overline{\partial}\wedge \omega^{n-1} = \frac{1}{n}\int_X \vert \partial \varphi \vert^2 \omega^n,
+\]
+\end{proof}
+Como $\omega^n_\varphi -\omega^n = (e^F - 1 ) \omega^n$ tenemos que
+\[
+\int_X \vert \partial \varphi \vert^2 \omega^n < C_3,
+\]
+para alguna constante $C_3$. Por otro lado, la desigualdad de Poincar\'e sobre $X$ implica que
+\[
+\int_X \left( \varphi - \Vert \varphi \Vert_1\right)^2 \omega^n \leq C\int_X \vert \partial \varphi \vert^2 \omega^n := C_4,
+\]
+y por la cota obtenida para $\Vert \varphi \Vert_1$ esta ultima desigualdad nos d\'a una cota superior $\Vert \varphi\Vert_2< C_4$.\\
+Procediendo de forma similar, podemos concluir que
+\[
+ \Vert \partial \varphi^{p/2}\Vert^2_2 \leq p\cdot C \Vert \varphi\Vert^{p-1}_{p-1}, 
+\]
+para una constante $C$ que no depende de $p\in\bbN$. La desigualdad de Sobolev para $(X,\omega)$ nos dice que para todo $f$ suficientemente regular se tiene que
+\[
+\Vert f \Vert^2_{\frac{2n}{n-1}} \leq C_S \left( \Vert f \Vert^2_2 +\Vert \partial f\Vert^2_2\right)
+\]
+para una constante $C_S$ que solo depende de $X$ y la m\'etrica $\omega$. Aplicando la desigualdad de Sobolev a $f=\varphi^{p/2}$ obtenemos
+\begin{align*}
+	\Vert \varphi \Vert^{p}_{\frac{np}{n-1}}= \Vert \varphi^{p/2} \Vert^2_{\frac{2n}{n-1}} &\leq C_S \left( \Vert\varphi^{p/2}\Vert^2_2 + \Vert \partial\varphi^{p/2} \Vert^2_2 \right)\\
+	&\leq C_S \left( \Vert \varphi \Vert^p_p + p C \Vert \varphi\Vert^{p-1}_{p-1}\right)\\
+	&\leq pC' \Vert \varphi \Vert^p_p
+\end{align*}
+y por lo tanto
+\[
+\Vert \varphi \Vert_{\frac{np}{n-1}}\leq (pC)^{1/p} \Vert \varphi \Vert_p . 
+\]
+Haciendo $p_k := \left( \frac{n}{n-1}\right)^k p$, obtenemos que
+\[
+\Vert \varphi \Vert_{p_k} \leq \left( p_{k-1}C \right)^{1/p_{k-1}} \Vert \varphi \Vert_{p_{k-1}} \leq \ldots \leq \Vert \varphi\Vert_p \prod_{i=0}^{k-1}\left(p_i C \right)^{1/p_i} \leq \Vert \varphi \Vert_p \prod_{i\in \bbN} \left(p_i C\right)^{1/p_i} < \infty
+\]
+As\'i, si escogemos $p=2$ y hacemos $k\to\infty$ una cota para $\sup_X \varphi$ como sigue
+\[
+\sup_X \varphi \leq \widehat{C}\Vert \varphi \Vert_2,
+\]
+es decir, nuestra cota para la norma $L^2$ de $\varphi$ implica la estimaci\'on uniforme que en la secci\'on obtuvimos utilizando el principio del m\'aximo.\par
+Como ya hemos conseguido estimaciones para la norma uniforme, el resto del problema corresponde a encontrar estimaciones de orden superior, pero no existe impedimento para utilizar los argumentos de los lemas \ref{Cap3Sec2-Prop2} y \ref{Cap3Sec3-Lema1} . El argumento de apertura del conjunto 
+\[
+S_2 = \left\lbrace s \in [0,1] \quad \big\vert \quad \operatorname{MA}_2(t) \text{ tiene solucion para } t=s \right\rbrace
+\] 
+es análogo al que utilizamos en el caso $c_1(X)<0$.\par
+Para concluir este cap\'itulo, deduciremos la ecuación de tipo Monge-Amp\`ere que debe ser resuelta para asegurar la existencia de métricas de K\"ahler Einstein en una variedad de Fano, y en el proceso mencionaremos y daremos detalles de algunos de los impedimentos para que esta sea siempre resoluble.
+
+\section{Métricas K\"ahler-Einstein en variedades de Fano, el caso $c_1(X)>0$}\label{Cap3Sec5}
+En las secciones anteriores hemos estudiado los casos donde $c_1 (X) \leq 0$. Esta \'ultima secci\'on estar\'a dedicada a comentar algunos resultados y propiedades que se tienen en el caso donde la primera clase de Chern es positiva. Supongamos que $\omega_0 \in 2\pi c_1(X)$ es una métrica K\"ahleriana cualquiera. Buscamos una métrica 
+\[
+\omega = \omega_0 + \ii \partial\overline{\partial}\varphi
+\]
+tal que $\operatorname{R}(\omega) = \omega'$. Como antes, consideremos $[\omega_0 ]= 2\pi c_1 (X) \in \cohom^2 (X,\bbR)$, entonces, como $2\pi c_1 (X) = [\Ric (\omega_0)$ podemos escribir la curvatura de Ricci $\omega_0$ como
+\[
+	\operatorname{Ric}(\omega_0) = \omega_0 + \ii\partial\overline{\partial}F.
+\]
+Sea entonces $\omega \in [ \omega_0 ]$, por el $\partial\overline{\partial}$-lema existe $\varphi \in \mathcal{C}^\infty (X)$ tal que
+\[
+	\omega = \omega_0 + \ii \partial\overline{\partial}\varphi
+\]
+y cuya curvatura de Ricci difiere de la de $\omega$ satisfaciendo que
+\[
+\Ric (\omega) - \Ric(\omega_0) = -\ii \partial \overline{\partial} \log \dfrac{\omega^n}{\omega_0^n}.
+\]
+Ahora bien, si $\omega$ corresponde a una métrica de K\"ahler-Einstein esta debe satisfacer $\Ric(\omega)=\omega$ y por lo tanto la ecuación anterior se reescribe como
+\[
+	\omega - \omega_0 - \ii\partial\overline{\partial}\varphi = - \ii\partial\overline{\partial}\log\dfrac{\omega^n}{\omega_0^n}
+\]
+y como $\omega = \omega_0 + \ii \partial\overline{\partial}\varphi$ concluimos la igualdad
+\[
+\omega_0 + \ii\partial\overline{\partial}F - \omega_0 - \ii\partial\overline{\partial}\varphi = -\ii\partial\overline{\partial}\log \dfrac{\omega^n}{\omega_0^n}
+\]
+y finalmente, encontramos una igualdad an\'aloga a \ref{Cap3Sec1-Eq-3} para variedades de Fano, esto es,
+\begin{equation}\label{Cap3Sec5-Eq1}
+\ii\partial\overline{\partial}\left( F - \varphi \right) = -\ii\partial\overline{\partial}\log\dfrac{\omega^n}{\omega_0^n}
+\end{equation}
+Como en la secci\'on \ref{Cap3Sec1} podemos ver que esto requiere de la solubilidad de la ecuación
+\begin{equation}\label{MA-FANO}
+\left( \omega + \ii \partial\overline{\partial}\varphi\right)^n = e^{F - \varphi} \omega^n \tag{$\operatorname{MA}_3$}
+\end{equation}
+Siguiendo la propuesta de utilizar el m\'etodo de continuidad, podemos introducir la ecuaci\'on 
+\begin{equation}\label{MA-FANO-t}
+\left( \omega + \ii \partial\overline{\partial}\varphi\right)^n = e^{F-t\varphi} \omega^n \tag{$\operatorname{MA}_3 (t)$}
+\end{equation}
+Notemos que esta tiene solución $\varphi = 0$ para $t=0$, pero no podemos utilizar el teorema de la función implícita para concluir la apertura del conjunto
+\[
+S_3 = \left\lbrace s \in [0,1] \quad \big\vert \quad \text{\ref{MA-FANO-t} tiene solucion para } t=s \right\rbrace
+\]
+pues podemos sumar constantes a $\varphi$ de tal manera que esta siga siendo solución, por lo que no contamos con la unicidad de soluciones para $t=0$. Una forma de solucionar este problema es fijando un punto $p\in X$ y resolver la ecuación
+\begin{equation*}
+	\left( \omega + \ii \partial\overline{\partial}\varphi \right)^n = e^{F- t\varphi + \varphi(p)}\omega^n.
+\end{equation*}
+Entonces la funci\'on $\varphi - t^{-1} \varphi (p)$ es solución de \ref{MA-FANO-t}. Como en la demostración de la proposición \ref{Cap3Sec1-Lema2} podemos reescribir la ecuación como
+\begin{equation}\label{Cap3Sec5-Eq2}
+\log\dfrac{\omega_{\varphi}^n}{\omega^n} + t\varphi - \varphi (p) - F =0,
+\end{equation}
+y el operador 
+\begin{align*}
+\mathcal{C}^{3,\alpha}(X) \times [0,1] &\longrightarrow \mathcal{C}^{1,\alpha}\\
+(\varphi , t) &\longmapsto \log \dfrac{\omega_{\varphi}^n}{\omega^n} + t\varphi - \varphi(p) - F
+\end{align*}
+en $t=0$ su linealizaci\'on en una solución $\varphi$ es
+\[
+\psi \mapsto \Delta_{\omega_{\varphi}} \psi - \psi(p),
+\]
+que corresponde a un isomorfismo $\mathcal{C}^{3,\alpha}(X) \xrightarrow[]{\sim}\mathcal{C}^{1,\alpha}(X)$. De hecho, si $h\in\mathcal{C}^{3,\alpha}(X)$ y $\overline{h}$ denota al promedio de $h$ respecto a $\omega_{\varphi}$, entonces, podemos encontrar $\psi \in \mathcal{C}^{3,\alpha}(X)$ que resuelve
+\[
+\Delta_{\omega_{\varphi}}\psi = h - \overline{h}.
+\]
+Podemos entonces sumar una constante a $\psi$ para resolver
+\[
+\Delta_{\omega_{\varphi}}\psi + \psi(p) = h.
+\]
+Se puede utilizar el teorema de la funci\'on impl\'icita para implicar que la ecuación \ref{Cap3Sec5-Eq2} puede resolverse para $t>0$ suficientemente pequeño. Esto se detalla en el siguiente resultado.
+\begin{prop}\hfill
+
+Sea $\varphi$ una solución de la ecuación \ref{MA-FANO-t}, es decir, soluci\'on de
+\[
+\left( \omega + \ii\partial\overline{\partial}\varphi\right)^n = e^{F-t\varphi}\omega^n
+\]
+para $t=s$, con $s\in(0,1)$. Entonces se puede resolver la ecuación para todo $t \in (s-\varepsilon,s+\varepsilon)$ para $\varepsilon>0$ suficientemente pequeño.
+\end{prop}
+\begin{proof}
+Para utilizar el teorema de la funci\'on impl\'icita probaremos que el operador linealizado es invertible. Para esto, consideremos la igualdad
+\[
+\log\dfrac{\omega_\varphi^n}{\omega^n} + t\varphi - F=0
+\]
+la linealizaci\'on del operador en $\varphi$ cuando $t=s$ es dado por
+\[
+L(\psi) = \Delta_{\omega_{\varphi}} \psi + s\psi.
+\]
+En otras palabras, necesitamos probar que el mayor autovalor no nulo de $-\Delta_{\omega_{\varphi}}$ es mayor o igual a $s$, para esto ser\'a importante el hecho que $\omega_\varphi$ satisface
+\[
+\Ric( \omega_\varphi) = s\omega_\varphi + (1-s)\omega,
+\]
+es decir, la curvatura de Ricci de $\omega_\varphi$ es acotada inferiormente por $s$. Para esto, utilizamos la identidad de Bochner-Weitzenbock (cf. \cite[Pag. 97]{GriHar78}) para el $\overline{\partial}$-Laplaciano sobre $(0,1)$-formas
+\[
+\Delta_{\overline{\partial}} = \overline{\nabla}^{\ast} \overline{\nabla} + \operatorname{Ric}.
+\]
+Expl\'icitamente, si $L(\psi)=0$. Entonces, podemos encontrar que
+\begin{align*}
+\int_X s &\nabla_j \psi \nabla_{\overline{j}} \psi \omega^n_\varphi = -\int_X \nabla_j \nabla_p \nabla_{\overline{p}} \psi \nabla_{\overline{j}}\psi \omega^n_\varphi \\
+&= \int_X \left( -\nabla_{\overline{p}} \nabla_p \nabla_j \psi \nabla_{\overline{j}} \psi + \operatorname{R}^{q\overline{j}}\nabla_q \psi \nabla_{\overline{j}} \psi \right)\omega^n_\varphi \\
+&= \int_X \left( \nabla_p \nabla_j \psi \nabla_{\overline{p}}\nabla_{\overline{j}} \psi + s \nabla_j \psi \nabla_{\overline{j}}\psi + (1-s) \omega^{q\overline{j}} \nabla_q \psi \nabla_{\overline{j}} \psi \right) \omega^n_\varphi \\
+&\geq \int_X \left(s\nabla_j \psi \nabla_{\overline{j}}\psi + (1-s) \omega^{q\overline{j}}\nabla_q \psi \nabla_{\overline{j}}\psi \right) \omega^n_\varphi,
+\end{align*}
+Donde $\operatorname{R}^{q\overline{j}}$ corresponde a la curvatura de Ricci de $\omega_\varphi$ y $\omega^{q\overline{j}}$ son las componentes de $\omega$, con indices contraídos por aplicar $\omega_\varphi$. Notemos que esta igualdad se tiene solo si $\psi$ es constante, pero en tal caso $L(\psi) =0$. Luego, podemos ver que $L$ es autoadjunto, lo que junto con la inyectividad probada anteriormente implica que $L$ es de hecho invertible.
+\end{proof}
+Como en las secciones anteriores, queda probar que el conjunto $S_3$ es cerrado. Para esto, utilizaríamos estimaciones a priori, el problema es que al igual que en el caso $c_1(X) =0$ no podemos encontrar estimaciones para $\sup_X \vert\varphi\vert$ dado que en la formulación de la ecuaci\'on el signo de $\varphi$ es contrario al de antes. Si pudieramos proveer una estimación de este tipo, la argumentaci\'on previa tambi\'en nos seria de utilidad para encontrar que \ref{MA-FANO} tiene soluci\'on, pero resulta ser que esto no siempre es posible. Obstáculos para que esto ocurra son dados por Matsushima en \cite{Matsushima57} donde estudia el grupo de homeomorfismos anal\'iticos sobre algunas variedades de Fano. Futaki en \cite{Futaki83} encuentra un obstáculo para la existencia de métricas de K\"ahler Einstein dado por las \'algebras de campos vectoriales holomorfos. En este se considera una variedad compleja compacta $n$-dimensional, $X$ con primera clase de Chern positiva. Si $c_1^{+} (X)$ es el conjunto de todas las $(1,1)$-formas positivas representando $c_1(X)$. Si fijamos una m\'etrica de K\"ahler $(g_{j\overline{k}})$, escribimos la forma de K\"ahler como
+\[
+\omega = \ii \sum_{j,k} g_{j\overline{k}} dz^j \wedge d\overline{z}^k \in c_1^{+}(X)
+\]
+y su forma de Ricci como
+\[
+\operatorname{Ric}(\omega) = - \ii \partial\overline{\partial}\log\det (g)
+\]
+y por el $\partial\overline{\partial}$-lema, existe $F$ una funci\'on suave tal que
+\[
+\operatorname{Ric}(\omega) - \omega = \ii \partial \overline{\partial}F
+\]
+Sea entonces $\mathfrak{h}(X)$ el álgebra de Lie compleja de campos vectoriales holomorfos sobre $X$, definimos entonces el funcional lineal sobre $\mathfrak{h}(X)$ por
+\begin{align*}
+\mathfrak{h}(X) &\longmapsto \bbC \\
+X &\longmapsto f(X) = \int_X X F\omega^n,
+\end{align*}
+Entonces, se tiene el siguiente teorema
+\begin{teo}[Futaki]\hfill
+
+La funci\'on $f$ no depende de la elecci\'on de $\omega \in c_1^{+} (X)$. El n\'umero
+\[
+\delta_X = \dim\left( \mathfrak{h}(X) / \ker{f}\right)
+\]
+solo depende de la estructura compleja de $X$. Si $X$ admite una m\'etrica de K\"ahler-Einstein entonces $\delta_X =0$.
+\end{teo}
+Y finalmente el obstáculo encontrado por Tian en base a una generalizaci\'on de Futaki en \cite{Tian90} y que se denomina $K$-poliestabilidad \cite[Pag.28-35]{Tian97} en base a la conjetura formulada por Yau una vez resueltos los casos $c_1(X)\leq 0$. 
+
+
+

@@ -1,0 +1,224 @@
+\documentclass[10pt, twoside,letterpaper]{phstylee}
+\usepackage[ansinew]{inputenc}
+\usepackage[spanish]{babel}
+
+
+
+\setlength{\parindent}{0mm}
+\usepackage{amsthm}
+\usepackage{mathrsfs} 
+\usepackage{color}
+\usepackage{mathtools}
+\newcommand{\apendice}[1]{\textcolor{cyan}{[#1]}}  
+\newcommand{\corregir}[1]{\textcolor{red}{[#1]}}
+
+\usepackage{calrsfs}
+
+
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{cor}{Corolario}[section]
+\newtheorem{coro}{Corolario}[section]
+\newtheorem{lem}{Lema}[section]
+\newtheorem{conj}{Conjetura}[section]
+\newtheorem{prop}{Proposici\'on}[section]
+\newtheorem{rem}{Observaci\'on}[section]
+\newtheorem{obs}{Observaci\'on}[section]
+\newtheorem*{defn}{Definici\'on}
+\newtheorem{ex}{Ejemplo}[section]
+\newtheorem{ejem}{Ejemplo}[section]
+\newtheorem{ej}{Ejercicios}[section]
+\newtheorem{rec}{Recordatorio}[section]
+\newtheorem{notacion}{Notaci\'on}[section]
+
+
+\newcommand{\s}{\vspace{0.3cm}}
+\newcommand{\comp}{{\mathbb{C}}}
+\newcommand{\real}{{\mathbb{R}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\p}{{\mathbb{P}}}
+\newcommand{\im}{\;\operatorname{Im}\;}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\esf}{{\mathbb{S}}}
+\def\w #1{{\widetilde {#1}}}
+\def\Id{\operatorname{Id}}
+\newcommand{\Bl}{\operatorname{Bl}}
+
+\newcommand{\gr}{{gr}} \newcommand{\Hom}{{Hom}}
+\newcommand{\End}{{End}} \newcommand{\Ima}{{Im}}
+\newcommand{\Nm}{{Nm}}
+\newcommand{\Ric}{\operatorname{Ric}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\dist}{\operatorname{dist}}
+\input Configuracion.tex
+
+%%%%%%%%%%%%% PAQUETE DE ESTILO PROPIO %%%%%%%%%%%%%%%
+
+\usepackage{myStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{graphicx}
+\usepackage[spanish]{varioref}
+\usepackage[all,cmtip]{xy}
+\usepackage{amssymb}
+\usepackage{xspace}
+\usepackage[bookmarks=true,bookmarksnumbered,colorlinks=true,linkcolor=black,citecolor=black,pdfstartview=FitH,linktocpage]{hyperref}
+%\usepackage{tocbibind}
+\hypersetup{
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=blue,      % color of file links
+    urlcolor=blue           % color of external links
+}
+\usepackage{cancel}
+
+%%% Paquetes de dibujo %%%
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage[inline]{asymptote}
+\usetikzlibrary{patterns}
+\usepackage{pstricks}
+\usepackage{pgfplots}
+\usepgfplotslibrary{patchplots}
+
+%%%%	%%%%	%%%%	%%%%
+
+\linespread{1.3} \makeindex \spanishdecimal{.}
+
+%%%%%%%%%%%% ARREGLAR LOS ESPACIOS "JUSTIFICADOS" VERTICALMENTE
+
+\raggedbottom   
+
+\begin{document}
+
+\renewcommand{\listfigurename}{\'INDICE DE FIGURAS}
+\renewcommand{\listtablename}{\'INDICE DE TABLAS}
+\newcommand{\dd}{\textup{d}}
+\newcommand{\id}{\operatorname{Id}}
+\newcommand{\cohom}{\operatorname{H}}
+\newcommand{\imagen}{\operatorname{im}}
+\newcommand{\christoffel}[3]{\ensuremath{\Gamma^{#1}_{#2#3}}}
+\newcommand{\RicciCurv}[4]{\ensuremath{R^{#1}_{#2 #3 #4}}}
+\newcommand{\distribution}{\mathfrak{D}}
+\newcommand{\ii}{{\bf{i}}}
+\newcommand{\loc}{\operatorname{loc}}
+\newcommand{\sobolev}{\mathcal{H}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\tr}{\operatorname{tr}}
+% PORTADA DE LA MEMORIA -------------------------
+
+\setcounter{tocdepth}{2}
+
+\input Portada.tex
+
+\cleardoublepage
+
+% RESUMEN DE LA MEMORIA -------------------------
+
+\pagestyle{fancyplain} \pagenumbering{roman}
+ 
+\onehalfspacing
+\chapter*{Agradecimientos}
+\input Agradecimientos.tex
+%
+\chapter*{Abstract}
+\input Abstract.tex
+
+
+\chapter*{Resumen}
+\input Resumen.tex
+
+\cleardoublepage
+
+% �NDICE E INTRODUCCI�N -------------------------
+
+\cleardoublepage
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+%\listoffigures
+
+%\listoftables
+
+\cleardoublepage
+
+
+\pagenumbering{arabic}
+
+\chapter*{Introducci\'on}
+
+\input Introduccion.tex
+
+% CAP�TULOS DE LA MEMORIA ------------------------
+
+\cleardoublepage
+
+\chapter{Variedades de K\"ahler y m\'etricas de Einstein}\label{cap:cap1}
+
+\input cap1.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+
+\chapter{Espacios de H{\"o}lder y Teor\'ia de Schauder}\label{cap:cap2}
+
+\input cap2.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+
+\chapter{Soluciones de Yau y Aubin a la Conjetura de Calabi}\label{cap:cap3}
+
+\input cap3.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+
+\chapter{Consecuencias del Teorema de Yau}\label{cap:cap4}
+
+\input cap4.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% AP�NDICES DE LA MEMORIA --------------------------
+%\cleardoublepage
+
+%\appendix
+%\chapter{Variedades Anal\'iticas Complejas y Variedades Algebraicas Complejas}\label{ape:VAR}
+%\input apendiceA.tex
+%\chapter{Haces y Cohomolog\'ia de \v{C}ech}\label{ape:HC}
+%\input apendiceB.tex
+
+% GLOSARIO DE LA MEMORIA ---------------------------
+
+%\cleardoublepage
+%\chapter*{Notaci�n y S�mbolos}
+%\input glosario.tex
+
+\cleardoublepage \printindex
+
+\cleardoublepage \cleardoublepage
+
+% BIBLIOGRAF�A -------------------------------------
+
+%\chapter*{Bibliograf�a}
+
+%%% IMPORTANTE: Usar mathscinet-ams-org.usm.idm.oclc.org/ para entrar a MathSciNet. Buscar referencia y en la pesta�a "Select alternative format" escoger "BibTeX". Copiar y pegar en archivo .bib. 
+
+%\bibliographystyle{unsrt}   
+\bibliographystyle{alpha}
+\bibliography{bibliografia}
+\end{document}

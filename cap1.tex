@@ -1,0 +1,1863 @@
+La geometría diferencial de curvas, superficies y en dimensiones superiores define y utiliza conceptos como parametrizaciones, curvatura, espacio tangente a una variedad diferencial. Dadas las propiedades del espacio euclidiano $\mathbb{R}^n$ como $\mathbb{R}$-espacio vectorial y la existencia de las denominadas métricas de Riemann, surge naturalmente la cuestión de si la identificaci\'on $\comp \cong \real^2$ induce estos conceptos de geometría a las Variedades Holomorfas, o Variedades complejas, en general, la respuesta ser\'a afirmativa, y mas a\'un, en este cap\'itulo introduciremos conceptos generales de geometría compleja, y estableceremos la relaci\'on de Variedad Riemanniana (como variedad real) y las variedades de K\"ahler, como su análogo complejo.\par
+
+En este primer capítulo, introduciremos conceptos esenciales de variedades complejas, que nos permitirán definir las variedades K\"ahlerianas, y discutir propiedades importantes en el caso de variedades de K\"ahler compactas. A lo largo de este cap\'itulo utilizaremos la indexación de las coordenadas mediante superíndices. Esto nos permitirá utilizar la convención de Einstein para la suma, sin embargo, escribiremos las sumas hasta el momento de ser necesario utilizarla, el cual se señalará para facilitar la lectura y comprensión de esta notación.
+
+\section{Variedades Complejas}\label{cap1sec1}
+Teniendo en mente la noción de variedad diferenciable, podemos pensar que una variedad compleja $X$ es precisamente una variedad diferenciable sobre la cual tenemos una definición adecuada de holomorfía de funciones. Precisamos esto a continuación, para $n>0$ e $\mathcal{I}$ un conjunto de índices, $X$ tiene un recubrimiento por abiertos $\lbrace U_i, \ i\in\mathcal{I} \rbrace$, junto con homeomorfismos (usualmente denominados cartas)
+\begin{equation}\label{cond1hol}
+\varphi_i : U_i \xrightarrow{\sim} W_\alpha \subset \comp^n
+\end{equation}
+tales que las funciones (denominadas como mapeos de transición)
+\begin{equation}\label{cond2hol}
+\varphi_i \circ \varphi_j^{-1} : \varphi_j \left( V_i \cap V_j\right) \rightarrow \varphi_i \left( V_i \cap V_j\right)
+\end{equation}
+son holomorfas, ahora si, en el sentido de holomorfía usual de $\comp^n$. En el caso anterior, decimos que $n$ es la dimensión (compleja) de la variedad.\par 
+El siguiente diagrama explica como se relacionan los abiertos de una variedad $X$ con sus cartas holomorfas se acuerdo a la definición anterior.
+\begin{center}
+\begin{tikzpicture}
+
+    % Functions j
+    \path[->] (0.8, 0) edge [bend right] node[left, xshift=-2mm] {$\varphi_j$} (-1, -2.9);
+    \draw[white,fill=white] (0.06,-0.57) circle (.15cm);
+    \path[->] (-0.7, -3.05) edge [bend right] node [right, yshift=-3mm] {$\varphi^{-1}_j$} (1.093, -0.11);
+    \draw[white, fill=white] (0.95,-1.2) circle (.15cm);
+
+    % Functions i
+    \path[->] (5.8, -2.8) edge [bend left] node[midway, xshift=-5mm, yshift=-3mm] {$\varphi^{-1}_i$} (3.8, -0.35);
+    \draw[white, fill=white] (4,-1.1) circle (.15cm);
+    \path[->] (4.2, 0) edge [bend left] node[right, xshift=2mm] {$\varphi_i$} (6.2, -2.8);
+    \draw[white, fill=white] (4.54,-0.12) circle (.15cm);
+
+    % Manifold
+    \draw[smooth cycle, tension=0.4, fill=white, pattern color=gray, pattern=north west lines, opacity=0.9] plot coordinates{(2,2) (-0.5,0) (3,-2) (5,1)} node at (3,2.3) {$X$};
+
+    % Help lines
+    %\draw[help lines] (-3,-6) grid (8,6);
+
+    % Subsets
+    \draw[smooth cycle, pattern color=orange, pattern=crosshatch dots] 
+        plot coordinates {(1,0) (1.5, 1.2) (2.5,1.3) (2.6, 0.4)} 
+        node [label={[label distance=-0.3cm, xshift=-2cm, fill=white]:$U_j$}] {};
+    \draw[smooth cycle, pattern color=blue, pattern=crosshatch dots] 
+        plot coordinates {(4, 0) (3.7, 0.8) (3.0, 1.2) (2.5, 1.2) (2.2, 0.8) (2.3, 0.5) (2.6, 0.3) (3.5, 0.0)} 
+        node [label={[label distance=-0.8cm, xshift=.75cm, yshift=1cm, fill=white]:$U_i$}] {};
+
+    % First Axis
+    \draw[thick, ->] (-3,-5) -- (0, -5) node [label=above:$\varphi_j(U_j)$] {};
+    \draw[thick, ->] (-3,-5) -- (-3, -2) node [label=right:$\mathbb{C}^n$] {};
+
+    % Arrow from i to j
+    \draw[->] (0, -3.85) -- node[midway, above]{$\varphi_{ij}:=\varphi_i\circ \varphi_j^{-1}$} (4.5, -3.85);
+
+    % Second Axis
+    \draw[thick, ->] (5, -5) -- (8, -5) node [label=above:$\varphi_i(U_i)$] {};
+    \draw[thick, ->] (5, -5) -- (5, -2) node [label=right:$\mathbb{C}^n$] {};
+
+    % Sets in R^m
+    \draw[white, pattern color=red, pattern=crosshatch dots] (-0.67, -3.06) -- +(180:0.8) arc (180:270:0.8);
+    \fill[even odd rule, white] [smooth cycle] plot coordinates{(-2, -4.5) (-2, -3.2) (-0.8, -3.2) (-0.8, -4.5)} (-0.67, -3.06) -- +(180:0.8) arc (180:270:0.8);
+    \draw[smooth cycle] plot coordinates{(-2, -4.5) (-2, -3.2) (-0.8, -3.2) (-0.8, -4.5)};
+    \draw (-1.45, -3.06) arc (180:270:0.8);
+
+    \draw[white, pattern color=blue, pattern=crosshatch dots] (5.7, -3.06) -- +(-90:0.8) arc (-90:0:0.8);
+    \fill[even odd rule, white] [smooth cycle] plot coordinates{(7, -4.5) (7, -3.2) (5.8, -3.2) (5.8, -4.5)} (5.7, -3.06) -- +(-90:0.8) arc (-90:0:0.8);
+    \draw[smooth cycle] plot coordinates{(7, -4.5) (7, -3.2) (5.8, -3.2) (5.8, -4.5)};
+    \draw (5.69, -3.85) arc (-90:0:0.8);
+
+\end{tikzpicture}
+\end{center}
+\begin{obs} En general denotaremos por $X$ a una variedad compleja y $n = \dim_\comp (X)$ mientras que $M$ denotara la variedad diferenciable subyacente y cuya dimension llamamos $m=\dim_\real(X)=2n$.
+\end{obs}
+En adelante, el concepto de dimensión hace referencia a la dimension compleja. De ser necesario se explicitará si hablamos de dimensión real o compleja.
+\begin{obs}
+Al conjunto de pares $\lbrace (\varphi_i , U_i) \ \vert\ \varphi_i \, \text{ satisface \ref{cond1hol} y \ref{cond2hol}}\rbrace$ se denomina {\bf{Atlas holomorfo}} o {\bf{estructura holomorfa}} sobre $X$.  En general, trabajaremos asumiendo que la estructura seleccionada es maximal. La existencia de esta estructura maximal se obtiene mediante una aplicación típica del Lema de Zorn, para mas detalles ver \cite[Prop.1.17]{Lee13}
+\end{obs}
+ Ahora podemos presentar nuestra definición de holomorfía para funciones entre variedades complejas.
+ 
+ 
+ 
+ 
+ 
+\begin{defn}[Función Holomorfa]\hfill
+
+Dadas dos variedades complejas $X$ e $Y$ con atlas $\displaystyle\lbrace\left( U_\alpha, \varphi_\alpha \right) \rbrace_{\alpha\in\Lambda}$ y $\displaystyle\lbrace \left( V_i , \psi_i \right)\rbrace_{i \in \mathcal{I}}$, respectivamente, con $\operatorname{dim}(X)=k$ y $\operatorname{dim}(Y)=n$. Una función $f:X\rightarrow Y$ es llamada holomorfa si la composición
+\[
+\psi_i \circ f\circ \varphi_\alpha^{-1} : W_\alpha \subset \comp^k \rightarrow \comp^n
+\]
+es holomorfa sobre $\varphi_\alpha (U_\alpha)=:W_\alpha$, para cada $\alpha \in \Lambda$ donde esta composición tenga sentido.
+\end{defn}
+Esta noción de funciones holomorfas nos permite definir mediante las cartas un sistema de \textbf{coordenadas locales holomorfas} entorno a un punto $p\in X$ como la imagen mediante $\varphi_\beta$ de una vecindad abierta $U_\beta$, tal que $p\in U_\beta$. Pensando las cartas como una concatenación de funciones coordenada $z^i:= \varphi_\beta^i$ para $1\leq i \leq k$ y trasladando de forma conveniente, hacemos $z^i(p)=0$ para cada $i$.
+
+
+
+
+
+\begin{obs}
+Para cualesquiera otras coordenadas holomorfas de $p \in U_\alpha \cap U_\beta \subset M$, digamos, $w^i:= \varphi_\alpha^i$. Se tiene que cada $w^i$ es una función holomorfa en las variables $z^i, \ldots, z^k$
+\end{obs}
+
+
+\begin{ex}[Esfera de Riemann]
+Consideremos $M = \mathbb{S}^2$, como la esfera unitaria en el espacio real $\real^3$. Identificamos el plano $xy$ en $\real^3$ con $\comp$ y definimos dos cartas de $M$ mediante los complementos de los polos norte y sur, es decir, hacemos $U_1= \mathbb{S}^2\backslash \lbrace (0,0,1) \rbrace$ y $U_2 = \mathbb{S}^2\backslash \lbrace (0,0,-1) \rbrace$.\\
+Definimos entonces
+\[
+	\varphi_1 : U_1 \rightarrow \comp
+\]
+como la proyección estereográfica desde el polo norte de $\mathbb{S}^2$ sobre el plano $xy$. Luego 
+\[
+\varphi_2 :U_2 \rightarrow \comp
+\]
+se define como la composición de la proyección estereográfica desde el polo sur, con la conjugación compleja.
+
+
+
+
+\begin{center}
+    
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1, scale=0.8]
+%uncomment if require: \path (0,190); %set diagram left start at 0, and has height of 190
+
+%Curve Lines [id:da0687716821052674] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (267,98.18) .. controls (293.45,120.35) and (353.45,128.18) .. (393.45,98.18) ;
+%Curve Lines [id:da02040114249109204] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (267,98.18) .. controls (297.45,76.35) and (356.45,78.35) .. (393.45,98.18) ;
+%Straight Lines [id:da24703083128015724] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (330.23,34) -- (447.45,111.75) ;
+\draw [shift={(447.45,111.75)}, rotate = 33.55] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=0.75]      (0, 0) circle [x radius= 2.01, y radius= 2.01]   ;
+\draw [shift={(388.84,72.88)}, rotate = 33.55] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=0.75]      (0, 0) circle [x radius= 2.01, y radius= 2.01]   ;
+\draw [shift={(330.23,34)}, rotate = 33.55] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=0.75]      (0, 0) circle [x radius= 2.01, y radius= 2.01]   ;
+%Shape: Parallelogram [id:dp7200846066320453] 
+\draw  [fill={rgb, 255:red, 184; green, 233; blue, 134 }  ,fill opacity=0.2 ][dash pattern={on 0.84pt off 2.51pt}] (191.07,56.75) -- (533.95,56.75) -- (468.83,144.75) -- (125.95,144.75) -- cycle ;
+%Shape: Ellipse [id:dp39149221676117163] 
+\draw  [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.33 ] (267,98.18) .. controls (267,62.73) and (295.31,34) .. (330.23,34) .. controls (365.14,34) and (393.45,62.73) .. (393.45,98.18) .. controls (393.45,133.62) and (365.14,162.35) .. (330.23,162.35) .. controls (295.31,162.35) and (267,133.62) .. (267,98.18) -- cycle ;
+
+% Text Node
+\draw (185,10.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$\mathbb{S}^{2} \cong \mathbb{P}^{1}(\mathbb{C})$};
+% Text Node
+\draw (326,10.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$a=(0,0,1)$};
+% Text Node
+\draw (395,58.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$p$};
+% Text Node
+\draw (446,86.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\varphi_{2}( p)$};
+% Text Node
+\draw (409,157.8) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ]  {$\lbrace xy\rbrace \cong \mathbb{R}^{2} \cong \mathbb{C}$};
+% Text Node
+\draw (377,21.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+
+Ls proyecciones $\varphi_1$ y $\varphi_2$ obtienen mediante la inversión la una de la otra. Esto es la transformación $z\mapsto \overline{z}^{-1}$. Luego, al conjugar obtenemos el mapeo de transición 
+\[
+\varphi_2 \circ \varphi_1^{-1}(z) = \dfrac{1}{z}, \, \, \forall	z \in \comp^*
+\]
+el cual es holomorfo (en el sentido usual de $\comp$), dando como resultado la estructura de variedad compleja a $\mathbb{S}^2$.
+\end{ex}
+
+
+
+\begin{ex}[Espacio proyectivo complejo]
+El espacio proyectivo complejo, que denotamos por $\mathbb{P}^n$ (o bien $\mathbb{P}^n_\comp$ cuando sea necesario explicitar que nos encontramos en el caso complejo) corresponde a uno de los ejemplos mas importantes de variedad compleja. Definimos el espacio proyectivo complejo $\mathbb{P}^n$ como el conjunto de rectas vectoriales en $\comp^{n+1}$, o equivalentemente,
+\[
+	\mathbb{P}^n := \left( \comp^{n+1}\backslash\lbrace 0 \rbrace\right)/\comp^*
+\]
+con $\comp^*$ actuando por multiplicación sobre $\comp^{n+1}$.\\
+Los puntos (que realmente son clases de equivalencia) en $\mathbb{P}^n$ se escriben $[z^0: z^1:\ldots:z^n]$, esta notación nos sirve para recordar que puntos de forma $(z^0, z^1,\ldots,z^n)$ y $(\lambda z^0, \lambda z^1,\ldots, \lambda z^n)$ definen en realidad el mismo elemento en $\mathbb{P}^n$, es por esto que en general las llamamos \textbf{coordenadas homogéneas}.\\
+El cubrimiento abierto estándar de $\mathbb{P}^n$ es dado por los abiertos
+\[
+U_i := \lbrace [ z^0 : \ldots : z^n]\, \vert \, z^i \neq 0 \rbrace \subset \mathbb{P}^n
+\]
+Los cuales, si dotamos $\mathbb{P}^n$ con la topologia cociente mediante la proyección
+\[
+	\pi : \comp^{n+1}\backslash \lbrace 0 \rbrace \longrightarrow \left( \comp^{n+1}\backslash \lbrace 0 \rbrace\right)/\comp^* = \mathbb{P}^n 
+\]
+son, en efecto, abiertos. Para concluir, propondremos las siguientes biyecciones como cartas
+\begin{align*}
+\varphi_i : U_i &\xrightarrow{\sim} \comp^n \\
+	[z^0 : \ldots : z^n] &\longmapsto\left( \dfrac{z^0}{z^i}, \ldots, \dfrac{z^{i-1}}{z^i},\dfrac{z^{i+1}}{z^i},\ldots,\dfrac{z^n}{z^i}\right)
+\end{align*}
+de modo que los mapeos de transición $\varphi_{ij}:= \varphi_i\circ\varphi_j^{-1} : \varphi_j(U_i \cap U_j)\rightarrow \varphi_i(U_i \cap U_j)$ son de la forma
+\[
+\varphi_{ij}(w^1,\ldots,w^n)=\left( \dfrac{w^1}{w^i},\ldots,\dfrac{w^{i-1}}{w^i},\dfrac{w^{i+1}}{w^i},\ldots, \dfrac{w^{j-1}}{w^i}, \dfrac{1}{w^i}, \dfrac{w^{j}}{w^i}, \ldots, \dfrac{w^{n}}{w^i}\right)
+\]
+claramente holomorfas en su dominio y con inversa dada por $\varphi_{ji}$ de lo que se tiene la biyectividad y en consecuencia, el hecho de que el espacio proyectivo complejo es una variedad compleja.
+\end{ex}
+
+\begin{defn}[Fibrado Vectorial Holomorfo]\label{def fibrado seccion 1}\hfill
+
+Sea $X$ una variedad compleja. Un \textbf{fibrado vectorial holomorfo} de rango $r$ sobre $X$ es una variedad compleja $E$ junto a una aplicación holomorfa $\pi :E \rightarrow X$, donde cada \textbf{fibra} $E(x):= \pi^{-1}(x)$ tiene la estructura de $\comp$-espacio vectorial de dimensión $r$ para cada $x\in X$, y que verifican la siguiente propiedad: Existe un cubrimiento abierto $X=\bigcup	U_i$ y mapeos biholomorfos $\psi_i: \pi^{-1}(U_i)\cong U_i \times \comp^r$ que conmutan con las proyecciones sobre cada $U_i$ tal que el isomorfismo $\pi^{-1}(x)\cong \comp^r$ es $\comp$-lineal.
+\end{defn}
+\begin{center}
+    
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1,scale=0.95]
+%uncomment if require: \path (0,248); %set diagram left start at 0, and has height of 248
+
+%Shape: Ellipse [id:dp21516478862503907] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}] (289.5,200) .. controls (289.5,188.95) and (305.17,180) .. (324.5,180) .. controls (343.83,180) and (359.5,188.95) .. (359.5,200) .. controls (359.5,211.05) and (343.83,220) .. (324.5,220) .. controls (305.17,220) and (289.5,211.05) .. (289.5,200) -- cycle ;
+%Shape: Ellipse [id:dp695101632578578] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}] (460,148.17) .. controls (460,137.12) and (475.67,128.17) .. (495,128.17) .. controls (514.33,128.17) and (530,137.12) .. (530,148.17) .. controls (530,159.21) and (514.33,168.17) .. (495,168.17) .. controls (475.67,168.17) and (460,159.21) .. (460,148.17) -- cycle ;
+%Shape: Ellipse [id:dp7766530360760929] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}] (459.5,80.67) .. controls (459.5,69.62) and (475.17,60.67) .. (494.5,60.67) .. controls (513.83,60.67) and (529.5,69.62) .. (529.5,80.67) .. controls (529.5,91.71) and (513.83,100.67) .. (494.5,100.67) .. controls (475.17,100.67) and (459.5,91.71) .. (459.5,80.67) -- cycle ;
+%Straight Lines [id:da9981742036522924] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (459.5,80.67) -- (460,148.17) ;
+%Straight Lines [id:da9776257885906581] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (529.5,80.67) -- (530,148.17) ;
+%Straight Lines [id:da9989659184577141] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (493.54,78) -- (495.71,152.83) ;
+%Shape: Ellipse [id:dp8533784862954228] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}] (108.98,87.82) .. controls (102.94,82.17) and (107.84,69.97) .. (119.92,60.57) .. controls (132,51.17) and (146.69,48.13) .. (152.72,53.79) .. controls (158.76,59.44) and (153.86,71.64) .. (141.78,81.04) .. controls (129.7,90.43) and (115.01,93.47) .. (108.98,87.82) -- cycle ;
+%Curve Lines [id:da5894124031110579] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (152.72,53.79) .. controls (169.03,59.45) and (201.04,73.83) .. (221.73,121.67) ;
+%Curve Lines [id:da21610107221965713] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (108.98,87.82) .. controls (121.54,96.83) and (157.29,107.87) .. (177.99,155.7) ;
+%Shape: Ellipse [id:dp07706936776964335] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}] (177.99,155.7) .. controls (171.95,150.05) and (176.85,137.85) .. (188.93,128.45) .. controls (201.01,119.05) and (215.7,116.01) .. (221.73,121.67) .. controls (227.77,127.32) and (222.87,139.52) .. (210.79,148.92) .. controls (198.71,158.31) and (184.02,161.35) .. (177.99,155.7) -- cycle ;
+%Curve Lines [id:da34102238835168985] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (130.85,70.8) .. controls (147.16,76.47) and (179.17,90.85) .. (199.86,138.68) ;
+%Straight Lines [id:da6950060132937552] 
+\draw    (265.6,72.4) -- (318.59,123.64) ;
+\draw [shift={(320.03,125.03)}, rotate = 224.04] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da19546837404287398] 
+\draw    (395.2,73.2) -- (344.65,122.83) ;
+\draw [shift={(343.23,124.23)}, rotate = 315.53] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da35657682073385555] 
+\draw    (312,57.2) -- (367.63,57.03) ;
+\draw [shift={(369.63,57.03)}, rotate = 539.8299999999999] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da3780082616745073] 
+\draw    (219.2,151.6) -- (281.48,186.45) ;
+\draw [shift={(283.23,187.43)}, rotate = 209.23] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da7478542159662326] 
+\draw    (450.4,162) -- (377.1,189.13) ;
+\draw [shift={(375.23,189.83)}, rotate = 339.69] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+
+% Text Node
+\draw (87.6,27.4) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$E(x) \cong \mathbb{C}^{r}$};
+% Text Node
+\draw (443.6,27.4) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\{x\} \times \mathbb{C}^{r} \cong \mathbb{C}^{r}$};
+% Text Node
+\draw (207.6,46.2) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\pi^{-1}( U) :=E|_{U}$};
+% Text Node
+\draw (326.8,130.4) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$U$};
+% Text Node
+\draw (380.4,48) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$U\times \mathbb{C}^{r}$};
+% Text Node
+\draw (243.6,93.6) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\pi^{-1}( U)$};
+% Text Node
+\draw (382.8,94.4) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\operatorname{pr}_{1}$};
+% Text Node
+\draw (327.6,37.6) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\psi_{U}$};
+% Text Node
+\draw (328.4,62.6) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\sim $};
+% Text Node
+\draw (318,194.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\cdot\; x$};
+
+
+\end{tikzpicture}
+
+\end{center}
+\begin{obs}
+Utilizando la definición anterior las aplicaciones de transición
+\[
+\psi_{ij}(x):=(\psi_i \circ \psi_j^{-1})(x,\,\cdot): \comp^r \longrightarrow \comp^r
+\]
+son $\comp$-lineales, para todo $x\in U_i\cap U_j$. 
+
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,240); %set diagram left start at 0, and has height of 240
+
+%Shape: Ellipse [id:dp9091315413566942] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][dash pattern={on 0.84pt off 2.51pt}] (447.2,128.33) .. controls (447.2,117.29) and (462.87,108.33) .. (482.2,108.33) .. controls (501.53,108.33) and (517.2,117.29) .. (517.2,128.33) .. controls (517.2,139.38) and (501.53,148.33) .. (482.2,148.33) .. controls (462.87,148.33) and (447.2,139.38) .. (447.2,128.33) -- cycle ;
+%Shape: Ellipse [id:dp29281204825779816] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][dash pattern={on 0.84pt off 2.51pt}] (446.7,60.83) .. controls (446.7,49.79) and (462.37,40.83) .. (481.7,40.83) .. controls (501.03,40.83) and (516.7,49.79) .. (516.7,60.83) .. controls (516.7,71.88) and (501.03,80.83) .. (481.7,80.83) .. controls (462.37,80.83) and (446.7,71.88) .. (446.7,60.83) -- cycle ;
+%Straight Lines [id:da5100269831220475] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (446.7,60.83) -- (447.2,128.33) ;
+%Straight Lines [id:da7249286063309464] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (516.7,60.83) -- (517.2,128.33) ;
+%Straight Lines [id:da8526331205904724] 
+\draw    (450.09,147.9) -- (397.88,176.38) ;
+\draw [shift={(396.13,177.33)}, rotate = 331.39] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Shape: Ellipse [id:dp4701575288721338] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][dash pattern={on 0.84pt off 2.51pt}] (316.03,193.33) .. controls (316.03,182.29) and (333.3,173.33) .. (354.61,173.33) .. controls (375.92,173.33) and (393.2,182.29) .. (393.2,193.33) .. controls (393.2,204.38) and (375.92,213.33) .. (354.61,213.33) .. controls (333.3,213.33) and (316.03,204.38) .. (316.03,193.33) -- cycle ;
+%Shape: Ellipse [id:dp5999408052399172] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][dash pattern={on 0.84pt off 2.51pt}] (140.7,124.83) .. controls (140.7,113.79) and (156.37,104.83) .. (175.7,104.83) .. controls (195.03,104.83) and (210.7,113.79) .. (210.7,124.83) .. controls (210.7,135.88) and (195.03,144.83) .. (175.7,144.83) .. controls (156.37,144.83) and (140.7,135.88) .. (140.7,124.83) -- cycle ;
+%Shape: Ellipse [id:dp7071830578742249] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][dash pattern={on 0.84pt off 2.51pt}] (140.2,57.33) .. controls (140.2,46.29) and (155.87,37.33) .. (175.2,37.33) .. controls (194.53,37.33) and (210.2,46.29) .. (210.2,57.33) .. controls (210.2,68.38) and (194.53,77.33) .. (175.2,77.33) .. controls (155.87,77.33) and (140.2,68.38) .. (140.2,57.33) -- cycle ;
+%Straight Lines [id:da423874180366416] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (140.2,57.33) -- (140.7,124.83) ;
+%Straight Lines [id:da3839992691642382] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (210.2,57.33) -- (210.7,124.83) ;
+%Straight Lines [id:da4415442136591984] 
+\draw    (213.29,141.6) -- (262.48,175.69) ;
+\draw [shift={(264.13,176.83)}, rotate = 214.73] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Shape: Ellipse [id:dp5198190825087096] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][dash pattern={on 0.84pt off 2.51pt}] (270.4,193.27) .. controls (270.4,182.22) and (288.67,173.27) .. (311.21,173.27) .. controls (333.75,173.27) and (352.03,182.22) .. (352.03,193.27) .. controls (352.03,204.31) and (333.75,213.27) .. (311.21,213.27) .. controls (288.67,213.27) and (270.4,204.31) .. (270.4,193.27) -- cycle ;
+%Curve Lines [id:da5152676014244669] 
+\draw    (236.46,83) .. controls (289.09,72.33) and (366.46,72.23) .. (423.89,85.42) ;
+\draw [shift={(425.63,85.83)}, rotate = 193.28] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Shape: Polygon Curved [id:ds2678213238097499] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=0 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.59 ] (352.03,193.27) .. controls (351.4,202.09) and (337.67,209.88) .. (333.56,210.08) .. controls (329.45,210.29) and (316.23,202.42) .. (316.03,193.33) .. controls (315.82,184.25) and (330.15,176.58) .. (333.81,176.58) .. controls (337.48,176.58) and (352.65,184.45) .. (352.03,193.27) -- cycle ;
+%Shape: Polygon Curved [id:ds6544488251739525] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=0 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.7 ] (210.7,124.83) .. controls (210.07,133.65) and (202.75,138.96) .. (198.64,139.17) .. controls (194.53,139.37) and (186.73,133.9) .. (186.53,124.82) .. controls (186.32,115.73) and (194.31,110.5) .. (197.97,110.5) .. controls (201.64,110.5) and (211.33,116.01) .. (210.7,124.83) -- cycle ;
+%Shape: Polygon Curved [id:ds6428659381134859] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=0 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.7 ] (210.2,57.33) .. controls (210.64,64.83) and (202.25,71.46) .. (198.14,71.67) .. controls (194.03,71.87) and (186.23,66.4) .. (186.03,57.32) .. controls (185.82,48.23) and (193.44,41.83) .. (198.19,42.83) .. controls (202.94,43.83) and (209.76,49.83) .. (210.2,57.33) -- cycle ;
+%Shape: Polygon Curved [id:ds536969483075041] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=0 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.29 ] (210.19,92.33) .. controls (210.37,95.54) and (209.94,114.33) .. (210.44,119.83) .. controls (210.94,125.33) and (209.78,119.05) .. (206.69,115.83) .. controls (203.59,112.62) and (198.87,110.46) .. (197.97,110.5) .. controls (197.08,110.54) and (191.67,113.44) .. (189.69,116.08) .. controls (187.7,118.72) and (186.84,124.34) .. (186.69,120.83) .. controls (186.53,117.33) and (186.78,95.7) .. (186.69,91.83) .. controls (186.6,87.97) and (186.12,64.3) .. (186.03,57.32) .. controls (185.94,50.33) and (186.83,61.76) .. (189.69,66.33) .. controls (192.55,70.9) and (197.09,71.45) .. (198.14,71.67) .. controls (199.19,71.89) and (204.58,69.29) .. (207.44,65.08) .. controls (210.3,60.87) and (210.08,54.96) .. (210.2,57.33) .. controls (210.32,59.71) and (210,89.13) .. (210.19,92.33) -- cycle ;
+%Shape: Polygon Curved [id:ds8661341975018145] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=0 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.7 ] (470.87,60.85) .. controls (471.31,68.35) and (462.92,74.98) .. (458.81,75.18) .. controls (454.7,75.39) and (446.91,69.92) .. (446.7,60.83) .. controls (446.49,51.75) and (454.11,45.35) .. (458.86,46.35) .. controls (463.61,47.35) and (470.43,53.35) .. (470.87,60.85) -- cycle ;
+%Shape: Polygon Curved [id:ds13618580160667926] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=0 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.7 ] (471.37,128.35) .. controls (470.75,137.17) and (463.42,142.48) .. (459.31,142.68) .. controls (455.2,142.89) and (447.41,137.42) .. (447.2,128.33) .. controls (446.99,119.25) and (454.98,114.02) .. (458.65,114.02) .. controls (462.31,114.02) and (472,119.53) .. (471.37,128.35) -- cycle ;
+%Shape: Polygon Curved [id:ds7667283870480252] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=0 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=0.29 ] (470.86,95.85) .. controls (471.05,99.05) and (470.61,117.85) .. (471.11,123.35) .. controls (471.61,128.85) and (470.45,122.57) .. (467.36,119.35) .. controls (464.27,116.13) and (459.54,113.97) .. (458.65,114.02) .. controls (457.75,114.06) and (452.35,116.96) .. (450.36,119.6) .. controls (448.37,122.24) and (447.51,127.86) .. (447.36,124.35) .. controls (447.21,120.84) and (447.45,99.22) .. (447.36,95.35) .. controls (447.27,91.48) and (446.79,67.82) .. (446.7,60.83) .. controls (446.61,53.85) and (447.5,65.28) .. (450.36,69.85) .. controls (453.22,74.42) and (457.77,74.96) .. (458.81,75.18) .. controls (459.86,75.4) and (465.25,72.81) .. (468.11,68.6) .. controls (470.97,64.39) and (470.75,58.48) .. (470.87,60.85) .. controls (470.99,63.22) and (470.67,92.65) .. (470.86,95.85) -- cycle ;
+%Straight Lines [id:da1747309472773706] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (199.04,55.33) -- (199.54,128.83) ;
+%Straight Lines [id:da6461002487695514] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (457.74,58.17) -- (459.04,129.83) ;
+
+% Text Node
+\draw (325.9,189.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\cdot\; x$};
+% Text Node
+\draw (102.8,57.37) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ]  {$E|_{U_{j}}$};
+% Text Node
+\draw (526.8,57.37) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$E|_{U_{i}}$};
+% Text Node
+\draw (257.1,204.87) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ]  {$U_{j}$};
+% Text Node
+\draw (192.9,23.1) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$E(x) \cong \comp^{r}$};
+% Text Node
+\draw (449.2,23.1) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$E_{x} \cong \comp^{r}$};
+% Text Node
+\draw (394.6,204.47) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ]  {$U_{i}$};
+% Text Node
+\draw (183.6,161.6) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\pi|_{\pi^{-1}( U_{j})}$};
+% Text Node
+\draw (301.6,51.1) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\psi|_{i} \circ \psi _{j}^{-1}$};
+% Text Node
+\draw (268.96,85.9) node [anchor=north west][inner sep=0.75pt]    {$\textup{en }\ E_{ij} :=E|_{U_{i} \cap U_{j}}$};
+% Text Node
+\draw (434.1,162.6) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\pi_{\pi^{-1}( U_{i})}$};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+Adem\'as, estas aplicaciones de transición verifican que $\psi_{ii} =\operatorname{Id}$ para todo $x\in U_i$ y en las intersecciones de la forma $U_i \cap U_j \cap U_k$ se satisface la condicion de cociclo
+\[
+g_{ij} g_{jk} = g_{ik} \quad \text{ en } U_i \cap U_j \cap U_k
+\]
+\end{obs}
+
+
+
+\begin{ex}[Hipersuperficies proyectivas]
+Sea $f: \comp^n \rightarrow \comp$ una función holomorfa tal que $0\in\comp$ es un valor regular \emph{(}es decir, $\grad (f)(0) \neq 0$\emph{)}. Definimos el conjunto de ceros de $f$ como
+\[
+X= \mathit{Z}(f):= f^{-1}(0) \subset \comp^n
+\]
+Por el teorema de la función implícita, existe un cubrimiento abierto $X = \cup_i U_i$, abiertos $V_i\subset \comp^{n-1}$ y mapeos holomorfos $g_i: V_i \rightarrow \comp^n$ que inducen aplicaciones biyectivas 
+\[
+g_i: V_i \xrightarrow{\sim} U_i
+\]
+En este caso, tenemos mapeos de transición de la forma
+\[
+\varphi_{ij}:= g_i^{-1}\circ g_j : g_j^{-1}(U_i)\rightarrow g_i^{-1}(U_j).
+\]
+Se puede ver que estos son holomorfos, dotando a $X$ con la estructura de variedad compleja que en general se denomina \textbf{hipersuperficie afín}.\par
+Consideremos ahora $f$ como un polinomio homogéneo en $n+1$ variables $z^0, \ldots, z^n$ talque $0\in\comp$ es un valor regular de la aplicación inducida
+\[
+f: \comp^{n+1}\backslash \lbrace 0 \rbrace \rightarrow \comp.
+\]
+Ya sabemos que el conjunto $\mathit{Z}(f)$ corresponde a una variedad compleja. Veamos que el conjunto
+\[
+X' = V(f) := f^{-1}(0)/\comp^* \subset \mathbb{P}^n
+\]
+que corresponde al conjunto de puntos $[z^0: \ldots: z^n]\in\mathbb{P}^n$ tales que $f(z^0, \ldots, z^n)=0$. Notemos que el valor de $f(z^0: \ldots: z^n)$ depende en general del representante escogido de $[z^0: \ldots: z^n]$, pero el conjunto $V(f)$ está bien definido, dado que asumimos que $f$ es homogénea.\\
+Ahora veremos que esta es una variedad compleja de dimension $n-1$. De hecho, podemos cubrir $X$ mediante los abiertos estándar de $\mathbb{P}^n$ utilizando los abiertos $X \cap U_i$, donde $U_i$ son los abiertos estándar del espacio proyectivo. Usando los isomorfismos $U_i \cong \comp^n$ del primer ejemplo, el conjunto $X\cap U_i$ se identifica con la fibra sobre $0\in\comp$ del mapeo
+\[
+	f_i :(w^1, \ldots, w^n) \mapsto	f(w^1,\ldots,w^{i-1},1,w^{i},\ldots,w^n)
+\]
+Verificando que esta función tiene a $0\in\comp$ como valor regular, concluimos que $X'$ es una variedad compleja de forma análoga a como lo hicimos para las superficies afines.
+\end{ex}
+Es importante notar también que las hipersuperficies proyectivas, así como el espacio proyectivo son, más aún, variedades complejas compactas.
+
+
+
+\section{Estructuras casi complejas}\label{cap1sec2}
+Para estudiar las propiedades de una variedad compleja, será útil estudiar si es posible ver a esta como una variedad diferencial dotada de una serie de propiedades que la caractericen como variedad compleja. Para empezar este propósito, consideremos $M$ una variedad diferenciable $m$-dimensional, definimos el conjunto
+\[
+\mathit{TM}:= \left\lbrace (p,v) \, : \, p\in M,\, v \in T_p M \right\rbrace.
+\]
+donde $T_pM$ es el espacio tangente a la variedad $M$ en el punto $p\in M$.\\
+
+Para satisfacer la definición de fibrado de la sección anterior, dotaremos al conjunto $TM$ de una estructura diferencial $2n$-dimensional, con esta definición $TM$ es llamado \textbf{fibrado tangente de $M$}. Detallamos esta estructura diferencial y su extensión a nuestro contexto de holomorfía en los puntos siguientes, para esto, es esencial la siguiente definición.
+
+
+
+\begin{defn}[Estructura casi compleja]\hfill
+
+Sea M una variedad diferenciable, un endomorfismo del fibrado tangente $J: TM \rightarrow TM$ es llamado \textbf{estructura casi compleja} si $J^2 := J\circ J = -\operatorname{Id}$. Donde $\operatorname{Id}$ es la identidad en el fibrado tangente.
+\end{defn}
+
+\begin{obs}
+Si $J$ es una estructura casi compleja sobre un espacio vectorial real $V$, entonces, $V$ admite de forma natural la estructura de un espacio vectorial complejo. Ver \cite[Lema 1.2.2]{Huy05} para mayor detalle.
+\end{obs}
+Teniendo en consideración esta observación decimos que una estructura casi compleja equipa al espacio tangente en cada punto con una transformación lineal que se comporta como la multiplicación por la unidad imaginaria. Así, la dimensión real del espacio tangente en cada punto debe ser par, pues cada endomorfismo de dimension impar debe tener un autovalor real, cuyo cuadrado no puede ser $-1$.
+
+
+\begin{ex}[Cartas holomorfas]
+Para una variedad compleja $X$, las cartas holomorfas identifican en cada punto el espacio tangente $T_p X$ con $\comp^n$, de modo que podemos definir sobre el espacio tangente la estructura casi compleja dada por $J(v):= \bf{i}\cdot v$.\\
+Aquí, la condición de holomorfía sobre las aplicaciones de transición corresponde a la compatibilidad de la multiplicación por $\bf{i}$ bajo las diferentes identificaciones entre $T_p X$ y $\comp^n$, las que se obtienen al usar cartas diferentes.
+\end{ex}
+
+\begin{obs}
+Consideremos las coordenadas locales holomorfas $z^1, \ldots, z^n$ de la forma $z^i = x^i + {\bf{i}} y^i$ para $x^i$ e $y^i$ funciones reales, entonces, mediante la estructura casi compleja $J$ podemos escribir
+\[
+J\left( \dfrac{\partial}{\partial x^i} \right) = \dfrac{\partial}{\partial y^i}, \hspace{20pt} J\left( \dfrac{\partial}{\partial y^i}\right) = - \dfrac{\partial}{\partial x^i}
+\]
+\end{obs}
+
+\begin{defn}[Estructura integrable]\hfill
+
+Denominamos a una estructura casi compleja como {\bf{estructura casi compleja integrable}} si proviene de cartas diferenciales, como en la observación anterior.\\
+Para una definición equivalente, que puede ser de utilidad ver \cite[Sección 2.6]{Huy05}
+\end{defn}
+
+Gracias al siguiente teorema, de Newlander y Nirenberg \cite{NN57}, en adelante utilizaremos el concepto de estructura compleja en vez de estructura casi compleja integrable.
+\begin{teo}[Newlander-Nirenberg]\hfill
+
+Toda estructura casi compleja integrable es inducida por una estructura compleja.\end{teo}
+A partir de ahora, consideramos $X$ como una variable compleja, si denotamos por $M$ a la variedad diferencial subyacente, utilizaremos la complejificación del fibrado tangente real para estudiar el fibrado tangente holomorfo
+\[
+T^\comp M := TM \otimes_\real \comp.
+\]
+La fibra en cada punto $p\in M$  es un espacio vectorial complejo, cuya base escribiremos como sigue
+\[
+\left\lbrace \dfrac{\partial}{\partial z^i}, \ldots , \dfrac{\partial}{\partial z^n},\dfrac{\partial}{\partial \overline{z}^1}, \ldots, \dfrac{\partial}{\partial \overline{z}^n} \right\rbrace.
+\]
+Esta base, en términos de las funciones reales $x^i$ e $y^i$ se escriben mediante las derivadas de Wirtinger
+\[
+\dfrac{\partial}{\partial z^i} = \dfrac{1}{2}\left(\dfrac{\partial}{\partial x^i} - {\bf{i}} \dfrac{\partial}{\partial y^i} \right) \hspace{20pt} \text{ y } \hspace{20pt} \dfrac{\partial}{\partial \overline{z}^i} = \dfrac{1}{2}\left(\dfrac{\partial}{\partial x^i} + {\bf{i}} \dfrac{\partial}{\partial y^i} \right)
+\]
+Así la estructura casi compleja $J$ se extiende a un endomorfismo $\comp$-lineal de $T^\comp M$ e induce puntualmente una descomposición en los autoespacios asociados a ${\bf{i}}$ y $-{\bf{i}}$. Esto es,
+\[
+	T^\comp M = T^{1,0}M \oplus T^{0,1}M
+\]
+Donde, los espacios $T^{1,0}M$ y $T^{0,1}M$ corresponden a los espacios generados por los elementos basales $\frac{\partial}{\partial z^i}$ y $\frac{\partial}{\partial \overline{z}^i}$ y se denominan \textbf{fibrado tangente holomorfo} y \textbf{fibrado tangente antiholomorfo}, respectivamente.\\
+De forma similar, la complejificación del fibrado dual al tangente nos entrega el fibrado cotangente $\Omega^{1}_{\comp}M$, el cual se descompone según los autovalores del operador dual a la estructura casi compleja $J$  (la cual denotaremos también como $J$). La descomposición a la que nos referimos es dada por
+\[
+\Omega_\comp^1 M = \Omega^{1,0}M \oplus \Omega^{0,1}M
+\]
+Escribiendo la base dual de $\mathit{TM}$ tenemos que $\Omega^{1,0}$ corresponde al espacio generado $d z^1 , \ldots, d z^n$ mientras que $\Omega^{0,1}$ es generado por $d\overline{z}^1,\ldots, d\overline{z}^n$, donde
+\[
+ d z^i = dx^i + {\bf{i}} dy^i \, \hspace{20pt} \text{ y } \hspace{20pt} \,   d z^i = dx^i - {\bf{i}} dy^i
+\]
+Esta descomposición se extiende a formas diferenciales de orden $r$
+\[
+\Omega^r_\comp M = \bigoplus_{p+q=r} \Omega^{p,q}M
+\]
+donde $\Omega^{p,q}M$ es generado localmente por el producto tensorial alternante, o producto ``cuña'' siguiente
+\[
+d z^{i_1}\wedge \ldots \wedge d z^{i_p}\wedge d\overline{z}^{j_1} \wedge \ldots \wedge d\overline{z}^{j_q}.
+\]
+donde, por definición $dz \wedge dw = - dw \wedge dz$ para toda $z,w$ forma diferencial.\par
+Sobre una variedad compleja, la descomposición de $r$-formas da lugar a la descomposición de la derivada exterior como $\dd=\partial + \overline{\partial}$ donde los operadores
+\begin{align*}
+\partial : \Omega^{p,q}M &\rightarrow \Omega^{p+1,q}M \\
+\overline{\partial}: \Omega^{p,q}M &\rightarrow \Omega^{p,q+1}M
+\end{align*}
+son proyecciones de $\dd$. Esto nos da la descomposición de $r$-formas en formas de tipo $(p,q)$ o $(p,q)$-formas, donde $p+q=r$. Explícitamente, una $(p,q)$-forma se expresa en término de las coordenadas locales y multi-índices $I,J$ como
+\begin{equation}\label{p,q - formas}
+ \omega = \sum_{\substack{\vert I \vert = p \\ \vert J \vert = q }} \alpha_{IJ} dz^I \wedge d\overline{z}^J := \sum_{\substack{1\leq i_1 < \ldots < i_p \leq p \\ 1\leq j_1 < \ldots < j_q \leq q }} \alpha_{i_1,\ldots, i_p,j_1,\ldots j_q} dz^{i_1} \wedge \ldots \wedge dz^{i_p} \wedge d\overline{z}^{j_1}\wedge \ldots \wedge d\overline{z}^{j_q}
+\end{equation}
+donde cada término de $\alpha_{IJ}$ es una función analítica en $M$.
+
+\begin{obs}
+Para cualquier forma $\alpha\in \Omega^r_\comp M$, $\overline{\partial}\alpha = \overline{\overline{\partial}\alpha}$.
+\end{obs}
+
+
+\begin{obs}\label{diferencial de una funcion}
+En la notación que estamos utilizando, el diferencial de una función $f:M\rightarrow \comp$ se escribe como
+\[
+\dd f = \left(\partial +\overline{\partial}\right)f = \sum_{i=1}^n \dfrac{\partial f}{\partial z^i} d z^i + \dfrac{\partial f}{\partial \overline{z^i}} d\overline{z}^i.
+\]
+Así, $f$ es holomorfa si y solo si $\overline{\partial} f =0$, pues 
+\[
+\overline{\partial}f = \sum_{i=1}^n \dfrac{\partial f}{\partial \overline{z^i}} d\overline{z}^i
+\]
+y cada $\dfrac{\partial f}{\partial \overline{z}^i}=0$ es una ecuación de Cauchy-Riemann.
+\end{obs}
+\begin{ex} Para una función $f:M\rightarrow \real$, la forma ${\bf{i}}\partial\overline{\partial}f$ es una $(1,1)$-forma real, que se comporta como una segunda derivada compleja de $f$ (un Hessiano complejo, si se prefiere). En particular, si consideramos $f:\comp \rightarrow \real$ y calculamos la $(1,1)$-forma, obtenemos
+\begin{align*}
+{\bf{i}} \partial \overline{\partial} f &= {\bf{i}}\left( \dfrac{\partial}{\partial z} \dfrac{\partial f}{\partial\overline{z}}\right) dz \wedge d\overline{z} \\
+&= \dfrac{{\bf{i}}}{4}\left(\dfrac{\partial}{\partial x} - {\bf{i}} \dfrac{\partial}{\partial y}\right)\left( \dfrac{\partial f}{\partial x} + {\bf{i}}\dfrac{\partial f}{\partial y}\right)\left( dx + {\bf{i}}dy \right) \wedge \left( dx - {\bf{i}}dy \right)\\
+&= \dfrac{1}{2}\left( \dfrac{\partial^2 f}{\partial x^2} + \dfrac{\partial^2 f}{\partial y^2} \right) dx\wedge dy
+\end{align*}
+Es necesario notar que la ultima igualdad se debe a que siempre $d^2 f = 0$ para cualquier $f$.
+\end{ex}
+Dada la observación anterior, podemos notar que los operadores $\dd$ y $\overline{\partial}$ tendrán una relevancia importante en las propiedades asociadas a diferenciabilidad y holomorfía de funciones en variedades diferenciales que posean estructura compleja. Definiremos para concluir esta sección los complejos de cohomología asociados a estos dos operadores
+
+
+\begin{defn}[Cohomología de Dolbeault]\hfill
+
+Sea $X$ una variedad diferencial dotada de una estructura compleja. Entonces, definimos la $(p,q)$-cohomología de Dolbeault como el espacio vectorial
+\[
+\cohom_{\overline{\partial}}^{p,q}(X) := \cohom^q \left( \mathcal{A}^{p,\bullet}(X),\overline{\partial}\right) =\dfrac{\ker\left(\overline{\partial}:\mathcal{A}^{p,q}(X)\rightarrow \mathcal{A}^{p,q+1}(X)\right)}{\imagen\left(\overline{\partial}:\mathcal{A}^{p,q-1}(X)\rightarrow \mathcal{A}^{p,q}(X)\right)}
+\]
+Donde $\mathcal{A}^{p,q}(X)$ corresponde al espacio de $(p,q)$-formas diferenciales sobre $X$ alternantes. Es decir, el complejo de Dolbeault es el complejo de cocadenas de formas diferenciales sobre la variedad $X$ con la derivada exterior antiholomorfa como el diferencial, esto es un complejo\footnote{En nuestro contexto entenderemos como complejo a una colecci\'on de espacios vectoriales $V_i$ encadenados como
+\[
+\cdots \rightarrow V_i \xrightarrow[]{f^i} V_{i+1} \xrightarrow[]{f^{i+1}}V_{i+2}\rightarrow \cdots
+\] tal que $\operatorname{Im}(f^i) \subseteq \ker (f^{i+1})$, i.e., $f^i\circ f^{i+1}=0$.} de la forma
+\[
+\mathcal{A}^{p,\bullet} (X) : \, 0 \rightarrow \mathcal{A}^{p,0}(X) \xrightarrow{\overline{\partial}} \mathcal{A}^{p,1}(X) \xrightarrow{\overline{\partial}} \cdots \xrightarrow{\overline{\partial}} \mathcal{A}^{p,n}(X) \rightarrow 0
+\]
+donde $n=\dim_\comp(X)$.
+\end{defn}
+\begin{obs}
+Podemos definir un complejo de cocadenas y una cohomologia mediante el uso de la derivada holomorfa. Pero dado que la condición de holomorfia viene dada (entre otras formulaciones equivalentes) por la anulación de la derivación antiholomorfa, se hace principalmente relevante la cohomologia de Dolbeault por sobre su análoga $\cohom^{p,q}_\partial (X)$.
+\end{obs}
+
+\begin{defn}[Cohomología de de Rham]\hfill
+
+Definimos el complejo de De Rham como el complejo de formas diferenciales sobre una variedad diferencial $M$ con la derivada exterior como diferencial
+\[
+0 \rightarrow  \Omega^0 (M) \xrightarrow{\dd}\Omega^1 (M) \xrightarrow{\dd}\Omega^2 (M) \xrightarrow{\dd} \Omega^3 (M)\rightarrow \cdots
+\]
+Así, definimos el $k$-ésimo grupo de cohomología como el cociente
+\[
+\cohom_{\operatorname{dR}}^k (M) := \dfrac{\left\lbrace \alpha \in \Omega^k M \, \vert \, \dd\alpha=0\right\rbrace}{\left\lbrace \dd\beta \, \vert \, \beta \in \Omega^{k-1}M \right\rbrace}.
+\]
+\end{defn}
+
+Para concluir esta sección definiremos una aplicación de gran utilidad en cálculos y demostraciones que aparecerán mas adelante
+\begin{defn}[Pullback]\hfill 
+
+Sea una transformacion lineal $L:V \rightarrow W$ entre los espacios vectoriales $V,W$ y sea $f:W \rightarrow \real$ definimos el \textbf{pullback de $f$ mediante $L$} denotado por $L^*(f)$ como
+\begin{align*}
+L^*f:= f\circ L : V &\longrightarrow \real \\
+ v &\longmapsto f(L(v))
+\end{align*}
+De forma análoga, si $f:W\times W \times \cdots \times W\rightarrow \real$ es una aplicación $r$-multilineal definimos el \textbf{pullback de $f$ mediante $L$} como
+\[
+(L^* f) (w_1 ,\cdots ,w_r) := f(L(w_1),\cdots, L(w_r)).
+\]
+\end{defn}
+\begin{obs}\label{pullback para metrica} Para $M,N$ dos variedades diferenciales, sean $p\in M$, y $L:M\rightarrow N$ es una inmersión (es decir, una aplicación diferenciable cuyo diferencial es inyectivo en todo punto). Si consideramos una aplicación bilineal $f: T_{f(p)}N \times T_{f(p)}N \rightarrow \real$ esta induce una aplicación bilineal $L^* f$ sobre $T_p M$ dada por
+\begin{align*}
+ L^* f: T_p M \times T_p M &\longrightarrow \real \\
+ (v_1 , v_2) &\longmapsto (L^* f)(v_1 ,  v_2) = f(dL(v_1), dL(v_2))
+\end{align*}
+\end{obs}
+
+\section{Métricas K\"ahlerianas y Hermitianas}\label{cap1sec3}
+Sea $X$ una variedad compleja dotada de una estructura compleja $J$. Nos interesa estudiar las métricas Riemannianas sobre $X$ que son compatibles con la estructura compleja de una manera deseable. Empezamos esta sección recordando la definición de métrica Riemanniana sobre $X$.
+\begin{defn}[Métrica Riemanniana]\hfill
+
+Una métrica Riemanniana en una variedad diferenciable $M$ es una correspondencia que asigna cada punto $p\in M$ un producto interno 
+\[
+g(\cdot,\cdot)_p : T_p M \times T_p M \rightarrow \real
+\]
+en el espacio tangente $T_p M$, que varía diferencialmente respecto a $p$.
+
+\end{defn}
+Notemos que esta definición nos dice que en cada punto $p\in M$, la metrica Riemanniana corresponde a un forma bilineal simétrica y definida positiva en el espacio tangente $T_p M$.
+
+Para m\'as detalles en esta definición y la noción de diferenciabilidad respecto a $p\in M$ de esta, revisar \cite[p.41]{Man15}.
+
+\begin{prop}[Existencia de métrica Riemanniana]\hfill
+
+Toda variedad diferencial  $M$ admite una métrica Riemanniana
+\end{prop}
+\begin{proof}
+Considerar la estructura diferencial sobre $M$ dada por el atlas $\mathcal{A}_M = \lbrace (\varphi_\lambda ,U_\lambda) \rbrace_{\lambda\in \Lambda}$ y la particion de la unidad $\lbrace \rho_\lambda \rbrace_{\lambda\in \Lambda}$ subordinada al cubrimiento abierto $\lbrace U_\lambda\rbrace_{\lambda\in \Lambda}$. 
+
+La variedad $M$ es localmente homeomorfa a algún $\real^n$, es decir,
+\[
+\forall p \in M, \,\exists \lambda \in \Lambda \, \text{, tal que } p \in U_\lambda \, \textup{ y }  \varphi_\lambda (U_\lambda) \cong W \subset \real^n
+\]
+Luego, como en el espacio Euclideo $\real^n$ tenemos el producto interno usual, que denotaremos por $\langle \cdot , \cdot \rangle_{\real^n}$, por lo desarrollado en la observación \ref{pullback para metrica} tenemos localmente la métrica inducida sobre $U_\lambda \subset M$ dada por el pullback de $\langle \cdot , \cdot \rangle_{\real^n}$ restricto a $U_\lambda$ mediante $\varphi_\lambda$, esto es
+\[
+\langle \cdot, \cdot \rangle_\lambda :=\varphi^{*}_\lambda \langle \cdot , \cdot \rangle_{\real^n}\big\vert_{U_\lambda} : T_p U_\lambda \times T_p U_\lambda \longrightarrow \real
+\]
+Esto nos entrega una métrica Riemanniana sobre cada abierto del atlas maximal $\mathcal{A}_M$. Luego, podemos definir
+\[
+g(\cdot ,\cdot )_p := \sum_{\lambda \in \Lambda} \rho_\lambda(p) \langle \cdot, \cdot \rangle_\lambda 
+\]
+Que hereda desde el producto interno el ser simétrico, y ademas debe ser definido positivo, pues los $\rho_\lambda$ no se anulan todos al mismo tiempo, de lo que concluimos el resultado.
+\end{proof}
+
+Teniendo en consideración una serie de propiedades adicionales de interés es que introduciremos las siguientes definiciones.
+\begin{defn}[Métrica Hermitiana]\hfill
+
+Una métrica Riemanniana $g$ sobre $M$ se llama Hermitiana si $g(Jx,Jy)_p=g(x,y)_p$ para cualquiera vectores $x,y \in T_p M$. Es decir, si la estructura compleja $J$ es una isometria en cada espacio tangente $T_p M$. Definimos ademas, la forma $\omega$ asociada a la métrica Hermitiana $\omega(x,y)_p = g(Jx,y)_p$ para cada $x,y \in T_p M$.
+\end{defn}
+De esta forma, se tiene que $\omega$ es antisimétrica y se tiene que $\omega$ es una $2$-forma real de tipo $(1,1)$.
+
+
+\begin{defn}[Métrica Kähleriana]\label{definicion metrica Kahler}\hfill
+
+Una métrica Hermitiana $g$ se llama Kähleriana si la $2$-forma $\omega$ es cerrada, esto es, $\dd\omega = 0$. En este caso, llamamos a $\omega$ \textbf{forma de Kähler}.
+\end{defn}
+En coordenadas locales de la variedad $z^1,\ldots,z^n$, una métrica Hermitiana tiene componentes $g_{j\overline{k}}$ dadas por
+\[
+	g_{j\overline{k}}= g\left( \dfrac{\partial}{\partial z^j},\dfrac{\partial}{\partial\overline{z}^k} \right)
+\]
+Si extendemos $g$ al espacio tangente complejo usando la $\comp$-linealidad de $g$ en ambas entradas, podemos ver que la condición de ser Hermitiana implica que
+\[
+g\left( \dfrac{\partial}{\partial z^j},\dfrac{\partial}{\partial z^k} \right) = g\left( \dfrac{\partial}{\partial \overline{z}^j},\dfrac{\partial}{\partial\overline{z}^k} \right)=0
+\]
+de esta manera, la métrica puede escribirse en término de sus componentes y las coordenadas locales como
+\begin{equation}\label{eqkahl}
+g = \sum_{j,k}g_{j\overline{k}}\left( dz^j \otimes d\overline{z}^k + d\overline{z}^k \otimes dz^j \right)
+\end{equation}
+\begin{obs}
+Veamos las consecuencias de la simetría de la métrica $g$. En primer lugar $\overline{g_{j\overline{k}}}= g_{k\overline{j}}$, ademas que $g$ sea positiva nos dice que $g_{j\overline{k}}$ es una matriz Hermitiana definida positiva en cada punto $p\in M$. Podremos escribir la $2$-forma $\omega$ como
+\[
+	\omega = {\bf{i}}\sum_{j,k} g_{j\overline{k}}\, dz^j \wedge d\overline{z}^k.
+\]
+De esto, concluimos que $g$ es de Kähler si para todos $i,j,k$ se tiene la igualdad
+\[
+\dfrac{\partial}{\partial z^i}g_{j\overline{k}} = \dfrac{\partial}{\partial z^j} g_{i\overline{k}}
+\]
+al aplicar las derivadas con índice correspondiente en la igualdad \ref{eqkahl} y usando que $d\omega = 0$ si $\omega$ es la forma de Kähler.
+\end{obs}
+Ahora, presentaremos un ejemplo de métrica que será relevante a lo largo de esta memoria pues es una métrica de Kähler en el espacio proyectivo complejo.
+\begin{ex}[Métrica de Fubini-Study] 
+El espacio proyectivo complejo $\mathbb{P}^n$ tiene una métrica natural $\omega_{\operatorname{FS}}$ denominada \textbf{métrica de Fubini-Study}. Realicemos la construcción de esta métrica a continuación, para esto debemos tener en mente la aplicación de proyección
+\[
+\pi : \comp^{n+1}\backslash \lbrace 0 \rbrace \rightarrow \mathbb{P}^n
+\]
+Una sección $s$ sobre un abierto $U\subset \mathbb{P}^n$ es una aplicación holomorfa \[
+s: U \rightarrow\comp^{n+1}
+\]
+tal que  $\pi \circ s$ es la identidad, y dada esta sección, definimos
+\[
+\omega_{\operatorname{FS}} = {\bf{i}}\partial \overline{\partial}\operatorname{log}\Vert s \Vert^2
+\]
+Para ver que esta bien definida, notemos que si $s'$ es otra sección sobre un abierto $V$, entonces sobre la intersección $U\cap V$ tenemos que $s' = f s$, para una función holomorfa $f: U\cap V \rightarrow \comp\backslash \lbrace 0 \rbrace$ y ademas
+\begin{align*}
+{\bf{i}} \partial\overline{\partial} \operatorname{log}\Vert f s \Vert^2 &= {\bf{i}}\partial \overline{\partial} \operatorname{log} \Vert s \Vert^2 + {\bf{i}}\partial \overline{\partial} \operatorname{log}(f\overline{f})\\
+&= {\bf{i}}\partial \overline{\partial} \operatorname{log} \Vert s \Vert^2 + {\bf{i}}\partial \overline{\partial} \operatorname{log}(f) +{\bf{i}}\partial \overline{\partial} \operatorname{log}\left( \overline{f}\right)\\
+&= {\bf{i}}\partial \overline{\partial} \operatorname{log}\Vert s \Vert^2.
+\end{align*}
+Dado que las secciones existen sobre abiertos $U$, obtenemos una $(1,1)$-forma cerrada, que es bien definida $\mathbb{P}^n$. \\
+Como $\omega_{\operatorname{FS}}$ es definida localmente en términos de la norma usual en $\comp^n$, tenemos que es invariante bajo las acciones del grupo unitario $U(n+1)$, y $U(n+1)$ actúa transitivamente sobre $\mathbb{P}^n$. Será suficiente verificar que la matriz Hermitiana correspondiente es definida positiva en un único punto, digamos $[1:0:\ldots:0]$ pues esta invarianza extiende el resultado a todo punto. Usamos las coordenadas locales
+\[
+w^i = \dfrac{z^i}{z^0},\ \text{ para } i=1,\ldots,n
+\]
+definida para la carta $(U_0,\varphi_0)$ . Una sección es dada por
+\[
+s(z^1,\ldots,z^n) = (1,z^1,\ldots,z^n).
+\]
+Finalmente, tenemos que la métrica es dada por
+\[
+g_{\operatorname{FS}}= {\bf{i}}\partial\overline{\partial} \operatorname{log}\left( 1 + \vert z^1 \vert^2 + \ldots + \vert z^n \vert^2 \right)
+\]
+En el origen esto corresponde a $\displaystyle {\bf{i}}\sum_i dz^i \wedge d\overline{z}^i$, cuya matriz Hermitiana asociada es la identidad, la cual, en efecto, es definida positiva.
+\end{ex}
+
+
+
+
+\begin{obs}
+Consideremos una $(1,0)$-forma $\alpha$ sobre una variedad de Kähler compacta, veremos m\'as adelante \emph{(}ver \ref{Cap2Sec5LemaCondicionesArmonicas}\emph{)} que $\alpha$ satisface que
+\[
+\partial \alpha = \partial^* \alpha =0
+\]
+entonces $\overline{\partial}=0$. Donde $\partial^*$ corresponde al operador adjunto formal de $\partial: \mathcal{A}^{p,q} \rightarrow \mathcal{A}^{p+1,q}$, este se describirá en mayor detalle en el siguiente capitulo, que concierne principalmente a elementos de análisis y operadores elípticos sobre variedades.
+\end{obs}
+Ahora, presentaremos el lema--$\partial\overline{\partial}$ que muestra que sobre una variedad compacta, las métricas de Kähler en una clase de cohomología fija se pueden parametrizar por funciones a valores reales.
+
+\begin{lem}[Lema--$\partial \overline{\partial}$]\hfill 
+
+Sea $X$ una variedad Kähleriana compacta. Si $\omega$ y $\eta$ son dos $(1,1)$-formas reales en la misma clase de cohomología de de Rham, entonces existe una función $f:X\rightarrow\real$ tal que
+\[
+	\eta = \omega + {\bf{i}} \partial\overline{\partial} f
+\]
+\end{lem}
+Este resultado se puede probar utilizando Teoria de Hodge, una demostración para una versi\'on general de este resultado se presentar\'a en la sección \ref{cap1sec9}.\par
+
+
+
+
+El siguiente resultado muestra que si tenemos una métrica de Kähler, entonces es posible elegir coordenadas holomorfas locales suficientemente buenas (en un sentido por mencionar) en torno a cualquier punto.
+\begin{prop}[Coordenadas normales]\label{Coord normales Kahler}\hfill
+
+Si $g$ es una métrica de Kähler, entonces en todo punto $p\in X$ podemos elegir coordenadas holomorfas locales $z^1,\ldots,z^n$ tal que las componentes de $g$ en cada punto $p$ satisfacen
+\begin{equation}\label{normal coord}
+g_{j\overline{k}}(p)=\delta_{jk} \ \text{ y } \dfrac{\partial}{\partial z^i}g_{j\overline{k}}(p) = \dfrac{\partial}{\partial \overline{z}^i}g_{j\overline{k}}=0,
+\end{equation}
+donde $\delta_{ij}$ corresponde a la función Delta de Kronecker.
+\end{prop}
+\begin{proof}
+Probaremos una condición equivalente a \ref{normal coord}, la cual consiste en que la forma de Kähler $\omega$ satisfaga
+\begin{equation}\label{fin normal coord}
+\omega = {\bf{i}} \sum_{j,k} \left( \delta_{jk} + O(\vert z \vert^2)\right) dz^j \wedge d\overline{z}^k
+\end{equation}
+donde $O(\vert z \vert^2)$ denota aquellos términos de orden al menos cuadrático en $z^j$ y $\overline{z}^k$.
+
+Comenzamos seleccionando coordenadas locales $w^i$ tales que 
+\begin{equation}\label{norm coord proof}
+ \omega = {\bf{i}} \sum_{j,k} \left( \delta_{jk} + \sum_\ell \left( a_{j\overline{k}\ell}w^\ell + a_{j\overline{k}\overline{\ell}}\overline{w}^\ell\right) + O(\vert w\vert^2)\right) dw^j \wedge d\overline{w}^k
+\end{equation}
+En este momento, bueno recordar que detrás de la elección de coordenadas se encuentra de forma implícita la elección de una vecindad del origen, consideremos una vecindad mas pequeña del origen en que se satisface
+\[
+w^i = z^i - \dfrac{1}{2}\sum_{j,k} b_{ijk}z^j z^k
+\]
+donde $b_{ijk}$ son coeficientes tales que $b_{ijk}=b_{ikj}$. Entonces, de esta relación obtenemos
+\begin{align*}
+dw^i &= dz^i - \dfrac{1}{2}\sum_{j,k} b_{ijk}d(z^j z^k) \\
+&=dz^i - \sum_{j,k} b_{ijk}z^j dz^k.
+\end{align*} 
+De esta manera, a partir de \ref{norm coord proof}, la forma de Kähler queda como 
+\[
+\omega = {\bf{i}} \sum_{j,k}\left( \delta_{jk} + \sum_{\ell} \left( a_{j\overline{k}l}z^{\ell} + a_{j\overline{k}\overline{\ell}}z^{\ell} - b_{k\ell j}z^{\ell} - \overline{b_{j\ell k}}\overline{z}^{\ell} + O(\vert z \vert^2)\right)\right)dz^j \wedge d\overline{z}^k
+\]
+Luego, si $\omega$ es Kähleriana, por la igualdad \ref{norm coord proof} sabemos que $a_{j\overline{k}l}=a_{\ell\overline{k}j}$, de modo que si escogemos los coeficientes $b_{k\ell j}:= a_{j\overline{k}\ell}$, los cuales satisfacen la condición $b_{ijk}=b_{ikj}$, entonces
+\[
+a_{j\overline{k}\overline{\ell}}= \overline{a_{k\overline{j}\ell}} = \overline{b_{j\ell k}}
+\]
+y en consecuencia, los términos lineales de $\omega$ se cancelan.
+\end{proof}
+Terminaremos esta secci\'on con el siguiente ejemplo, que ilustra como se relaciona el volumen (que se puede entender como análogo a la medida de una variedad) con la métrica con la que dotamos a una variedad.
+
+\vspace{-2mm}
+
+\begin{ex}[Forma de volumen]
+En una variedad de Kähler $(X,\omega)$ de dimension compleja $n$, la forma de volumen Riemanniana es dada por $\frac{\omega^n}{n!}$ donde $\omega^n = \omega \wedge \ldots \wedge \omega$. Para ver esto, escribimos localmente $\omega$ respecto a coordenadas holomorfas normales $\lbrace z^1, \ldots, z^n \rbrace$ como sigue
+\[
+\omega = \ii \sum_{j,k} \delta^j_k dz^j \wedge d\overline{z}^k
+\]
+De esta forma si consideramos $z^i = x^i + \ii y^i$ entonces $\lbrace x^1, y^1, \ldots x^n, y^n \rbrace$ son un marco ortogonal para la variedad Riemanianna subyacente $(X_{\bbR},g)$ (donde $g$ es la parte real de la m\'etrica de K\"ahler).
+Notemos que
+\begin{align*}
+dz^i \wedge d\overline{z}^i &= \left(dx^i + \ii dy^i\right)\wedge \left(dx^i - \ii dy^i\right) \\
+&= (dx^i)^2 + \ii dy^i \wedge dx^i  - \ii dx^i \wedge (\ii dy^i) + (dy^i)^2 \\
+&= -2i dx^i \wedge dy^i
+\end{align*}
+Escribimos $\omega$ en el marco definido para la variedad Riemanianna subyacente como sigue
+\[
+\omega = \sum_{j=1}^k dx^i \wedge dy^i.
+\]
+Luego, notemos que para $\dim_{\bbC} (X) =2$
+\begin{align*}
+\omega^2 &= \left( dx^1 \wedge dy^1 + dx^2 \wedge dy^2 \right) \wedge \left( dx^1 \wedge dy^1 + dx^2 \wedge dy^2 \right) \\
+&= (dx^1 \wedge dy^1)^2 + dx^1 \wedge dy^1 \wedge dx^2 \wedge dy^2 + dx^2 \wedge dy^2 \wedge dx^1 \wedge dy^1 + (dx^2 \wedge dy^2)^2 \\
+&= 2 dx^1 \wedge dy^1 \wedge dx^2 \wedge dy^2 \\
+&= 2 \operatorname{vol}
+\end{align*}
+As\'imismo, para $\dim_{\bbC} (X)=3$ podemos reiterar el calculo anterior para ver que
+\begin{align*}
+\omega^3  = \left( dx^1 \wedge dy^1 + dx^2 \wedge dy^2 + dx^3 \wedge dy^3\right)^3
+\end{align*}
+se conforma de t\'erminos de la forma
+\[
+dx^i \wedge dy^i \wedge dx^j \wedge dy^j \wedge dx^k \wedge dy^k
+\]
+que son todos nulos, excepto cuando $i\neq j\neq k$, en cuyo caso podemos concluir que
+\begin{align*}
+\omega^3 &= 6 dx^1 \wedge dy^1 \wedge dx^2 \wedge dy^2 \wedge dx^3 \wedge dy^3 \\
+&= 6\operatorname{vol}
+\end{align*}
+De forma más general, si $\dim_{\bbC} (X)=n$ podemos utilizar el teorema multinomial para encontrar que
+\begin{align*}
+\omega^n &= \left( dx^1 \wedge dy^1 + dx^2 \wedge dy^2 + \ldots dx^n \wedge dy^n \right)^n \\
+&= \sum_{k_1 + k_2 + \ldots + k_n =n} \dfrac{n!}{k_1 ! k_2! \cdots k_n !} \left(\bigwedge_{t=1}^n \left( dx^t \wedge dy^t \right)^{k_t} \right).
+\end{align*}
+Donde todos los t\'erminos son nulos, salvo que $k_1 = k_2 = \ldots = k_n =1$ y por lo tanto 
+\begin{align*}
+\omega^n &= \sum_{k_1 + k_2 + \ldots + k_n =n} \dfrac{n!}{k_1 ! k_2! \cdots k_n !} \left(\bigwedge_{t=1}^n \left( dx^t \wedge dy^t \right)^{k_t} \right) \\
+&= n! \bigwedge_{t=1}^n (dx^t \wedge dy^t) \\
+&= n! \left( dx^1 \wedge dy^1 \wedge dx^2 \wedge dy^2 \wedge \ldots \wedge dx^n \wedge dy^n \right) \\
+&= n! \operatorname{vol}
+\end{align*}
+de lo que concluimos que
+\[
+\operatorname{vol} = \dfrac{\omega^n}{n!}
+\]
+\end{ex}
+En geometría Riemanniana siempre es posible escoger coordenadas normales en las cuales las primeras derivadas de la métrica se anulan en un punto dado, lo cual se extiende a cualquier métrica Hermitiana. Es importante notar que el resultado anterior nos dice que en caso de que la métrica sea Kähleriana, entonces se puede encontrar coordenadas holomorfas en las que las primeras derivadas se anulan en un punto.
+\begin{obs}
+El reciproco del resultado anterior es cierto y se obtiene al considerar en \ref{normal coord} que las coordenadas normales holomorfas existen, entonces $\omega$ es una forma cerrada, es decir, es Kähleriana.
+\end{obs}
+Terminamos esta secci\'on presentando un Lema que ser\'a  de utilidad en el cap\'itulo 3, en la prueba del Teorema de Yau.
+\begin{lem}\label{4.17 Szeke}\hfill
+
+Sean $\alpha$ y $\beta$ dos $(1,1)$-formas, dadas en coordenadas locales por $\alpha = \ii \alpha_{j\overline{k}} dz^j \wedge d\overline{z}^k$ y $\beta = \ii \beta_{j\overline{k}} dz^j \wedge d\overline{z}^k$ tales que $\alpha_{j\overline{k}}$ y $\beta_{j\overline{k}}$ corresponden a matrices Hermitianas. Si $\omega$ es una metrica de K\"ahler con componentes $g_{j\overline{k}}$, entonces
+\begin{align*}
+n \alpha \wedge \omega^{n-1} &= \left( \tr_{\omega} \alpha \right) \omega^n,\\
+n(n-1) \alpha \wedge \beta \wedge \omega^{n-2} &= \left[ \left( \tr_{\omega} \alpha\right)\left( \tr_{\omega} \beta\right) - \langle \alpha,\beta\rangle_{\omega}\right]\omega^n,
+\end{align*}
+Donde $\tr_{\omega} \alpha = g^{j\overline{k}}$ y $\langle \alpha,\beta\rangle_{\omega} = g^{j\overline{k}}g^{p\overline{q}}\alpha_{j\overline{q}} \beta_{p\overline{k}}$
+\end{lem}
+\begin{proof}
+Notemos que la primera igualdad se obtiene al tomar $\beta = \omega$ por lo que bastar\'a probar la segunda igualdad. Para esto, escribiremos en coordenadas locales para un punto $p\in X$ para las cuales $g$ es la identidad y que $\alpha$ es diagonal, entonces
+\[
+\omega = \ii \sum_{i=1}^n g_{i\overline{i}} dz^i \wedge d\overline{z}^i,
+\]
+luego
+\begin{align*}
+\omega^{n-2} = \ii^{n-1} (n-2)! \sum_{i< j} dz^1 \wedge d\overline{z}^1 &\wedge \ldots \wedge dz^{i-1} \wedge d\overline{z}^{i-1} \wedge dz^{i+1} \wedge d\overline{z}^{i+1}\\ \wedge \ldots \wedge & dz^{j-1} \wedge d\overline{z}^{j-1} \wedge dz^{j+1} \wedge d\overline{z}^{j+1} \wedge \ldots dz^n \wedge d\overline{z}^n.
+\end{align*}
+Adem\'as,
+\[
+\alpha \wedge \beta = \ii^2 \sum_{i\neq j} \alpha_{i\overline{i}}\beta_{j\overline{j}} dz^i \wedge d\overline{z}^i \wedge dz^j \wedge d\overline{z}^j + \quad F(\beta_{j\overline{k}})
+\]
+donde $F(\beta_{j\overline{k}})$ corresponde a t\'erminos donde $j\neq k$, pues hemos supuesto que $\alpha$. Luego, se tiene que
+\begin{align*}
+n(n-1) \alpha\wedge\beta\wedge\omega^{n-2} &= \ii^n n! \sum_{i\neq j} \alpha_{i\overline{i}}\beta_{j\overline{j}} dz^1\wedge d\overline{z}^1 \wedge \ldots \wedge dz^n \wedge d\overline{z}^n \\
+&= \left( \sum_{i\neq j} \alpha_{i\overline{i}}\beta_{j\overline{j}} \right) \omega^n \\
+&= \left( (\tr_{\omega} \alpha)(\tr_{\omega}\beta ) - \langle \alpha, \beta \rangle_{\omega} \right) \omega^n
+\end{align*}
+\end{proof}
+
+\section{Derivadas Covariantes y Curvatura}\label{cap1sec4}
+Ya hemos presentado los fibrados tangente y cotangente sobre una variedad y, en particular, hemos revisado y discutido sobre como es posible dotar al fibrado cotangente de una forma de diferenciar que extiende las nociones usuales de las derivadas que conocemos. Es por esto, que nos interesa saber si es posible extender aun mas estas nociones a otros fibrados que se puedan definir sobre una variedad diferenciable a la que se dota de estructura compleja. Antes de empezar debemos presentar la definición de \textbf{haces de espacios vectoriales}.
+\begin{defn}[Haz de espacios vectoriales]\hfill
+
+Sea $X$ un espacio topol\'ogico, llamamos \textbf{haz} a una asignaci\'ion $\mathcal{F}$ tal que
+\begin{enumerate}
+\item Para todo abierto $U\subset X$, $\mathcal{F}(U)$ es un espacio vectorial.
+\item Para cada inclusión de abiertos de $X$, $U \hookrightarrow V$, se tiene una aplicación de restricción 
+\begin{align*}
+	r_{U,V}: \mathcal{F}(V) &\longrightarrow \mathcal{F}(U)\\
+	s &\longmapsto r_{V,U}(s) = s\vert_U
+\end{align*}
+tal que 
+	\begin{enumerate}
+		\item Si $U \hookrightarrow V \hookrightarrow W$ son inclusiones de abiertos en $X$, las restricciones conmutan, es decir		\[
+  \begin{tikzcd}
+    \mathcal{F}(W) \arrow{r}{r_{W,V}} \arrow[swap]{dr}{r_{W,U}} & \mathcal{F}(V) \arrow{d}{r_{V,U}} \\
+     & \mathcal{F}(U)
+  \end{tikzcd}
+  \]
+		\item $r_{U,U} = \operatorname{Id}_U$ para todo abierto $U\subseteq X$.
+	\end{enumerate}
+\end{enumerate}
+Los elementos $s \in \calF (U)$ son llamados \textbf{secciones} de $\calF$ sobre $U$. Adem\'as , estos se denotan por 
+\[
+\calF (U)= \Gamma (U,\calF) .
+\]
+Si $\calF$ es un prehaz de espacios vectoriales sobre $X$ decimos que $\calF$ es un \textbf{haz de espacios vectoriales} si se cumplen las siguientes condiciones para todo abierto $U \subseteq X$:
+	\begin{enumerate}
+		\item Si $U = \cup_{i} V_i$ es un cubrimiento abierto, y  $s_i \in \calF (V_i)$ son secciones tales que
+		\[
+			s_i\vert_{V_i \cap V_j} = s_j\vert_{V_i \cap V_j}\quad \forall i,j
+		\]
+		Entonces, existe $s\in\calF (U)$ una sección tal que
+		\[
+		s|_{V_i} = s_i\quad \forall i
+		\] 
+		\item Si $U = \cup_i V_i$ es un cubrimiento abierto y $s \in\calF$ es una sección, entonces: Si $s|_{V_i}=0$ para todo $i$ entonces, $s$ es idénticamente cero en $U$, correspondiendo a la denominada \textbf{sección nula}.
+
+	\end{enumerate}
+\end{defn}
+\begin{defn}[Morfismo de Haces]\hfill
+
+Sean $\calF$ y $\calG$ dos haces de espacios vectoriales sobre un espacio topol\'ogico $X$. Denominamos \textbf{morfimo de haces} a una aplicación $\varphi \calF \rightarrow \calG$ que satisface
+\begin{enumerate}
+	\item Para todo abierto $U\subseteq X$, se tiene un morfismo
+	\[
+		\varphi_U : \calF(U)\longrightarrow\calG(U).
+	\]
+	\item Para cada inclusión $U\hookrightarrow V$ de abiertos de $X$, el diagrama siguiente 
+	\[ 
+		\begin{tikzcd}
+			\calF (V) \arrow{r}{\varphi_U} \arrow[swap]{d}{r_{V,U}} & \calG(V) \arrow{d}{r_{V,U}} \\%
+			\calF (U) \arrow{r}{\varphi_f}& \calG(U)
+		\end{tikzcd}
+	\] 
+es conmutativo.
+\end{enumerate}
+\end{defn}
+Un ejemplo de gran utilidad es el haz de funciones continuas sobre los abiertos de un espacio topol\'ogico. Esencialmente, los haces de funciones suaves (resp. holomorfas) que utilizaremos a lo largo de esta memoria dotan a las variedades diferenciales (resp. complejas) de su estructura diferencial (resp. holomorfa).\par
+Consideremos $M$ una variedad diferencial real equipada con una estructura compleja $J$, y sea $\pi: E \rightarrow M$ un fibrado vectorial complejo sobre $M$. Denotaremos como antes por $\mathcal{A}^i(E)$ al haz de $i$-formas con valores en $E$. En particular $\mathcal{A}^0 (E)$ es el haz de secciones de $E$. Pero, a diferencia del fibrado tangente, estas secciones no tienen canónicamente una forma de diferenciarse, es decir, el diferencial exterior, en general, no esta bien definido para secciones de $E$.
+Se hace necesaria una manera de diferenciar que sustituya al diferencial exterior. Esta será dada por una \textbf{conexión} sobre $E$ que no es canónica, pero siempre existe. \\
+
+Presentamos la definición de conexión sobre un fibrado, sobre la cual se discutirá en mayor profundidad en secciones posteriores
+\begin{defn}[Conexión]\hfill
+
+Una \textbf{conexión} sobre un fibrado vectorial $E$ es un homomorfismo de haces $\comp$-lineal
+\[
+\nabla : \mathcal{A}^0(E) \rightarrow \mathcal{A}^1(E)
+\]
+que satisface la \textbf{regla de Leibniz}
+\[
+\nabla \left( f \cdot s \right) = d(f)\otimes s + f\cdot \nabla(s)
+\]
+para toda función $f$, localmente sobre $M$ y cualquier sección localmente sobre 
+$E$.
+\end{defn}
+Dada esta definición, ser\'a importante definir una forma de interpretar geom\'etricamente algunos resultados al operar con conexiones.
+\begin{defn}[Sección paralela]\hfill
+
+Una sección $s$ de un fibrado vectorial $E$ se denominara \textbf{paralela } respecto a la conexión $\nabla$ sobre $E$, si $\nabla(s)=0$.
+\end{defn}
+Una vez presentadas las definiciones anteriores, podemos situarnos el caso en que la variedad $(X,\omega)$ es Kähleriana. En este caso, utilizamos la conexión $\nabla$ de \textbf{Levi-Civita} para diferenciar campos tensoriales, esta es, aquella conexión para la cual la métrica satisface que $\nabla g =0$, y para la cual se tiene la propiedad de simetría o de ser libre de torsión, esto es, para cualesquiera $X,Y$ campos vectoriales y para $[\cdot, \cdot]$ es el corchete de Lie
+\[
+\nabla_X Y - \nabla_Y X = [X,Y].
+\]
+ En coordenadas normales holomorfas la estructura compleja $J$ es constante, y en consecuencia $\nabla J=0$. Esto junto a que $\omega(X,Y)=g(JX,Y)$, implica que $\nabla\omega = 0$. Este tipo de resultados ser\'an de gran importancia en el capitulo 4.\\
+En términos de coordenadas locales holomorfas $z^1, \ldots, z^n$, utilizamos la siguiente notación para las coordenadas de la conexión y las derivadas parciales respectivas a cada variable
+\[
+\nabla_i = \nabla_{\partial / \partial z^i},\ \ \nabla_{\overline{i}} = \nabla_{\partial / \partial \overline{z}^i}, \ \ \partial_i = \dfrac{\partial}{\partial z^i}, \ \ \partial_{\overline{i}}=\dfrac{\partial}{\partial\overline{z}^i}.
+\]
+Notemos que
+\[
+J\left( \nabla_j \dfrac{\partial}{\partial z^k} \right)=\nabla_j J\left( \dfrac{\partial}{\partial z^k} \right) = {\bf{i}}\nabla_j \dfrac{\partial}{\partial z^k}.
+\]
+Así, el campo vectorial $\nabla_j \frac{\partial}{\partial z^k}$ es de tipo $(1,0)$, es decir, $\nabla_j \frac{\partial}{\partial z^k} \in T^{1,0}M$ y en consecuencia definimos los \textbf{símbolos de Christoffel} 
+$\christoffel{i}{j}{k}$ mediante la igualdad
+\[
+\nabla_j \dfrac{\partial}{\partial z^k} = \sum_i \christoffel{i}{j}{k} \dfrac{\partial}{\partial z^i}
+\]
+De la misma manera $\nabla_{\overline{i}}\frac{\partial}{\partial z^k}$ es de tipo $(1,0)$, mientras que $ \nabla_{i}\frac{\partial}{\partial \overline{z}^k}$ es de tipo $(0,1)$, es decir, $\nabla_{i}\frac{\partial}{\partial \overline{z}^k}\in T^{0,1}M$ . Sin embargo, se puede probar que la conexión es libre de torsión\footnote{La torsión corresponde al termino que impide la igualdad \[
+\nabla_X Y - \nabla_Y X = [X,Y].
+\] Es decir, podemos definir el tensor de torsión entre dos campos vectoriales $X$ e $Y$ como $T(X,Y)= \nabla_X Y - \nabla_Y X - [X,Y]$} entonces
+\[
+\nabla_{\overline{i}} \dfrac{\partial}{\partial z^k} = \nabla_k \dfrac{\partial}{\partial\overline{z}^i}
+\]
+de modo que ambos campos vectoriales deben anularse, pues los espacios $T^{1,0}_p M$ y $T^{0,1}_p M$ están en suma directa. Además, $\nabla_{\overline{i}}T = \overline{\nabla_i\overline{T}}$ para cualquier tensor $T$, de lo que concluimos que la conexión queda completamente determinada por los coeficientes $\christoffel{i}{j}{k}$. Note que
+\[
+\christoffel{i}{j}{k} = \christoffel{i}{k}{j} \hspace{25pt} \text{ y } \hspace{25pt} \christoffel{\overline{i}}{\overline{j}}{\overline{k}} = \overline{\christoffel{i}{j}{k}}.
+\]
+Las derivadas covariantes de un campo tensorial pueden calcularse usando la regla del producto para derivadas, recordando que las funciones de derivadas covariantes coinciden con las derivadas parciales usuales.
+\begin{ex}
+Para encontrar las derivadas covariantes de $dz^k$, diferenciamos la relación
+\[
+dz^k \left( \dfrac{\partial}{\partial z^j} \right) = \delta_j^k,
+\]
+donde $\delta_j^k$ corresponde a la delta de Kronecker. Obtenemos entonces,
+\[
+\left( \nabla_i dz^k \right) \dfrac{\partial}{\partial z^j} + dz^k \left( \nabla_i \dfrac{\partial}{\partial z^j}\right)=0
+\]
+De lo que concluimos las igualdades
+\[
+\left( \nabla_i dz^k \right) \dfrac{\partial}{\partial z^j} = -\christoffel{k}{i}{j} \hspace{20pt} \text{ y } \hspace{20pt} \left( \nabla_i dz^k \right) \dfrac{\partial}{\partial \overline{z}^j} = 0
+\]
+De lo que sigue que las derivadas covariantes  de $dz^k$ son de la forma
+\[
+\nabla_i dz^k = - \sum_{j}\christoffel{k}{i}{j} dz^j.
+\]
+\end{ex}
+\begin{notacion}\label{notacion de einstein}
+En adelante usaremos la convención para la suma en que sumamos los índices repetidos. Esto es, si escribimos $a_{i\overline{j}} dz^i \otimes dz^j$ estamos sumando sobre los índices $i$ y $j$, y en general abreviamos esto como $a_{i\overline{j}}$.
+\end{notacion}
+\begin{ex}[Reescritura de una $(p,q)$-formas según la convención de Einstein]\hfill
+
+En el ejemplo \ref{p,q - formas} escribimos una $(p,q)$-forma en términos de la coordenadas locales $z_i$ y $\overline{z}_i$, mediante el uso de la convención de Einstein, 
+\[
+\omega = \alpha_{IJ} dz^I \wedge d\overline{z}^J := \alpha_{i_1,\ldots, i_p,j_1,\ldots j_q} dz^{i_1} \wedge \ldots \wedge dz^{i_p} \wedge d\overline{z}^{j_1}\wedge \ldots \wedge d\overline{z}^{j_q}
+\]
+Podemos ver que obtenemos una escritura m\'as compacta que nos resultara útil al tratar con expresiones tensoriales mas largas. Adem\'as, es una convención cuyo uso es altamente difundido en la física y matemática en el contexto que estamos desarrollando, de modo que nos servirá para hacer m\'as compatibles aquella literatura y esta memoria.
+
+\end{ex}
+\begin{ex}
+Calculemos las derivadas covariantes de un tensor $a_{i\overline{j}} dz^i \otimes d\overline{z}^j$ utilizando la regla del producto, esto es
+\begin{align*}
+\nabla_{\overline{p}} (a_{i\overline{j}} dz^i \otimes dz^j ) &= (\partial_{\overline{p}}a_{i\overline{j}})dz^i \otimes d\overline{z}^j + a_{i\overline{j}} (\nabla_{\overline{p}} dz^i)\otimes d\overline{z}^j + a_{i\overline{j}} dz^i \otimes (\nabla_{\overline{p}} d\overline{z}^j)\\ 
+&= \left( \partial_{\overline{p}} a_{i\overline{j}} \right)dz^i \otimes d\overline{z}^j - a_{i\overline{j}} dz^i \otimes \left( \christoffel{\overline{j}}{\overline{p}}{\overline{\ell}} d\overline{z}^{\ell} \right) \\
+&= \left( \partial_{\overline{p}} a_{i\overline{j}} - \christoffel{\overline{\ell}}{\overline{p}}{\overline{j}}a_{i\overline{\ell}} \right) dz^i \otimes d\overline{z}^j.
+\end{align*}
+Podemos escribir estas igualdades de forma mas resumida como sigue
+\[
+\nabla_{\overline{p}}a_{i\overline{j}} = \partial_{\overline{p}}a_{i\overline{j}} - \christoffel{\overline{\ell}}{\overline{p}}{\overline{j}} a_{i\overline{\ell}}
+\]
+De donde podemos obtener formulaciones de tensores mas generales.
+\end{ex}
+C\'alculos de la forma del ejemplo anterior ser\'an de gran utilidad en el capitulo 3, y se utilizar\'an para estudiar la existencia de soluciones de ecuaciones diferenciales parciales en variedades de K\"ahler.
+\begin{lem}\hfill
+
+En términos de la métrica $g_{j\overline{k}}$ los símbolos de Christoffel son dados por
+\[
+\christoffel{i}{j}{k} = g^{i\overline{\ell}} \partial_j g_{k\overline{\ell}}
+\]
+donde, $g^{i\overline{\ell}}$ corresponde a la matriz inversa de $g_{i\overline{\ell}}$.
+\end{lem}
+\begin{proof}
+La conexión de Levi-Civita satisface por definición que $\nabla g=0$, esto es, en términos de las coordenadas
+\[
+0 = \nabla_j g_{k\overline{\ell}} = \partial_j g_{k\overline{\ell}} - \christoffel{p}{j}{k} g_{p\overline{\ell}},
+\]
+luego
+\[
+g^{i\overline{\ell}} \partial_j g_{k\overline{\ell}} = \christoffel{p}{j}{k} g_{p\overline{\ell}} g^{i\overline{\ell}} = \christoffel{p}{j}{k} \delta^i_p = \christoffel{i}{j}{k}
+\]
+\end{proof}
+En general, las derivadas covariantes no son conmutativas, la diferencia respecto a conmutar es medida por la curvatura. En este caso, la curvatura corresponde a un $4$-tensor $\RicciCurv{j}{i}{k}{\overline{\ell}}$, cuyos índices se comportan como sigue al operar con la métrica
+\begin{equation}\label{conmutacion CurvRicci}
+R_{i\overline{j}k\overline{\ell}} = g_{p\overline{j}} \RicciCurv{p}{i}{k}{\overline{\ell}}
+\end{equation}
+Donde debemos notar que la posición de los índices es relevante en el resultado de la izquierda.\\
+Asi, definimos la curvatura como sigue
+\[
+\left( \nabla_k \nabla_{\overline{\ell}} - \nabla_{\overline{\ell}}\nabla_k \right) \dfrac{\partial}{\partial z^i} = \RicciCurv{j}{i}{k}{\overline{\ell}}\dfrac{\partial}{\partial z^j},
+\]
+mientras que $\nabla_k$ y $\nabla_{\ell}$ si conmutan, al igual que $\nabla_{\overline{k}}$ y $\nabla_{\overline{\ell}}$.
+\begin{obs}\label{identidades curvatura}
+Se pueden concluir las relaciones de conmutación para un campo vectorial $v^{\overline{p}}$ de tipo $(0,1)$ y una $(0,1)$-forma $\alpha_{\overline{p}}$
+\begin{align*}
+\left( \nabla_k \nabla_{\overline{\ell}} - \nabla_{\overline{\ell}}\nabla_k \right) v^{\overline{p}} &= - \RicciCurv{\overline{p}}{\overline{q}}{k}{\overline{\ell}} v^{\overline{q}},\\
+\left( \nabla_k \nabla_{\overline{\ell}} - \nabla_{\overline{\ell}}\nabla_k \right) \alpha_{\overline{p}} &= - \RicciCurv{\overline{q}}{\overline{p}}{k}{\overline{\ell}} \alpha_{\overline{q}}
+\end{align*}
+En términos de los símbolos de Christoffel, tenemos
+\[
+\RicciCurv{j}{i}{k}{\overline{\ell}} = - \partial_{\overline{\ell}}\christoffel{j}{k}{i},
+\]
+de donde encontramos una formulación en base a la métrica dada por
+\[
+R_{i\overline{j}k\overline{\ell}} = - \partial_k \partial_{\overline{\ell}} g_{i\overline{j}} + g^{p\overline{q}}\left( \partial_k g_{i\overline{q}} \right)\left( \partial_{\overline{\ell}} g_{p\overline{j}} \right).
+\]
+\end{obs}
+
+\begin{obs}\label{obs metrica coord loc}
+En términos de coordenadas normales en torno a un punto $p$ tenemos que $R_{i\overline{j}k\overline{\ell}} = - \partial_k \partial_{\overline{\ell}} g_{i\overline{j}}$ en este punto. Es decir, el tensor de curvatura de una métrica Kähleriana es el impedimento para encontrar coordenadas locales holomorfas para las cuales la métrica coincide con la métrica euclidiana hasta los términos de segundo orden. Resulta que si escribimos la expansión en serie de Taylor de la métrica en coordenadas normales, entonces cada coeficiente dependerá solo de las derivadas covariantes de la curvatura. En particular, si la curvatura se anula entorno a un punto, entonces en coordenadas normales la métrica coincide localmente con la métrica euclidiana \emph{(}ver \cite[p.270]{Dem97}\emph{)}.
+\end{obs}
+
+\begin{obs}\label{identidades curvatura 2}
+Notemos que en base a la igualdad \ref{conmutacion CurvRicci} podemos obtener ahora las siguientes identidades para la curvatura de una métrica $g$
+\begin{align*}
+R_{i\overline{j}k\overline{\ell}}= R_{i\overline{\ell}k\overline{j}} &= R_{k\overline{j}i\overline{\ell}} = R_{k\overline{\ell}i\overline{j}}
+\end{align*}
+\end{obs}
+\begin{defn}[Curvatura de Ricci y Curvatura escalar]\label{curv logdetsec4}\hfill
+
+Definimos la \textbf{curvatura de Ricci} como la contracción 
+\[
+R_{i\overline{j}} :=g^{k\overline{\ell}}R_{i\overline{j}k\overline{\ell}}.
+\]
+Definimos la \textbf{curvatura escalar} como
+\[
+R := g^{i\overline{j}}R_{i\overline{j}}.
+\]
+\end{defn}
+Utilizamos la definición de curvatura de Ricci y las identidades de los ejemplos \ref{identidades curvatura} y \ref{identidades curvatura 2} para enunciar el siguiente resultado
+\begin{prop}\hfill 
+
+En coordenadas locales
+\[
+R_{i\overline{j}} = -\partial_i \partial_{\overline{j}} \operatorname{log} \det \left( g_{p\overline{q}} \right)
+\]
+\end{prop}
+En consecuencia con las definiciones y la proposici\'on anterior, definimos la forma de Ricci como
+\[
+\Ric(\omega) = {\bf{i}} \, R_{i\overline{j}} dz^i \wedge d\overline{z}^j = - {\bf{i}} \, \partial\overline{\partial}\log\det(g)
+\]
+que en coordenadas locales corresponde a una $(1,1)$-formal real cerrada. Mas aun, si $h$ es otra métrica Kähleriana, entonces el cociente de sus determinantes
+\[
+\dfrac{\det(h)}{\det(g)}
+\]
+es una función globalmente definida, de forma que la diferencia entre las formas de Ricci se calcula mediante la igualdad
+\[
+\Ric(h) - \Ric(g) = - {\bf{i}} \, \partial \overline{\partial} \log \dfrac{\det(h)}{\det(g)}
+\]
+y corresponde a una forma exacta. La clase de cohomología $[\Ric(g)]$ es independiente de la elección de métrica Kähleriana $g$, en este caso, denotamos $\Ric (g)$ o $\Ric(\omega)$ indistintamente. 
+\begin{defn}[Primera clase de Chern]\hfill
+
+La primera clase de Chern de $X$ se define como la clase de cohomología
+\[
+c_1(X) = \dfrac{1}{2\pi}[\Ric(\omega)] \in \cohom^2_{\operatorname{dR}} (X,\real).
+\]
+\end{defn}
+\begin{obs}
+Se puede definir $c_i(E)$ para  $E\xrightarrow{\pi}X$ un fibrado vectorial, y se tiene que $c_i(X) := c_i(TM)\in \cohom^{2i}_{\operatorname{dR}} (X,\R)$. Esto se detalla en el capitulo cuatro, en que se trata el \textbf{Teorema de descomposicion de Beauville-Bogomolov}.
+\end{obs}
+\begin{ex}\label{ejemplo FS, Kahler-Einstein}
+Veamos que la métrica Fubini-Study $\omega_{\operatorname{FS}}$ define la forma de Ricci , la cual satisface
+\[
+\Ric(\omega_{\operatorname{FS}}) = (n+1)\omega_{\operatorname{FS}}
+\]
+Comencemos escribiendo en coordenadas locales la m\'etrica en cuestión
+\begin{align*}
+g_{j\overline{k}} &= \ii\partial_j \partial_{\overline{k}}\log \left( 1 + \sum_{i=1}^n \vert z^i \vert^2 \right)\\
+&= \dfrac{1}{\left( 1 + \displaystyle\sum_{i=1}^n \vert z^i \vert^2\right)^2} \left[ \partial_j \partial_{\overline{k}} \left(1+\displaystyle\sum_{i=1}^n \vert z^i \vert^2\right)\left(1+\displaystyle\sum_{i=1}^n \vert z_i \vert^2\right) - \partial_{\overline{k}}\left(1+\displaystyle\sum_{i=1}^n \vert z^i \vert^2\right) \partial_j\left(1+\displaystyle\sum_{i=1}^n \vert z^i \vert^2\right) \right]\\
+&= \dfrac{\delta^j_k \left(1+\displaystyle\sum_{i=1}^n \vert z^i \vert^2\right) - z^k \overline{z^j}}{\left(1+\displaystyle\sum_{i=1}^n \vert z^i \vert^2\right)^2} \\
+\end{align*}
+Esto es, la m\'etrica de Fubini-Study corresponde localmente a
+\[
+g_{j\overline{k}} = \dfrac{\delta^j_k (1 +z\overline{z}) - z^k \overline{z}^j}{(1+z\overline{z})^2}
+\]
+Para calcular la forma de Ricci para la m\'etrica Fubini-Study notemos que podemos escribir matricialmente esta como
+\[
+G_{jk} := (1+z\overline{z})^2 g_{j\overline{k}} = A_{jk} - B_{jk}
+\]
+para
+\[
+A_{jk} = \delta^j_k (1 +z^j\overline{z}^k) \quad \text{ y }\quad B_{jk} =  z^k \overline{z}^j
+\]
+Donde, $A$ corresponde a $(1+z\overline{z})\operatorname{Id}$ y $B$ es una matriz simétrica de rango $1$, y por lo tanto existe una matriz $P$ invertible para la cual podemos escribir
+\[
+PGP^{-1} = PAP^{-1} - PBP^{-1} =  \left(\begin{matrix}
+1+ \vert z\vert^2 & & &\\
+ & 1+ \vert z\vert^2 & & \\
+ &   \ddots & & \\
+ & & & 1+ \vert z \vert^2
+\end{matrix}\right) - \left(\begin{matrix}\vert z\vert^2 & & &0\\
+ &  & & \\
+ &  \ddots  & & \\
+0 & & & 0
+\end{matrix}\right)
+\]
+De esta manera, el determinante de $G$ corresponde al producto de su diagonal, es decir,
+calculamos el determinante de $g_{j\overline{k}}$ como
+\[
+\det(g) = (1+z\overline{z})^{-2} \det(G)
+\]
+Es decir,
+\[
+\det(g_{j\overline{k}}) = \dfrac{1}{(1+\vert z \vert^2)^{n+1}}.
+\]
+Con esto calculamos la forma de Ricci como sigue 
+\[
+\Ric(\omega) = \ii\partial \overline{\partial}\log\det(g)
+\]
+que en coordenadas locales corresponde a
+\[
+R_{j\overline{k}} = -\partial_j \partial_{\overline{k}} \log \left( (1 + z\overline{z})^{-(n+1)} \right)
+\]
+y por lo tanto,
+\[
+R_{j\overline{k}} = (n+1) \partial_j \partial_{\overline{k}} \log \left( 1 + z\overline{z} \right)
+\]
+con lo que concluimos la proporci\'on del inicio del ejemplo.
+\end{ex}
+Para concluir esta sección, presentamos el resultado fundamental respecto a  la curvatura de Ricci de una variedad Kähleriana. Esta es la solución de Yau \cite{Yau78} a la conjetura de Calabi \cite{CalConj57}
+\begin{teo}[Teorema de Calabi-Yau]\label{Calabi-Yau1}\hfill
+
+Sea $(X,\omega)$ una variedad Kähleriana compacta y sea $\alpha$ una $(1,1)$-forma real que representa la primera clase de Chern, $c_1(M)$. Entonces existe una única métrica Kähleriana $\eta$ sobre $M$ con $[\eta]=[\omega]$ tal que $Ric(\eta) = 2\pi \alpha$.
+\end{teo}
+
+En particular si $c_1(X)=0$, entonces cada clase de Kähler contiene una única métrica de Ricci plana. Esto nos da un primer ejemplo de métrica Kähleriana canónica. Este resultado esta dedicado al estudio de variedades con $c_1(X)=0$, presentaremos una demostración simplificada utilizando estimaciones de Schauder.
+
+
+\section{Fibrados Vectoriales}\label{cap1sec5}
+Como introdujimos en la sección \ref{cap1sec1} un fibrado vectorial holomorfo $E$ sobre una variedad compleja $X$	es una familia holomorfa de espacios vectoriales complejos parametrizados por $X$. $E$ es por si mismo una variedad compleja, junto con una proyección holomorfa
+\[
+\pi : E\rightarrow X
+\] 
+y la familia es localmente trivial de modo que $X=\cup_i U_i$ es un cubrimiento por abiertos tal que se tienen los biholomorfismos (usualmente denominados \textbf{trivializaciones})
+\begin{equation}\label{trivializacion}
+\psi_i : \pi^{-1} (U_i) \rightarrow U_i \times \comp^r,
+\end{equation}
+para algún entero $r>0$, que se denomina \textbf{rango} de $E$. Bajo la trivializacion $\psi_i$, $\pi$ corresponde a la proyección sobre $U_i$. Las trivializaciones se relacionan por aplicaciones de transición holomorfas de la forma
+\begin{align*}
+	\psi_j \circ \psi^{-1}_i: \left( U_i \cap U_j \right) \times \comp^r &\rightarrow \left( U_i \cap U_j\right)\times \comp^r \\
+ (p,v)	&\mapsto \left( p, \psi_{ji}(p)v\right)
+\end{align*}
+las cuales, en cada punto $p\in U_i\cap U_j$ nos entregan un isomorfismo lineal $\psi_{ji}(p)$ entre $\comp^r$ y $\comp^r$.  Estos isomorfismos con valores a matrices satisfacen la condición de compatibilidad (denominada \textbf{ condición de cociclo})
+\begin{equation}\label{condicion de cociclo}
+	\psi_{kj} \psi_{ji} = \psi_{ki}.
+\end{equation}
+Recíprocamente, cualquier conjunto de funciones holomorfas con valores matriciales $\psi_{ji}$ que satisface la condición de cociclo define un fibrado vectorial. Es decir, podemos referirnos al fibrado vectorial generado o asociado a un conjunto de trivializaciones y sus respectivas transiciones satisfaciendo la condición de cociclo.\\
+\begin{defn}[Seccion Holomorfa]\hfill
+
+Una sección holomorfa de un fibrado vectorial $E$ es una aplicación holomorfa $s:X\rightarrow E$ 
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1,scale=0.8]
+%uncomment if require: \path (0,207); %set diagram left start at 0, and has height of 207
+
+%Curve Lines [id:da46485550689136723] 
+\draw    (280,166) .. controls (329.25,158.5) and (352.25,182.5) .. (380,166) ;
+\draw [shift={(330.95,167.98)}, rotate = 10.41] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 2.01, y radius= 2.01]   ;
+%Straight Lines [id:da32558692029179725] 
+\draw    (330.13,124.33) -- (330.75,152.33) ;
+\draw [shift={(330.79,154.33)}, rotate = 268.73] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (4.37,-1.32) .. controls (2.78,-0.56) and (1.32,-0.12) .. (0,0) .. controls (1.32,0.12) and (2.78,0.56) .. (4.37,1.32)   ;
+%Curve Lines [id:da48897728869246937] 
+\draw    (276.29,52.33) .. controls (316.29,22.33) and (367.08,63.67) .. (391.79,49.83) ;
+%Straight Lines [id:da11571137235540863] 
+\draw    (276.29,52.33) -- (277.04,120.08) ;
+%Straight Lines [id:da8232319544541509] 
+\draw    (391.79,49.83) -- (392.75,115.75) ;
+%Curve Lines [id:da16758993865646543] 
+\draw    (277.04,120.08) .. controls (317.04,90.08) and (368.04,129.58) .. (392.75,115.75) ;
+%Curve Lines [id:da10740439255175849] 
+\draw [color={rgb, 255:red, 0; green, 28; blue, 255 }  ,draw opacity=1 ]   (277.13,81.33) .. controls (326.13,63.33) and (364.25,94) .. (392,77.5) ;
+%Straight Lines [id:da8773748973412255] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (326.79,43.33) -- (327.56,109.92) ;
+\draw [shift={(327.18,76.63)}, rotate = 89.34] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=0.75]      (0, 0) circle [x radius= 2.01, y radius= 2.01]   ;
+%Curve Lines [id:da7437124692332447] 
+\draw [color={rgb, 255:red, 0; green, 10; blue, 255 }  ,draw opacity=1 ]   (269.63,158.83) .. controls (259.27,139.54) and (260.52,101.61) .. (265.56,85.5) ;
+\draw [shift={(266.13,83.83)}, rotate = 470.14] [color={rgb, 255:red, 0; green, 10; blue, 255 }  ,draw opacity=1 ][line width=0.75]    (4.37,-1.32) .. controls (2.78,-0.56) and (1.32,-0.12) .. (0,0) .. controls (1.32,0.12) and (2.78,0.56) .. (4.37,1.32)   ;
+
+% Text Node
+\draw (402,157.4) node [anchor=north west][inner sep=0.75pt]    {$X$};
+% Text Node
+\draw (327,172.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$x$};
+% Text Node
+\draw (337.5,130.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\pi$};
+% Text Node
+\draw (334,55.9) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$s( x)$};
+% Text Node
+\draw (404,74.4) node [anchor=north west][inner sep=0.75pt]    {$E$};
+% Text Node
+\draw (301.5,19.9) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$E(x) \cong \mathbb{\bbC}^{r}$};
+% Text Node
+\draw (247,112.93) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 6; blue, 255 }  ,opacity=1 ]  {$s$};
+
+
+\end{tikzpicture}
+
+\end{center}
+tal que la composicion $\pi \circ s$ corresponde a la identidad.
+\end{defn}
+
+
+ Una trivializaci\'on local $\psi_i$ como en \ref{trivializacion} da origen a secciones holomorfas locales que corresponden a funciones constantes sobre el abierto $U_i$. En particular, una base de $\comp^r$ da lugar a secciones holomorfas locales $s_1,\ldots, s_r$ que llamamos \textbf{marco holomorfo local}. El espacio generado por estas secciones locales corresponde a la fibra $E_p = \pi^{-1}(p)$ en cada punto $p\in U_i$. Así, cada sección holomorfa se puede escribir localmente como una combinación lineal de la forma
+\[
+	f= \sum_{i=1}^r f^i s_i,
+\]
+donde cada $f_i$ es una función holomorfa sobre el abierto $U_i$. Escribimos el espacio de formas holomorfas globales como $\cohom^0 \left(X,E\right)$.
+\begin{obs}
+Una propiedad importante es que el espacio de secciones globales $\cohom^0 (X,E)$ es de dimension finita si $X$ es compacta. Discutiremos esta propiedad con mayor profundidad mas adelante, aunque puede ser útil revisar \cite{CarSerr53}.
+\end{obs}
+\begin{ex}
+La parte de tipo $(1,0)$ del fibrado cotangente $\Omega^{1,0}X$ es un fibrado vectorial holomorfo de rango $n$ sobre $X$, donde $n$ corresponde a la dimension de $X$. En una carta local, con coordenadas $z^1,\ldots,z^n$ una trivializacion es dada por el marco holomorfo $dz^1 , \ldots, dz^n$. Las aplicaciones de transición a una carta diferente son determinadas por la matriz Jacobiana de la transformación de coordenadas. Este fibrado se denomina \textbf{fibrado cotangente holomorfo}.
+\end{ex}
+Las operaciones naturales sobre espacios vectoriales, tales como tomar productos tensoriales, sumas directas, duales y otras operaciones se pueden extender a fibrados vectoriales.
+
+\begin{ex}
+Sobre una variedad compleja de dimension $n$ podemos construir la $n$-ésima potencia exterior del fibrado cotangente holomorfo. Este corresponde a un fibrado en recta (un fibrado vectorial de rango $1$) denotado por $K_{X}$ y es denominado \textbf{fibrado canónico de }$X$
+\[
+K_X = \bigwedge^n \Omega^{1,0}X= \Omega^{n,0}X
+\]
+
+el cual en coordenadas locales holomorfas tiene un marco holomorfo generado por $dz^1 \wedge \ldots \wedge dz^n$, y las aplicaciones de transición son dados por son dadas por los determinantes del Jacobiano de cada aplicación de cambio de coordenadas.
+\end{ex}
+Es importante notar que las definiciones de los fibrados tangente, cotangente y canónico, ya sean holomorfos o antiholomorfos dependen de la elección de de los cociclos $\psi_{ij}$. Para distintas elecciones se obtienen fibrados canónicamente isomorfos, de modo que $T_X, \Omega_X$ y $K_X$ son invariantes de la variedad compleja $X$.
+\begin{defn}[Sucesión Exponencial]\label{Exp Sucesion}\hfill
+
+La \textbf{sucesión exponencial} sobre una variedad compleja X es la sucesión exacta corta
+\[
+0 \longrightarrow \Z \longrightarrow \mathcal{O}_X \longrightarrow \mathcal{O}^{*}_X \longrightarrow 0 
+\]
+Donde $\Z$ corresponde al \textbf{haz de funciones localmente constantes} y $ \Z \hookrightarrow \mathcal{O}_X $ es la inclusión natural de las funciones localmente constantes como funciones holomorfas y la sobreyecci\'on $\mathcal{O}_X \rightarrow \mathcal{O}^{*}_{X}$ es dada por la exponencial
+\[
+f \mapsto \exp(2\pi {\bf{i}} f )
+\]
+\end{defn}
+\begin{defn}[Fibrado Normal]\hfill 
+
+Sea $Y\subset X$ una subvariedad compleja, el \textbf{fibrado normal de $Y$ en $X$} es el fibrado vectorial holomorfo
+\[
+\mathcal{N}_{Y/X} \text{ sobre } X
+\]
+que corresponde al $\operatorname{cokernel}$ de la inyección $T_Y \hookrightarrow T_{X/Y}$.
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,167); %set diagram left start at 0, and has height of 167
+
+%Curve Lines [id:da9046501022308021] 
+\draw    (195,94) .. controls (213.75,128) and (390.75,143.5) .. (430.75,113.5) ;
+%Curve Lines [id:da5361718274328983] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (195,94) .. controls (235,64) and (419.25,88.5) .. (430.75,113.5) ;
+%Shape: Parallelogram [id:dp8567469770669884] 
+\draw  [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.37 ] (299.92,27.03) -- (399.55,61.28) -- (341.08,92.47) -- (241.45,58.22) -- cycle ;
+%Curve Lines [id:da15850801884620436] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] [dash pattern={on 0.84pt off 2.51pt}]  (303.46,79.25) .. controls (313.46,51.75) and (324.46,51.33) .. (339.46,83.83) ;
+%Curve Lines [id:da5112754803895209] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (295.96,126.25) .. controls (296.96,113.75) and (298.46,97.75) .. (303.46,79.25) ;
+%Straight Lines [id:da39079225955680574] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ]   (275,40.5) -- (368.46,77.75) ;
+%Straight Lines [id:da050516534637291555] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (292.96,75.75) -- (339.75,40.5) ;
+%Curve Lines [id:da028573131735554536] 
+\draw    (195,94) .. controls (235,64) and (327.75,19.5) .. (430.75,113.5) ;
+\draw [shift={(317.44,57.64)}, rotate = 4.75] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 1.34, y radius= 1.34]   ;
+
+% Text Node
+\draw (441.5,106.9) node [anchor=north west][inner sep=0.75pt]    {$X$};
+% Text Node
+\draw (344,19.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$T_{Y,y}\textcolor[rgb]{0,0,0}{ \;\xhookrightarrow{\quad}\; }\textcolor[rgb]{0.15,0.4,0.93}{T_{X,y}}$};
+% Text Node
+\draw (290.5,132.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$Y$};
+% Text Node
+\draw (209.5,19.4) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ]  {$(\mathcal{N}_{Y\slash X})_{y}$};
+
+
+\end{tikzpicture}
+
+\end{center}
+Existe una sucesión exacta corta de fibrados vectoriales holomorfos denominada \textbf{sucesión de fibrados normales}
+\[
+0 \rightarrow T_Y \rightarrow T_{X}\vert_Y \rightarrow \mathcal{N}_{Y/X} \rightarrow 0.
+\]
+\end{defn}
+Estos fibrados se relacionan mediante la siguiente relación, denominada f\'ormula de adjunci\'on (ver \cite[Prop.2.2.17]{Huy05}, o \cite[p.146-147]{GriHar78}).
+\begin{teo}[F\'ormula de Adjunción]\hfill
+
+Sea $Y$ una subvariedad de una variedad compleja $X$. Entonces el fibrado canónico $K_Y$ de $Y$ es naturalmente isomorfo al fibrado en recta dado por
+\[
+K_{X}\vert_{Y} \otimes \det (\mathcal{N}_{Y/X}).
+\]
+\end{teo}
+
+\begin{ex}[Fibrados en recta sobre $\mathbb{P}^n$]\label{line bundle on proj}
+Teniendo en cuenta que $\mathbb{P}^n$ es el espacio de rectas en $\comp^{n+1}$, podemos construir un fibrado en recta denotado por $\mathcal{O}(-1)$ sobre $\mathbb{P}^n$ asignando a cada punto con la recta que parametriza (como vector director). Una forma de pensar el fibrado $\mathcal{O}(-1)$ es como un subfibrado del caso trivial $\mathbb{P}^n \times \comp^{n+1}$. Si consideramos las cartas estándar $U_i$, se puede encontrar que bajo trivializaciones adecuadas las funciones de transición correspondientes a dichas cartas en términos de coordenadas locales, quedan como
+\begin{equation}\label{transicion proj}
+	\varphi_{kj}([z^0 : \ldots : z^n]) = \dfrac{z^k}{z^j},
+\end{equation}
+Notemos que al tratarse de clases de equivalencia, los términos $z^k$ y $z^j$ dependen del representante escogido en $U_j \cap U_i$, pero el cociente si lo está.\\
+Como $\mathcal{O}(-1)$ es un subfibrado del fibrado trivial, cualquier sección holomorfa global da lugar a una función holomorfa $s:\mathbb{P}^n \rightarrow \comp^{n+1}$. Las componentes de $s$ son funciones holomorfas sobre una variedad compleja compacta, de modo que deben ser constantes y concluimos que $s$ es una función constante. Se puede probar que funciones constantes no nulas no dan lugar a secciones de $\mathcal{O}(-1)$, de modo que 
+\[
+\cohom^{0}(\mathbb{P}^n, \mathcal{O}(-1)) = \lbrace 0 \rbrace.
+\]
+Denotamos al dual de $\mathcal{O}(-1)$ por $\mathcal{O}(1)$, y podemos obtener los fibrados en recta $\mathcal{O}(\ell)$ para cada entero  $\ell$ , tomando potencias tensoriales. Las funciones de transición $\varphi^{(\ell)}_{kj}$ de $\mathcal{O}(\ell)$ se obtienen de forma similar a \ref{transicion proj}, en este caso tienen la forma
+\[
+\varphi^{(\ell)}_{kj} ([z^0 : \ldots : z^n ]) = \left(\dfrac{z^j}{z^k}\right)^{\ell}
+\]
+y por tanto, podemos pensar en secciones globales $\mathcal(\ell)$ para $\ell\geq 0$ como polinomios homogéneos de grado $\ell$ en las variables $z^0 ,\ldots, z^n$. En términos de trivializaciones locales, si $f$ es un polinomio homogéneo de grado  $\ell$ , entonces sobre las cartas $U_j$ tenemos una función holomorfa $\left(z^j\right)^{-1} (f)$. Sobre diferentes cartas estas funciones se pegan utilizando las funciones de transición de \ref{transicion proj}, de modo que dan lugar a secciones globales de $\mathcal{O}(\ell)$. De hecho, en $\mathbb{P}^n$ todo fibrado en recta es dado por $\mathcal{O}(\ell)$ para algún $\ell\in\Z$
+\end{ex}
+
+Como en la sección \ref{cap1sec2} con la m\'etrica, podemos definir mediante el pullback por aplicaciones holomorfas nuevos fibrados vectoriales que son inducidos por estas aplicaciones.
+\begin{defn}[Pullback de fibrados vectoriales]\hfill
+
+Sea $E\xrightarrow{\pi} X$ un fibrado vectorial sobre la variedad compleja $X$ y sea $f:X' \rightarrow X$ un homeomorfismo. Definimos el \textbf{fibrado pullback de $E$ mediante $f$} como
+\[
+f^*E := \lbrace (x',v) \in X' \times E  \, \vert \, f(x')=\pi(v)\rbrace \subset X' \times E
+\]
+el cual equipamos con la topolog\'ia de subespacio y de la proyección sobre la primera coordenada
+\begin{align*}
+	\pi_1 : f^* E &\longrightarrow X' \\
+	(x' , v) &\longmapsto x'.
+\end{align*}
+Es decir, este fibrado sobre $X'$ se escribe como $f^* E\xrightarrow{\pi_1} X'$
+\end{defn}
+\begin{obs}\hfill
+
+\begin{enumerate}
+\item El fibrado $f^* E\xrightarrow{\pi_1} X'$ es un fibrado vectorial.
+\item La proyeccion $\pi_2$ sobre la segunda coordenada del producto $X'\times E$ hace que el diagrama
+	\[ 
+		\begin{tikzcd}
+			f^{\ast}E \arrow{r}{} \arrow[swap]{d}{\pi_1} & E \arrow{d}{\pi_2} \\%
+			X' \arrow{r}{f}& X
+		\end{tikzcd}
+	\] 
+sea conmutativo.
+\item Toda sección $s$ de $E$ sobre $X$ induce una sección de $f^* E$ dada por
+\[
+f^* s := s \circ f
+\]
+que se denomina como sección pullback.
+\end{enumerate}
+\end{obs}
+
+
+
+\section{Blow-up de variedades complejas}\label{cap1sec6}
+Hasta ahora hemos presentado algunos ejemplos de variedades complejas, privado de alguna propuesta de esquema de clasificarlas. De hecho, la clasificaci\'on de todas las variedades complejas es un problema altamente no trivial (por no decir casi imposible), pues es relativamente simple producir nuevas variedades desde una ya existente.\\
+Una forma de producir nuevas variedades complejas a partir de una inicial es un \textbf{blow-up} sobre una variedad compleja $X$ en una subvariedad $Y\subset X$. As\'i, en el contexto de variedades complejas compactas, el problema de clasificaci\'on usualmente significa estudiar su minimalidad, es decir, estudiar si provienen del blow-up de alguna otra variedad. Adem\'as del problema de clasificaci\'on, los blow-up son de utilidad en otros contextos, de hecho, algunos aparecer\'an m\'as adelante.\\
+Consideremos $X$ una variedad compleja y sea $Y\subset X$ una subvariedad cerrada. Construiremos el \textbf{blow-up de $X$ sobre $Y$} que es una variedad compleja denotada por $\Bl_{Y}(X)$ junto con una aplicaci\'on holomorfa propia $\hat{\sigma}:\hat{X}\rightarrow X$. 
+\begin{ex}
+Consideremos $X=\bbC^2$ con coordenadas $(z^1, z^2)$, y notemos que podemos ver las coordenadas como funciones holomorfas en $X$ es decir $f_1= z^1$, $f_2 = z^2$ $\in O(\bbC^2)$. Veamos que forma tiene el blow-up $\overline{X} = \Bl_{(z^1, z^2) (X)}$ como subvariedad de $\bbC^2 \times \bbP^1$. Notemos que la aplicaci\'on proyección usual
+\begin{align*}
+	\bbC^2 \backslash\lbrace (0,0)\rbrace &\longrightarrow \bbP^1\\
+	(z^1, z^2) &\longmapsto [z^1, z^2]
+\end{align*}
+est\'a bien definida y podemos ver que para $U:=\bbC^2 \backslash\lbrace (0,0)$ su gráfica es el conjunto
+\[
+\left\lbrace ((x,y), [u,v]) \in U \times\bbP^1 \quad \text{ tal que }  xv - yu =0\right\rbrace 
+\]
+De esta forma
+\[
+\overline{X} = \left\lbrace ((x,y), [u,v]) \in U \times\bbP^1 \quad \text{ tal que }  xv - yu =0\right\rbrace \subseteq \bbC^2 \times \bbP^1
+\] 
+es el blow-up $\Bl_{(z^1, z^2)}(X)$, as\'i $\hat{\sigma}$ es dado por
+\[
+\hat{\sigma} ((x,y),[u,v]) = (x,y)
+\]
+Gr\'aficamente esto corresponde a 
+\begin{center}    
+\begin{asy}
+settings.outformat="pdf";
+settings.render=0;
+settings.prc=false;
+
+usepackage("lmodern");
+usepackage("fontenc","T1");
+usepackage("amssymb");  // for the \mathbb command
+defaultpen(fontsize(10pt));
+
+import graph3;
+size(300,300);
+currentprojection=orthographic(5,-10,4);
+
+real R=8;
+
+struct scaler {
+    private real factor;
+
+    void operator init(real factor) {
+        this.factor = factor;
+    }
+
+    real scale(real t) {return factor*atan(tan(t)/factor);}
+    real invert(real t) {return tan(atan(t)*factor)/factor;}
+}
+
+scaler theScaler = scaler(6);
+
+triple f(pair t) {
+    real r = t.x;
+    real theta = 2 * atan(t.y*2/pi);
+//  real theta = -t.y;
+    return (r*cos(theta),r*sin(theta),theScaler.scale(theta));
+}
+
+int resolution = 10;
+real epsilon = .01;
+real vmin = -pi/2;
+real vmax = pi/2;
+real umin = -R;
+real umax = R;
+splinetype[] Linear = new splinetype[] {linear, linear, linear};
+splinetype[] ZMonotonic = new splinetype[] {notaknot, notaknot, monotonic};
+surface sBack=surface(f,(umin,vmin),(0,vmax),nu=resolution, nv=2*resolution,  usplinetype=Linear, vsplinetype = ZMonotonic);
+surface sFront = surface(f, (0,vmin), (umax,vmax), nu=resolution, nv=2*resolution, usplinetype=Linear, vsplinetype=ZMonotonic);
+
+pen meshpen = heavygray + linewidth(0.2);
+
+material surfacepen = 
+    material(diffusepen=lightgray+opacity(0.5), 
+        emissivepen=gray(0.3),
+        specularpen=gray(0.2));
+
+draw(sBack, surfacepen=surfacepen, meshpen=meshpen);
+draw(f((0,vmin)) -- f((0,vmax)), darkgray+linewidth(1.0));   // the exceptional divisor
+draw(sFront, surfacepen=surfacepen, meshpen=meshpen);
+
+
+pen planePen = black+linewidth(0.3);
+
+triple bottomPoint = f((0,vmin));
+triple planeCenter = 2.0*bottomPoint;
+draw((bottomPoint-.6Z)--(planeCenter+.6Z), arrow=Arrow3(TeXHead2), p=linewidth(0.9),
+     L="$\varepsilon$");
+
+real planeZ = planeCenter.z;
+
+triple h(pair t) {
+    return (t.x, t.y, planeZ);
+}
+
+triple g(pair t) {
+    triple projectFrom = f(t);
+    return h((projectFrom.x, projectFrom.y));
+}
+triple g(real tx, real ty) { return g((tx, ty)); }
+
+real planeRadius = R+1;
+surface thePlane = surface(h, (-planeRadius,-planeRadius),(planeRadius,planeRadius),
+    nu=1);
+
+path3 planeOutline = h((-planeRadius,-planeRadius)) -- h((-planeRadius,planeRadius)) -- h((planeRadius,planeRadius)) -- h((planeRadius,-planeRadius)) -- cycle;
+
+for (real u = 0; u <= R; u += R/resolution)
+  draw(circle(planeCenter, u), planePen);
+for (real v = vmin; v < vmax; v += (vmax-vmin)/(2*resolution)) {
+  draw(g(umin,v) -- g(umax,v), planePen);
+}
+draw(planeOutline, p=planePen);
+
+//Embed the label "\mathbb P^2" on the plane:
+real labelScale = 1.5;  
+Label planeLabel = Label(scale(labelScale, labelScale*1.3, 1)*"$\bbC^2$", fontsize(10pt));
+Label placedPlaneLabel = shift((planeRadius-1.2),(planeRadius-1.5),planeCenter.z)*planeLabel;
+
+label(planeLabel, position = (planeRadius-1.2, planeRadius-1.5, planeCenter.z));
+\end{asy}
+\end{center}
+
+\end{ex}
+\begin{obs}
+El fibrado normal de $0 \in \comp^{n+1}$, es un espacio vectorial naturalmente isomorfo a $\comp^{n+1}$.
+\end{obs}
+\begin{ex}[\textbf{Blow-up sobre subespacios lineales}]
+Sea $\comp^m \subset \comp^n$ un subespacio lineal que satisface
+\[
+z_{m+1} = \ldots = z_n = 0.
+\]
+Denotaremos por $\left[ x_{m+1} : \ldots : x_n \right]$ a las coordenadas homogéneas de $\mathbb{P}^{n-m-1}$. Definamos el blow-up deseado como
+\[
+Bl_{\comp^m} \left(\comp^n \right) := \left\lbrace (x,z) \ \vert \ z^i \cdot x^j = z^j \cdot x^i , \ \ \ \text{ para } i,j \in \lbrace m+1, \ldots, n \rbrace \right\rbrace \subset \mathbb{P}^{n-m-1}\times \comp^{n}
+\]
+En otras palabras, $Bl_{\comp^m} \left(\comp^n \right)$ es la variedad incidencia $\lbrace (\ell,z) \, \vert \, z \in \langle \comp^m , \ell\rangle\rbrace$ donde $\ell\in \mathbb{P}^{n-m-1}$ corresponde  al complemento lineal $\comp^{n-m}$ de $\comp^m \subset \comp^n$.\\
+Utilizando la proyección $\pi :Bl_{\comp^m} \left(\comp^n \right) \rightarrow \mathbb{P}^{n-m-1}$ podemos ver a $Bl_{\comp^m} \left(\comp^n \right)$ como un $\comp^{n+1}$-fibrado sobre $\mathbb{P}^{n-m-1}$. La fibra sobre $\ell \in \mathbb{P}^{n-m-1}$ es exactamente $\pi^{-1}(\ell) = \langle \comp^m , \ell \rangle$, de manera que $Bl_{\comp^m} \left(\comp^n \right)$ efectivamente es una variedad compleja. M\'as a\'un, la  $\sigma:\Bl_{\comp^m} \left(\comp^n \right) \rightarrow \comp^n$ es un isomorfismo sobre $\comp^n \backslash \comp^m$.
+\end{ex}
+Con los ejemplos anteriores como referencia construiremos el \textbf{blow-up} de una variedad compleja $X$ arbitraria de dimensi\'on $n$ sobre una subvariedad cualquiera $Y\subset X$ de dimensi\'on $m$.\\
+Escogemos un atlas $X = \bigcup U_i$ con cartas $\varphi_i : U_i \xrightarrow{\sim} \varphi_i (U_i) \subset \comp^n$ tales que
+\[
+\varphi_i (U_i \cap Y) = \varphi(U_i) \cap \comp^m
+\]
+Sea $\sigma :\Bl_{\comp^m} (\comp^n ) \longrightarrow \comp^n$ el blow-up de $\comp^n$ sobre $\comp^m$ como en el ejemplo anterior y denotaremos las restricción al abierto $\varphi_i (U_i)$ como
+\[
+\sigma_i : z_i := \sigma^{-1} (\varphi_i (U_i)) \longrightarrow \varphi_i (U_i)
+\] 
+Veamos que todos los blow-up en las cartas $\varphi_i (U_i)$ se pegan naturalmente.\vspace{3mm}
+
+Consideremos abiertos $U,V \subset \comp^n$ y mapeos biholomorfos $\phi :U \cong V$ tales que $\phi (U \cap \comp^m$ = $V\cap \comp^n$. \\
+Escribimos $\phi = (\phi^1 , \ldots , \phi^n)$, entonces, para $k>m$ se tiene que 
+\[
+\phi^k = \sum_{j=m+1}^{n} z_j \phi_{k,j}.
+\]
+Definimos la aplicaci\'on biholomorfa $\hat{\phi}: \sigma^{-1}(U) \cong \sigma^{-1}(V)$ como
+\[
+\hat{\phi}(x,z) := \left( (\phi_{k,j}(z))_{k,j=m+1, \ldots, n}\cdot x , \phi(z) \right)
+\]
+Que est\'a contenida en la variedad incidencia. Para obtener el blow-up global
+\[
+\sigma:\Bl_{\comp^m}(X) \longrightarrow X
+\]
+debemos asegurar que estos pegamientos son compatibles.\\
+La compatibilidad es directa sobre $X\backslash Y$. Por otro lado, sobre $Y$, obtenemos matrices $\phi_{i,j}\vert_{\comp^m}$ que deben corresponder a los cociclos del fibrado normal $\mathcal{N}_{Y/ X}$. Luego, satisfacen la condici\'on de cociclo, de lo que adem\'as podemos concluir que
+\[
+\sigma^{-1} (Y)\cong \mathbb{P}\left( \mathcal{N}_{Y/X}\right)
+\]
+\begin{defn}[Divisor Excepcional]\hfill
+
+La hipersuperficie $\sigma^{-1}(Y)= \mathbb{P}(\mathcal{N}_{Y/X}) \subset\Bl_Y (X)$ es llamado \textbf{divisor excepcional} del blow-up
+\[
+\sigma :\Bl_Y (X) \longrightarrow X
+\]
+\end{defn}
+Como nos dice la siguiente proposici\'on, el divisor excepcional proveniente del fibrado normal juega un rol importante en la estructura del fibrado canonico de un blow-up (esto se detalla en \cite[p.182-188]{GriHar78}).
+\begin{prop}
+El fibrado can\'onico $K_{\hat{X}}$ del blow-up $\hat{X}$ es isomorfo a
+\[
+K_X \otimes \mathcal{O}_{\hat{X}} \left( (n-1)E\right)
+\]
+Donde, $E$ es el divisor excepcional $\sigma^{-1}(x)$ para $x \in X$.
+\end{prop}
+Concluiremos esta secci\'on dando una descripci\'on en t\'erminos de geometría diferencial del blow-up en un punto. Para esto, utilizaremos una operación estándar de pegado conocida como \textbf{suma conexa} de dos variedades diferenciales.\\
+Si $M$ y $M'$ son dos variedades diferenciales de dimensi\'on $m$, y $B :=B_1(0)$ es la bola unitaria en $\real^m$, podemos escoger $U\subset M$ y $U' \subset M'$ abiertos y dos difeomorfismos
+\[
+\eta : B \cong U  \hspace{10mm} \text{y} \hspace{10mm} \eta' : B\cong U'
+\]
+M\'as a\'un, podemos considerar el difeomorfismo
+\begin{align*}
+\xi : D \backslash \left(\frac{1}{2}\overline{B} \right) &\longrightarrow D\backslash\left( \frac{1}{2}\overline{B} \right)\\
+x &\longmapsto \dfrac{x}{2\Vert x \Vert^2}
+\end{align*}
+La suma conexa definida como
+\[
+M \# M' := \left( M\backslash \eta\left(\frac{1}{2}\overline{B}\right)\right) \bigcup\nolimits_{\! \xi} \left( M' \backslash\eta' \left(\frac{1}{2}\overline{B}\right)\right)
+\]
+se obtiene pegando $M\backslash \eta\left(\frac{1}{2}\overline{B}\right)$ y $M'\backslash \eta'\left(\frac{1}{2}\overline{B}\right)$  sobre los conjuntos abiertos $U\backslash \eta\left(\frac{1}{2}\overline{B}\right)$ y $U'\backslash \eta'\left(\frac{1}{2}\overline{B}\right)$ mediante la aplicaci\'on de $\xi$, o de forma mas expl\'icita de $\eta' \circ \xi \circ \eta^{-1}$.
+
+
+
+
+\section{Conexiones y curvatura de fibrados en recta}\label{cap1sec7}
+La conexión de Levi-Civita que introdujimos en la sección anterior es una conexión natural sobre el fibrado tangente de una variedad Riemanniana. Análogamente, existe una conexión sobre todo fibrado vectorial equipado con una métrica Hermitiana, esta se denomina \textbf{conexión de Chern}.\\
+Una métrica Hermitiana $h$ sobre un fibrado vectorial es una familia suave de productos internos Hermitianos sobre cada fibra. Es decir, para todo par de secciones locales (no necesariamente holomorfas) $s_1$, $s_2$, obtenemos una función $h(s_1 , s_2)$ que satisface $h(s_1 , s_2)= h(s_2 , s_1)$. Podemos pensar en este producto interno como una sección de $E^* \otimes \overline{E^*}$. La conexión de Chern sobre un fibrado vectorial holomorfo es entonces, la única conexión sobre $E$ tal que la derivada del producto interno dado por la métrica se anula y que cumple $\nabla_i s = 0$ para cada sección local holomorfa de $E$.
+\begin{obs} 
+Notemos que la derivada del producto interno $h$ se anula si y solo si
+\[
+\partial_k h(s_1 , s_2) = h\left(\nabla_k s_1, s_2\right) + h \left( s_1, \nabla_{\overline{k}} s_2 \right).
+\]
+El resultado análogo, para la derivada antiholomorfa se obtiene de la misma forma.
+\end{obs}
+\begin{obs}
+Como antes, en general, las derivadas covariantes no conmutan, y la curvatura $F_{k\overline{\ell}}$ se define como
+\[
+	F_{k\overline{\ell}}= \nabla_k \nabla_{\overline{\ell}} - \nabla_{\overline{\ell}} \nabla_k
+\]
+Los términos $F_{k\overline{\ell}}$ son las componentes de una $(1,1)$-forma con valores en endomorfismos. En otras palabras $F \in \cohom^{1,1} (\bbC,End(E)) $
+\end{obs}
+\begin{ex}
+Si $(E,h_E)$ y $(F, h_F)$ son fibrados vectoriales holomorfos cuyas formas de curvatura son $R_E$  y $R_F$, respectivamente, entonces la curvatura del fibrado dado por el producto tensorial $\left( E \otimes F, h_E \otimes h_F\right)$ es la suma
+\[
+R_E \otimes \id_F + \id_E \otimes R_F
+\]
+Donde $\id_E$ e $\id_F$ son los endomorfismos identidad en $E$ y $F$, respectivamente.
+\end{ex}
+Notemos que sobre una variedad compleja $X$ con una métrica Hermitiana, el fibrado tangente holomorfo $T^{1,0}X$ posee dos conexiones naturales. Si identificamos $T^{1,0}X$ con el fibrado tangente real $TX$, tenemos de forma natural la conexión de Levi-Civita que hemos comentado en la sección anterior, así como la conexión de Chern.\\
+Una forma de verificar que una métrica Hermitiana sea de hecho cerrada, es decir, que sea una métrica de K\"ahler, es dada por el siguiente resultado (Ver \cite[Teo. 4.17]{Ballmann06})
+\begin{prop}\label{hermit=Kahler}\hfill
+
+Sobre una variedad Hermitiana $(X,h)$, la métrica Hermitiana $h$ es de Kähler, si y solo si las conexiones de Levi-Civita y de Chern coinciden sobre el fibrado tangente holomorfo $T^{1,0}X$
+\end{prop}
+
+Nos concentraremos ahora en el caso de los fibrados en recta. Sobre un fibrado en recta una métrica Hermitiana en todo punto $p\in X$ es determinada por la norma de cada sección no nula en $p$. Sea $s$ una sección local holomorfa que no se anula en $p$ de un fibrado en recta $L$, y escribimos
+\[
+h(s) := h(s,s).
+\]
+Entonces, localmente cualquier otra sección de $L$ puede ser escrita como el producto $fs$ para alguna función $f$, y la norma de este producto es
+\[
+\vert fs \vert^2_h = \vert f \vert^2 h(s)
+\]
+En particular, tenemos funciones análogas a los símbolos de Christoffel que denotaremos por $A_k$, que definimos mediante la igualdad
+\[
+\nabla_k s = A_k s.
+\]
+Recordando que $s$ es una sección local holomorfa, la curvatura es determinada por
+\[
+F_{k\ell}s = -\nabla_{\overline{\ell}} \nabla_k s = - \nabla_{\overline{\ell}} \left( A_k s\right) = -\left( \partial_{\overline{\ell}} A_k \right) s
+\]
+y por lo tanto, las componentes de la curvatura satisfacen $F_{k\overline{\ell}} = -\partial_{\overline{\ell}}A_k$. Para determinar los términos $A_k$ usamos las propiedades que definen la conexión de Chern para obtener
+\[
+\partial_k h(s) = h(\nabla_k s ,s) = A_k h(s),
+\]
+Como $h$ es definida positiva, multiplicamos por su inverso despejando $A_k$ y obtenemos
+\[
+A_k = h^{-1}(s) \partial_k h(s).
+\]
+Sigue para la curvatura, que sus términos son de la forma
+\[
+F_{k\overline{\ell}} = -\partial_{\overline{\ell}}\left( h(s)^{-1} \partial_k h(s)\right) = -\partial_{\overline{\ell}} \partial_k \log h(s).
+\]
+Los cálculos anteriores nos permiten formular la siguiente proposición. Le entregamos esta relevancia al resultado debido a que nos permite computar los términos de la curvatura
+\begin{prop}\label{curv chern}\hfill
+
+La curvatura de la conexión de Chern de un fibrado en recta holomorfo equipado con una métrica Hermitiana es dada por
+\[
+F_{k\overline{\ell}}=-\partial_{\overline{\ell}} \partial_k \log h(s),
+\]
+donde $h(s)=h(s,s)$ para una sección holomorfa local $s$.
+\end{prop}
+Notemos la similaridad con el lema \ref{curv logdetsec4} referente a la curvatura de Ricci. La relación entre estos resultados proviene del hecho que probamos en la proposición \ref{hermit=Kahler}, el que nos dice que las conexiones de Levi-Civita y de Chern de la métrica de Kähler coinciden sobre el fibrado tangente holomorfo.
+\begin{obs}
+El determinante de la métrica define una métrica Hermitiana sobre la potencia exterior $\bigwedge T^{1,0}X$, y la curvatura de Ricci es la curvatura de la conexión inducida en este fibrado en recta.
+\end{obs}
+Como en el caso de la curvatura de Ricci, la proposición \ref{curv chern} implica que la forma localmente definida como
+\[
+F(h) = {\bf{i}} F_{k\overline{\ell}}dz^k \wedge d\overline{z}^{\ell} = - {\bf{i}} \partial \overline{\partial}\log h(s)
+\]
+es una $(1,1)$-forma real cerrada. Cualquier otra métrica Hermitiana puede ser escrita como $e^{-f} h$  para una función globalmente definida $f$, y podemos ver que
+\begin{align}\label{exp ricci}
+F(e^{-f} h) - F(h) &= - {\bf{i}} \partial \overline{\partial}\log\left( e^{-f} h\right)(s) + {\bf{i}} \partial \overline{\partial}\log h(s) \nonumber \\
+&=-{\bf{i}} \partial \overline{\partial} \left[\log \left(e^{-f}h\right) (s) - \log h(s) \right] \\
+&= -{\bf{i}} \partial\overline{\partial} \log e^{-f} \\
+&= -{\bf{i}}\partial\overline{\partial}f \nonumber
+\end{align}
+Así, si escogemos una métrica Hermitiana diferente sobre el fibrado en recta $L$, entonces $F(h)$ varia según una forma exacta. Esto permite definir la \textbf{primera clase de Chern de un fibrado en recta } $L$ como
+\[
+c_1 (L) = \dfrac{1}{2\pi} \left[ F(h) \right] \in \cohom^2_{\operatorname{dR}}(X,\R)
+\]
+El lema-$\partial\overline{\partial}$ junto con \ref{exp ricci}
+nos dicen que toda $(1,1)$-forma en $c_1(L)$ es la curvatura de alguna métrica Hermitiana sobre $L$.
+\begin{obs}
+El factor de normalización que multiplica la clase $[F(h)]$ se escoge  pues así se hace a $c_1(L)$ una clase de cohomologia entera, es decir $c_1(L) \in \cohom^2(X,\Z)$. Para esto se utiliza la sucesi\'on exponencial \ref{Exp Sucesion}, ver adem\'as \cite[p. 139]{GriHar78}.
+\end{obs}
+\begin{defn}\hfill
+
+Llamamos a una $(1,1)$-forma \textbf{positiva real} si la forma bilineal simétrica $(v,w)\mapsto \alpha(v,Jw)$ definida para cualesquiera vectores tangentes $v$ y $w$ es definida positiva. \\
+Por otro lado, decimos que una clase de cohomologia en $\cohom^2_{\operatorname{dR}}(X,\R)$ es \textbf{positiva} si puede representarse mediante una $(1,1)$-forma positiva.\\
+Finalmente, denominamos a un fibrado en recta $L$ como \textbf{positivo} si su primera clase de Chern $c_1(L)$ es positiva.
+\end{defn}
+\begin{obs}Un ejemplo de lo anterior es que la forma de Kähler de una métrica Kähleriana es positiva. Por otro lado, equivalentemente a la última definición decimos que un fibrado en recta es positivo si para alguna métrica Hermitiana adecuada $h$ la forma de curvatura $F(h)$ es una forma de Kähler.
+\end{obs}
+Concluimos esta sección discutiendo un ejemplo de métrica sobre el fibrado en recta $O(-1)$ sobre el espacio proyectivo $\mathbb{P}^n$. 
+\begin{ex}
+El fibrado en recta $\mathcal{O}(-1)$ sobre $\mathbb{P}^n$ posee una métrica Hermitiana natural $h$ dado que es un subfibrado del fibrado trivial $\mathbb{P}^n \times \comp^{n+1}$ sobre el cual utilizamos la métrica usual del espacio $\comp^{n+1}$. Sobre el abierto estándar $U_0$ y utilizando coordenadas $z^i = \frac{Z_i}{Z_0}$ para $i=1,\ldots,n$ obtenemos que una sección holomorfa de $\mathcal{O}(-1)$ sobre $U_0$ es de la forma
+\[
+s: (z^1 , \ldots , z^n)\mapsto (1,z^1,\ldots, z^n) \in \comp^{n+1}
+\]
+dado que $(z^1 , \ldots , z^n) \in U_0$ está en correspondencia con el punto $[1:z^1: \ldots:z^n]$ de coordenadas homogéneas. De la proposición \ref{curv chern} podemos obtener la forma de curvatura de $h$, que es
+\[
+F(h) = -{\bf{i}} \partial\overline{\partial}\log h(s) = - {\bf{i}}\partial\overline{\partial} \log \left( 1+ \vert z^1 \vert^2 + \ldots + \vert z^n \vert^2 \right),
+\]
+Esto es, ni más ni menos que $F(h)=-\omega_{\operatorname{FS}}$.
+\end{ex}
+\begin{obs}
+La métrica $h$ induce una métrica sobre el fibrado dual $\mathcal{O}(1)$, la forma de curvatura de esta nueva métrica sera $\omega_{\operatorname{FS}}$. Dado que esta es una forma de Kähler, $\mathcal{O}(1)$ debe ser un fibrado en recta positivo.
+\end{obs}
+En adelante nos interesaran particularmente las variedades complejas compactas, que pueden ser vistas como subvariedades del espacio proyectivo $\mathbb{P}^n$. Ademas de aquello, tendremos principal interés en las métricas Kählerianas cuyas clases de Kähler correspondan  a la primera clase de Chern $c_1(L)$ de un fibrado en recta $L$.
+
+
+\section{Fibrados en recta e incrustaciones proyectivas}\label{cap1sec8}
+
+Sea $L\rightarrow X$ un fibrado en recta holomorfo sobre una variedad compleja $X$. Si $s_0 , \ldots , s_k$ son secciones de $L$, y $U\subset X$ un subconjunto tal que alguna de las secciones $s_i$ es no nula, obtenemos entonces el mapeo holomorfo
+\begin{align}\label{secciones proyect}
+\varphi_L :U &\longrightarrow \mathbb{P}^k \\
+p &\longmapsto [s_0(p): \ldots : s_k (p)]
+\end{align}
+
+\begin{defn}\hfill
+
+Un fibrado en recta $L$ sobre $X$ es llamado \textbf{muy amplio} si para secciones adecuadas $s_0 , \ldots, s_k$ de $L$ el mapeo de \ref{secciones proyect} define una incrustacion (o embedimiento) de $X$ en $\mathbb{P}^k$. Un fibrado en recta es \textbf{amplio} si para algún entero adecuado $r>0$ la potencia tensorial $L^{\otimes r}$ es muy amplia.\\
+\end{defn}
+En particular, si un fibrado en recta $L$ es muy amplio, $X$ se identifica con una subvariedad cerrada del espacio proyectivo.
+\begin{ex}
+El fibrado $\mathcal{O}(1)$ sobre $\mathbb{P}^n$ es muy amplio, y las secciones $Z_0 , \ldots, Z_n$ del ejemplo \ref{line bundle on proj} definen la aplicación identidad de $\mathbb{P}^n$ en si mismo. De forma mas general, para cualquier variedad proyectiva $V \subset \mathbb{P}^n$, la restricción de $\mathcal{O}(1)$ a $V$ es un fibrado en recta muy amplio. Recíprocamente si $L$ es un fibrado en recta muy amplio sobre $V$, entonces $L$ debe ser isomorfo a la restricción del fibrado $\mathcal{O}(1)$ sobre una incrustacion proyectiva que se obtiene desde secciones de $L$.
+\end{ex}
+A continuación presentamos los teoremas anticipados en la motivación de la sección 
+\begin{teo}[Teorema de Incrustacion de Kodaira]\label{kodaira incrustacion}\hfill
+
+Sea $L$ un fibrado en recta sobre una variedad compleja compacta $X$. Entonces $L$ es amplio si y solo si la primera clase de Chern de $L$, $c_1(L)$ es positiva. En este caso, $X$ es una variedad proyectiva.
+\end{teo}
+
+
+\begin{teo}[Teorema de Anulación de Kodaira]\hfill\label{kodaira anulacion}
+
+
+Sea $X$ una variedad de Kähler de dimension $n$, y sea $L$ un fibrado anplio en recta holomorfo sobre $X$, entonces
+\[
+\cohom^q (X , K_X \otimes L ) =0, \, \forall q>0
+\]
+donde $K_X$ es el fibrado en recta canónico.
+\end{teo}
+Un teorema fundamental de Jean-Pierre Serre es la dualidad siguiente
+\begin{teo}[Dualidad de Serre]\label{dualidad serre}\hfill 
+
+Sea $X$ una variedad compleja compacta. Para cada fibrado vectorial holomorfo $E$ sobre $X$, el mapeo de emparejamiento
+\[
+\cohom^{p,q}(X,E) \times \cohom^{n-p,n-q}(X,E^* ) \longrightarrow \comp
+\]
+es no degenerado.
+\end{teo}
+No probaremos aun este resultado, pues m\'as adelante, veremos que en nuestro contexto es una consecuencia de la aplicaci\'on de la Teoria de Hodge.\par
+Ser\'an particularmente útiles algunos isomorfismos que se tienen producto de la dualidad de Serre, los cuales presentamos a continuación.
+\begin{coro}\label{isomorfismos serre}\hfill
+
+Para cualquier fibrado vectorial holomorfo $E$ sobre una variedad compleja compacta $X$ se tienen los isomorfismos $\comp$-lineales naturales desde la dualidad de Serre
+\begin{align}
+\cohom^{p,q}(X,E) &\cong \cohom^{n-p,n-q} (X,E^*)^* ,\\
+\cohom^q \left( X, \Omega^p \otimes E\right) &\cong \cohom^{n-q} (X,\Omega^{n-p}\otimes E^* )^* ,\\
+\cohom^q (X,E) &\cong \cohom^{n-q}(X, K_X \otimes E^* )^*.
+\end{align}
+\end{coro}
+\begin{obs}
+Mediante la dualidad de Serre \ref{dualidad serre} y el corolario \ref{isomorfismos serre} , obtenemos la anulación en cohomología  
+\[
+0 = \cohom^q \left(X,K_X \otimes L^*\right)\quad \text{ para } q<n.
+\]
+\end{obs}
+En la demostración del teorema la implicancia de mayor dificultad es que un fibrado en recta con primera clase de Chern positiva es amplio.  La demostración requiere que una potencia suficientemente alta del fibrado en recta admite suficientes secciones holomorfas para dar lugar a una inscrustacion proyectiva de la variedad, pero debemos notar que no es trivial la existencia de alguna sección no-nula. Una forma clásica de proceder en esta demostración es mediante el uso del teorema de anulación de Kodaira en cohomologia \ref{kodaira anulacion}. Otra aproximación posible es mediante el estudio del nucleo de Bergman para potencias altas del fibrado en recta $L$, este se discute en \cite[Cap. 7]{Szeke14}.
+\begin{ex}
+Sea $L$ el fibrado en recta trivial sobre $\comp^n$, de modo que las secciones holomorfas de $L$ corresponden a funciones holomorfas sobre $\comp^n$. En el caso de la sección dada por la función constante $1$, para $k>0$ definimos la métrica hermitiana $h$ de forma que $h(1)=e^{-k\vert z\vert^2}$. Así, usamos la proposición \ref{curv chern} para obtener que
+\begin{align*}
+F(h) &= {\bf{i}} F_{i\overline{i}} dz^i \wedge d\overline{z}^i \\
+ &= - {\bf{i}} \partial_{\overline{i}}\partial_i \log\left( e^{-k \vert z \vert^2}\right)dz^i \wedge d\overline{z}^i \\
+ &= - {\bf{i}} \partial_{\overline{i}}\partial_i \left( -k  z \overline{z} \right)dz^i \wedge d\overline{z}^i \\
+ &= {\bf{i}}k \sum_{i=1}^n dz^i \wedge d\overline{z}^i
+\end{align*}
+Es relevante mencionar que hemos utilizado la convención de Einstein para la suma sobre el índice $i$ pues este se repite como sub y super índice en el desarrollo anterior.
+\end{ex}
+En el ejemplo anterior, cuando $k$ es suficientemente grande, podemos decir que la sección constante $1$ decae rápidamente (de hecho, de forma exponencial), mientras que la curvatura crece linealmente respecto a $k$. \par Una idea desarrollada por Tian \cite{Tian90} es que si la curvatura de un fibrado en recta $L$ en un punto $p$ es grande, entonces usando una función cutoff adecuada podemos pegar la sección holomorfa $1$ que decae rápidamente en una vecindad lo suficientemente pequeña de $p$ (explicaremos esto en el siguiente cap\'itulo, en la sección \ref{seccion 2.2} sobre suavizaci\'on de corrientes). Por el uso de la función cutoff este pegado ya no es holomorfo, pero podemos controlar el error de  modo que es posible aproximarnos mediante una sección de $L$ que tiene un extremo en $p$. Si la curvatura del fibrado en recta es grande en todas partes, entonces esta construcción da lugar a suficientes secciones holomorfas como para incrustar la variedad en el espacio proyectivo.
+
+\begin{obs}
+Un resultado de menor dificultad es que si un fibrado en recta $L$ sobre una variedad de Kähler compacta es negativo, es decir $c_1(L)$ es una clase negativa, entonces no existen secciones holomorfas nulas. Para ver esto, escogemos una métrica Hermitiana sobre $L$ cuya forma de curvatura sea definida negativa. Por la definición de curvatura, la conexión de Chern debe satisfacer
+\[
+\nabla_k \nabla_{\overline{\ell}} = \nabla_{\overline{\ell}}\nabla_k + F_{k\overline{\ell}}.
+\]
+Si $s$ es una sección holomorfa global de $L$ sobre $X$, entonces tenemos 
+\[
+0 = h\left( g^{k\overline{\ell}}\nabla_k \nabla_{\overline{\ell}} s , s\right) + g^{k\overline{\ell}} F_{k\overline{\ell}} \vert s \vert^2_h \leq h\left( g^{k\overline{\ell}}\nabla_k \nabla_{\overline{\ell}} s , s\right) - c \vert s \vert^2_h
+\]
+para $c>0$ una constante dada por el hecho de que $F_{k\overline{\ell}}$ es definida negativa. Si integramos esto sobre $X$, y en particular, integrando por partes
+\begin{equation}\label{IPP metricas}
+0 \leq-\int_X \vert \nabla s \vert^2_{g \otimes h} dV - c\int_X \vert s \vert^2_h dV
+\end{equation}
+Donde $dV$ es la forma de volumen de la métrica $g$ y donde hemos escrito por $g\otimes h$ a la métrica Hermitiana natural sobre $T^{1,0}\otimes L$, la cual escribimos en coordenadas locales como
+\[
+\vert \nabla s \vert^2_{g\otimes h} = g^{k\overline{\ell}}h\nabla_k s \overline{\nabla_{\ell}s}.
+\]
+De la desigualdad \ref{IPP metricas} concluimos que $s=0$.
+\end{obs}
+Concluiremos la sección detallando mediante la siguiente observación la obtención de una formulación de la integración por partes que utilizamos en para obtener \ref{IPP metricas}.
+\begin{obs}
+Notemos en primer lugar que usando la conexión de Levi-Civita junto con la conexión de Chern de $L$, obtenemos conexiones naturales sobre cualquier fibrado vectorial relacionado con el tangente holomorfo $T^{1,0}X$  y $L$, así como para sus productos y potencias tensoriales, sumas directas y otras operatorias. Definimos en primer lugar el siguiente campo vectorial
+\[
+v^{\overline{\ell}} = g^{k\overline{\ell}} h\left( \nabla_k s \right) \overline{s}.
+\]
+Notar que $g^{j\overline{k}}$ es una sección de $T^{1,0}X \otimes T^{0,1}X$, $h$ es una sección de $L^* \otimes \overline{L^*}$, $\nabla_k s$ es una sección de $\Omega^{1,0}X \otimes L$, y $\overline{s}$ es una sección de $\overline{L}$. La sección $v^{\overline{\ell}}$ de $T^{1,0} X$ se obtiene tomando productos tensoriales entre las cuatro secciones anteriores y contrayendo índices utilizando la dualidad de sus espacios de definición. La función $\nabla_{\overline{\ell}} v^{\overline{\ell}}$ es la divergencia de un campo vectorial, de modo que al integrar se anula. Luego, usando la regla del producto se obtiene que
+\[
+\nabla_{\overline{\ell}}v^{\overline{\ell}} = \left( \nabla_{\overline{\ell}} g^{k\overline{\ell}}\right) h \left( \nabla_k s \right)\overline{s} + g^{k\overline{\ell}}\left( \nabla_{\overline{\ell}}h\right)\left( \nabla_k s \right)\overline{s} + g^{k\overline{\ell}} h\left( \nabla_{\overline{\ell}} \nabla_{k} s \right)\overline{s}+ g^{k\overline{\ell}}h\left( \nabla_k s \right) \left( \nabla_{\overline{\ell}} \overline{s}\right),
+\]
+donde estamos aplicando la derivada covariante de cada fibrado vectorial. \\
+Por las propiedades que definen las conexiones de Levi-Civita y de Chern, tenemos que $\nabla g=0$ y $\nabla h=0$, obtenemos que
+\[
+\nabla_{\overline{\ell}}v^{\overline{\ell}} = g^{k\overline{\ell}}h\left( \nabla_{\overline{\ell}} \nabla_k s \right) \overline{s} + g^{k\overline{\ell}}h(\nabla_k s)(\nabla_{\overline{\ell}} \overline{s})
+\]
+De esta ultima igualdad, al integrar obtenemos una formulación de la integración por partes que utilizamos previamente, esto es
+\[
+\int_X g^{k\overline{\ell}} h\left( \nabla_{\overline{\ell}}\nabla_k s \right)\overline{s} dV = - \int_X g^{k\overline{\ell}}h\left(\nabla_k s\right)\left(\nabla_{\overline{\ell}} \overline{s}\right) dV
+\]
+\end{obs}
+
+
+\newpage
+\section{Métricas de Einstein}\label{cap1sec9}
+En 1915, se publican en forma de ecuaciones tensoriales las ecuaciones de campo de Einstein, que relacionan la geometría del espacio-tiempo con la distribución de la masa dentro de este. En particular, se obtiene una ecuación de la forma
+\begin{equation}\label{ecuacion de campo einstein}
+G_{ij} + \Lambda g_{ij} = \kappa T_{ij}
+\end{equation}
+Donde $G$ es el tensor de Einstein, $g$ es el tensor de métrica, $T$ es el tensor de energía-momentum, $\Lambda$ es la constante cosmol\'ogica de Einstein y el tensor de Einstein se define como
+\[
+G_{ij}= R_{ij}- \dfrac{1}{2}R g_{ij}
+\]
+donde $R_{ij}$ es el tensor de curvatura de Ricci y $R$ es la curvatura escalar.\\
+Esta ecuación permite la construcción de un modelo de universo estacionario gracias a la incorporación (que años después) hizo Einstein de la constante cosmol\'ogica $\Lambda$, la cual consider\'o un error en su momento, pero que actualmente se utiliza para parametrizar la aceleración de la expansión del universo.\\
+La primera solución exacta a las ecuaciones de campo de Einstein fue encontrada en 1916 por Karl Schwarzchild, cuya solución, denominada \textbf{m\'etrica de Schwarzchild} describe la geometría del espacio tiempo producida por una masa puntual. Esta descripción logra encontrar un análogo al potencial de Coulomb en electrostática y al potencial gravitacional de Newton, ademas, permite la aparición de singularidades en el espacio tiempo que determinan fenómenos gravitacionales denominados como agujeros negros.\\
+Para el desarrollo de esta sección es útil ver el caso denominado \textbf{ecuaciones de campo del vacio} en que $T_{ij}=0$ de forma que la ecuación \ref{ecuacion de campo einstein} nos da que la curvatura de Ricci es proporcional a la m\'etrica $g$.
+
+\begin{notacion}
+En general, en la literatura que aborda el tópico de la relatividad general, así como la física en general, la indexaci\'on en tres dimensiones espaciales y una temporal se hace mediante indices griegos $\mu,\eta,\alpha,$ etc. La hemos escrito con indices latinos para compatibilizar la escritura de \ref{ecuacion de campo einstein} con la notación utilizada hasta ahora.
+\end{notacion}
+Volvamos ahora a la terminología y notación que hemos desarrollado durante el capitulo.
+\\ 
+Consideremos $(X,g)$ es una variedad Hermitiana con  forma fundamental $\omega := g(J(),())$. La métrica Hermitiana sobre $X$ puede verse como una métrica Hermitiana sobre su fibrado tangente holomorfo $T^{1,0}X$, como hemos visto en secciones anteriores, se vuelve interesante buscar métricas sobre fibrados vectoriales holomorfos arbitrarios $E$ sobre $X$. En este caso, presentaremos un caso especial de métricas Hermitianas sobre $E$, denominadas métricas de Hermite-Einstein, que se obtienen comparando la forma de curvatura de la conexión de Chern sobre $E$ con la forma fundamental $\omega$.
+\begin{defn}[Métricas de Hermite-Einstein]\hfill
+
+Una métrica Hermitiana $h$ sobre un fibrado vectorial holomorfo se denomina de \textbf{Hermite-Einstein} si su tensor de Ricci es proporcional a la métrica, es decir
+\begin{equation}\label{def hermite-einstein}
+\Ric(\omega) = \lambda \omega
+\end{equation}
+para algún $\lambda \in \real$.
+\end{defn}
+Si $(X,g)$ es una variedad Kähleriana, es decir, $g$ es una métrica de Kähler. Si ademas, la estructura Hermitiana inducida naturalmente sobre el fibrado tangente holomorfo $T^{0,1}X$ es Hermite-Einstein, entonces llamamos a $g$ \textbf{métrica de Kähler-Einstein}, y ya conocemos un ejemplo de este tipo especial de métrica, pues en el ejemplo \ref{ejemplo FS, Kahler-Einstein} podemos notar que se satisface la proporcionalidad requerida.\\
+
+Notemos que la proporcionalidad que establece la definición \ref{def hermite-einstein} nos permite asumir que nos encontramos en uno de los siguientes casos
+\[
+\Ric(\omega) = -\omega, \hspace{25pt} \Ric(\omega)=0, \hspace{10pt} \text{ ó } \hspace{25pt} \Ric(\omega)=\omega
+\]
+Pero ya hemos visto que la forma  de Ricci define una clase de cohomolog\'ia de $X$, que denominamos primera clase de Chern
+\[
+c_1(X) = \dfrac{1}{2\pi}[ \Ric(\omega)] \in \cohom_{\operatorname{dR}}^2(X,\real)
+\]
+que es independiente de la métrica de Kähler sobre $X$. De la tricotom\'ia para la forma de Ricci, sigue que la primera clase de Chern de $X$ debe ser negativa, nula o positiva, y por lo tanto, podemos esperar solo que existan métricas de Kähler-Einstein proporcionales a $c_1(X)$.\\
+Veamos un poco mas en detalle los tres casos posibles dados por el signo de la primera clase de Chern presentando algunos resultados respecto a la existencia de métricas de Kahler-Einstein en los tres casos que hemos mencionado.
+\begin{enumerate}
+\item El caso $c_1(X)<0$.\\
+	En este caso, presentamos el siguiente resultado de Aubin \cite{Aub78} respecto a la existencia de métricas de Kahler-Einstein.
+	\begin{teo}[Existencia de Métricas de Kahler-Einstein]\hfill
+	
+	Sea $(X,g)$ una variedad de K\"ahler compacta  tal que $c_1(X)<0$, entonces existe una única métrica de K\"ahler $g \in -2\pi c_1(X)$ tal que $\Ric (g) = -g$.
+	\end{teo}
+\item El caso $c_1(X)=0$.\\
+	Las variedades Ricci-planas se denominan de \textbf{Calabi-Yau} y tienen gran relevancia en la física. Para este caso, en que el fibrado canónico $K_X$ es trivial, y consecuentemente $c_1(X)=0$ presentamos el siguiente resultado de Yau \cite{Yau78} respecto a la existencia de métricas de Kahler-Einstein (que le valió una medalla Fields).
+	\begin{teo}[Existencia de Métricas de Kahler-Einstein en variedades de Calabi-Yau]\hfill
+	
+	Una variedad de Kahler compacta $(X,g)$ tal que $c_1(X)=0$, siempre admite una métrica de Kahler-Einstein.
+	\end{teo}
+\item El caso $c_1(X)>0$.\\
+	Las variedades de este tipo, en que el fibrado canónico $K_X$ es amplio, o equivalentemente $c_1(X)>0$ se denominan de \textbf{Fano}. En este caso, Yau conjeturo en 1993 que la existencia de métricas de Kahler-Einstein debe estar condicionada por alguna forma de estabilidad . Esta fue definida en 1997 por Tian mediante la $K$-estabilidad. Para este caso, en que el fibrado anticanónico $-K_X$ es amplio, y consecuentemente $c_1(X)>0$ presentamos el siguiente resultado de Chen, Donaldson y Sun \cite{Chen-Don-Sun} respecto a la existencia de métricas de Kahler-Einstein, asi como demuestra Tian en \cite{Tian97}.
+	\begin{teo}[Existencia de Métricas de Kahler-Einstein en variedades de Fano]\hfill
+	
+	Una variedad de Kahler compacta $(X,g)$ tal que $c_1(X)>0$, admite una métrica de Kahler-Einstein si y solo si $(X, -K_X)$ es $K$-poliestable.
+	\end{teo}
+La definici\'on de este criterio de estabilidad denominado \textbf{poliestabilidad} ser\'a presentada en detalle mas adelante.
+\end{enumerate}

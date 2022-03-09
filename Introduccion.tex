@@ -1,0 +1,33 @@
+Las ecuaciones de campo en Teor\'ia de Relatividad General, presentadas en 1915 son un conjunto de ecuaciones tensoriales cuya formulaci\'on requiere del uso de Geometr\'ia Riemanniana. En particular la denominada como \textbf{Ecuaci\'on de Einstein} cuya forma es
+\[
+	G_{ij} + \Lambda g_{ij} = \kappa T_{ij}
+\]
+donde $\Lambda$ se denomina como la constante cosmol\'ogica de Einstein, $\kappa \approx 2.077 \times 10^{-43}$ es la constante gravitacional de Einstein. Adem\'as
+\begin{enumerate}
+\item[a)] $G_{ij}$ es el tensor de Einstein, que se define a partir de la curvatura de Ricci $R_{ij}$ y la curvatura escalar $S = g^{ij}R_{ij}$.
+\item[b)] $T_{ij}$ es el tensor de tensi\'on-energ\'ia, que en el vac\'io se anula y da lugar a las \textbf{ecuaciones de campo del vac\'io}.
+\end{enumerate}
+En esta ecuaci\'on la inc\'ognita corresponde a la m\'etrica $g_{ij}$ sobre una variedad $(M,g)$ Riemanniana (en nuestro caso, ser\'a una variedad de K\"ahler) bajo la igualdad $T_{ij}=0$ se denomina variedad de Einstein. Durante el primer cap\'itulo de esta memoria presentaremos los antecedentes y resultados necesarios para formular la condici\'on de Einstein sobre una variedad $(X,g)$ de K\"ahler mediante la igualdad en cohomolog\'ia de la forma fundamental $\omega$ asociada a la m\'trica K\"ahleriana $g_{ij}$ con su forma de curvatura $\Ric (\omega)$ en $\cohom^{1,1}(X, \bbR)$. Durante el segundo cap\'itulo presentaremos m\'etodos de Teor\'ia de Schauder para estudiar estimaciones a priori de Ecuaciones diferenciales parciales no lineales, pues la condici\'on de Einstein se puede estudiar sobre variedades de K\"ahler mediante la solubilidad de la ecuaci\'on de Monge-Amp\`ere compleja en coordenadas locales
+\begin{equation*}
+\det \left( g_{ij} + \dfrac{\partial^2 \varphi}{\partial z^i \partial\overline{z}^j} \right) = C \exp(F) \det (g_{s\overline{t}})
+\end{equation*}
+donde la soluci\'on, de existir, corresponde a la funciones a valores reales $\varphi \in \mathcal{C}^\infty (X)$. El estudio de la existencia de soluciones se puede reducir a tres casos, en t\'erminos de las ecuaciones de Einstein corresponder\'an a los casos dados por los posibles signos de la constante cosmol\'ogica. En t\'erminos de Teor\'ia de Hodge, esta es dada por la condici\'on de proporcionalidad 
+\[
+\Ric (\omega) = \lambda\omega  \quad \quad \cohom^{1,1}(X,\bbR)
+\]
+para alg\'un $\lambda \in \bbR$, lo que nos permitir\'a reducirnos a estudiar los siguientes casos
+\[
+\Ric(\omega) = \omega ,\quad \quad \Ric(\omega) = 0 \quad \text{ y } \quad \Ric(\omega)= -\omega.
+\]
+Que se traducen en que la primera clase de Chern $c_1(X)$ defina una clase de cohomolog\'ia positiva, nula o negativa, respectivamente. 
+\begin{enumerate}
+\item En el primer caso ($c_1(X)<0$) Aubin prueba en 1978 \cite{Aub78} la existencia y unicidad para la ecuaci\'on de Monge-Amp\`ere.
+\item En el segundo caso ($c_1(X)=0$) Yau prueba en 1978 \cite{Yau78} la existencia y unicidad (m\'odulo sumar constantes) para la ecuaci\'on de Monge-Amp\`ere
+\end{enumerate}
+El tercer caso ($c_1(X)>0$) se resuelve en paralelo en 2015 por Tian, y Chen-Donaldson-Sun \cite{Chen-Don-Sun} en donde se demuestra que la existencia de m\'etricas de K\"ahler-Einstein con curvatura positiva equivale a una condici\'on algebro-geom\'etrica denominada $K$-estabilidad. En particular, no toda variedad de K\"ahler de curvatura positiva admite una m\'etrica de K\"ahler-Einstein.\par
+En los casos dados por $c_1(X)\leq 0$ presentaremos una demostraci\'on simplificada utilizando teor\'ia de Schauder, siguiendo el procedimiento propuesto por Blocki en \cite{Blocki12} y \cite{Blocki13} para usar el principio de continuidad para probar la solubilidad de la ecuaci\'on de Monge-Amp\`ere en estos dos casos.\par
+Concluiremos presentando algunas consecuencias cl\'asicas de la existencia de m\'etricas de K\"ahler Einstein, en curvatura negativa se presentar\'a la desigualdad de Bogomolov-Miyaoka-Yau. En variedades de K\"ahler-Einstein Ricci planas se discutir\'a sobre el teorema de Descomposici\'on de Beauville-Bogomolov, que establece la descomposici\'on para $X$, modulo cubrimientos finitos en productos de la forma
+\[
+T \times \prod_{i\in I} \operatorname{CY}_i \times \prod_{j\in J} \operatorname{HK}_j,
+\]
+sonde $T$ corresponde a un toro complejo, $\operatorname{CY}_i$ son variedades Calabi-Yau y $\operatorname{HK}_j$ son variedades \textbf{Hyperk\"ahler}, que corresponden a un campo activo de investigaci\'on, pues se conocen muy pocos ejemplos de este tipo de variedades. Finalmente se probar\'a, utilizando el teorema de Myers y otros resultados cl\'asicos de geometr\'ia Riemanniana que toda variedad de Fano es simplemente conexa.

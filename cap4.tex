@@ -1,0 +1,651 @@
+En este cap\'itulo, presentaremos algunas las consecuencias m\'as notables del teorema de Yau. Estos se encuentran en secciones ordenadas de forma correlativa a las secciones del capítulo anterior, es decir, las secciones ``La desigualdad de Bogomolov-Miyaoka-Yau'', ``El teorema de Descomposici\'on de Beauville-Bogomolov '' y ``Conexidad simple de las variedades de Fano'' corresponden a los casos en que $c_1(X)<0$, $c_1(X)=0$ y $c_1(X)>0$ respectivamente.
+
+\section{La desigualdad de Bogomolov-Miyaoka-Yau.}
+
+Sea $(X,g)$ una variedad Hermitiana de dimensi\'on $n$, y sea $(E,h)$ un fibrado vectorial Hermitiano de rango $r$ sobre $X$. Para $\lbrace s_i \rbrace_{i=1}^r \subset E$ un marco local unitario para el fibrado $(E,h)$ y $\lbrace dz^i, d\overline{z}^i \rbrace_{i=1}^n$ un marco local unitario para el fibrado cotangente $\Omega X$ de $(X,g)$. Consideremos el tensor\footnote{Este tensor se define a partir de la forma fundamental $\omega$ y la conexi\'on Hermitiana (Ver \cite[Secci\'on 4.1]{Kobayashi87})}
+\begin{equation*}\label{Omega-jk}
+\Omega^j_k = \sum_{\ell,m =1}^n R^j_{k\ell m} dz^\ell \wedge d\overline{z}^m,
+\end{equation*}
+que define la forma de curvatura $\Omega = (\Omega^j_k)$ con respecto a una secci\'on $s$ como
+\[
+R(s_k) = \sum_{i=1}^n \Omega^j_k s_j.
+\]
+Definimos la \textbf{curvatura media} $K$ del fibrado $(E,h)$ a partir de los tensores
+\begin{equation*}\label{K-jk CurvaturaMedia}
+K^j_k = \sum_{\ell,m=1}^n g^{\ell\overline{m}} R^j_{k\ell m}, \quad \text{ y } \quad K_{j\overline{k}} = \sum_{i=1}^r h_{i\overline{k}} K^i_j.
+\end{equation*}
+Recordemos adem\'as la \textbf{curvatura de Ricci} y \textbf{curvatura escalar}, que son dadas respectivamente por
+\begin{equation}\label{Ricci}
+\rho = R_{j\overline{k}} = g^{\ell \overline{m}} R_{j\overline{k}\ell\overline{m}}
+\end{equation}
+y 
+\begin{equation*}\label{escalar}
+\sigma = g^{j\overline{k}} R_{j\overline{k}}.
+\end{equation*}
+Luego, utilizando estas definiciones y contrayendo por la m\'etrica de forma adecuada podemos concluir lo siguiente,
+\begin{enumerate}
+\item Para la forma fundamental para la m\'etrica $g$, se tiene localmente que
+\begin{equation}\label{omega local}
+	\omega_g = \ii\sum_{j=1}^n dz^i \wedge d\overline{z}^i.
+\end{equation}
+\item Para el tensor de Ricci $\rho$, calculamos su norma como
+\begin{equation}\label{norma tensor de Ricci}
+\Vert R \Vert^2 = \sum \vert R^j_{k\ell \overline{m}}\vert^2 = \sum \vert R_{j\overline{k}\ell\overline{m}}\vert^2.
+\end{equation}
+\item Para la curvatura media $K$, calculamos su norma como
+\begin{equation}\label{norma curvatura media}
+\Vert K \Vert^2 = \sum \vert K^j_k \vert^2 = \sum \vert K_{ji}\vert^2 = \sum \vert R^j_{k\ell\overline{\ell}}\vert^2.
+\end{equation}
+\item Finalmente, calculamos la norma de la curvatura escalar $\sigma$
+\begin{equation}\label{norma curvatura escalar}
+\sigma^2 = \sum_{j} \vert R_{j\overline{j}} \vert^2 = \sum_{j,\ell,m} \vert R^j_{j\ell\overline{m}} \vert^2
+\end{equation}
+\end{enumerate}
+Estas cantidades ser\'an de gran importancia en los siguientes puntos para c\'alcular identidades que satisfacen las clases de Chern.
+
+
+
+
+Presentamos ahora las clases de Chern mediante las $2k$-formas $\gamma_k$ con la siguiente definici\'on
+\begin{defn}\hfill
+
+ La $k$-\'esima \textbf{clase de Chern} $c_k (E) \in \cohom^{2k} (X,\bbZ)$ de un fibrado vectorial Hermitiano $(E,h)$ es representada por la $2k$-forma cerrada $\gamma_k$ definida por
+ \begin{align}
+ 	c_k(E) &= \det \left( \operatorname{Id}_r - \dfrac{1}{2\pi\ii}\omega_g \right) = 1+ \gamma_1 + \gamma_2 + \ldots + \gamma_r \\
+ 	\gamma_k &= \dfrac{(-1)^k}{(2\pi\ii)^k k!} \sum \delta^{j_1 \ldots j_k}_{\ell_1 \ldots \ell_k} \Omega^{\ell_1}_{j_1} \wedge \ldots \wedge \Omega^{\ell_k}_{j_k}
+ \end{align}
+\end{defn}
+Utilizaremos en particular las expresiones que entrega la definición anterior para las dos primeras clases de Chern, esto es
+\begin{equation}\label{c1}
+c_1(X) = \dfrac{\ii}{2\pi} \sum_{i=1}^n \Omega^{i}_{i} = \dfrac{\ii}{2\pi}\sum_{\ell, m=1}^n R^j_{kii} dz^\ell \wedge d\overline{z}^m  = \dfrac{\ii}{2\pi}\sum_{\ell,m =1}^n R_{\ell\overline{m}} dz^\ell \wedge d\overline{z}^m
+\end{equation}
+y 
+\begin{equation}\label{c2}
+c_2(X) = \frac{1}{2}\left(\frac{\ii}{2\pi}\right)^2 \sum_{i,j=1}^n \left( \Omega^j_j\wedge \Omega^k_k - \Omega^j_k\wedge \Omega^k_j \right).
+\end{equation}
+El siguiente resultado muestra que no solo la primera clase de Chern es independiente de la estructura Hermitiana, m\'as a\'un, todas las clases de Chern representan una cualidad topol\'ogica y no dependen de la estructura de la variedad en cuestión.
+\begin{teo}\hfill
+
+La clase $c_k (E,h)$ es independiente de $h$. Y por lo tanto, podemos escribir 
+\[
+c_k(E) = c_k(E,h).
+\]
+Adem\'as, escribimos $c_k (X)$ para $c_k (T_X)$.
+\end{teo}
+
+
+Habiendo establecido estas igualdades, empezaremos el camino a probar la desigualdad de Bogomolov-Miyaoka-Yau, para esto veamos el siguiente lema
+\begin{lem}\label{Cap4Sec1-Lema1}\hfill
+
+Las primera y segunda clase de Chern, satisfacen respectivamente, las siguientes relaciones
+\begin{enumerate}
+\item[\emph{(1)}] $c_1(E)^2 \wedge \omega^{n-2}_g  = \dfrac{1}{4\pi^2 n(n-1)}\left( \sigma^2 - \Vert \rho \Vert^2 \omega^n_g\right) = \gamma^2_1 \wedge \omega^{n-2}_g$
+\item[\emph{(2)}] $c_2(E) \wedge \omega^{n-2}_g = \dfrac{1}{8\pi^2 n(n-1)} \left( \sigma^2  -\Vert \rho \Vert^2 - \Vert K \Vert^2+ \Vert R\Vert^2 \right)\omega^n_g = \gamma_2 \wedge \omega^{n-2}_g$
+\end{enumerate}
+\end{lem}
+\begin{proof}
+Por la definici\'on de $\gamma_1$ y $\gamma_2$ tenemos que
+\begin{align*}
+\gamma_1^2 &= \left(\dfrac{\ii}{2\pi}\right)^2 \sum \Omega^{j}_{j} \wedge \Omega^k_k = \dfrac{-1}{4\pi^2} \sum \Omega^j_j \wedge \Omega^k_k \\
+\gamma_2 &= \dfrac{-1}{4\pi^2} \left( \sum \Omega^j_j \wedge \Omega^k_k - \Omega^j_k \wedge \Omega^k_j \right) = \gamma_1^2 + \dfrac{1}{8\pi^2}\sum \Omega^j_k \wedge \Omega^k_j
+\end{align*}
+Notemos ahora que
+\[
+dz^j \wedge d\overline{z}^k \wedge dz^\ell \wedge d\overline{z}^m = \begin{cases}
+\frac{4}{n(n-1)}\omega_g^n,\quad &\text{ si } j = k \neq \ell = m \\
+-\frac{4}{n(n-1)}\omega_g^n,\quad &\text{ si } j = \ell \neq k = m \\
+0 ,\quad &\text{ en cualquier otro caso.} 
+\end{cases}
+\]
+De esta forma, para probar (1) y (2) bastar\'a probar
+\begin{enumerate}
+\item[(1')] $\frac{n(n-1)}{4} \sum \Omega^j_j \wedge \Omega^k_k \wedge \omega^{n-2}_g = - (\sigma^2 - \Vert \rho \Vert^2 ) \omega^n_g$
+\item[(2')] $\frac{n(n-1)}{4} \sum \Omega^k_j \wedge \Omega^j_k \wedge \omega^{n-2}_g = - (\Vert K\Vert^2 - \Vert R \Vert^2 ) \omega^n_g$
+\end{enumerate}
+Para esto, notemos que
+\begin{align*}
+\frac{n(n-1)}{4}\sum_{j,k=1}^n \Omega^j_j \wedge \Omega^k_k \wedge \omega^{n-2}_g &= \frac{n(n-1)}{4}\sum_{j,k,\ell,m=1}^n \left( R_{\ell\overline{\ell}j\overline{j}} R_{m\overline{m}k\overline{k}} - R_{\ell \overline{m}j\overline{j}}R_{m\overline{\ell}k\overline{k}} \right) dz^\ell \wedge d\overline{z}^\ell \wedge dz^m \wedge d\overline{z}^m \wedge \omega^{n-2}_g \\
+&= -\sum_{\ell,m=1}^n \left( R_{\ell\overline{\ell}} R_{m\overline{m}} - R_{\ell\overline{m}}R_{m\overline{\ell}} \right) \omega^n_g \\
+&= - \left( \sigma^2 - \Vert \rho \Vert^2 \right) \omega^n_g
+\end{align*}
+Donde hemos utilizado las igualdades \ref{norma curvatura escalar} y \ref{Ricci} para concluir la \'ultima igualdad. Por otro lado,
+\begin{align*}
+\frac{n(n-1)}{4} \sum_{j,k=1}^n \Omega^k_j \wedge \Omega^j_k \wedge \omega^{n-2}_g &= \frac{n(n-1)}{4}\sum_{j,k,\ell,m =1}^n \left( R_{\ell\overline{\ell}j\overline{k}} R_{m\overline{m}j\overline{k}} - R_{\ell\overline{m}j\overline{k}}R_{m\overline{\ell}k\overline{j}} \right) dz^\ell \wedge d\overline{z}^\ell \wedge dz^m \wedge d\overline{z}^n \wedge \omega^{n-2}_g \\
+&= \sum_{j,k,\ell,m =1}^n \left( R_{\ell\overline{\ell}j\overline{k}} R_{m\overline{m}k\overline{k}} - R_{\ell\overline{m}j\overline{k}}R_{m\overline{\ell}k\overline{j}} \right)\omega^n_g \\
+&= - \left( \Vert K\Vert^2 - \Vert R\Vert^2\right) \omega^n_g
+\end{align*}
+Donde hemos utilizado las igualdades \ref{norma tensor de Ricci} y \ref{norma curvatura media} para concluir la \'ultima igualdad. Utilizando estos dos \'ultimos resultados hemos probado los puntos (1') y (2'), de los que siguen los resultados del lema.
+
+
+\end{proof}
+Veamos ahora un lema que relaciona la norma del tensor de Ricci $\Vert R \Vert^2$ y la del tensor de curvatura de Ricci $\Vert \rho\Vert^2$.
+\begin{lem}\label{Cap4Sec1-Lema2}\hfill
+
+Sea $(E,h)$ un fibrado vectorial Hermitiano de rango $r$ sobre una variedad Hermitiana compacta $(X,g)$ de dimension $n$. Entonces
+\[
+r \Vert R\Vert^2 \geq \Vert \rho \Vert^2
+\]
+Adem\'as, se alcanza la igualdad si y solo si
+\[
+r \operatorname{R}^j_{k\ell\overline{m}} = \delta^i_j \operatorname{R}_{\ell\overline{m}}.
+\]
+\end{lem}
+\begin{proof}
+Sea $T^j_{k\ell\overline{m}} := \operatorname{R}^j_{k\ell\overline{m}} - \frac{1}{r} \delta^j_k \operatorname{R}_{\ell m}$, entonces
+\begin{align*}
+0 \leq \Vert T \Vert^2 &= \sum \left\vert \operatorname{R}^j_{k\ell\overline{m}} - \frac{1}{r}\delta^j_k \operatorname{R}_{\ell \overline{m}} \right\vert^2 \\
+&= \sum \left\vert \operatorname{R}^j_{k\ell\overline{m}} \right\vert^2 - \frac{2}{r}\sum \left\vert \operatorname{R}_{\ell\overline{m}} \right\vert^2 + \frac{1}{r}\sum \left\vert \operatorname{R}_{\ell\overline{m}}\right\vert^2
+\end{align*}
+Utilizando las igualdades \ref{Ricci} y \ref{norma tensor de Ricci} podemos concluir que
+\[
+0 \leq \Vert T \Vert^2 = \Vert R \Vert^2 - \frac{1}{r}\Vert \rho \Vert^2
+\]
+\end{proof}
+\begin{obs}
+Recordemos que cuando $(E,h)$ es un fibrado holomorfo Hermitiano de rango $r$ sobre una variedad Hermitiana $(X,g)$. Diremos que $(E,h)$ satisface la condici\'on \textbf{de Einstein d\'ebil} (con factor $\varphi$) si la curvatura media $K$ satisface
+\begin{equation}
+K = \varphi \operatorname{Id}_E,\quad \text{ es decir } K^j_k = \varphi \delta^j_k
+\end{equation}
+para $\varphi$ una funci\'on real definida sobre $X$. Si $\varphi$ es constante decimos que $h$ es una métrica Hermite-Einstein y el par $(E,h)$ es un fibrado vectorial de Hermite-Einstein sobre $(X,g)$.\par
+Colocando $E=T_X$ y $h=g$ decimos que el par $(X,g)$ es una variedad de Hermite-Einstein. Mas a\'un si $\omega_g$ es una $(1,1)$-forma cerrada $(X,g)$ se denomina de K\"ahler-Einstein.
+\end{obs}
+Utilizando las igualdades \ref{norma tensor de Ricci} a \ref{norma curvatura escalar} junto con el recuerdo anterior podemos establecer el siguiente lema
+\begin{lem}\label{Cap4Sec1-Lema3}\hfill
+
+Para toda variedad de K\"ahler $(X,g)$ de dimensi\'on $n$, se tiene que
+\[
+\Vert R \Vert^2 \geq \dfrac{2}{n+1}\Vert K \Vert^2.
+\]
+Donde se alcanza la igualdad si y solo si $X$ es un espacio de curvatura seccional constante.
+\end{lem}
+\begin{proof}
+En el caso de K\"ahler, por la observación \ref{identidades curvatura 2} se tiene que
+\[
+\operatorname{R}_{j\overline{k}\ell \overline{m}} = \operatorname{R}_{\ell \overline{m}j\overline{k}}
+\]
+y por lo tanto,
+\[
+K_{j\overline{k}} = \operatorname{R}_{j\overline{k}}.
+\]
+De esta ecuaci\'on y las igualdades \ref{Ricci} y \ref{norma curvatura escalar} concluimos que
+\begin{equation}
+\Vert K \Vert^2 = \Vert \rho \Vert^2
+\end{equation}
+En particular, en el caso K\"ahler-Einstein tenemos que $K^j_k = \frac{\sigma}{n}\delta^j_k$, donde $\sigma$ es la curvatura escalar de la variedad $n$-dimensional $X$ y por lo tanto
+\begin{equation}\label{Cap4Sec3-Eqn5}
+\Vert K \Vert^2 = \frac{\sigma^2}{n} = \Vert \rho \Vert^2.
+\end{equation} 
+Si definimos $T_{j\overline{k}\ell\overline{m}}$ como
+\[
+T_{j\overline{k}\ell\overline{m}} = \operatorname{R}_{j\overline{k}\ell\overline{m}} - \dfrac{\sigma}{n(n-1)}\left( \delta^j_k \delta^{\ell}_{m} - \delta^j_m \right) \delta^{\ell}_k.
+\]
+Entonces, 
+\begin{align*}
+ 0 \leq \Vert T\Vert^2 &= \sum \left\vert \operatorname{R}_{j\overline{k}\ell\overline{m}} - \dfrac{\sigma}{n(n-1)}\left( \delta^j_k \delta^{\ell}_{m} - \delta^j_m \delta^{\ell}_k\right)  \right\vert^2 \\
+ &= \Vert R \Vert^2 - \dfrac{2\sigma^2}{n(n-1)}
+\end{align*}
+y por lo tanto
+\[
+\Vert R \Vert^2 \geq 2\sigma^2 n(n-1).
+\]
+Notemos que la igualdad solo se obtiene cuando $T=0$, y por lo tanto, concluimos que
+\[
+\Vert R \Vert^2 \geq \dfrac{2}{n+1}\Vert K\Vert^2
+\]
+\end{proof}
+Ya estamos listos para enunciar y probar el resultado principal de esta secci\'on, este corresponde al siguiente teorema.
+\begin{teo}[Bogomolov-Miyaoka-Yau]\label{BMY}\hfill
+
+Sea $(X,\omega)$ una variedad de K\"ahler $n$-dimensional compacta con $c_1(X)<0$, entonces
+\[
+\int_X \left( n c_1(X)^2 - 2(n+1)c_2 (X) \right) \wedge \omega^{n-2}_g \leq 0
+\]
+\end{teo}
+\begin{proof}
+	Sea $c_i (X,g)$ la $i$-\'esima clase de Chern, que corresponde a la clase de Chern $c_i (T_X, h)$. Para utilizar los lemas anteriores fijamos $E=T_X$ y $g=h$. Por el punto (1) en el lema \ref{Cap4Sec1-Lema1} y la igualdad \ref{Cap4Sec3-Eqn5} sabemos que
+\begin{align*}
+	c_1 (X,g)^2 \wedge \omega^{n-2}_g &= \dfrac{1}{4\pi^2 n (n-1)}\left( \sigma^2 - \Vert \rho \Vert^2 \right) \omega^n_g \\
+	&= \dfrac{1}{4\pi^2 n (n-1)}\left( n \Vert \rho \Vert^2 - \Vert \rho \Vert^2 \right) \omega^n_g \\
+	&= \frac{1}{4\pi^2}\Vert \rho \Vert^2 \dfrac{\omega^n_g}{n} \\
+	&= \dfrac{1}{4\pi^2} \Vert K \Vert^2 \dfrac{\omega^n_g}{n}.
+\end{align*}
+Por otro lado, por el punto (2) del lema \ref{Cap4Sec1-Lema1} y usando nuevamente la igualdad \ref{Cap4Sec3-Eqn5} se tiene que
+\begin{align}
+	\nonumber c_2 (X,g) \wedge \omega^{n-1}_g &= \dfrac{1}{8\pi^2 n(n-1)}\left( \sigma^2 - \Vert \rho \Vert^2 - \Vert K\Vert^2 + \Vert R \Vert^2 \right) \omega^{n}_g \\
+	&= \dfrac{1}{8\pi^2 n(n-1)}\left( (n-2)\Vert K \Vert^2 + \Vert R\Vert^2 \right) \omega^n_g.
+\end{align}
+Luego, podemos calcular la integral del enunciado como sigue
+\begin{align*}
+	&\int_X \left\lbrace 2(n+1))c_2 (X) - n c_1(X)^2\right\rbrace \wedge \omega^{n-2}_g \\
+	&= \int_X \left( \dfrac{2(n+1)}{8\pi^2 n(n-1)}\left( \sigma^2 - \Vert \rho \Vert^2 - \Vert K\Vert^2 + \Vert R \Vert^2 \right) - \frac{n}{4\pi^2 n(n-1)}\left( \sigma^2 - \Vert \rho \Vert^2 \right)\right) \omega^n_g \\
+	&= \frac{1}{4\pi^2 n(n-1)}\int_X \left( (n+1)(n-2)\Vert K\Vert^2 + (n+1)\Vert R\Vert^2 - n (n-1)\Vert K \Vert^2 \right)\omega^n_g \\
+	&= \frac{1}{4\pi^2 n(n-1)}\int_X \left( -2\Vert K\Vert^2 + (n+1)\Vert R\Vert^2 \right)\omega^n_g \\
+	&= \dfrac{n+1}{4\pi^2 n(n-1)} \int_X \left( \Vert R \Vert^2 - \frac{2}{n+1} \Vert K\Vert^2 \right) \omega^n_g
+\end{align*}
+Por otro lado, el lema \ref{Cap4Sec1-Lema3} sabemos que
+\[
+\Vert R\Vert^2 \geq \dfrac{2}{n+1}\Vert K\Vert^2
+\]
+por lo que concluimos el resultado del teorema notando que
+\[
+\frac{1}{4\pi^2 n(n-1)}\int_X \left( -2\Vert K\Vert^2 + (n+1)\Vert R\Vert^2 \right)\omega^n_g \\
+	= \dfrac{n+1}{4\pi^2 n(n-1)} \int_X \left( \Vert R \Vert^2 - \frac{2}{n+1} \Vert K\Vert^2 \right) \omega^n_g \leq 0.
+\]
+Notemos adem\'as, que la igualdad se alcanza cuando
+\[
+\Vert R \Vert^2 = \frac{2}{n+1}\Vert K\Vert^2,
+\]
+es decir, cuando la curvatura seccional es constante.
+\end{proof}
+\begin{obs}
+Cuando $n=2$ encontramos la celebre desigualdad de Bogomolov-Miyaoka-Yau para variedades de K\"ahler-Einstein compacta $X$ con $\dim (X)=2$, y que corresponde a
+\[
+c_1(X)^2 \leq 3 c_2(X)
+\]
+\end{obs}
+
+
+\section{El Teorema de Descomposición de Beauville-Bogomolov.}
+Gracias a los teoremas de de Rham y de Berger, las variedades K\"ahlerianas compactas Ricci planas se descomponen (módulo un revestimiento étale) en producto de tres tipos primitivos: los toros complejos y las variedades de holonomía $\operatorname{SU}(m)$ o $\operatorname{Sp}(r)$. El Teorema de Yau, junto con el método de Bochner, permite traducir este resultado en un teorema de descomposición de variedades compactas K\"ahlerianas con $c_1=0$, independientemente de la elección de una métrica. En esta descomposición aparecen, aparte de los toros complejos, por una parte variedades proyectivas con fibrado canónico trivial, solamente admitiendo formas holomorfas no-nulas en grado maximal (todos los ejemplos usuales de variedades proyectivas simplemente conexas con $c_1=0$ caen en esta categoría); y de otra parte las variedades simplécticas, es decir, dotadas de una $2$-forma holomorfa no-degenerada en todo punto.
+
+\subsection{Representaciones de Holonom\'ia}\label{Cap4Sec2SubS1}
+Presentaremos a continuación los resultados clásicos sobre holonomía que necesitaremos; para las demostraciones, ver por ejemplo \cite{Kobayashi96}.
+
+Sea $(M,g)$ una variedad riemanniana, y sean $p,q$ dos puntos de $M$. El transporte paralelo asocia a todo camino $\gamma$ sobre $M$ uniendo $p$ con $q$ una isometría
+\[
+\varphi_\gamma: T_p(M)\longrightarrow T_q(M).
+\]
+Denotemos en particular por $\Omega(p)$ al conjunto de los caminos cerrados en $p$, y por $\Omega_0(p)$ al sub-conjunto de $\Omega(p)$ formado por los caminos cerrados homotópicamente equivalentes al camino trivial.
+
+La aplicación
+\[
+\varphi:\Omega(p)\longrightarrow \operatorname{O}(T_p(M))
+\]
+tiene por imagen un sub-grupo $H$ del grupo ortogonal $\operatorname{O}(T_p(M))$, llamado el {\bf grupo de holonomía} de $M$ en $p$. La imagen por $\varphi$ de $\Omega_0(p)$ es la componente conexa de la identidad $H_0$ de $H$; es un sub-grupo de Lie compacto (conexo) de $\operatorname{SO}(T_p(M))$, llamado el {\bf grupo de holonomía restringida} de $M$ en $p$.
+
+Dado que $M$ es asumida conexa, las representaciones de holonomía en puntos diferentes de $M$ son isomorfas. Hablaremos entonces de \emph{la} representación de holonomía de $M$ ou \emph{del} sub-grupo de holonomía $H\subseteq \operatorname{O}(n)$.
+
+Diremos que la variedad $(M,g)$ es {\bf irreducible} si su representación de holonomía es irreducible.
+
+\begin{teo}[de Rham]\label{Cap4Sec2.1 Teo1}\hfill
+
+Sea $(M,g)$ una variedad riemanniana completa (como espacio métrico) simplemente conexa. Entonces $M$ es isométrica a un producto
+\[
+M_0\times M_1\times \cdots\times M_k,
+\]
+donde $M_0$ es un espacio euclidiano y donde las $M_i$ son irreducibles. Esta descomposición es única (módulo permutaciones). Sea $p=(p_0,\ldots,p_k)$ un punto de $M$, y sea $H_i$ la holonomía de $M_i$ en $p_i$; entonces el grupo de holonomía de $M$ en $p$ es el producto
+\[
+H_0\times \cdots \times H_k,
+\]
+actuando en $T_p(M)=T_{p_0}(M_0)\oplus \cdots \oplus T_{p_k}(M_k)$ por la representación producto (i.e., componente a componente).
+\end{teo}
+Si $M$ es una variedad K\"ahleriana, las variedades $M_i$ son K\"ahlerianas (restringiendo la métrica de K\"ahler) y la isometría $M\cong \prod M_i$ es biholomorfa.
+
+\begin{obs}
+La aserción sobre la unicidad módulo permutación tiene el significado preciso siguiente: 
+
+Sean $u:M\to \prod_{i=0}^k M_i$ y $v:M\to \prod_{j=0}^l M_j'$ dos isometrías del tipo anterior. Entonces tenemos que $l=k$; existe una permutación $\sigma$ de $\{0,\ldots,k\}$ (tal que $\sigma(0)=0$) y isometrías $w_i:M_{\sigma(i)}\to M_i'$ de tal suerte que
+\[
+(v\circ u^{-1})(m_0,\ldots,m_k)=(w_0(m_{\sigma(0)}),\ldots,w_k(m_{\sigma(k)})) \textup{ para }m_i\in M_i.
+\]
+En lo que sigue, la aserción \emph{único módulo permutación} de una descomposición tendrá siempre este significado.
+\end{obs}
+
+El problema de determinar representaciones de holonomía se reduce entonces al caso de representaciones irreducibles. La lista de estas últimas fue establecida por Berger  en \cite{Berger55} (ver también \cite{Simons62}):
+
+\begin{teo}[Berger]\label{Cap4Sec2.1 Teo2}\hfill
+
+Sea $(M,g)$ una variedad riemanniana de dimensión $n$, y supongamos que $M$ {\bf no es} localmente simétrica\footnote{Esta condición será automática en el caso $c_1=0$.}. Entonces el grupo de holonomía restringida $H_0\subseteq \operatorname{SO}(n)$ es isomorfo a uno de los subgrupos siguientes de $\operatorname{SO}(n)$:
+\begin{enumerate}
+    \item $\operatorname{SO}(n)$;
+    \item $\operatorname{U}(m)$ con $n=2m$;
+    \item $\operatorname{SU}(m)$ con $n=2m$;
+    \item $\operatorname{Sp}(r)$ con $n=4r$;
+    \item $\operatorname{Sp}(1)\cdot \operatorname{Sp}(r)$ con $n=4r$;
+    \item $\operatorname{Spin}(9)$ con $n=16$;
+    \item $\operatorname{Spin}(7)$ con $n=8$;
+    \item $G_2$ con $n=7$.
+\end{enumerate}
+\end{teo}
+
+El interés de este enunciado proviene de su interpretación geométrica: toda restricción de un grupo de holonomía se traduce por la existencia de campos de tensores paralelos. Recordemos que un campo de tensores $t$ en $M$ es \emph{paralelo} si para cualquier camino $\gamma$ uniendo $p$ con $q$, el isomorfismo de transporte paralelo $\varphi_\gamma$ hace corresponder $t(q)$ con $t(p)$. El tensor $t(p)$ es entonces invariante por la holonomía; recíprocamente, todo tensor en $p$ invariante por holonomía se extiende de manera única en todo punto por trasporte paralelo. En otras palabras:
+
+\begin{teo}[Principio de holonomía]\label{Cap4Sec2.1 Teo3}\hfill
+
+Sean $(M,g)$ una variedad riemanniana y $p$ un punto de $M$. Darse un campo de tensores paralelo en $M$, de un tipo fijo (e.g. métricas, formas diferenciales, etc.), es equivalente a darse un tensor en $p$ del tipo considerado que sea invariante bajo la acción del grupo de holonomía en $p$.
+\end{teo}
+
+Vamos a aplicar ahora este principio a tres casos del teorema de Berger que corresponden a variedades K\"ahlerianas.
+
+\begin{ex}\label{ex4.2.1.1} Caso $H=\operatorname{U}(m)$. \hfill
+
+El grupo $\operatorname{U}(m)$ se identifica al sub-grupo de $\operatorname{O}(2m)$ formado por aplicaciones lineales que preservan una estructura compleja $J\in \operatorname{O}(2m)$ fija en $\mathbb{R}^{2m}$. Gracias al principio de holonomía, tenemos que $H\subseteq \operatorname{U}(m)$ si y sólamente si existe en $M$ una estructura casi-compleja paralela respecto a la cual $g$ es hermitiana. Dicha estructura es integrable, y la condición de paralelismo signfica que la métrica es K\"ahleriana (cf. [citar]). En consecuencia, tenemos que
+\begin{quote}
+   $H\subseteq \operatorname{U}(m)$ si y sólamente si $M$ posee una estructura compleja respecto a la cual la métrica $g$ sea K\"ahleriana.
+\end{quote}
+\end{ex}
+\begin{ex}\label{ex4.2.1.2} Caso $H=\operatorname{SU}(m)$.\hfill
+
+Supongamos que $(M,g)$ es una variedad K\"ahleriana, de dimensión $m$. El grupo $\operatorname{SU}(m)$ es el sub-grupo de $\operatorname{U}(m)$ formado por las aplicaciones lineales preservando una forma $m$-lineal alternada (compleja) no-nula en $\mathbb{C}^m$ (i.e., el determinante). Gracias al principio de holonomía, tenemos que $H\subseteq \operatorname{SU}(m)$ si y sólamente si existe una forma de tipo $(m,0)$ en $M$ que sea paralela y no-nula. Una tal forma es cerrada (al ser de grado maximal) y luego holomorfa. En otras palabras, tenemos que
+\begin{quote}
+    $H\subseteq \operatorname{SU}(m)$ si y sólamente si existe una $m$-forma holomorfa en $M$, paralela y no-nula.
+\end{quote}
+Deducimos inmediatamente que el grupo de holonomía restrigida $H_0\subseteq \operatorname{SU}(m)$ si y sólamente si el fibrado canónico $\omega_X=\Omega_X^m$, dotado de la métrica inducida por $g$, es plano; y sabemos que su curvatura no es nada más que la curvatura de Ricci de $g$. Tenemos entonces que
+\begin{quote}
+    $H_0\subseteq \operatorname{SU}(m)$ si y sólamente si la variedad K\"ahleriana $(M,g)$ es Ricci plana.
+\end{quote}
+\end{ex}
+
+\begin{ex}\label{ex4.2.1.3} $H=\operatorname{Sp}(r)$.\hfill
+
+Sea $\mathbb{H}\cong \mathbb{R}^4$ el álgebra de cuateriones. El grupo $\operatorname{Sp}(r)$ es el grupo de automorfismos $\mathbb{H}$-lineales de $\mathbb{H}^r$ preservando una forma hermitiana cuaterionica $q$. Denotando por $(I,J,K)$ la base usual de los cuateriones, dotamos a $\mathbb{H}^r$ de la estructura compleja definida por $I$ (que cumple $I^2=-1$); podemos entonces escribir $q=h+\varphi J$, donde $h$ es una forma hermitina compleja y $\varphi$ es una $\mathbb{C}$-bilineal alternada. Así, $\operatorname{Sp}(r)$ se identifica al sub-grupo de $\operatorname{U}(2r)$ formado por las aplicaciones lineales que preservan la forma $\varphi$. Deducimos del mismo modo que antes
+\begin{quote}
+    $H\subseteq \operatorname{Sp}(r)$ si y sólamente si $M$ admite una estructura compleja para la cual la métrica es K\"ahleriana y admite una $2$-forma holomorfa paralela y no-degenerada en todo punto (vista como forma bilineal alternada en el espacio tangente de $M$ dotado de su estructura compleja).
+\end{quote}
+\end{ex}
+
+Dada una variedad riemanniana $(M,g)$ fija, podemos considerar el conjunto de estructuras complejas sobre $M$ para cuales $g$ es K\"ahleriana; gracias al principio de holonomía, esto equivale a buscar elementos de $\operatorname{SO}(2m)$, de cuadrado $-\operatorname{Id}_{2m}$, conmutando con el grupo de holonomía $H$. En los primeros dos ejemplos, el conmutador de la representación de holonomía son las matrices de homotecia (y luego de dimensión 1 compleja); deducimos entonces que, módulo conjugación, sólo existe una estructura compleja posible. Sin embargo, en el último ejemplo el conmutador se identifica con el álgebra de cuatertiones; el conjunto de estructuras complejas para las cuales $g$ es K\"ahleriana se identifica entonces a los cuaterniones de cuadrado $(-1)$ (es decir, a los cuaterniones puros de norma 1, $\pm I$, $\pm J$ y $\pm K$ con la notación anterior). En lo que sigue, dotaremos a dichas variedades de una estructura compleja que será fija.
+
+\subsection{Variedades K\"ahlerianas compactas Ricci planas}\label{Cap4Sec2SubS2}
+Recordemos que el Teorema de Yau implica que las variedades k\"ahlerianas Ricci planas son exactamente las variedades compactas de tipo K\"ahleriano cuya primera clase de Chern se anula.\par
+Sea $M$ una variedad K\"ahleriana compacta Ricci plana. Gracias a los teoremas de de Rham y Berger (Ver \ref{Cap4Sec2SubS1}), el revestimiento universal $\widetilde{M}$ de $M$ es isomorfo a un producto
+\[
+\mathbb{C}^k \times \prod V_i \times \prod X_j,
+\]
+donde las $V_j$ (resp. $X_j$) admiten como grupo de holonomía al grupo especial unitario (resp. al grupo simpléctico). En el caso en que $M$ es \emph{compacta}, podemos ser mucho más precisos, para esto utilizaremos el siguiente lema
+\begin{lem}\label{Cap4Sec2.2-Lema1}\hfill
+
+Sea $M$ una variedad K\"ahleriana compacta, símplemente conexa, cuya curvatura de Ricci es nula. El grupo de automorfismos de $M$ es discreto, y el sub-grupo de automorfismos isométricos es finito.
+\end{lem}
+
+\begin{proof}
+El grupo $G$ de automorfismos complejos de $M$ es un grupo de Lie complejo cuya álgebra de Lie se identifica con $\operatorname{H}^0(M,T_M)$, el espacio de campos vectoriales holomorfos en $M$. Sea $\mathfrak{X}$ un campo vectorial holomorfo; gracias al principio de Bochner $\mathfrak{X}$ es un tensor paralelo. Para todo punto $p$ de $M$, el vector $\mathfrak{X}(p)$ es invariante por el grupo de holonomía en $p$; por otro lado, deducimos gracias a (1) que este no deja invariante ningún vector no-nulo. Tenemos entonces que $\mathfrak{X}=0$, lo que prueba que el grupo $G$ es discreto; el sub-grupo \emph{compacto} de $G$ formado por automorfismos isométricos es entonces finito.
+\end{proof}
+Podemos ahora, enunciar y probar el siguiente teorema, que precisa el comentario inicial 
+\begin{teo}\label{Cap4Sec2.2-Teo1}
+Sea $X$ una variedad K\"ahleriana compacta cuya curvatura de Ricci es nula.
+\begin{enumerate}
+    \item El revestimiento universal $\widetilde{X}$ es isomorfo (como variedad K\"ahleriana) a un producto
+    \[
+    \mathbb{C}^k \times \prod V_i \times \prod X_j,
+    \]
+    donde $\mathbb{C}^k$ está dotado de la métrica K\"ahleriana estándar, $V_i$ es una variedad K\"ahleriana compacta símplemente conexa, de grupo de holonomía $\operatorname{SU}(m_i)\subseteq \operatorname{SO}(2m_i)$, $X_j$ es una variedad K\"ahleriana compacta símplemenente conexa, de grupo de holonomía $\operatorname{Sp}(r_j)\subseteq \operatorname{SO}(4r_j)$. Esta descomposición es única módulo permutación.
+    \item Existe un revestimiento étale finito $X'$ de $X$, isomorfo como variedad K\"ahleriana al producto
+    \[
+    T\times \prod V_i \times \prod X_j,
+    \]
+    donde $T$ es un toro complejo.
+\end{enumerate}
+En particular, el grupo fundamental $\pi_1(X)$ es una extensión de $\mathbb{Z}^{2k}$ de un grupo finito.
+\end{teo}
+\begin{proof}[Demostración de (1)]
+El teorema de de Rham (\S 1) provee una descomposición
+\[
+\widetilde{X}\cong \mathbb{C}^k \times \prod_i M_i,
+\]
+donde las variedades $M_i$ son irreducibles. El teorema de Cheeger-Gromoll \cite{CheegerGromoll71} asegura que además las variedades $M_i$ son compactas. Dado que la curvatura de Ricci de $M_i$ es nula, su grupo de holonomía $H_i$ está contenido en $\operatorname{SU}(m_i)$. Más aún, tenemos que $M_i$ {\bf no es} simétrica (pues la curvatura de Ricci de un espacio riemanniano simétrico compacto es positiva y no-degenerada; \cite[Teo. 8.6]{Kobayashi96}). El teorema de Berger nos restringe solamente a las posibilidades $H_i=\operatorname{SU}(m_i)$ o bien $H_i=\operatorname{Sp}(r_i)$.
+\end{proof}
+\begin{proof}[Demostración de (2)] Escribamos
+\[
+M:= \prod_i V_i \times \prod_j X_j.
+\]
+El grupo fundamental de $X$ actúa sobre $\mathbb{C}^k\times M$ mediante automorfismos isométricos. Sea $u$ un automorfismo isométrico; debido a la unicidad de la descomposición de de Rham, existen automorfismos isométricos $u_1$ de $\mathbb{C}^k$ y $u_2$ de $M$ de tal suerte que tenemos
+\[
+u(z,m)=(u_1(z),u_2(m)) \textup{ para }z\in \mathbb{C}^k,\;m\in M.
+\]
+Consideremos el homomorfismo $u\mapsto u_2$ desde $\pi_1(X)$ en el grupo finito de automorfismos isométricos de $M$, y sea $\Gamma$ su kernel. El grupo $\Gamma$ actúa libremente sobre $\mathbb{C}^k$, y el cociente $\mathbb{C}^k\slash \Gamma$ es compacto. Sea $\Gamma'$ el conjunto de traslaciones de $\Gamma$; el teorema de Bieberbach afirma que $\Gamma'$ es un sub-grupo de índice finito de $\Gamma$. La variedad compacta $T=\mathbb{C}^k\slash \Gamma'$ es entonces un toro complejo, y luego $T\times M$ es un revestimiento finito de $X$, de donde deducimos (2).
+\end{proof}
+En el caso de variadades K\"ahlerianas \emph{compactas}, la holonomía se puede interpretar puramente en términos de geometría compleja, sin que intervenga la métrica. Esto se basa por un lado en el Teorema de Yau, y por otra parte en el resultado siguiente de \cite[Pag. 142]{YanoBochner53}.
+
+\begin{teo}[Principio de Bochner]\label{Cap4Sec2.2-Teo2}\hfill
+
+Sea $X$ una variedad K\"ahleriana compacta cuya curvatura de Ricci se anula. Entonces todo campo de tensores holomorfo en $X$ es paralelo.
+\end{teo}
+
+La demostración del principio de Bochner se basa en la fórmula siguiente (que obtenemos por cálculo directo): si $\tau$ es un campo de tensores en $X$, entonces 
+\[
+\Delta(\|\tau\|^2)=\|D\tau\|^2.
+\]
+De lo anterior deducimos que el laplaciano de la función $\|\tau\|^2$ es positivo, y luego nulo, lo que implica que $D\tau = 0$. De este resultado, desprendemos el siguiente corolario que utilizaremos en dos casos de interes, que se exponen en las proximas secciones.
+
+\begin{cor}\label{Cap4Sec2.2-Coro1}\hfill
+
+Sea $x\in X$, y sea $H$ la holonomía de $X$ en $x$. La aplicación
+\[
+\omega \longmapsto \omega(x)
+\]
+induce un isomorfismo entre $\operatorname{H}^0(X,\Omega_X^p)$ y el sub-espacio de $\Omega^p(x)$ dado por las $p$-formas invariantes por $H$.
+\end{cor}
+
+Aplicaremos este corolario en las siguientes secciones para ver algunas consecuencias del principio de Bochner.
+\subsection{Variedades Especiales Unitarias}\label{Cap4Sec2SubS3}
+\begin{prop}\label{Cap4Sec2.3-Prop1}\hfill
+
+Sea $X$ una variedad K\"ahleriana compacta, de dimensión $m\geq 3$, cuyo grupo de holonomía es $\operatorname{SU}(m)$. Entonces,
+\begin{itemize}
+    \item[(i)] $X$ es proyectiva.
+    \item[(ii)] Tenemos que
+    \[
+    \operatorname{H}^0(X,\Omega_X^p)=0 \textup{ para todo }0<p<m,
+    \]
+    y además $\chi(X,\mathcal{O}_X)=1+(-1)^m$.
+\end{itemize}
+\end{prop}
+
+\begin{proof}
+Sea $x\in X$. La representación de $\operatorname{SU}(m)$ en $\Omega^p(x)$ es isomorfa a $\Lambda^p \check{\sigma}$, donde $\check{\sigma}$ denota la representación dual de la representación estándar de $\operatorname{SU}(m)$ en $\mathbb{C}^m$. Ella es irreducible para todo $p$, y no trivial para $0<p<m$; para estos valores de $p$, ella no contiene por ende sub-espacios invariantes, de donde se obtiene la anulación de $\operatorname{H}^0(X,\Omega_X^p)$. Deducimos por ende el valor de $\chi(X,\mathcal{O}_X)$ gracias al teorema de Hodge. Finalmente, una variedad K\"ahleriana compacta con $\operatorname{H}^{2,0}(X)=0$ es proyectiva: en efecto, podemos aproximar arbitrariamente la forma de K\"ahler por una forma armónica positiva cuya primera clase de Chern pertenece a $\operatorname{H}^2(X,\mathbb{Q})$; dado que $H^{2,0}(X)=0$, esta forma es necesariamente de tipo $(1,1)$, y luego (gracias al Teorema de Kodaira) un múltiplo de ella define un incrustamiento de $X$ es un espacio proyectivo. 
+\end{proof}
+
+\begin{obs}
+Notar que se tiene el resultado más fuerte siguiente. Sea $\omega$ un elemento no-nulo de $\operatorname{H}^0(X,\Omega_X^m)$, y considerémoslo como un tensor anti-simétrico en $\operatorname{H}^0(X,(\Omega_X^1)^{\otimes m})$. Entonces, el \emph{álgebra}
+\[
+\bigoplus_p \operatorname{H}^0(X,(\Omega_X^1)^{\otimes p})
+\]
+\emph{está generada por $\omega$}. Esto resulta tal como antes gracias al principio de Bochner, junto con el resultado clásico de teoría geométrica de invariantes siguiente: los únicos tensores covariantes en $\mathbb{C}^m$ que son invariantes por la acción de $\operatorname{SU}(m)$ son los polinomios en la función determinante.
+\end{obs}
+
+Recíprocamente, la propiedad (ii) anterior permite caracterizar las variedades especiales unitarias:
+
+\begin{prop}\hfill
+
+Sea $X$ una variedad compacta de tipo K\"ahleriano, de dimensión $m$. Las condiciones siguientes son equivalentes:
+\begin{itemize}
+    \item[(a)] $X$ admite una métrica K\"ahleriana cuyo grupo de holonomía es $\operatorname{SU}(m)$;
+    \item[(b)] El fibrado canónico de $X$ es trivial, y tenemos que
+    \[
+    \operatorname{H}^0(X',\Omega_{X'}^p)=0 \textup{ para todo }0<p<m
+    \]
+    para todo revestimiento finito $X'\to X$.
+\end{itemize}
+Si cualquiera de estas condiciones se satisface, el grupo fundamental $\pi_1(X)$ es finito.
+\end{prop}
+
+\begin{proof}
+Vimos que, bajo la hipótesis (a), el fibrado canónico de $X$ es trivial (por lo visto en el ejemplo \ref{ex4.2.1.2}) y que $\operatorname{H}^0(X,\Omega_X^p)=0$ para $0<p<m$. Si $X'$ es un revestimiento étale de $X$, su grupo de holonomía todavía es $\operatorname{SU}(m)$, y luego tenemos que (a) implica (b).
+
+Supongamos que la condición (b) se satisface. Como $\omega_X$ es trivial, el teorema de Yau implica la existencia de una métrica K\"ahleriana Ricci plana en $X$. Gracias al Teorema \ref{Cap4Sec2.2-Teo1}, existe un revestimiento finito $X'$ de $X$ tal que
+\[
+X'\cong T\times \prod V_i \times \prod X_j.
+\]
+La condición $\operatorname{H}^0(X',\Omega_{X'}^p)=0$ para $0<p<m$ implica que $X'$ no es otra cosa que uno de los $V_i$ (o una superficie $K3$ si $m=2$). Tenemos por ende que $H_0 = \operatorname{SU}(m)$, y como $H$ está contenido en $\operatorname{SU}(m)$ (ver el ejemplo \ref{ex4.2.1.2}), tenemos que $H=\operatorname{SU}(m)$. Finalmente, notamos que $X'$ es simplemente conexa, lo que prueba que $\pi_1(X)$ es finito.
+\end{proof}
+
+\begin{obs}
+Si $m$ es par, entonces $X$ es símplemente conexa. En efecto, con las notaciones anteriores, si $f:X'\to X$ es un revestimiento finito, entonces tenemos que $ \chi(X',\mathcal{O}_{X'})=2=\chi(X,\mathcal{O}_X)$ dado que $m$ es par, y además (gracias al teorema de Grothendieck-Hirzebruch-Riemann-Roch) tenemos que $\chi(X',\mathcal{O}_{X'})=\deg(f)\chi(X,\mathcal{O}_X)$, de donde se deduce que $\deg(f)=1$ y luego $X'=X$. Veremos más abajo que este no es el caso si $m$ es impar.
+\end{obs}
+\begin{ex}
+Todos los ejemplos clásicos de variedades proyectivas cuyo fibrado canónico es trivial verifican las condiciones de la proposición anterior.
+\begin{enumerate}
+    \item Por ejemplo, las hipersuperficies suaves de grado $m+2$ en $\mathbb{P}^{m+1}$, y las intersecciones completas suaves de grados $(d_1,\ldots,d_r)$ en $\mathbb{P}^n$, con $\sum d_i = n+1$. Más generalmente, las intersecciones completas \emph{quasi-homogéneas} de grados $(d_1,\ldots,d_r)$ en el espacio proyectivo con pesos $\mathbb{P}(a_1,\ldots,a_n)$ con $\sum d_i = \sum a_i$.
+    \item La siguiente construcción permite construir numerosos ejemplos. Sea $V$ una variedad proyectiva suave de dimensión $\geq 3$, tal que le divisor anti-canónico $-K_V$ es amplio. En otras palabras, $V$ es una {\bf variedad de Fano}. Entonces, toda hipersuperficie suave $X$ en el sistema lineal $|-K_V|$ es especial unitaria (es decir, verifica las condiciones de la proposición anterior). En efecto, $V$ es símplemente conexa (por el teorema de Myers ), y luego lo mismo es cierto para $X$ gracias al teorema de la sección hiperplana de Lefschetz. Además, la fórmula de adjunción implica que $K_X\equiv (K_V+V)|_V \equiv 0$. Finalmente, el teorema de anulación de Kodaira implica que $\operatorname{H}^p(V,\mathcal{O}_V)=0$ para todo $p>0$, de donde deducimos que $\operatorname{H}^q(X,\mathcal{O}_X)=0$ para todo $0<q<\dim(X)$. Como ejemplos de variedades $V$ con divisor anti-canónico \emph{muy amplio} citemos por ejemplo a los espacios homogéneos y sus productos.
+    \item Sea $p$ un número primo $\geq 5$, y consideremos la hipersuperficie $\widetilde{X}$ de $\mathbb{P}^{p-1}$ definida por la ecuación de Fermat $X_0^p+\ldots + X_{p-1}^p=0$. El grupo $\mu_p$ de raíces $p$-ésimas de la unidad actúa libremente sobre $\widetilde{X}$ mediante 
+    \[
+    \xi \cdot (X_0,\ldots,X_{p-1}):=(X_0,\xi X_1,\ldots, \xi^{p-1}X_{p-1}) \textup{ para todo }\xi\in \mu_p.
+    \]
+    La variedad cociente $X=\widetilde{X}\slash \mu_p$ es especial unitaria, y su grupo fundamental $\pi_1(X)$ es isomorfo a $\mu_p$.
+\end{enumerate}
+\end{ex}
+
+\subsection{Variedades Simpl\'ecticas Holomorfas}\label{Cap4Sec2SubS4}
+Sea $X$ una variedad compleja. Denotaremos por $T_X$ al fibrado tangente holomorfo de $X$. Diremos que una $2$-forma holomorfa $\varphi$ en $X$ es \emph{no-degenerada} en un punto $x\in X$ si la forma alternada $\varphi(x)$ en $T_X(x)$ es no-degenerada. Si $\dim(X)=2r$, esto equivale a decir que la forma $\varphi^r:=\wedge^r \varphi$ no se anula en $x$.
+
+\begin{prop}\label{Cap4Sec2-Prop3.1}\hfill
+
+Sea $X$ una variedad K\"ahleriana compacta de dimensión $2r$, cuyo grupo de holonomía es $\operatorname{Sp}(r)$. Entonces,
+\begin{itemize}
+    \item[(i)] Existe una $2$-forma holomorfa $\varphi$ en $X$ que es no-degenerada en todo punto.
+    \item[(ii)] Tenemos que $\operatorname{H}^0(X,\Omega_X^p)=0$ si $p$ es impar, y $\operatorname{H}^0(X,\Omega_X^{2q})=\mathbb{C}\cdot \varphi^q$ para $0\leq q \leq r$. En particular, tenemos que $\chi(X,\mathcal{O}_X)=r+1$.
+\end{itemize}
+\end{prop}
+
+\begin{proof}
+El punto (i) fue demostrado en el ejemplo \ref{ex4.2.1.3}. Gracias a \cite[Sección 13]{Bourbaki75}, la representación de $\operatorname{Sp}(r)$ en $\Omega^p(x)$ para $p\leq r$ se separa en una suma directa
+\[
+\Omega^p(x)=P_p\oplus P_{p-2}\varphi(x)\oplus P_{p-4}\varphi^2(x)\oplus \cdots,
+\]
+donde las representaciones $P_k$ (con $0\leq k\leq r$) son irreducibles, y no triviales para $k>0$. Por otra parte, la multiplicación por $\varphi^k(x)$ define un isomorfismo equivariante desde $\Omega^{r-k}(x)$ hacia $\Omega^{r+k}(x)$. Deducimos directamente que los únicos elementos invariantes de $\Omega^p(x)$ son (módulo reescalamiento) las potencias exteriores de $\varphi$, de donde se deduce (ii).
+\end{proof}
+
+El resultado anterior nos lleva a introducir la siguiente definición.
+
+\begin{defn}\hfill
+
+Sea $X$ una variedad compleja. Una {\bf estructura simpléctica} (compleja) en $X$ es una $2$-forma cerrada holomorfa en $X$, no-degenerada en todo punto.
+\end{defn}
+
+\begin{obs}
+\begin{enumerate}
+    \item Una variedad simpléctica compleja $X$ es de dimensión par $2r$, y su fibrado canónico $K_X$ es trivial. En efecto, si $\varphi$ es una estructura simpléctica en $X$, la forma $\varphi^r$ es un generador de $K_X$ sin ceros ni polos.
+    \item Esta terminología se introduce por analogía con la noción de estructura simpléctica real sobre una variedad diferenciable. Podemos observar que si $\varphi$ es una estructura simpléctica compleja en $X$, las $2$-formas reales $\operatorname{Re}(\varphi)$ e $\operatorname{Im}(\varphi)$ son estructuras simplécticas reales sobre la variedad diferenciable $X$ (puesto que las formas $(\varphi+\overline{\varphi})^{2r}$ y $(\varphi-\overline{\varphi})^{2r}$, proporcionales a $\varphi^r\overline{\varphi}^r$, no se anulan nunca). En este artículo, sólo consideraremos estructuras simplécticas complejas, que llamaremos símplemente \emph{estructuras simplécticas}.
+    \item Sea $X$ una variedad compleja, $B$ un sub-espacio de $X$ de codimensión $\geq 2$. Entonces \emph{toda estructura simpléctica $\varphi$ en $X\setminus B$ se extiende de manera única a una estructura simpléctica en $X$}. En efecto, gracias al Teorema de Hartogs, $\varphi$ se extiende de manera única a una $2$-forma $\widetilde{\varphi}$ en $X$; si $\dim(X)=2r$, el divisor de $\widetilde{\varphi}^r$, que debe estár contenido en $B$, es nulo, de tal suerte que $\widetilde{\varphi}$ es una estructura simpléctica.
+\end{enumerate}
+\end{obs}
+
+\begin{ex} \hfill
+\begin{enumerate}
+    \item El fibrado cotagente de toda variedad compleja admite una estructura simpléctica canónica.
+    \item Sea $Y$ una variedad compleja de dimensión $2r$, y sea $\omega$ una $2$-forma holomorfa cerrada en $Y$ tal que $\omega^r$ no sea identicamente nula. Entonces, $\omega$ induce una estructura simpléctica en $Y\setminus \operatorname{div}(\omega^r)$.
+    \item Los toros complejos y las superficies $K3$ son ejemplos de variedades simplécticas \emph{compactas}. Otros ejemplos de dichas variedades serán estudiados en la segunda parte.
+\end{enumerate}
+\end{ex}
+
+Relacionemos ahora esta definición algebraica a la geometría diferencial.
+
+\begin{prop}\label{Cap4Sec2.4 Prop1}\hfill
+
+Sea $X$ una variedad compleja compacta, de tipo K\"ahleriana, de dimensión $2r$.
+\begin{enumerate}
+    \item Las condiciones siguientes son equivalentes:
+    \begin{itemize}
+        \item[(a)] $X$ posee una métrica K\"ahleriana cuyo grupo de holonomía está contenido en $\operatorname{Sp}(r)$.
+        \item[(b)] $X$ admite una estructura simpléctica.
+    \end{itemize}
+    \item Las condiciones siguientes son equivalentes:
+    \begin{itemize}
+        \item[(a')] $X$ admite una métrica K\"ahleriana cuyo grupo de holonomía es $\operatorname{Sp}(r)$.
+        \item[(b')] $X$ es símplemente conexa y admite una estructura simpléctica, única modulo reescalamiento.
+    \end{itemize}
+\end{enumerate}
+Si alguna de las condiciones \emph{(a')} o \emph{(b')} se satisfacen, decimos que $X$ es una {\bf variedad simpléctica irreducible}.
+\end{prop}
+
+\begin{proof}
+Probemos (1). El hecho que (a) implica (b) se obtiene del ejemplo \ref{ex4.2.1.3}. Bajo la hipótesis (b), el fibrado canónico de $X$ es trivial; el Teorema de Yau implica entonces la existencia de una métrica K\"ahleriana $g$ Ricci plana. La estructura simpléctica de $X$ es entonces paralela (por el principio de Bochner), lo que implica que la holonomía de $(X,g)$ está contenida en $\operatorname{Sp}(r)$ (nuevamente, por el ejemplo \ref{ex4.2.1.3}).
+
+Probemos (2). Bajo la hipótesis (a'), la unicidad de la estructura simpléctica de $X$ se deduce de la Proposición \ref{Cap4Sec2-Prop3.1}. Gracias al Teorema \ref{Cap4Sec2.2-Teo1}, el revestimiento universal $\widetilde{X}$ de $X$ es una variedad K\"ahleriana compacta de holonomía $\operatorname{Sp}(r)$. En particular, la Proposición \ref{Cap4Sec2-Prop3.1} implica
+\[
+\chi(\widetilde{X},\mathcal{O}_{\widetilde{X}})=r+1=\chi(X,\mathcal{O}_X),
+\]
+y luego (gracias al Teorema de Grothendieck-Hirzebruch-Riemann-Roch) tenemos que $X=\widetilde{X}$, i.e., $X$ es símplemente conexa. Supongamos ahora que $X$ verifica las condiciones de (b'). Gracias a la primera parte de la demostración del Teorema \ref{Cap4Sec2.2-Teo1}, $X$ es isomorfa a un producto de variedades K\"ahlerianas irreducibles $X_1,\ldots,X_m$. La estructura simpléctica $\varphi$ de $X$ induce una estructura simpléctica $\varphi_i$ en cada $X_i$, y tenemos que $\varphi=\sum_i \operatorname{pr}_i^\ast \varphi_i$. Para todo elemento $(\lambda_1,\ldots,\lambda_m)$ de $(\mathbb{C}^\ast)^m$, la forma $\sum_i \lambda_i \operatorname{pr}_i^\ast \varphi_i$ es también una estructura simpléctica. La hipótesis (b') implica entonces que $m=1$, y por lo tanto que $X$ es una variedad K\"ahleriana de holonomía $\operatorname{Sp}(r)$.
+\end{proof}
+
+\subsection{El teorema de Descomposición de Beauville-Bogomolov}\label{Cap4Sec2SubS5}
+Concluiremos esta secci\'on dando una formulación y prueba del teorema de descomposición que es independiente de la elección de una métrica. Para la demostración, será necesario el siguiente lema.
+\begin{lem}\hfill
+
+Sean $Y_1,\ldots,Y_n$ variedades compactas de tipo K\"ahleriano, símplemente conexas y de primera clase de Chern nula, y sea $X=\prod_{l=1}^n Y_l$. Entonces, las métricas K\"ahlerianas Ricci planas en $X$ son exactamente las métricas $\sum_l \operatorname{pr}_l^\ast g_l$, donde $g_l$ es una métrica K\"ahleriana Ricci plana en $Y_l$ para cada $l\in \{1,\ldots,n\}$.
+\end{lem}
+\begin{proof}
+Sea $g$ una métrica K\"ahleriana Ricci plana en $X$, y sea $\omega\in \operatorname{H}^{1,1}(X)$ su clase de cohomología. Dado que las $Y_j$ son símplemente conexas, $\omega$ se escribe de manera única como $\omega=\sum \operatorname{pr}_l^\ast \omega_l$, donde $\omega_l$ es una clase de K\"ahler en $\operatorname{H}^{1,1}(Y_l)$. Gracias al Teorema de Yau, existe una {\bf única} métrica K\"ahleriana Ricci plana $g_l$ en $Y_l$ cuya clase es exactamente $\omega_l$. Entonces, la métrica K\"ahleriana Ricci plana $\sum_l \operatorname{pr}_l^\ast g_l$ en $X$ tiene clase $\omega$, y luego coincide con $g$.
+\end{proof}
+
+\begin{teo}[Descomposición de Beauville-Bogomolov]\label{Cap4Sec2 Teo Beauville-Bogomolov}\hfill
+
+Sea $X$ una variedad compacta de tipo K\"ahleriano tal que $c_1(X)=0$ en $\operatorname{H}^2(X,\mathbb{R})$.
+\begin{enumerate}
+    \item El revestimiento universal $\widetilde{X}$ de $X$ es isomorfo a un producto
+    \[
+    \mathbb{C}^k \times \prod_i V_i \times \prod_j X_j,
+    \]
+    donde $V_i$ es una variedad proyectiva símplemente conexa, de dimensión $m_i\geq 3$, con fibrado canónico trivial, tal que $\operatorname{H}^0(V_i,\Omega_{V_i}^p)=0$ para $0<p<m_i$; $X_j$ es una variedad simpléctica irreducible, compacta de tipo K\"ahleriana. Esta descomposición es única módulo permutación.
+    \item Existe un revestimiento étale finito $X'$ de $X$ tal que
+    \[
+    X'\cong T\times \prod_i V_i \times \prod_j X_j,
+    \]
+    donde $T$ es un toro complejo.
+\end{enumerate}
+\end{teo}
+\begin{proof}
+
+Gracias al Teorema de Yau, $X$ admite una métrica K\"ahleriana Ricci plana. El Teorema \ref{Cap4Sec2.2-Teo1} y los resultados anteriores sobre \textbf{ variedades especiales unitarias} y \textbf{variedades simpl\'ecticas holomorfas} implican entonces las afirmaciones relacionadas a la existencia en el enunciado.
+
+Para demostrar la únicidad, analizaremos primero el caso en que $X$ es símplemente conexa. Fijemos en este caso una métrica K\"ahleriana Ricci plana. Gracias al lema anterior, tenemos que todo isomorfismo $X\to \prod V_i \times \prod X_j$ es \emph{isométrico} siempre que elijamos métricas K\"ahlerianas Ricci planas convenientes en cada uno de los $V_i$ y $X_j$. La unicidad resulta entonces de la unicidad obtenida en el teorema \ref{Cap4Sec2.2-Teo1}.
+
+Para tratar el caso general, basta probar el enunciado siguiente: si $Y$ y $Z$ son variedades compactas, símplemente conexas, de tipo K\"ahleriano cuyas primeras clases de Chern son nulas, entonces todo isomorfismo $u:\mathbb{C}^p\times Y\to \mathbb{C}^q\times Z$ se escribe como $u=(u_1,u_2)$, donde $u_1:\mathbb{C}^p\to \mathbb{C}^q$ y $u_2:Y\to Z$ son isomorfismos. Por otra parte, dado que $Y$ es compacta, el teorema de Liouville implica que podemos escribir
+\[
+u(t,y)=(u_1(t),u_t(y)) \textup{ para }t\in \mathbb{C}^p \textup{ e }y\in Y,
+\]
+donde $u_1$ es un isomorfismo desde $\mathbb{C}^p$ hacia $\mathbb{C}^q$ (lo cual implica en particular que $p=q$), y donde $u_t$ es un automorfismo de $Y$ que depende continuamente de $t\in \mathbb{C}^p$. Dado que el grupo de automorfismo de $Y$ es discreto, gracias al lema \ref{Cap4Sec2.2-Lema1}, tenemos que $u_t$ es constante, lo que prueba nuestra afirmación y por ende el teorema.
+\end{proof}
+
+
+
+\section{Conexidad Simple de Variedades de las variedades de Fano.}
+
+\begin{teo}[Teorema de Myers]\label{Myer}\hfill
+
+Sea $M$ una variedad Riemanniana completa con curvatura $\Ric \geq \delta >0$, entonces su revestimiento universal $\tilde{M}$ es compacto, y en particular, su primer grupo fundamental $\pi_1(M)$ es finito.
+\end{teo}
+Si $X$ es una variedad proyectiva suave y $\pi: X \rightarrow Y$ es un morfismo étale, es decir,
+\[
+\forall p \in X, \quad \exists U_p \subset X \text{ vecindad abierta de $p$ tal que} \quad \pi^{-1}(U_p) = \bigsqcup_{j=1}^r U_j 
+\]
+Entonces,
+\begin{enumerate}
+\item[1.] Si $Y$ es una variedad proyectiva, entonces existe un fibrado $L$ amplio y el teorema de incrustación de Kodaira (ver teorema \ref{kodaira incrustacion}) nos dice que $\pi^\ast L$ define un fibrado amplio de $X$ por lo que $X$ debe ser proyectiva.
+\item[2.] La f\'ormula de Riemann-Hurwitz relaciona el fibrado canónico $K_Y$ con el pullback de $K_X$ como sigue
+\[
+K_Y = \pi^{\ast} K_X + \operatorname{Ram}(\pi)
+\]
+donde $\operatorname{Ram}(\pi)$ corresponde a la ramificaci\'on de $\pi$ que se define en detalle en \cite[Sección 4.2]{Har77}. En particular, si $\pi$ es étale entonces $\operatorname{Ram}(\pi)=0$. Luego, $-K_Y = \pi^{\ast}(-K_X)$ y por lo tanto, que $X$ sea una variedad de Fano implica que $Y$ también lo es.
+\item[3.] El teorema de Grothendieck-Hirzebruch-Riemann-Roch nos dice que
+\[
+	\chi (Y, \mathcal{O}_Y) = \deg( \pi ) \cdot \chi (X, \mathcal{O}_X)
+\]
+En particular, si $Y = \tilde{X}$ el cubrimiento universal de $X$, entonces
+\[
+\deg( \pi ) = \vert \pi_1(X) \vert
+\]
+\end{enumerate}
+\begin{teo}\hfill
+
+Toda variedad de Fano es simplemente conexa.
+\end{teo}
+\begin{proof}
+Sea $X$ una variedad de Fano, el teorema de anulaci\'on de Kodaira (ver el teorema \ref{kodaira anulacion}) y la dualidad de Serre implican que
+\[
+h^{0,q} (X,\mathcal{O}_X ) = h^q (X,\mathcal{O}_X) = h^{n-q}(X,-K_X) = 0,\quad \forall q>0.
+\]
+y por lo tanto, el teorema de Hirzebruch-Riemann-Roch nos dice que
+\[
+\chi (X, \mathcal{O}_X) = h^0 (X, \mathcal{O}_X) = 1.
+\]
+Como $c_1(X)>0$, la soluci\'on de Yau como replicamos en el capitulo anterior nos dice que $X$ admite una m\'etrica de K\"ahler con curvatura de Ricci positiva. Luego, el teorema de Myers implica que el primer grupo fundamental de $X$ es finito. Además, dado que el cubrimiento universal $\tilde{X}$ es una variedad compacta (y, gracias a las observaciones anteriores, una variedad proyectiva de Fano), el Teorema de Grothendieck-Hirzebruch-Riemann-Roch implica que
+\[
+	\chi (\tilde{X},\mathcal{O}_{\tilde{X}}) = \vert \pi_1 (X) \vert \cdot \chi (X, \mathcal{O}_X).
+\]
+Así, dado que las caracteristicas de $X$ y $\tilde{X}$ coinciden, concluimos que $\vert \pi_1 (X) \vert$ es $1$, o equivalentemente el primer grupo fundamental es trivial y por lo tanto $X$ es simplemente conexa.
+\end{proof}
+
+
+

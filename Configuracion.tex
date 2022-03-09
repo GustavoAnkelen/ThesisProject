@@ -1,0 +1,107 @@
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+%\usepackage[latin1]{inputenc}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage{cite}
+\usepackage{color}
+\usepackage{makeidx}
+\usepackage[spanish]{babel}
+
+
+%=================
+% NUEVOS AMBIENTES
+%=================
+
+\newtheorem{nota}{\textbf{Nota}}
+\newtheorem{proposicion}{\textbf{Proposición}}
+\newtheorem{teorema}{\textbf{Teorema}}[chapter]
+\newtheorem{ejemplo}{\textbf{Ejemplo}}[chapter]
+\newtheorem{definicion}{\textbf{Definición}}[chapter]
+\newtheorem{suposicion}{\textbf{Suposición}}
+\newtheorem{procedimiento}{\textbf{Procedimiento}}
+
+
+\def\pf{\noindent{\bf Demostración}}
+%==================
+%FIN DEMOSTRACIONES
+%==================
+
+%\newcommand{\qed}{\begin{flushright}$\Box\Box\Box$\end{flushright}}
+
+%==================
+%FIN EJEMPLOS
+%==================
+
+\def\finejem{\vspace{5mm}\hspace*{\fill}~\mbox{\rule[0pt]{1.5ex}{1.5ex}}\par\endtrivlist\unskip}
+
+%==================
+%TEXTO EN COLOR
+%==================
+
+\newcommand {\fire}[1]{{\color[rgb]{0.6953, 0.1328, 0.1328} {#1}}}
+\newcommand {\green}[1]{{\color[rgb]{0,0.3906,0} {#1}}}
+\newcommand {\red}[1]{{\color[rgb]{1,0,0} {#1}}}
+\newcommand {\blue}[1]{{\color[rgb]{0,0,0.5} {#1}}}
+
+%==================
+%CORTES DE PALABRAS
+%==================
+
+\hyphenation{con-ti-nua-cion cons-truc-cion ad-mi-si-ble
+con-si-de-ra-ble res-trin-gi-da pro-ce-di-mien-to pro-ce-di-mien-tos
+pro-ble-ma con-ti-nua-cion ad-mi-si-bles sen-si-bi-li-dad
+es-ta-bi-li-dad pa-ra-me-tri-za-cion co-ro-la-rio fun-cio-nal
+per-te-ne-cen fac-to-ri-za-cio-nes trans-fe-ren-cia rea-li-zar
+co-pri-mas iz-quier-das ob-te-ne-mos pa-ra res-trin-gi-do u-san-do
+mo-di-fi-ca-do des-pren-den cons-ti-tu-ye pro-ba-bi-li-dad
+pro-ba-bi-li-da-des res-pues-ta va-lor ge-ne-ra-cion o-ri-gi-na-les
+a-su-mien-do con-si-de-ra-das a-pro-xi-ma-cion res-tric-cio-nes
+e-le-men-to va-ria-ble su-per-in-di-ce in-de-pen-dien-te e-di-fi-cio
+des-pla-za-mien-to re-fe-ren-cia si-guien-te res-tric-cion
+dis-po-si-ti-vos ni-vel res-tric-ti-vas e-le-men-tos ho-ri-zon-tal
+va-ria-bles cons-tan-te cons-tan-tes con-fia-bi-li-dad res-tric-cion
+fa-lla fa-llas gra-dien-te res-pe-tar}
+
+%===================
+%PARÉNTESIS Y LLAVES
+%===================
+
+\newcommand{\lpt}{\left.}
+\newcommand{\rpt}{\right.}
+\newcommand{\lc}{\left[}
+\newcommand{\ly}{\left\{}
+\newcommand{\ry}{\right\}}
+\newcommand{\rc}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\lb}{\left|}
+\newcommand{\rb}{\right|}
+\newcommand{\matrizsc}[1]{\begin{matrix}#1\end{matrix}}
+
+%========
+%SÍMBOLOS
+%========
+
+
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\PF}[1]{\mathbb{P}_{\emph{F}_i}(#1)}
+\newcommand{\E}[1]{\mathbb{E}(#1)}
+
+
+
+
+%===================
+%OPERADORES
+%===================
+\newcommand{\traza}[1]{\ensuremath{\mathrm{traza}\left\{ #1 \right\}}}
+\newcommand{\vectri}{\mathrm{vec_T}}

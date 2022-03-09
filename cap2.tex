@@ -1,0 +1,1775 @@
+En este cap\'itulo desarrollaremos una teoría enfocada en el estudio de los espacios de Hölder, y de la aproximación de Schauder al estudio de la regularidad de ecuaciones diferenciales parciales dadas por operadores elípticos, técnica que se denomina como \textbf{estimaciones de Schauder}. Para llevar a cabo este trabajo, realizaremos su desarrollo en las siguientes partes, en la primera sección, \textit{``Teoría de corrientes y residuos''} introducimos los conceptos de distribuciones y corrientes que permitirán extender conceptos elementales de la teoría de ecuaciones diferenciales parciales, en la segunda sección, \textit{``Suavizaci\'on de corrientes y regularidad''} estudiaremos resultados de regularidad que permiten establecer propiedades de regularidad para soluciones de la ecuación de Laplace y de Poisson. Luego, dado que en geometría Riemanniana muchas de las ecuaciones diferenciales que resultan interesantes son de tipo elípticas, en la tercera secci\'on, \textit{``Operadores diferenciales elípticos''} abordaremos la definición y resultados iniciales de operadores elípticos. Todo anterior se utilizará para en la cuarta secci\'on \textit{``Estimaciones de Schauder''} la presentación de resultados respecto a la regularidad de las soluciones de ecuaciones dadas por operadores elípticos generales, la presentación del método de continuidad como principio para establecer la existencia de soluciones de ecuaciones elípticas y el uso de este para establecer un primer resultado de existencia de soluciones. Finalmente, en la secci\'on 5, \textit{``El operador Laplaciano en Variedades de K\"ahler''}, se introducirán definiciones desde la Teoría de Hodge para los operadores diferenciales y Laplaciano, así como su aplicación en el contexto de variedades Kählerianas.
+
+\section{Teoría de corrientes y Residuos}\label{seccion 2.1}
+Empezamos este capitulo introduciendo la teoría de corrientes, que corresponden a formas diferenciales cuyos coeficientes tienen permitido ser distribuciones. Esta teoría fue introducida por de Rham para incorporar en un marco de estudio las formas suaves, es decir, de clase $\mathcal{C}^\infty$ junto a $p$-ciclos, es decir $p$-formas elementos de $\cohom^{p}_{\operatorname{dR}}(M,\bbZ)$.\\
+Consideremos $M$ una variedad diferencial, orientada y con $\dim_{\real}(M) = m$. La dualidad de Poincar\'e \cite[Ver Cap.0 Secci\'on 4]{GriHar78} y el teorema de de Rham \cite{deRham31} nos dicen que para $\Gamma$ un $p$-ciclo sobre $M$ (es decir $\Gamma \in \cohom_p (M, \real)$), existe una $(m-p)$-forma suave $\omega$ que es dual a $\Gamma$ en el siguiente sentido
+\[
+\int_{\Gamma} \varphi = \int_M \omega \wedge \varphi \, , \, \forall \varphi \ p\text{-forma cerrada} 
+\]
+Adem\'as, por el teorema de Stokes sabemos que $\omega$ es única salvo por sumar una forma exacta, es decir, si $\omega$ y $\omega'$ son duales de Poincar\'e a $\Gamma$ entonces existe $\eta\in $ tal que $\omega - \omega' = \dd\eta$.
+\begin{obs}
+Un caso particular que resulta bastante explicito es cuando consideramos $X$ una variedad compleja en vez de $M$ y que $\Gamma$ es el ciclo que aparece definido por una subvariedad analítica $V$ de codimensi\'on $1$. 
+\end{obs}
+Comenzamos introduciendo sobre $\real^n$ la siguiente topolog\'ia, 
+\begin{defn}[Topolog\'ia de Whitney]\hfill
+
+Sea $\mathcal{C}^{\infty}_{c}(\real^n)$ el espacio vectorial real de funciones suaves con soporte compacto sobre $\real^n$. Sean $x= (x_1,\ldots, x_n)$ son coordenadas sobre $\real^n$, y $\partial_i = \frac{\partial}{\partial x_i}$ y $\partial^\alpha$ = $\partial^{\alpha_1}_{I} \cdots \partial^{\alpha_n}_{I}$ para el multi-\'indice $\alpha = (\alpha_1, \ldots, \alpha_n) \in \mathbb{N}_0^n$. Definimos la \textbf{$\mathcal{C}^p$-topolog\'ia} o \textbf{$p$-topolog\'ia de Whitney} sobre $\mathcal{C}^{\infty}_{c}(\real^n)$ diciendo que una sucesión $\varphi_n \xrightarrow{C^p}0$ si existe un compacto $K$ tal que $\supp(\varphi_n)\subset K$ para todo $n\in\mathbb{N}$ y para todo $\alpha$ satisfaciendo $\vert \alpha\vert = \alpha_1 + \ldots + \alpha_n \leq p$
+\[
+\partial^{\alpha}\varphi_n(x) \rightarrow 0
+\]
+uniformemente sobre $K$.\\
+Definimos la $\mathcal{c}^{\infty}$-topolog\'ia diciendo que $\varphi \rightarrow 0 $ si existe un compacto $K$ para el cual $\supp(\varphi_n)\subset K$ para cada $\varphi_n$ y para el cual $\varphi_n \xrightarrow{C^p} 0$ para todo p.
+\end{defn}
+\begin{defn}[Distribución]\hfill
+
+Una \textbf{distribución}  sobre $\real^n$ es una transformación lineal $T:\mathcal{C}^{\infty}_{c}(\real^n) \rightarrow \comp$ que es continua en la $\mathcal{C}^{\infty}$-topolog\'ia. Denotamos por $\distribution(\real^n)$ al espacio vectorial formado por las distribuciones sobre $\real^n$.\\
+Decimos que una \textbf{distribución es de orden $p$} si es continua en la $\mathcal{C}^p$-topolog\'ia.
+\end{defn}
+Presentaremos algunos ejemplos que también serán útiles para ilustrar algunos cálculos de interés y que aparecerán también mas adelante 
+\begin{ex}\hfill
+
+\begin{enumerate}
+\item Sea $\psi (x)\in L^1_{\loc}(\real^n)$, podemos definir una distribución $T_{\psi}$ de orden cero como
+\[
+T_{\psi}(\varphi) = \int_{\real^n} \varphi(x)\psi(x)dx
+\] 
+donde $dx = dx^1 \wedge \ldots \wedge dx^n$, y donde asumimos que $\real^n$ tiene orientación dada por esta forma.
+\item Sea $\delta$ la función delta de Dirac, que se define como
+\[
+\delta(\varphi) = \varphi(0)
+\]
+Extenderemos los operadores $D_i$ al espacio de distribuciones haciendo
+\[
+(D_i T) (\varphi) = - T(D_i \varphi).
+\]
+Esta se denomina usualmente como \textbf{derivada distribucional}. Si $T=T_\psi$ es la distribución asociada a una función $\psi$ de clase $\mathcal{C}^1$, entonces para $\varphi\in \mathcal{C}^{\infty}_{C}(\real^n)$ 
+\begin{align*}
+(D_i T_\psi)(\varphi) &:=  - T_\psi (D_i \varphi) \\
+ &= -\int_{\real^n} \psi(x) \left[ \dfrac{\partial\varphi}{\partial x^i}\right]dx \\
+ &= \int_{\real^n} \dfrac{\partial \psi}{\partial s^i} \varphi (x) dx
+\end{align*}
+Por el teorema de Stokes. Concluimos que
+\[
+(D_i T_\psi)(\varphi) = (T_{D_i \psi})(\varphi).
+\]
+De esta manera obtenemos una noción de derivación para distribuciones que tiene sentido. 
+\item Considerar la función de escalón de Heaviside:
+\[
+\left\lbrace \begin{array}{c}
+\psi(x)=0, \, x<0, \\
+\psi(x)=1, \, x\geq 0.
+\end{array}\right. \in L^1_{\loc}(\real).
+\]
+Ignorando la singularidad en $x=0$, $\psi'(x) =0$. As\'i la derivada distribucional es dada por
+\begin{align*}
+(DT_\psi)(\varphi) &= - \int^{\infty}_{-\infty} \varphi'(x) \psi(x)dx \\
+&= - \int^{\infty}_{0}\varphi'(x)dx \\
+&= \varphi(0)
+\end{align*}
+Es decir, la derivada distribucional satisface $(DT_\psi) = \delta_{\lbrace 0\rbrace}$.
+\end{enumerate}
+\end{ex}
+A partir de este \'ultimo ejemplo, diremos que la diferencia $DT_\psi - T_{D\psi}$ es denominado \textbf{residuo}, donde $D\psi$ es la derivada usual de $\psi$, desarrollaremos esto en el resto de esta sección.\\
+Sea $\mathcal{A}^{p}_c (\real^n)$ el espacio de $q$-formas con coeficientes $\mathcal{C}^{\infty}$ sobre $\real^n$ con soporte compacto, de esta manera, la topolog\'ia usual sobre $\mathcal{C}^{\infty}_{c}(\real^n)$ puede usarse componente a componente para hacer de $\mathcal{A}^{p}_c (\real^n)$ un espacio vectorial topol\'ogico completo.
+
+\begin{defn}\hfill
+
+El dual topol\'ogico de $\mathcal{A}^{n-q}_c (\real^n)$ es el \textbf{espacio de corrientes} de grado $q$ y se denota por $\distribution^q (\real^n)$. Es decir
+\[
+\distribution^q (\real^n) = \lbrace T: \mathcal{A}^{p}_c (\real^n) \longrightarrow \comp \,\text{, lineal continua.}\rbrace
+\]
+
+\end{defn}
+\begin{ex}\label{formas q-loc}
+En los siguientes ejemplos denotaremos por $L^q (\real^n, \loc)$ a las $q$-formas $\psi = \sum \psi_I dx^I$ cuyos coeficientes son funciones $L^1$ localmente \footnote{No confundir con $L^q_{\loc} (\real^n)$, es decir, el espacio de funciones localmente $L^q(\real^n)$} sobre $\real^n$, es decir, 
+\[
+L^q (\real^n, \loc) = \left\lbrace \psi = \sum_I \psi_I(x) dx_I,\, q\text{-forma tal que } \psi_I \in L^1_{\loc}(\real^n) \right\rbrace .
+\]
+\begin{enumerate}
+\item A $\psi$ se le asocia una corriente $T_\psi \in \distribution^q (\real^n)$ definida por:
+\[
+T_\psi (\varphi) = \int_{\real^n} \psi \wedge \varphi, \, \, \varphi \in \mathcal{A}^{n-q}_{c} (\real^n).
+\]
+Donde, por los grados de $\psi$ y $\varphi$ tenemos que el producto $\psi \wedge \varphi$ es una $n$-forma, es decir, un múltiplo \emph{(}por un coeficiente de clase $\mathcal{C}^{\infty}(\real^n)$\emph{)} de la forma de volumen.
+\item Si $\Gamma$ es una $(n-q)$-cadena suave y orientada en $\real^n$, entonces $\Gamma$ define una corriente $T_\Gamma \in \distribution^q (\real^n)$ como
+\[
+T_\Gamma (\varphi) = \int_\Gamma \varphi, \ \ \varphi \in \mathcal{A}^{n-q}_{c} (\real^n).
+\]
+\end{enumerate}
+\end{ex}
+\begin{obs}
+Si $T$ es una corriente, llamamos \textbf{soporte de } $T$ al conjunto cerrado $S$ mas pequeño tal que $T(\varphi) = 0$ para todo $\varphi \in \mathcal{A}^{n-q}_c (\real^n\backslash S)$, así, podemos ver que $\supp(T_{\Gamma})=\Gamma$.
+\end{obs}
+La derivada exterior para formas suaves induce un operador
+\begin{align*}
+\dd : \distribution^q (\real^n) &\longrightarrow \distribution^{q+1} (\real^n) \\
+T &\longmapsto (\dd T)(\varphi) := (-1)^{q+1} T(\dd \varphi)
+\end{align*}
+De esta forma, tenemos que $\dd^2 =0$ sobre $\distribution^q (\real^n)$. Si consideramos $\psi \in \mathcal{A}^q (\real^n)$ definiendo la distribución  
+\[
+T_\psi (\varphi) = \int_{\real^n } \psi \wedge \varphi,
+\]
+utilizamos el teorema de Stokes para obtener que
+\begin{align*}
+	\dd T_\psi (\varphi) &:= (-1)^{q+1} \int_{\real^n} \psi \wedge \dd \varphi\\
+	&= - \cancelto{0}{\int_{\real^n} \dd(\psi\wedge\varphi)} + \int_{\real^n} \dd\psi \wedge \varphi \\
+	&= T_{\dd \psi} (\varphi)
+\end{align*}
+De forma análoga, veamos que ocurre para la distribución $T_{\Gamma} $ definida por una subvariedad $\Gamma$ como antes,
+\begin{align*}
+\dd T_{\Gamma}(\varphi) &:= (-1)^{q+1}\int_{\Gamma} \dd \varphi \\
+&=(-1)^{q+1} \int_{\partial \Gamma} \varphi \\
+&= (-1)^{q+1} T_{\partial \Gamma}(\varphi).
+\end{align*}
+Así, operar por $\dd$ sobre el espacio de corrientes induce sobre las formas suaves una noción usual de derivada exterior sobre formas suaves, y para las subvariedades suaves (al menos por partes) los denominados \textbf{operadores borde} $\pm \partial$.\\\vspace{2mm}
+A continuación, veamos que los dos resultados anteriores se pueden estudiar en conjunto, para esto supongamos que $\psi \in L^q (\real^n , \loc)$ es de clase $\mathcal{C}^\infty$ fuera de un conjunto cerrado $S\subset \real^n$,  m\'as a\'un, asumamos que $\dd \psi$ sobre $\real^n\backslash S$ se extiende localmente a una  forma $L^1$ sobre $\real^n$, es decir, 
+\[
+\exists \, \eta \in L^{q+1}(\real^n ,  \loc) \, \text{ tal que } \eta{\big\vert}_{\real^n \backslash S} = \dd \psi.
+\]
+Definimos el \textbf{residuo} $R(\psi)$ mediante la siguiente igualdad de corrientes
+\[
+\dd T_\psi = T_{\dd \psi} + R(\psi).
+\]
+Notemos que $\supp\left(R(\psi)\right) \subset S$.\\
+\begin{ex}
+Como definimos en el ejemplo \ref{formas q-loc} denotaremos el
+subconjunto de las $(p,q)$-formas holomorfas localmente $L^1$ como
+\[
+L^{p,q} (\comp^n , \loc) = \left\lbrace \psi = \sum_I \psi_I(x) \, dx_I,\, (p,q)\text{-forma tal que } \psi_I \in L^1_{\loc}(\comp^n)\right\rbrace
+\]
+Para $z\in \comp$, considerar el Kernel de Cauchy
+\[
+\kappa =\dfrac{1}{2\pi\ii} \dfrac{dz}{z}.
+\]
+notemos que $\kappa \in L^{1,0}(\comp, \loc)$  y adem\'as es de clase $\mathcal{C}^\infty$ sobre $\comp\backslash\lbrace 0 \rbrace$, m\'as a\'un, $\dd \kappa = \overline{\partial}\kappa = 0$, en primer lugar por ser una $(1,0)$-forma, el diferencial se anula al contener un $d^2 z$, y en segundo lugar $\overline{\partial}z =0 $ pues $\kappa$ es holomorfa.\\
+Luego por la f\'ormula integral de Cauchy-Pompeiu, obtenemos que
+\[
+\varphi(0) = \dfrac{1}{2\pi\ii}\int_\comp \dfrac{\partial \varphi}{\partial\overline{z}} \dfrac{1}{z} dz\wedge d\overline{z}, \ \ \ \forall \varphi \in \mathcal{C}^{\infty}_{c}(\comp)
+\]
+De esta manera, para un $\varphi \in \mathcal{C}^\infty_c (\comp)$ arbitrario la \'ultima igualdad puede verse como,
+\begin{align*}
+\varphi(0) &= \int_\comp \kappa\wedge \dfrac{\partial \varphi}{\partial\overline{z}}\\
+ &= \overline{\partial}T_{\kappa}(\varphi),
+\end{align*}
+de lo que podemos concluir que
+\[
+\overline{\partial}(T_\kappa) = \delta_{\lbrace 0 \rbrace},
+\]
+y por lo tanto, obtenemos el residuo para el Kernel de Cauchy $\kappa$ 
+\[
+R\left( \dfrac{1}{2\pi\ii} \dfrac{dz}{z}\right) = \delta_{\lbrace 0\rbrace}
+\]
+la distribución delta de Dirac en $0$.
+\end{ex}
+Podemos extender el ejemplo anterior, en primer lugar a $\real^n$ y luego a $\comp^n$ (esta ultima extension viene de forma natural dado que $\comp^n \cong \real^{2n}$. En adelante, consideraremos una notación radial, de la forma
+\begin{align*}
+r^2 &= \sum_i (x^i)^2 = \Vert x \Vert^2, \\
+r dr &= \sum_i x^i dx^i \, \in \mathcal{A}^{1}(\real^n),\\
+\Phi(x) &= dx^1 \wedge \ldots \wedge dx^n,\\
+\Phi^i (x) &= (-1)^{i-1} x^i dx^1 \wedge \ldots \wedge dx^{i-1} \wedge dx^{i+1} \wedge \ldots \wedge dx^n.
+\end{align*}
+Podemos escribir estos elementos mediante el uso del operador $\star$ de Hodge, sobre el cual discutiremos mas adelante.\\
+En primer lugar, notemos que la función $r^{-s}$ es localmente integrable para $s<n$ pero no lo es si $s=n$. Definimos
+\begin{align}\label{sigma volumen}
+\sigma &= C_n \dfrac{\sum_i \Phi^i(x)}{\Vert x \Vert^n} \, \in \mathcal{A}^{n-1}(\real^n)\\
+&=C_n \dfrac{\star r dr}{r^n}.
+\end{align}
+Donde $C_n = \frac{\pi^{n/2}}{\Gamma(n/2 +1)}$ es una constante dada por el volumen de la esfera $B(0;1)\subset \real^n$, que depende solo de $n$. Por otro lado, se tiene que $\sigma \in L^{n-1}\left( \real^n, \loc \right)$, y como esta se define radialmente, concluimos que es invariante bajo acción del grupo ortogonal y es de clase $\mathcal{C}^\infty$ sobre $\real^n \backslash\lbrace 0 \rbrace$. Notemos que
+\begin{align*}
+\dd\Phi^i(x) &= (-1)^{i-1}\dd \left(x^i  dx^1 \wedge \ldots \wedge dx^{i-1} \wedge dx^{i+1} \wedge \ldots \wedge dx^n\right)\\
+&= (-1)^{i-1} \left( dx^i \wedge dx^1 \wedge \ldots \wedge dx^{i-1}\wedge dx^{i+1} \wedge \ldots \wedge dx^n \right)\\
+&= (-1)^{i-1} (-1)^{i-1} \left(dx^1 \wedge \ldots \wedge dx^{i-1}\wedge dx^i \wedge dx^{i+1} \wedge \ldots \wedge dx^n \right) \\
+&= \Phi(x)
+\end{align*}
+donde utilizamos que $\Phi^i (x)$ es una forma alternante y que $\dd^2 =0$. Dado que el radio $r$ se comporta como
+\[
+r^{2n} = \left( (x^1)^2 + \ldots + (x^n)^2 \right)^n
+\]
+obtenemos para $\dd \sigma$ que
+\begin{align*}
+\dd \sigma &= C_n \dd\left(\dfrac{\sum_i \Phi^i(x)}{\Vert x \Vert^n} \right)\\
+&= C_n \left( \sum_{i=1}^n \dfrac{\partial}{\partial x^i}  \dfrac{\left(\sum_{j=1}^n \Phi^j (x)\right)}{\Vert x \Vert^n}dx^i - \sum_{j=1}^n \Phi^j (x) \cdot \dfrac{nx^i}{\Vert x \Vert^{n+2}}dx^i \right) \\
+&= C_n \left( \dfrac{\sum_{j=1}^n \dd\Phi^j(x)}{\Vert x \Vert^n} -n \sum_{i=1}^n \sum_{j=1}^n \dfrac{\Phi^j(x)x^i}{\Vert x \Vert^{n+2}}dx^i \right) \\
+&= C_n \left( \dfrac{\sum_{j=1}^n \dd\Phi^j(x)}{\Vert x \Vert^n} -n  \sum_{j=1}^n \dfrac{\Phi^j(x)x^j}{\Vert x \Vert^{n+2}}dx^j \right)\\
+&= C_n \left( \dfrac{n\Phi(x)}{r^n} - n\dfrac{rdr\wedge \star (rdr)}{r^{n+2}}\right)\\
+&= 0.
+\end{align*}
+Luego, por teorema de Stokes la integral
+\[
+\int_{\Vert x \Vert=\varepsilon} \sigma
+\]
+es independiente del radio $\varepsilon >0$. De esta manera, utilizando adecuadamente la constante $C_n(\varepsilon)$ se obtiene que $\sigma$ es la única forma sobre $\real^n\backslash \lbrace 0 \rbrace$ que es invariante bajo rotaciones ortogonales al radio $dr$ de la esfera y que integra $1$ sobre toda esfera de radio arbitrario $\varepsilon$.\\
+En $\real^2$ con coordenadas polares $(x,y)=(r \cos(\theta), r \sin(\theta))$, tendremos que 
+\[
+dx = \dfrac{\partial x}{\partial r}dr + \dfrac{\partial x}{\partial \theta}d\theta \, ,\ \text{ y } \ \ dy = \dfrac{\partial y}{\partial r}dr + \dfrac{\partial y}{\partial \theta}d\theta
+\]
+y por lo tanto, podemos escribir $\sigma$ como
+\[
+\sigma = \dfrac{1}{2\pi}\dfrac{xdy - ydx}{x^2 + y^2}= \dfrac{1}{2\pi}d\theta
+\]
+Si denotamos por $\omega \in \esf^{n-1}$ al sistema de coordenadas polares en $\real^n$ para el radio $r=\Vert x \Vert$ , escribimos $x = r\omega$ y 
+\[
+\sigma = C_n d\omega.
+\]
+Para $\varphi \in \mathcal{C}^{\infty}_c (\real^n)$, por el teorema de Stokes y luego por el teorema del valor medio, obtenemos,
+\begin{align*}
+dT_{\sigma} (\varphi):= - \int_{\real^n} d\varphi \wedge \sigma &:= \lim_{\varepsilon \rightarrow 0} \left( - \int_{\real^n \backslash \lbrace \Vert x \Vert \leq \varepsilon \rbrace} d\varphi \wedge \sigma\right) \\
+&= \lim_{\varepsilon \rightarrow 0}\int_{\Vert x \Vert = \varepsilon} \varphi \sigma \\
+&= \varphi(0).
+\end{align*}
+Como antes, concluimos la igualdad de corrientes
+\[
+\dd T_\sigma = \delta_{\lbrace 0 \rbrace}.
+\]
+Sobre $\comp^n \cong \real^{2n}$ la forma $\sigma$ se descompone en componentes holomorfas y antiholomorfas, cada cual es invariante bajo el grupo unitario. Salvo multiplicación por alguna constante (en la que profundizaremos mas adelante), la componente de tipo $(n,n-1)$ de $\sigma$ es de la forma
+\begin{align*}
+\beta &= C_n \dfrac{\sum \overline{\Phi^i (z)}\wedge \Phi(z)}{\Vert z \Vert^{2n}} \\
+&= C_n \dfrac{\star (r\overline{\partial}r)}{r^{2n}}
+\end{align*}
+
+\begin{obs}\hfill
+
+\begin{enumerate}
+\item Bajo nuestra notación, tendremos que 
+\[
+\Phi \in \mathcal{A}^{n,0}(\comp^n), \ \ \ \Phi^i \in \mathcal{A}^{n-1,0}(\comp^n), \ \ \ \text{ y } \overline{\Phi^i} \in \mathcal{A}^{0,n-1}(\comp^n)
+\]
+\item Tendremos que $\beta \in L^{n,n-1}(\comp^n,\loc)$ y como $\overline{\partial} \overline{\Phi^i (z)} = \overline{\Phi(z)}$ de forma análoga al calculo realizado para $\sigma$ \footnote{Aqu\'i debemos considerar \[
+z= (x_1+iy_1, \ldots, x_n+ iy_n)
+\] con norma de la forma
+\[
+\Vert z \Vert^2 = z_1 \overline{z_1} + \ldots + z_n \overline{z_n} = x_1^2 + y_1^2 + \ldots x_n^2 + y_n^2
+\]}
+\begin{align*}
+\overline{\partial}\beta &= \overline{\partial} \left( C_n \dfrac{\sum_i \overline{\Phi^i (z)}\wedge \Phi(z)}{\Vert z \Vert^{2n}}\right) \\
+&= C_n \left[ \overline{\partial} \left(\sum_i \overline{\Phi^i (z)} \wedge \Phi(z)\right)\dfrac{1}{\Vert z \Vert^{2n}} + \left(\sum_i\overline{\Phi^i (z)} \wedge \Phi(z)\right) \overline{\partial}\left( \dfrac{1}{\Vert z \Vert^{2n}} \right) \right]\\
+&= C_n \left[ \sum_i \left(\overline{\partial}\overline{\Phi^i (z)}\wedge \Phi(z) + \overline{\Phi^i (z)}\wedge\cancelto{0}{\overline{\partial}\Phi(z)}\right) \dfrac{1}{\Vert z \Vert^{2n}} + \left(\sum_i\overline{\Phi^i (z)} \wedge \Phi(z)\right) \overline{\partial}\left( \dfrac{1}{\Vert z \Vert^{2n}} \right)  \right]\\
+&= C_n \left[ \dfrac{n \overline{\Phi(z)}\wedge \Phi(z)}{\Vert z \Vert^{2n}} + z\left( \displaystyle\sum_i \overline{\Phi^i (z)}\wedge \Phi(z)\right) \dfrac{1}{\Vert z\Vert^{2n+2}} \right] \\
+\end{align*}
+De lo que podemos concluir que $\overline{\partial}\beta = 0$ en $\comp^n\backslash\lbrace 0 \rbrace$. Luego, dado que para formas de tipo $(n,q)$ los operadores $\dd$ y $\overline{\partial}$ coinciden, mediante un uso adecuado de la constante $C_n$ obtenemos que
+\[
+\overline{\partial} T_{\beta} = \delta_{\lbrace 0 \rbrace}
+\]
+y en consecuencia el residuo $R(\beta) = \delta_{\lbrace 0 \rbrace}$. De forma expl\'icita, si consideramos $\varphi \in \mathcal{C}^{\infty}_{c}(\comp^n)$ arbitrario, entonces
+\[
+\varphi(0) = \int_{\comp^n} \overline{\partial}\varphi \wedge \beta,
+\]
+Como en el caso de una variable, esta igualdad puede extenderse a formas que no necesariamente han de tener soporte compacto, de lo que obtenemos
+\[
+\varphi(0) = \int_{\mathbb{B}(r)} \overline{\partial}\varphi \wedge \beta + \int_{\partial \mathbb{B}(r)} \varphi\beta,
+\]
+donde $\mathbb{B}(r)=\lbrace z \in \comp^n \text{ tal que } \vert z \vert  < r \rbrace$, es decir, bola compleja $n$-dimensional de radio $r$. En caso que $\varphi \in \mathcal{O}(\comp^n)$ es holomorfa, esto se reduce a la formula de Bochner-Martinelli \cite[Ver pag.27]{Dem97}, 
+\[
+\varphi(0) = \int_{\Vert z \Vert = r} \varphi(z)\beta(z,\overline{z}).
+\]
+\end{enumerate}
+\end{obs}
+Es posible probar los resultados de la observación anterior reduciéndonos al caso de una variable, de forma tal que permita obtener información respecto a la expresión que define $\beta$. Empezamos verificando que
+\[
+\beta = C_n \left(\partial\left( \log \Vert z \Vert^2 \right)\right)\wedge \left( \partial\overline{\partial}\left(\log \Vert z \Vert^2 \right)\right)^{n-1}.
+\]
+Donde, 
+\begin{align*}
+\partial \left( \log \Vert z\Vert^2 \right) &= \sum_{i=1}^n \dfrac{\partial}{\partial z^i } \left( \log \Vert z \Vert^2 \right)\\
+&= \sum_{i=1}^n \dfrac{\overline{z}^i}{\Vert z \Vert^2} dz^i
+\end{align*}
+Análogamente, la derivada antiholomorfa es
+\[
+\overline{\partial} \left( \log \Vert z\Vert^2 \right) = \sum_{i=1}^n \dfrac{z^i}{\Vert z \Vert^2} d\overline{z}^i.
+\]
+Luego, 
+\begin{align*}
+\partial\overline{\partial} \left( \log \Vert z \Vert^2 \right) &= \partial\left( \sum_{i=1}^n \dfrac{z^i}{\Vert z \Vert^2} d\overline{z}^i \right)\\
+&= \sum_{j=1}^n \sum_{i=1}^n \dfrac{\partial}{\partial z^j} \left( \dfrac{z^i d\overline{z}^i}{\Vert z \Vert^2} \right) \\
+&= \sum_{j=1}^n \sum_{i=1}^n \left[ \frac{1}{\Vert z \Vert^2}\dfrac{\partial}{\partial z^j}\left( z^i \right) + z^i \dfrac{\partial}{\partial z^j}\left(\frac{1}{\Vert z\Vert^2}\right) \right]d\overline{z}^i \\
+&= \sum_{j=1}^n \sum_{i=1}^n \dfrac{dz^j \wedge d\overline{z}^i}{\Vert z \Vert^2} + \dfrac{z^i \overline{z}^j}{\Vert z \Vert^4} dz^j \wedge d\overline{z}^i
+\end{align*}
+Si consideramos la proyección natural de $\comp^n$ en el espacio proyectivo
+\[
+\comp^n\backslash\left\lbrace 0 \right\rbrace \longrightarrow \mathbb{P}^{n-1}
+\]
+dada por asignar cada vector complejo $v$ a la recta que genera $[v] = \ell_v$. Tenemos que el pullback de la forma de K\"ahler asociada a la métrica Fubini-Study tiene la forma 
+\[
+\Omega = \frac{\ii}{4\pi}\partial\overline{\partial}\left( \log \Vert z \Vert^2 \right).
+\]
+Si $\tilde{\comp}^n$ es el blow-up de $\comp^n$ sobre el origen y 
+\[
+\pi : \tilde{\comp}^n \longrightarrow \mathbb{P}^{n-1}
+\]
+es la extension sobre $\tilde{\comp}^n$ de la proyección natural. $\tilde{\comp}^n$ es entonces, el espacio total del fibrado en recta universal sobre el espacio proyectivo $\mathcal{O}_{\mathbb{P}^{n-1}}(-1)$, y el pullback $\pi^* \Omega$ es suave sobre $\tilde{\comp}^n$. Luego, para $\theta=\partial \log \Vert z\Vert^2$, sobre $\tilde{\comp}^n$ tenemos que
+\[
+\pi^* \beta = C_n \theta \wedge (\pi^* \Omega)^{n-1},
+\]
+Donde $\theta$ es una $(1,0)$-forma que sobre cada fibra $\lbrace\lambda z\rbrace_{\lambda \in \comp}$ de $\tilde{\comp}^n \rightarrow \mathbb{P}^{n-1}$ se reduce a $\frac{d\lambda}{\lambda}$. Es decir, $\pi^* \beta$ sobre $\tilde{\comp}^n$ corresponde al pullback de la forma de volumen asociada a la metrica Fubini-Study sobre $\mathbb{P}^{n-1}$ multiplicada por una $(1,0)$-forma que se reduce al Kernel de Cauchy en cada fibra de $\pi : \tilde{\comp}^n\rightarrow \mathbb{P}^{n-1}$. De esta manera, la formula de Bochner-Martinelli para $n$-variables puede reducirse al uso de la formula integral de Cauchy, haciendo adecuadamente el pullback de formas a $\tilde{\comp}^n$.
+
+
+\section{Suavizaci\'on de Corrientes y regularidad}\label{seccion 2.2}
+Una distribución  $T\in\mathfrak{D}(\real^n)$ se llama \textbf{suave} en caso que $T=T_{\psi}$ para alguna función $\psi(x) \in \mathcal{C}^{\infty}(\real^n)$.\\
+Consideremos $H(x)\in \mathcal{C}^{\infty}_c (\real^n)$ una función no negativa con soporte en una vecindad del origen, tal que
+\[
+\int_{\real^n} H(x)dx =1.
+\]
+Dado $H$ como en el punto anterior, definimos
+\[
+H_{\varepsilon}(x) = \frac{1}{\varepsilon^n} H\left( \dfrac{x}{\varepsilon}\right).
+\]
+De esta manera, si $\supp(H)=K$, entonces $\operatorname{supp}\left( H_\varepsilon \right)= \varepsilon K$, y, como antes
+\[
+\int_{\real^n} H_{\varepsilon}(x)dx =1.
+\]
+Sea $\varphi \in \mathcal{C}^{\infty}_c (\real^n)$, entonces
+\[
+\min_{x\in\varepsilon K} \varphi(x) \leq \int_{\real^n} H_{\varepsilon}(x) \varphi(x) dx \leq \max_{x\in\varepsilon K} \varphi(x)
+\]
+Donde los extremos de la desigualdad tienden a $\varphi(0)$ cuando $\varepsilon \rightarrow 0$, de esta manera vemos que
+\[
+\lim_{\varepsilon \rightarrow 0} \int_{\real^n} H_{\varepsilon} (x) \varphi(x)dx = \varphi (0),
+\]
+es decir, $T_{H_\varepsilon}\rightarrow \delta_{\lbrace 0 \rbrace}$ cuando $\varepsilon \rightarrow 0$. Esto nos ha permitido  ``suavizar'' la función $\delta$ de Dirac, así, para una distribución cualquiera $T \in \mathfrak{D}(\real^n)$ consideraremos la función
+\[
+T_\varepsilon (x) = T_y \left(H_\varepsilon (x-y)\right),
+\]
+Donde el sub\'indice $y$ indicar\'a que consideramos $H_\varepsilon (x-y)$ como una función de $y$ y que se aplica $T$ de acuerdo a esto. De esta manera, $T_\varepsilon (x)$ es una función de clase $\mathcal{C}^\infty$, sus derivadas son de la forma
+\[
+D^{\alpha}T_\varepsilon (x) = \pm T_y\left( D^{\alpha}_x H_\varepsilon(x-y)\right).
+\]
+En adelante, denotaremos por $T_\varepsilon$ a la distribución sobre $\real^n$ definida por la función $T_\varepsilon (x)$, teniendo presente esta notación presentamos las siguientes propiedades.
+\begin{prop}\label{propiedades de las T epsilon}\hfill
+
+Para las distribuciones $T_\varepsilon$ se tiene que
+\begin{enumerate}
+\item $\left(T_\varphi\right)_\varepsilon =  T_{\varphi_\varepsilon}$ para todo $\varphi \in \mathcal{C}^{\infty}(\real^n)$.
+\item $T_\varepsilon (\psi) = T\left( \psi_\varepsilon \right)$ para todo $\psi \in \mathcal{C}^{\infty}_c (\real^n)$.
+\item $(DT)_\varepsilon = D\left(T_\varepsilon\right)$ para $D= \frac{\partial^\alpha}{\partial	x^\alpha}$.
+\end{enumerate} 
+\end{prop}
+\begin{proof}\hfill
+
+\begin{itemize}
+\item[1.] Sea $\psi \in\mathcal{C}^{\infty}_c(\real^n)$, de esta forma
+\begin{align*}
+(T_\varphi)_\varepsilon (\psi) :&= \int_{\real^n} T_{\varphi_y} \left( H_\varepsilon (x-y)\psi(x)dx \right)\\
+&= \int_{\real^n} \int_{\real^n} \varphi(y) H_\varepsilon (x-y)\psi(x)dxdy \\
+&= T_{\varphi_\varepsilon}(\psi).
+\end{align*}
+\item[2.] Utilizando el hecho de que $T$ es lineal obtenemos qque
+\begin{align*}
+T\left( \psi_\epsilon \right) &= T_y \left( \int_{\real^n} \psi(x) H_\varepsilon (x-y) dx\right) \\
+&=\int_{\real^n} \psi (x) T_y \left( H_\varepsilon (x-y) \right)dx \\
+&= \int_{\real^n} \psi (x) T_\varepsilon (x)dx \\
+&=: T_\varepsilon (\psi).
+\end{align*}
+\item[3.] Supondremos que $D$ corresponde a una primera derivada parcial $\frac{\partial}{\partial x^i}$, en caso de no ser así, el resultado se obtiene al derivar reiteradas veces respecto a las variables deseadas, por lo que la validez del resultado bajo este supuesto es suficiente.\\
+Para $T= T_\psi$ con $\psi \in\mathcal{C}^{\infty}(\real^n)$ y $\varphi \in \mathcal{C}^{\infty}_c(\real^n)$, entonces, por la definición para $DT_\varepsilon$ y considerando el cambio de variable $u= x-y$ tenemos que 
+\begin{align*}
+DT_\varepsilon (\varphi) &= T_\varepsilon ( -D\varphi) \\
+&= \int_{\real^n} \int_{\real^n} -\dfrac{\partial \varphi}{\partial x^i}(x) H_\varepsilon(x-y) \psi(y) dx\, dy \\
+&= \int_{\real^n} H_\varepsilon (u) \left( \int_{\real^n} - \dfrac{\partial \varphi}{\partial x^i}(x)\psi(x-u) dx\right)du.
+\end{align*}
+Integrando por partes y recordando que $\psi \in \mathcal{C}^{\infty}_c(\real^n)$ obtenemos que 
+\[
+\int_{\real^n} - \dfrac{\partial \varphi}{\partial x^i}(x)\psi(x-u) dx = \int_{\real^n} \varphi(x) \dfrac{\partial \psi}{\partial x^i}(x-u)dx,
+\]
+de esta manera
+\begin{align*}
+\int_{\real^n} H_\varepsilon (u) \left( \int_{\real^n} - \dfrac{\partial \varphi}{\partial x^i}(x)\psi(x-u) dx\right)du &= \int_{\real^n} H_\varepsilon (u) \left( \int_{\real^n} \varphi(x) \dfrac{\partial \psi}{\partial x^i}(x-u)dx\right)du\\
+&= \int_{\real^n} \int_{\real^n} \dfrac{\partial \psi}{\partial y^i}(y) \varphi(x)H_\varepsilon (x-y) dx\, dy\\
+&= \left( DT \right)_\varepsilon (\varphi).
+\end{align*}
+En términos de nuestra notación, para $T\in \mathfrak{D}(\real^n)$ y $\varphi \in \mathcal{C}^{\infty}_c (\real^n)$ siguiendo los pasos anteriores obtenemos que
+\begin{align*}
+\left( DT \right)_\varepsilon (\varphi) = \left( DT \right) (\varphi_\varepsilon) &= T (-D\varphi_\varepsilon)\\
+&= T (-D\varphi)_\varepsilon\\
+&= T_\varepsilon (-D\varphi)\\
+&= DT_\varepsilon (\varphi)
+\end{align*}
+\end{itemize}
+\end{proof}
+Particularmente, concluimos que para cada $\psi \in \mathcal{C}^\infty_c (\real^n)$ se tiene la convergencia uniforme \footnote{La discusión de la topolog\'ia en que se tiene esta convergencia no es trivial, para profundizar al respecto, ver \cite{GriHar78}[pag. 375]} de 
+\[
+D\psi_\varepsilon \longrightarrow D\psi,
+\]
+y en consecuencia cuando $\varepsilon \rightarrow 0$ se tendrá que
+\[
+T_\varepsilon (\psi) \rightarrow T(\psi).
+\]
+\begin{obs}
+Una corriente $T\in \mathfrak{D}(\real^n)$ puede considerarse como una forma diferencial dada de la forma
+\[
+T = \sum_{\ell = q} T_\ell dx^\ell
+\]
+Donde los coeficientes $T_\ell$ corresponden a distribuciones definidas como
+\[
+T_\ell (\varphi) = \pm T(\varphi) dx^{\ell_0},\ \ \ \varphi \in \mathcal{C}^{\infty}_c (\real^n)
+\]
+para aquellos coeficientes $\ell_0$ que se definen mediante la igualdad por el operador $\star$ de Hodge
+\[
+\star dx^\ell = \pm dx^{\ell_0}.
+\]
+Luego, la suavizaci\'on $T_\varepsilon = \sum_\ell (T_\ell)_\varepsilon dx^\ell$ satisface que cuando $\varepsilon \rightarrow 0$
+\[
+T_\varepsilon (\varphi ) \rightarrow T(\varphi), \ \ \ \forall \varphi \in \mathcal{A}^{n-q}_c (\real^n),
+\]
+y adem\'as, $\left(\dd T\right)_\varepsilon = \dd \left(T_\varepsilon\right)$
+\end{obs}
+A continuación usaremos las ideas de suavizaci\'on que hemos desarrollado en esta sección y la anterior para probar resultados de regularidad que serán de importancia y que dicen relación con ecuaciones que involucran el operador de Laplace (o Laplace-Beltrami) sobre distribuciones, esto es
+\[
+\Delta T = S,
+\]
+Donde, el operador Laplaciano $\Delta$ se define como:
+\[
+\Delta := - \sum_{i=1}^n \dfrac{\partial^2}{\partial \left(x^i\right)^2}.
+\]
+\begin{lem}[Ecuación de Laplace en distribuciones]\label{eq.laplace dist}\hfill
+
+Si $T\in \distribution (\real^n)$ satisface $\Delta T = 0$, entonces la distribución $T$ es de la forma $T=T_\varphi$, para algún $\varphi \in \mathcal{C}^{\infty}(\real^n)$ que satisface $\Delta \varphi =0$.
+\end{lem}
+\begin{proof}
+Como probaremos en la próxima sección, las funciones $\varphi$ al menos dos veces diferenciables tal que $\Delta \varphi = 0$, es decir, funciones armónicas deben satisfacer la propiedad del valor medio
+\[
+\varphi (y) = \int_{\Vert x-y \Vert = \varepsilon} \varphi(y) \sigma_y (x)dx
+\]
+donde $\sigma$ corresponde a la forma definida en  \ref{sigma volumen} de la forma
+\[
+\sigma = C_n \dfrac{\star (r dr)}{r^n} = C_n \dfrac{\sum_{i=1}^n \Phi^i(x)}{\Vert x \Vert^n} \in \mathcal{A}^{n-1}(\real^n).
+\]
+Asi, $\sigma_y (x) = \sigma (x-y)$ corresponde a la forma de volumen sobre $\mathbb{B}(x,\varepsilon) = \lbrace y \in \real^n \, : \, \Vert x - y \Vert <\varepsilon \rbrace$, es decir, la bola de radio $\varepsilon$ centrada en $x\in\real^n$ de tal manera que sea de superficie unitaria.\\
+Dado que el operador Laplaciano es invariante bajo traslaciones y rotaciones propias, basta considerar la propiedad del valor medio en $y=0$. Sea $H(x)$, como al comienzo de esta sección y radialmente simétrica, de esta manera, $\varphi$ armónica satisface
+\begin{align*}
+\varphi_\varepsilon (x) &= \frac{1}{\varepsilon^n} \varphi\left( \frac{x-y}{\varepsilon}\right) \\
+&= \varphi (x) \ \ \ \ \ \ \ \ \ \ \ \ \ \  ,\forall \varepsilon >0 \\ 
+\end{align*}
+Luego, por la proposición \ref{propiedades de las T epsilon}, en particular la tercera propiedad tenemos que
+\[
+\Delta T_\varepsilon = \left( \Delta T \right)_\varepsilon = 0.
+\]
+De esta forma, $T_\varepsilon = T_{\psi_\varepsilon}$ para $\psi_\varepsilon$ una función armónica, entonces:
+\[
+\left( T_\varepsilon\right)_\delta = {T_{\left(\psi_\varepsilon\right)}}_\delta = T_{\varphi_\varepsilon} = T_\varepsilon,
+\]
+y para $\varphi \in \mathcal{C}^{\infty}_c (\real^n)$ sigue que
+\begin{align*}
+T(\varphi) &= \lim_{\varepsilon \rightarrow 0} T_\varepsilon (\varphi) \\
+&= \lim_{\varepsilon \rightarrow 0} \left(T_\varepsilon\right)_\delta (\varphi)\\
+&= \lim_{\varepsilon \rightarrow 0} T_\varepsilon (\varphi_\delta) \\
+&= T(\varphi_\delta)  \\
+&= T_\delta (\varphi)
+\end{align*}
+\end{proof}
+\begin{obs}
+Este resultado también puede enunciarse de forma local. Dado un conjunto abierto $U\Subset \real^n$ y $T \in \distribution (U)$ tal que $\Delta T=0$, entonces $T$ es de la forma $T = T_\psi$ para $\psi$ una función armónica en $U$.\\
+Para ver esto, sea $V\subset U$ un abierto relativamente compacto, entonces para $\varphi \in \mathcal{C}^{\infty}_c (\real^n)$ y $\varepsilon >0$ podemos hacer $\operatorname{supp}(\varphi_\varepsilon) \subset U$. Luego, definimos
+\[
+T_\varepsilon (\varphi) = T(\varphi_\varepsilon),
+\]
+y repetir el argumento del lema \ref{eq.laplace dist} para concluir que $T_\varepsilon = T_{\psi_V}$ para algún $\psi$ que es armónico en $V$. Como $\psi_V$ es el mismo para todo $\varepsilon>0$, si $V\subset W\subset  U$ tendremos que
+\[
+\psi_W \big\vert_{V} = \psi_V,
+\]
+y por lo tanto, como antes, debe haber una función $\psi$ armónica en $U$ tal que $T = T_\psi$.
+\end{obs}
+Como es usual, nos gustaría establecer un resultado similar al lema anterior para una version no homogénea de la ecuación de Laplace, para esto, presentamos el siguiente resultado.
+\begin{lem}[Ecuación de Poisson en distribuciones]\label{eq.poisson dist.}\hfill
+
+Si $T\in\distribution(\real^n)$ satisface la igualdad
+\[
+\Delta T = \eta, \ \ \ \eta \in \mathcal{C}^{\infty}_c (\real^n),
+\]
+Entonces la distribución $T$ es de la forma $T=T_\psi$ para algún $\psi \in \mathcal{C}^{\infty}$ que satisface $\Delta \psi = \eta$.
+\end{lem}
+\begin{proof}
+Comenzaremos escribiendo una solución explicita $\rho \in \mathcal{C}^{\infty}(\real^n)$ de la ecuación de Poisson
+\[
+\Delta \rho = \eta.
+\]
+Para encontrar esta solución, comenzamos considerando la función de Green
+\begin{equation}\label{Green Function Laplacian}
+G(x,y) = \begin{cases}
+	\dfrac{1}{\Vert x-y\Vert^{n-2}}, &\quad\text{ si } n\geq 3,\\
+	\log \Vert x- y \Vert , &\quad\text{ si } n=2.
+\end{cases}
+\end{equation}
+Utilizaremos el lema \ref{eq.laplace dist} sobre
+\[
+\Delta (T - T_\rho) = 0.
+\]
+Para esto, comenzamos definiendo
+\[
+\rho(x) = C_n \int_{\real^n} \dfrac{\eta(y)}{\Vert x- y \Vert^{n-2}}dy
+\]
+donde, si utilizamos el cambio de variable $u:= x-y$ obtenemos
+\[
+\rho (x) = C_n \int_{\real^n} \dfrac{\eta (x-u)}{\Vert u \Vert^{n-2}}du
+\]
+De lo que concluimos que $\rho \in \mathcal{C}^{\infty}(\real^n)$ y que 
+\[
+\Delta \rho(x) = C_n \int_{\real^n} \dfrac{\Delta \eta (x-u)}{\Vert u \Vert^{n-2}}du
+\]
+Probaremos que esta ultima integral es, en efecto, $\eta(x)$.\\
+Si trasladamos $x$ al origen, lo que debemos verificar es la \textbf{f\'ormula de Poisson}
+\[
+\eta (0) = C_n \int_{\real^n} \dfrac{\Delta \eta(x)}{\Vert x \Vert^{n-2}}dx.
+\]
+En coordenadas polares $x = r\omega$, es decir, $r= \Vert x \Vert$ y $\omega\in \mathbb{S}^1$, tenemos que 
+\begin{align*}
+\dfrac{\Delta \eta(x)}{\Vert x \Vert^{n-2}}dx &= \dfrac{d \star d\eta}{\Vert x \Vert^{n-1}} \\
+&= d\left( \dfrac{\star d\eta}{r^{n-2}} \right) \pm \left( \frac{1}{n-2}\right)\dfrac{dr \wedge \star d\eta}{r^{n-1}} \\
+&= d\left( \dfrac{\star d\eta}{r^{n-2}} \right) \pm \left( \frac{1}{n-2}\right) \dfrac{dr \wedge \star (rdr)}{r^n} \\
+&= d\left( \dfrac{\star d\eta}{r^{n-2}}\right) \pm \left( \frac{1}{n-2}\right)d\left( \eta \sigma \right).
+\end{align*}
+Consideremos lo siguiente
+\[
+\int_{\real^n} \dfrac{\Delta \eta(x)}{\Vert x \Vert^{n-2}}dx = \lim_{\varepsilon \rightarrow 0} \int_{\real^n \backslash \lbrace \Vert x \Vert < \varepsilon\rbrace} \dfrac{\Delta \eta(x)}{\Vert x \Vert^{n-2}}dx = A_\varepsilon + B_\varepsilon.
+\]
+Evaluaremos las integrales anteriores por separado, es decir,
+\begin{align*}
+A_\varepsilon = \pm \int_{\Vert x \Vert = \varepsilon} \dfrac{\star d\eta}{\varepsilon^{n-2}} = \int_{\lbrace \Vert x \Vert = \varepsilon} \dfrac{\star d\eta}{\varepsilon^{n-2}} = \frac{1}{\varepsilon^{n-2}} \int_{\Vert x \Vert \leq \varepsilon} \Delta \eta dx.
+\end{align*}
+Por otro lado, como $\Delta \eta \in \mathcal{C}^{\infty}(\real^n)$
+\[
+\int_{\Vert x \Vert \leq \varepsilon} \Delta \eta = O(\varepsilon^n)
+\]
+tendremos que 
+\[
+A_\varepsilon \rightarrow 0 \text{, cuando } \varepsilon \rightarrow 0.
+\]
+Por otra parte, considerar
+\[
+B_\varepsilon = B \cdot \int_{\Vert x \Vert = \varepsilon}\eta \sigma
+\]
+para lo que tenemos que 
+\[
+B_\varepsilon \rightarrow \eta(0) \text{, cuando } \varepsilon \rightarrow 0.
+\]
+Concluimos de esta \'ultima parte que 
+\begin{align*}
+\int_{\real^n} \dfrac{\Delta \eta(x)}{\Vert x \Vert^{n-2}}dx &= \lim_{\varepsilon \rightarrow 0} \int_{\real^n \backslash \lbrace \Vert x \Vert < \varepsilon\rbrace} \dfrac{\Delta \eta(x)}{\Vert x \Vert^{n-2}}dx = \eta(0),
+\end{align*}
+lo que demuestra la igualdad de distribuciones dada por la ecuaci\'on de Poisson y en consecuencia nuestro resultado para distribuciones.
+\end{proof}
+
+Para concluir esta sección, probaremos que si $\varphi$ es una función en el espacio de Sobolev $\operatorname{W}^{2,s}_{p,q}(M)$ y $\psi \in \operatorname{W}^{2,s}_{p,q,0}(M)$\footnote{En nuestro caso evitaremos denotar los espacios de Sobolev de la forma $\operatorname{W}^{2,s}$ como $H^{s}$ dado el uso de este caracter en espacios de funciones armónicas y para cohomolog\'ia. Pese a que la notación puede ser sobrecargada $\operatorname{W}^{2,s}_{p,q,0}$ denota al espacio  de $(p,q)$ formas en $H^{s}_0$.} es una solución débil de la ecuación
+\[
+\Delta \psi = \varphi,
+\]
+entonces, $\psi \in \sobolev^{p,q}_{s+2}(M)$. M\'as adelante, análisis como este nos permitir\'an establecer la regularidad de las soluciones de problemas el\'ipticos generales dadas la regularidad de los terminos del operador el\'iptico.
+En particular, podemos escribir $P= \partial + \overline{\partial}^{\ast}$, y en consecuencia $P^2$ corresponde al operador Laplaciano, de esta manera al encontrar una soluci\'on d\'ebil del problema
+\[
+P\Theta = \eta
+\]
+Podremos probar que si $\eta \in \operatorname{W}^{2,s}_{p,q}$, y el problema tiene solución, entonces $\Theta \in \operatorname{W}^{2,s+1}_{p,q}$
+
+
+\section{Operadores Diferenciales Elípticos}\label{seccion 2.3}
+Consideremos $\Omega \subset \real^n $ abierto, definimos $L$ como el operador diferencial dado por
+\begin{equation}\label{L eliptico}
+L(f) = \sum_{j,k=1}^n a_{jk} \dfrac{\partial^2 f}{\partial x^j \partial x^k} + \sum_{\ell =1}^n b_\ell \dfrac{\partial f}{\partial x^\ell} + cf
+\end{equation}
+donde $f,\, a_{jk},\, b_\ell , \, c : \Omega \rightarrow \real^n$ son funciones sobre $\Omega$. 
+Consideraremos la matriz asociada a los términos de orden 2 del operador $L$
+\[
+A(x) = \left(a_{jk}(x)\right)_{1\leq j,k \leq n} \, , \, \forall x \in \Omega.
+\]
+Entonces, diremos que $L$ es un \textbf{operador elíptico en $x$} si la matriz $A(x)$ es definida positiva, y de esta manera, si $A(x)$ es definida positiva para cada $x\in \Omega$ diremos que $L$ es un \textbf{operador elíptico en $\Omega$}. 
+Podemos definir la elipticidad del operador $L$ en $x\in \Omega$ términos de la existencia de $\lambda(x)$ y $\Lambda (x)$ tales que 
+\[
+0 < \lambda(x) \vert v \vert^2 \leq \sum_{j,k=1}^n a_{jk}(x) v^j v^k \leq \Lambda (x) \vert v \vert^2, \ \ \ \forall v \in \real^n\backslash\lbrace 0 \rbrace,
+\]
+de modo que la elipticidad en $\Omega$ se traduce en el cumplimiento de la desigualdad anterior, para cada $x \in \Omega$. 
+Si adem\'as consideramos $a_{jk} , b_{\ell} , c$ suficientemente regulares (en particular, m\'as adelante estas serán funciones suaves), y con $\Omega \subset X$ donde $X$ es una variedad compacta, podemos asumir que $L$ corresponder\'a a un operador \textbf{uniformemente elíptico}, lo que corresponde a la existencia de constantes positivas $\lambda$ y $\Lambda$ tales que 
+\begin{equation}\label{elipticidad uniforma}
+\lambda \vert v \vert^2 \leq \sum_{j,k=1}^n a_{jk}(x) v^j v^k \leq \Lambda \vert v \vert^2\, , \,  \ \ \ \forall v \in \real^n\backslash\lbrace 0 \rbrace
+\end{equation}
+En general, utilizamos una aproximación al estudio de existencia de soluciones y la obtención de estas mediante una formulación variacional que nos permita establecer soluciones débiles de ecuaciones lineales. Las soluciones débiles quedaran definidas en términos del operador adjunto formal $L^*$ de $L$, que calculamos a continuación.\\
+Consideremos $L$ como en \ref{L eliptico}, es decir:
+\[
+L(f) = \sum_{j,k=1}^n a_{jk} \dfrac{\partial^2 f}{\partial x^j \partial x^k} + \sum_{\ell =1}^n b_\ell \dfrac{\partial f}{\partial x^\ell} + cf
+\]
+Si $\varphi \in \mathcal{C}^{\infty}_{c}(\Omega)$ y utilizamos el producto interno usual de $L^2 (\Omega)$ tendremos que 
+\begin{align*}
+\langle L(f) , \varphi \rangle &= \int_\Omega \left( \sum_{j,k=1}^n a_{jk} \dfrac{\partial^2 f}{\partial x^j \partial x^k} + \sum_{\ell =1}^n b_\ell \dfrac{\partial f}{\partial x^\ell} + cf  \right) \varphi  dV(x)\\
+&= \int_\Omega \left( \sum_{j,k=1}^n a_{jk} \dfrac{\partial^2 f}{\partial x^j \partial x^k}\varphi + \sum_{\ell =1}^n b_\ell \dfrac{\partial f}{\partial x^\ell}\varphi + cf\varphi  \right)  \, dV(x)
+\end{align*}
+Donde, para el primer sumando, integrando por partes dos veces y recordando que $\varphi$ y sus derivadas se anulan sobre $\partial \Omega$ tenemos que
+\begin{align*}
+\int_\Omega \left( \sum_{j,k=1}^n a_{jk} \dfrac{\partial^2 f}{\partial x^j \partial x^k}\cdot\varphi \right) dV(x) 
+&= - \int_\Omega \left(\sum_{j,k=1}^n \dfrac{\partial}{\partial x^k}\left( a_{jk}\cdot\varphi\right)\cdot \dfrac{\partial f}{\partial x^j}  \right) dV(x) + \cancelto{0}{\int_{\partial\Omega}\left( a_{jk}\dfrac{\partial f}{\partial x^k} \cdot \varphi \right)dS(x)}\\
+&=  \int_\Omega \left(\sum_{j,k=1}^n \dfrac{\partial^2}{\partial x^k\partial x^j}\left( a_{jk}\cdot\varphi\right)\cdot f\right) dV(x) - \cancelto{0}{\int_{\partial\Omega}\left(\sum_{j,k=1}^n a_{jk} \cdot f \cdot \varphi \right)dS(x)}
+\end{align*}
+Luego, podemos ver que 
+\begin{align*}
+\int_{\Omega}  \left(\sum_{\ell =1}^n b_\ell \dfrac{\partial f}{\partial x^\ell}\varphi \right) dV(x) &= -\int_{\Omega} \left( \sum_{\ell=1}^n \dfrac{\partial}{\partial x^\ell}\left( b_\ell \, \varphi \right)\cdot f\right) dV(x) + \cancelto{0}{\int_{\partial \Omega} \left( \sum_{\ell=1}^n b_\ell \, f \, \varphi \right)dS(x)}
+\end{align*}
+De esta manera, si consideramos $L^*$ el operador adjunto forma a $L$, se debe verificar que
+\[
+\langle L(f) , \varphi \rangle = \langle f , L^* (\varphi) \rangle,
+\]
+es decir, hemos encontrado que $L^*$ es dado por
+\[
+L^*(f) = \sum_{j,k=1}^n \dfrac{\partial^2}{\partial x^j \partial^k}\left(  a_{jk}\cdot f\right) - \sum_{\ell}\dfrac{\partial}{\partial x^\ell} (b_\ell \, f) + cf.
+\]
+Con esto en mente, diremos que una función $f \in L^{1}_{\loc} (\Omega)$ es una solución débil de la ecuación diferencial parcial $L(f)=g$ si se satisface la igualdad
+\[
+\int_\Omega f \cdot L^* (\varphi) dV = \int_{\Omega} g \cdot \varphi dV, \, \ \ \ \forall \varphi \in \mathcal{C}^{\infty}_c (\Omega).
+\]
+\begin{obs}
+El operador adjunto es definido de tal manera que si $f$ es solución débil de $L(f)=g$ y obtenemos que $f$ es suave, entonces se tiene la igualdad $L(f)=g$ en el sentido usual. De esto, una propiedad fundamental de los operadores elípticos es que las soluciones débiles en nuestro contexto serán siempre suaves.  
+\end{obs}
+Esta \'ultima observación nos permite enunciar el resultado siguiente
+\begin{teo}\hfill
+
+Sea $f$ una solución débil de la ecuación $L(f)=g$, donde $L$ es un operador diferencial lineal elíptico con coeficientes suaves y $g$ es una función suave, entonces $f$ también es suave.
+\end{teo}
+En la siguiente sección desarrollaremos resultados mas generales sobre regularidad de soluciones de ecuaciones diferenciales parciales dadas por operadores elípticos, por otro lado, en lo que resta de esta sección discutiremos algunas propiedades de funciones armónicas que facilitar\'an el camino en el transcurso de las siguientes secciones.
+\\
+\begin{defn}[Funciones arm\'onicas]\hfill 
+
+Sea $U \subset \real^n$ un abierto. Una función $f:U \rightarrow\real$ se llama \textbf{arm\'onica} si
+\[
+\Delta f : = - \sum_{i=1}^n \dfrac{\partial^2 f }{\partial x^i \partial x^i} =0 \text{, sobre } U.
+\]
+\end{defn}
+La propiedad elemental para funciones arm\'onicas es la siguiente,
+\begin{teo}[Teorema del Valor Medio]\hfill
+
+Si $f:U \rightarrow \real$ es arm\'onica, para $x\in U$ y la bola de radio $r$ centrada en $x$, $\mathbb{B}(x,r) \subset U$, entonces
+\[
+f(x) = \dfrac{1}{\Vol(\partial\mathbb{B}(x,r))} \int_{\partial\mathbb{B}(x,r)}f(y)dy
+\]
+\end{teo}
+\begin{proof}
+Para $\rho \leq r$ definamos
+\[
+F(\rho) = \int_{\partial\mathbb{B}(x,r_1)} f(x+\rho y)dy
+\]
+entonces,
+\begin{align*}
+F'(x) &= \int_{\partial \mathbb{B}(x,r_1)} \nabla f(x+\rho y)y dy \\
+&= \int_{\mathbb{B}(x,r_1)} \Delta f(x+\rho y) dy\\
+&= 0,
+\end{align*}
+donde las ultimas igualdades se obtienen al utilizar el teorema de Stokes, o bien las identidades de Green.\\
+Lo anterior significa que $F$ es constante, pero al cambiar variables obtenemos que
+\[
+F(r) = \dfrac{\Vol(\mathbb{B}(x,r_1))}{\Vol(\mathbb{B}(x,r))} \int_{\partial \mathbb{B}(x,r)} f(y)dy,
+\]
+mientras que $\displaystyle\lim_{\rho\rightarrow 0} F(\rho) = \Vol (\partial \mathbb{B}(x,r_1))f(x)$
+\end{proof}
+Promediando la propiedad del valor medio sobre esferas de diferente radio, podemos establecer el siguiente resultado
+\begin{coro}\label{cambio variable simetria integral}\hfill
+
+Sea $\eta: \real^n \rightarrow \real$ una función suave, radialmente sim\'etrica, con soporte en $\mathbb{B}(x,r_1)$ y que integra $1$. Si $f:\mathbb{B}(x,r_2) \rightarrow \real$ es arm\'onica, entonces para cada $x \in \mathbb{B}(x,r_1)$ tenemos que
+\[
+f(x) = \int_{\real^n} f(x-y) \eta(y) dy = \int_{\real^n} f(y) \eta(x-y)dy.
+\]
+\end{coro}
+\begin{proof}
+Considerar $f_1 (x) = (f \ast\eta)(x)$ la convoluci\'on entre $f$ y $\eta$, es decir
+\[
+f_1 (x) = \left(f \ast\eta\right)(x) = \left(\eta \ast f\right)(x) = \int_{\real^n} f(x-y)\eta(y) dy
+\]
+Luego,
+\begin{align*}
+f_1 (x) &= \int_{\real^n} f(x-y) \eta(y) dy \\
+&= \int_{\mathbb{B}(x,r_1)} f(y) \eta(x-y)dy \\
+&= \dfrac{1}{\Vol (\partial\mathbb{B}(x,r_1))}\int_{\mathbb{B}(x,r)} f(y) \eta\left(\dfrac{\vert x-y\vert}{r_1}\right) dy \\
+&= \dfrac{1}{\Vol (\partial\mathbb{B}(x,r_1))} \int_{0}^{r_1}\eta\left(\frac{R}{r_1}\right) \left[ \int_{\partial\mathbb{B}(x,r_1))} f dS \right]dR \\
+&= \left( \dfrac{1}{\Vol (\partial\mathbb{B}(x,r_1))} \int_{\partial\mathbb{B}(x,r_1))} f dS\right) \cdot \int_{0}^{r_1}\eta\left(\frac{R}{r_1}\right)dR\\
+&= f(x)
+\end{align*}
+Considerando la conmutatividad establecida inicialmente, se concluye el resultado.
+\end{proof}
+Una consecuencia importante del resultado anterior es que la norma en $L^1 (\mathbb{B}(x,r_2))$ de una función armónica controlan todas sus derivadas sobre una bola mas pequeña $\mathbb{B}(x,r_1)$.
+\begin{coro}\hfill
+
+Existen constantes $C_k$ tales que, si $f:\mathbb{B}(x,r_2) \rightarrow \real$ es armónica, entonces
+\[
+\sup_{\mathbb{B}(x,r_1)} \left\vert \nabla^k f \right\vert \leq C_k \int_{\mathbb{B}(x,r_2)} \vert f(y) \vert dy
+\]
+En particular, si pedimos a $f$ ser solamente dos veces diferenciable, se tiene que $f$ es suave en $\mathbb{B}(x,r_1)$
+\end{coro}
+\begin{proof}
+Para cada $x\in \mathbb{B}(x,r_1)$ podemos usar el corolario anterior y diferenciar para obtener
+\[
+\nabla^k f (x) = \int_{\real^n} f(y)\nabla^k \eta(x-y)
+\]
+de esta manera
+\[
+\vert \nabla^k f(x)\vert \leq \left( \sup_{\mathbb{B}(x,r_1)} \vert \nabla^k \eta \vert\right) \int_{\mathbb{B}(x,r_2)} \vert f(y)\vert dy
+\]
+As\'i concluimos que $C_k = \sup \vert \nabla^k \eta \vert.$
+\end{proof}
+Con este resultado de regularidad interior en $\Omega$ junto con argumentos adecuados de reescalado, nos permite establecer el siguiente resultado
+\begin{coro}[Teorema de Louiville]\hfill
+
+Decimos que una función es de crecimiento sublineal si
+\[
+\lim_{R\rightarrow \infty} R^{-1} \sup_{\mathbb{B}(x,R)}\vert f \vert = 0.
+\]
+Si $f$ es arm\'onica sobre $\real^n$ y tiene crecimiento sublineal, entonces $f$ es constante.
+\end{coro}
+\begin{proof}
+Considerar $f_r(x) = f(rx)$ para $r>0$, que corresponde también a una función armónica. Utilizamos la propiedad del valor medio para escribir
+\[
+\vert \nabla f_r(0) \vert \leq C_1 \int_{\mathbb{B}(x,r_2)} \vert f_r(x) \vert dx \leq C' \sup_{\mathbb{B}(x,r_2)}\vert f_r \vert = C' \sup_{\mathbb{B}(x,2r_2)} \vert f \vert
+\]
+para alguna constante $C'$. Considerando que $\nabla f_r(0) = r\nabla f(0)$ obtenemos 
+\[
+\vert \nabla f(0) \vert \leq \frac{C'}{r} \sup_{\mathbb{B}(x,2r_2)} \vert f \vert, \ \ \ \forall r>0.
+\]
+Tomando $r\rightarrow \infty$, obtenemos que $\nabla f(0)= 0$, de la misma manera, trasladando $f$ concluimos que para todo $x$, $\nabla f(x) =0$ de modo que $f$ debe ser constante.
+\end{proof}
+Concluimos esta sección con una aplicación de estos resultados,
+\begin{obs}
+Si $f:\real^n \rightarrow \real$ es una funci\'on armónica tal que existe $C>0$ una constante, para la cual $\vert f(x) \vert  \leq  C (1+\vert x \vert)^k$ para cada $x$ entonces si consideramos el multi\'indice $\alpha = \left( \alpha_i , \ldots, \alpha_n \right)$ tal que $\vert \alpha \vert = j > k$ tendremos que
+\begin{align*}
+\left\vert D^{\alpha} f(x_0) \right\vert &\leq \dfrac{C_j}{r^{n+j}} \Vert f \Vert_{L^1 \left(B_r(x_0)\right)} \\ 
+&= \dfrac{C_j}{r^{n+j}} \int_{B_r (x_0)} \vert f \vert dx \\
+&\leq \dfrac{C_j}{r^{n+j}} \int_{B_r(x_0)}(1+\vert x\vert)^k dx
+\end{align*}
+Haciendo el cambio de variable $y=\frac{x-x_0}{r}$ de forma que $\frac{\partial x}{\partial y} = r^n$ obtenemos que
+\[
+\left\vert D^{\alpha} f(x_0) \right\vert \leq \dfrac{C_j}{r^{n+j}}\int_{B_r (x_0)} (1+\vert x \vert)^k dx \leq \dfrac{C_j}{r^j}\int_{B_1 (0)} (1+ \vert ry +x_0\vert)^k dy
+\]
+Haciendo $r\rightarrow \infty$ encontramos que $\left\vert D^{\alpha} f(x_0) \right\vert \rightarrow 0$.\\
+Por lo que $D^\alpha f \equiv 0 $ para todo $\alpha$ tal que $\vert \alpha\vert =j >k$, de lo que concluimos que $f(x)$ es un polinomio de grado a lo m\'as $\vert \alpha \vert -1$.
+\end{obs}
+
+
+
+\section{Estimaciones de Schauder}\label{seccion 2.4}
+Como hemos visto, las soluciones de ecuaciones dadas por operadores lineales elípticos tienen propiedades de regularidad muy fuertes. En esta sección presentamos el desarrollo mediante la definición de espacios de Hölder desde la norma de Hölder que nos permite establecer resultados de regularidad mas generales respecto a las soluciones de ecuaciones diferenciales elípticas utilizando las denominadas estimaciones de Schauder.
+
+Empezamos presentado los espacios de Hölder, para esto, en adelante consideraremos $\Omega \subset \real^n$ un abierto acotado.
+\begin{defn}[Continuidad de Hölder]\hfill
+
+Para $u \in \mathcal{C}^0 (\Omega)$ y $\alpha \in [0,1]$ definimos el \textbf{ $\alpha$-coeficiente de Hölder} de $u$ e $x_0$ como:
+\[
+[ u ]_{\alpha , x_0} = \sup_{\substack{x\in \Omega, \\ x\neq x_0}}\dfrac{\vert u(x)- u(x_0) \vert}{\vert x-x_0\vert^{\alpha}}.
+\]
+Decimos que la función $u$ es \textbf{H\"older-continua en $x_0$} si el coeficiente $[u]_{\alpha,x_0}$ es finito.\\
+Podemos definir el coeficiente de H\"older anterior sobre $\Omega \subset \real^n$ y lo escribimos como
+\[
+[ u ]_{\alpha, \Omega}:= \sup_{\substack{x,y\in \Omega, \\ x\neq y}}\dfrac{\vert u(x)- u(y) \vert}{\vert x-y\vert^{\alpha}}.
+\]
+Como antes, si $[u]_{C^{\alpha}(\Omega)}<\infty$ decimos que $u$ es \textbf{H\"older-continua en $\Omega$}.\\
+Sea $\ell = \left(\ell_1,\ldots \ell_n\right)$ un multi\'indice de modo que 
+\[
+\partial^{\ell} = \dfrac{\partial}{\partial x^{\ell_1}} \cdots \dfrac{\partial}{\partial x^{\ell_n}}
+\]
+corresponde a la derivada parcial de orden $\vert \ell \vert = \sum_{i=1}^n \ell_i$ en las variables $\ell_i$.\\
+Definimos la \textbf{norma $C^{k,\alpha}$ de Hölder} de $u$ para $k\in \mathbb{N}$ como
+\[
+\Vert u \Vert_{C^{k,\alpha}(\Omega)} := \sum_{\vert \ell \vert \leq k} \Vert \partial^\ell u \Vert_{\mathcal{C}(\Omega)} + \sum_{\vert \ell \vert = k} [ \partial^\ell u]_{C^{\alpha}(\Omega)}
+\]
+En efecto, notemos que si $\Vert u \Vert_{C^{k,\alpha}} = 0$ entonces
+\[
+\sum_{\vert \ell \vert \leq k}\sup_{\ x\in\Omega} \vert \partial^\ell u(x) \vert = \sum_{\vert \ell \vert = k} [\partial^{\ell} u ]_{C^\alpha(\Omega)} = 0
+\]
+De lo que concluimos que $\Vert u \Vert_{C^{k,\alpha}} = 0$ si y solo si $u\equiv 0$ sobre $\Omega$. Adem\'as por la linealidad de los operadores de derivadas parcial $\Vert u \Vert_{C^{k,\alpha}}$ es posit\'ivamente homogénea.
+Finalmente, sean $u,v$ tales que
+\[
+\Vert u \Vert_{C^{k,\alpha}(\Omega)},\, \Vert v \Vert_{C^{k,\alpha}(\Omega)} < \infty
+\] 
+Por la desigualdad triangular usual para el valor absoluto y del $\sup (u +v)$, obtenemos la desigualdad triangular para $\Vert u \Vert_{C^{k,\alpha}(\Omega)}$, concluyendo que esta es una norma.\\
+Llamamos \textbf{$(k,\alpha)$-espacio de Hölder} al espacio de funciones de norma de Hölder finita, y lo escribimos como
+\[
+C^{k,\alpha}(\Omega) = \left\lbrace u \in \mathcal{C}^{k}(\Omega) \, : \, \Vert u \Vert_{C^{k,\alpha}(\Omega)} < \infty \right\rbrace
+\]
+\end{defn}
+Notemos que este corresponde a un subespacio del espacio vectorial de funciones continuas, veamos que es un espacio de Banach, para esto consideremos $\lbrace u_n \rbrace_{n\in\mathbb{N}}$ una sucesión de Cauchy en $C^{k,\alpha}(\Omega)$, luego como $\mathcal{C}^{k}(\Omega)$ es un espacio de Banach existe $u\in \mathcal{C}^{k}(\Omega)$ tal que $\lim_{n\to\infty} u_n = u$. Luego, si $v = \partial^k u$ y $v_n := \partial^k u_n$ entonces para $x\neq y$ y $m\in\mathbb{N}$.
+\begin{align*}
+	\dfrac{\vert v(x) - v(y) \vert}{\vert x-y \vert^\alpha} &= \dfrac{\vert v(x) - v_m (x) + v_m (x) - v_m (y) + v_m(y) - v(y)}{\vert x-y\vert^\alpha} \\ 
+	&\leq \dfrac{\vert v(x) - v_m(x)\vert}{\vert x-y \vert^{\alpha}} + \dfrac{\vert v_m(x) - v_m(y)\vert}{\vert x-y \vert^{\alpha}} +\dfrac{\vert v_m(y) - v(y)\vert}{\vert x-y \vert^{\alpha}}.
+\end{align*}
+Donde el primer y \'ultimo t\'ermino de la expresión anterior pueden hacerse arbitrariamente pequeños para $m$ suficientemente grande. Por la construcción de $u$ obtenemos que $u\in \mathcal{C}^{k}(\Omega)$ de modo que resta ver la convergencia del $\alpha$-coeficiente de Hölder para $v_n$, esto sigue de
+\begin{align*}
+	\dfrac{\vert \left( v - v_m \right)(x) - \left( v - v_m \right)(y)\vert}{\vert x- y \vert^\alpha} &= \dfrac{\vert  v(x) - v_m (x) - v(y) - v_m(y)\vert}{\vert x- y \vert^\alpha}  \\
+	&= \dfrac{\left\vert \left( \displaystyle\lim_{k\to\infty}v_k (x) \right) - v_m(x) - \left( \displaystyle\lim_{k\to\infty} v_k (y)\right) +v_m (y) \right\vert}{\vert x-y\vert^\alpha} \\
+	&= \lim_{k\to\infty} \dfrac{\vert v_k (x) - v_m(x) - v_k (y) + v_m(y) \vert}{\vert x-y \vert^{\alpha}} \\
+	&= \lim_{k\to\infty} \dfrac{\vert \left( v_k - v_m\right)(x) - \left( v_k - v_m\right)(y) \vert}{\vert x-y \vert^{\alpha}}
+\end{align*}
+Como $v_n$ es de Cauchy, el ultimo t\'ermino de la igualdad puede hacerse arbitrariamente pequeño, esto nos dice que $v_n \to v$ para el $\alpha$-coeficiente de Hölder. Reiterando el argumento para las finitas derivadas posibles de $u$ de orden $k$ obtenemos la convergencia
+\[
+u_n \to u \ \ \ \text{ en } C^{k,\alpha}(\Omega)
+\]
+Concluyendo que $C^{k,\alpha}(\Omega)$ es un espacio de Banach.
+\begin{obs}\hfill
+
+\begin{itemize}
+\item[1)] Si $k>0$ entonces una función en $C^{k,\alpha}$ debe ser $k$ veces continuamente diferenciable. 
+\item[2)] Se tiene que $\mathcal{C}^{k,0}(\Omega)$ = $\mathcal{C}^k (\Omega)$ y que $C^{0,1}(\Omega)$ corresponde al espacio de funciones Lipschitz continuas en $\Omega$.
+\end{itemize}
+\end{obs}
+
+Presentaremos ahora el teorema de Sobolev, este y otros resultados de teoría de regularidad se pueden encontrar en \cite[Secciones 7.6 y 7.7]{GilTru98}, el siguiente en particular, ser\'a \'util en el desarrollo del cap\'itulo 3.
+\begin{teo}[Desigualdad de Sobolev]\label{sobolev inyeccion}\hfill
+
+Sea $\Omega$ un dominio abierto de $\bbR^n$, entonces 
+ \begin{equation*}
+ 	W^{1,p}_0 (\Omega) \subset \begin{cases} L^{\frac{np}{n-p}} (\Omega), &\quad \text{ para } p<n,\\
+ 	C^{0}(\Omega), &\quad \text{ para } p>n.\end{cases}
+ \end{equation*}
+ M\'as a\'un, existe una constante $C$ que depende solo de $n$ y $p$ tal que, para todo $u \in W^{1,p}_0 (\Omega)$,
+\[
+\begin{cases}
+ \Vert u \Vert_{\frac{np}{n-p}} \leq C \Vert D u\Vert_p,\quad \text{ para } p<n,\\ 
+ \sup_{\Omega} \vert u \vert \leq C \vert \Omega \vert^{\frac{1}{n}- \frac{1}{p}} \cdot \Vert Du\Vert_p , \quad \text{ para } p>n.
+\end{cases}
+\]
+\end{teo}
+Para ver como se relacionan los espacios de funciones Hölder continuas y los espacios de Sobolev que la desigualdad e inclusión anteriores establecen ver \cite[Cap 4]{Adams2002}
+
+A continuación construiremos las estimaciones de Schauder para un operador elíptico de segundo orden, para esto, estudiaremos en primer lugar las estimaciones para la ecuación de Laplace. Luego extenderemos este resultado para la ecuación de Poisson y finalmente a un operador elíptico de coeficientes constantes. La razón de proceder de esta manera es que en una variedad de K\"ahler podemos escoger un sistema de coordenadas locales para el cual todo operador elíptico tenga forma diagonal (al menos localmente) de forma que conocer estimaciones para las ecuaciones de Poisson y Laplace nos permite establecer las estimaciones que necesitamos.\\
+En adelante ser\'a útil considerar la solución fundamental de la ecuación de Laplace dada por el kernel de Newton:
+\[
+N(x) = \begin{cases} 
+\frac{1}{2\pi}\log \vert x \vert, \ \ \text{si } n=2 \\
+\frac{1}{(2-n)C_n} \vert x \vert^{2-n}, \ \ \text{si } n\geq 3
+\end{cases}.
+\]
+Notar que $N(x)$ es radial y singular en $x=0$, y recordar que $C_n$ es el volumen de la esfera de dimensi\'on $n$.\\
+
+Para comenzar la construcci\'on de las estimaciones de Schauder presentamos el siguiente lema
+\begin{lem}\hfill
+
+Sea $N\in L_{\loc}^1 (\real^n)$ y sea $\phi\in \mathcal{C}_{0}^1 (\real^n)$. Entonces 
+\[
+u := N \ast \phi \ \ \ \ \ \in \mathcal{C}^1 (\real^n)
+\]
+y 
+\[
+\nabla u (x) = \int_{\real^n} N(x-y)\nabla\phi(y)dy
+\]
+\end{lem}
+\begin{proof}
+Consideremos $C= \operatorname{supp}(\phi)$, de modo que $N\vert_C \in L^1 (\real^n)$ y as\'i por el corolario \ref{cambio variable simetria integral} concluimos que
+\begin{align*}
+	u(x) &= \int_{\real^n} N(x-y)\phi(y) dy\\
+	&= \int_C N(x-y)\phi(y)dy \\
+	&= \int_{\real^n}N(y)\phi(x-y)dy.
+\end{align*}
+Sea $x\in \real^n$ y $h\in \real^n$ con $\Vert h \Vert =1$, entonces
+\begin{align*}
+&\frac{1}{\Vert h \Vert}\left( u(x+h) - u(x) - h\left( \int_{\real^n} N(x-y)\nabla\phi(y)dy \right) \right) \\
+=& \frac{1}{\Vert h \Vert}\left( \int_{\real^n} N(y)\phi(x+h-y)dy - \int_{\real^n} N(y)\phi(x-y)dy - h \int_{\real^n} N(y)\nabla\phi(x-y)dy \right) \\
+=& \int_{\real^n} \left( \frac{1}{\Vert h \Vert}\left( \phi(x+h-y) - \phi(x-y) - h\nabla \phi(x-y)\right) \right)dy
+\end{align*}
+Notemos que $\nabla \phi(x-y)$ corresponde a la deriva de Fr\'echet de $\phi(x-y)$ de modo que
+\[
+\frac{1}{\Vert h \Vert}\left( \phi(x+h-y) - \phi(x-y) \right) - \nabla\phi(x-y) \xrightarrow{h\to 0}0. 
+\]
+Por otro lado, por la continuidad de $\phi$ y $\nabla\phi$ sobre el compacto $C$ tenemos la cota uniforme dada por $\sup_{x\in C}\phi(x)$ y $\sup_{x\in C}\nabla\phi$ que nos permite aplicar el teorema de convergencia dominada de Lebesgue para concluir que
+\[
+Du(x) = \lim_{\Vert h \Vert \to 0} \frac{1}{\Vert h \Vert} \left( u(x+h)-u(x)\right) = \int_{\real^n}N(y)\nabla\phi(x-y)dy,
+\]
+es decir, 
+\[
+\nabla u(x) = \int_{\real^n}N(y)\nabla\phi(x-y)dy = \int_{\real^n}N(x-y)\nabla\phi(y)dy
+\]
+Lo que permite concluir la continuidad de $\nabla u$ desde la continuidad de $\nabla \phi$, terminando as\'i la demostración del lema.
+\end{proof}
+\begin{prop}\hfill
+
+Sean $f\in \mathcal{C}_0^2 (\real^n)$ y
+\begin{equation}\label{schauder laplace}
+u(x) = \int_{\real^n} N(x-y)f(y)dy
+\end{equation}
+Entonces $u\in \mathcal{C}^2 (\real^n)$ y 
+\[
+\Delta u =  f.
+\]
+\end{prop}
+\begin{proof}
+Aplicando el lema anterior, obtenemos que $u$ es de clase $\mathcal{C}^2$ y que satisface la igualdad
+\[
+\Delta u(x) = \int_{\real^n} N(x-y)\Delta f(y)dy
+\]
+Fijando $x$, podemos notar que la funci\'on $N(x-y)\Delta f(y) \in L^{1}(\real^n)$ y tiene su soporte en $\vert x - y \vert < R$ para alg\'un $R$ fijo suficientemente grande. Escribimos entonces
+\[
+\Delta u(x) = \lim_{\varepsilon\to 0} \int_{\lbrace y\in\real^n \, : \, \varepsilon<\vert x-y\vert< R \rbrace}N(x-y)\Delta f(y) dy
+\]
+Denominamos $\Omega^R_{\varepsilon} = \lbrace y\in\real^n \, : \, \varepsilon<\vert x -y \vert<R$. Como $N(x-y)$ es de clase $\mathcal{C}^2$ en una vecindad de $\overline{\Omega^R_{\varepsilon}}$ y escogiendo $R$ de forma adecuada $f(y)$ se anula sobre la frontera exterior de $\Omega^R_{\varepsilon}$ por lo que podemos utilizar la segunda identidad de Green para establecer que
+\begin{align*}
+&\int_{\Omega^R_{\varepsilon}} N(x-y)\Delta f(y) dy\\
+=& \int_{\lbrace \vert x-y \vert =\varepsilon\rbrace} N(x-y)\partial_{\hat{n}}f(y)dS(y) -  \int_{\lbrace \vert x-y \vert =\varepsilon\rbrace} f(y)\partial_{\hat{n}}N(x-y)dS(y)
+\end{align*}
+Donde $\hat{n}$ corresponde al vector normal unitario a $\Omega^R_{\varepsilon}$. Notemos que para ${n>2}$
+\begin{align*}
+\left\vert \int_{\lbrace\vert x-y \vert =\varepsilon\rbrace} N(x-y)\nabla f(y)\cdot \hat{n} dS \right\vert &\leq \int_{\lbrace\vert x-y \vert =\varepsilon\rbrace} \vert N(x-y)\vert \vert\nabla f(y) \vert dS \\
+&\leq \int_{\lbrace\vert x-y \vert =\varepsilon\rbrace} {\varepsilon^{2-n}} \Vert \nabla f \Vert_\infty dS\\
+&\leq \int_{\lbrace\vert x-y \vert =\varepsilon\rbrace} C {\varepsilon} \Vert \nabla f \Vert_\infty
+\end{align*}
+Donde $C$ es una constante dependiendo del volumen de la esfera $n-1$-dimensional de radio $\varepsilon$ y donde utilizamos que el volumen de esta esfera es similar a $\varepsilon^{n-1}$. Concluimos que esta integral se anula al hacer $\varepsilon \to 0$. Para $n=2$ basta reemplazar en las estimaciones anteriores $\varepsilon$ por $\varepsilon \log\varepsilon^{-1}$ para concluir el mismo resultado.
+Para la segunda integral notemos que al derivar de forma normal a $\Omega^{R}_\varepsilon$ tenemos que
+\[
+-\partial_{\hat{n}} N(x-y) = \frac{1}{C_n} \vert x-y \vert^{1-n}.
+\]
+Luego, como $\vert x-y\vert =\varepsilon$ tenemos para la frontera 
+\[
+- \int_{\lbrace\vert x-y \vert =\varepsilon\rbrace} f(y)\partial_{\hat{n}} N(x-y)dS = \frac{1}{\varepsilon^{n-1}C_n} \int_{\lbrace\vert x-y \vert =\varepsilon\rbrace} f(y)dS
+\]
+Pasando a coordenadas polares centradas en $x$ vemos que
+\[
+- \int_{\lbrace\vert x-y \vert =\varepsilon\rbrace} f(y)\partial_{\hat{n}} N(x-y)dS = \frac{1}{C_n}\int_{\lbrace\vert z \vert =1\rbrace} f(x+\varepsilon z).
+\]
+Finalmente, por la continuidad de $f$ tenemos que
+\[
+\lim_{\varepsilon\to 0} \frac{1}{C_n} \int_{\lbrace \vert z \vert =1 \rbrace}f(x+\varepsilon z) dS =f(x).
+\]
+Concluyendo que
+\begin{align*}
+\Delta u(x) &= \int_{\real^n} N(x-y)\Delta f(y)dy \\
+&= \lim_{\varepsilon\to 0} \int_{\Omega^{R}_\varepsilon} N(x-y)\Delta f(y) dy \\
+&= f(x)
+\end{align*}
+\end{proof}
+A continuaci\'on calcularemos las segundas derivadas de los potenciales de Newton, desde las que deduciremos las estimaciones de Schauder para la ecuación de Poisson. Consideraremos $\Omega$ un abierto acotado en $\real^n$ y una función $f\in \mathcal{C}^\alpha (\Omega)$, con $0\leq \alpha \leq 1$ que extendemos por cero fuera de $\Omega$. Sea
+\[
+w(x) = \int_{\real^n} N(x-y) f(y) dy = \int_{\Omega}N(x-y)f(y)dy
+\]
+el potencial de Newton de $f$. Para derivar las estimaciones de Schauder para la ecuaci\'on de Poisson presentaremos los siguientes dos resultados
+\begin{lem}\hfill
+
+Sea $f$ acotada y (localmente) de tipo $\mathcal{C}^{\alpha}$ en $\Omega$. Entonces $w \in \mathcal{C}^2 (\Omega)$, $\Delta w= d$ y para cada $x\in \Omega$
+\begin{equation}\label{lema 2 schauder} 
+\partial_i \partial_j w(x) = \int_{\Omega_1}\partial_i \partial_j N(x-y)(f(y)-f(x))dy - f(x)\int_{\partial\Omega_1} \partial_i (N(x-y))\hat{n}_j dS(y)
+\end{equation}
+Donde $\Omega_1$ es un dominio acotado conteniendo a $\Omega$ en el que se tiene el teorema de la divergencia.
+\end{lem}
+\begin{proof}
+Consideremos
+\[
+u(x) = \int_{\Omega_1} \partial_i \partial_j N(x-y)(f(y) - f(x))dy - f(x) \int_{\partial\Omega_1} \partial_i (N(x-y))\hat{n}_{j}(y) dS(y)
+\]
+Notamos que las segundas derivadas del kernel de Newton son tales que
+\begin{equation}\label{cota nucleo newton}
+\vert\partial_i \partial_j N(x-y)\vert \leq C \vert x-y \vert^{-n}.
+\end{equation}
+Esto, junto a que $f \in \mathcal{C}^{\alpha}(\Omega)$ nos d\'a la bien definición de $u$. Por el resultado anterior, sabemos que $w\in\mathcal{C}^1(\Omega)$. Consideremos $v= \partial_i w$ para definir
+\[
+v_{\varepsilon}(x) = \int_{\Omega}  \partial_i N(x-y) \eta\left( \frac{\vert x -y \vert}{\varepsilon}\right) f(y) dy
+\]
+para $\varepsilon>0$ pequeño y $\eta(r)$ es una funci\'on suave que se anula para $0\leq r\leq 1$ y es idénticamente $\eta(r)=1$ para $r\leq 2$, lo que nos permitir\'a aislar de forma suave la región conteniendo la singularidad de $N$. Utilizando \ref{cota nucleo newton} podemos concluir que $v_{\varepsilon}$ es de clase $\mathcal{C}^1$, si derivamos obtenemos que
+\begin{align*}
+	\partial_j v_\varepsilon &= \int_{\Omega} \partial_j \left(\partial_i N(x-y) \eta\left(\frac{\vert x-y\vert}{\varepsilon} \right) \right)f(y)dy \\
+	&= \int_{\Omega_1} \partial_j \left( \partial_i N(x-y) \eta\left(\frac{\vert x-y\vert}{\varepsilon} \right) \right)f(y)dy \\
+	&= \int_{\Omega_1} \partial_j \left( \partial_i N(x-y) \eta\left(\frac{\vert x-y\vert}{\varepsilon} \right) \right)\left(f(y)-f(x)\right)dy + f(x)\int_{\Omega_1} \partial_j \left( \partial_i N(x-y) \eta\left(\frac{\vert x-y\vert}{\varepsilon} \right) \right)dy \\
+	&= \int_{\Omega_1} \partial_j \left( \partial_i N(x-y) \eta\left(\frac{\vert x-y\vert}{\varepsilon} \right) \right)\left(f(y)-f(x)\right)dy - f(x)\int_{\partial \Omega_1} \partial_i N(x-y) \hat{n}_j (y) dS(y)
+\end{align*}
+Donde utilizamos el teorema de integración por partes para ver que
+\[
+\int_{\Omega_1} \left( \partial_j \partial_i N(x-y) \eta\left( \frac{\vert x-y\vert}{\varepsilon} \right) \right)dy = \int_{\partial\Omega_1} \partial_i N(x-y) \eta\left(\frac{\vert x-y \vert}{\varepsilon}\right) \hat{n}_j dS(y)- \int_{\Omega_1} \partial_i N(x-y) \partial_j \eta\left( \frac{\vert x-y\vert}{\varepsilon} \right)dy,
+\]
+y simplificamos la tercera igualdad obteniendo el ultimo paso. Utilizando lo anterior obtenemos que
+\begin{align*}
+&\vert u(x) - \partial_j v_\varepsilon (x)\vert \\
+=& \left\vert \int_{\Omega_1} \partial_i \partial_j N(x-y) (f(y)-f(x))dy - \int_{\Omega_1} \partial_j \left( \partial_i N(x-y)\eta\left( \frac{\vert x-y \vert}{\varepsilon} \right) \right)(f(y)-f(x))dy \right\vert \\
+=&  \left\vert \int_{\Omega_1} \left[ \partial_i \partial_j N(x-y) -\partial_j \left(\partial_i N(x-y)\eta\left( \frac{\vert x-y \vert}{\varepsilon} \right) \right)\right]\left( f(y)-f(x) \right)dy \right\vert\\
+=&  \left\vert \int_{\Omega_1} \partial_j \left( \left( 1 - \eta\left(\frac{\vert x-t\vert}{\varepsilon}\right)\right) \partial_i N(x-y)\right) \left( f(y)-f(x)\right)dy\right\vert \\
+\leq& \int_{\Omega_1} \left\vert \partial_j \left( \left( 1 - \eta\left(\frac{\vert x-y\vert}{\varepsilon}\right)\right) \partial_i N(x-y)\right) \left( f(y)-f(x)\right) \right\vert dy \\
+\leq& \left[ f \right]_{\alpha, \Omega_1} \int_{\Omega_1} \left\vert \partial_j \left( 1-\eta\left( \frac{\vert x-y\vert}{\varepsilon}\right) \right) \right\vert \vert x-y\vert^{\alpha} dy \\
+\leq&  \left[ f \right]_{\alpha, \Omega_1} \int_{\lbrace \vert x-y \vert \leq 2\varepsilon \rbrace} \left( \left\vert \partial_i \partial_j N(x-y)\right\vert + \left\vert \partial_j \eta\left( \dfrac{\vert x-y\vert}{\varepsilon} \right) \partial_i N(x-y)\right\vert \right) \vert x-y\vert^{\alpha} dy\\
+\leq& C \varepsilon^\alpha \left[ f \right]_{\alpha, \Omega_1} 
+\end{align*}
+De esta manera, $\partial_j v_\varepsilon$ converge uniforme (sobre compactos) a $u$ y como $v_\varepsilon$ converge $v = \partial_i w$ cuando $\varepsilon \to 0$, obtenemos que $w\in \mathcal{C}^2 (\Omega)$ y $u = \partial_i \partial_j w$, lo que concluye la demostración del lema
+\end{proof}
+Notemos que haciendo $\Omega_1 = B_R (x)$, para alg\'un $R$ suficientemente grande tendremos que
+\[
+\Delta w(x)  = \dfrac{1}{n C_n R^{n-1}}f(x) \int_{\lbrace \vert x-y\vert =R\rbrace} \hat{n}_i (y) \hat{n}_j(y) dS(y) = f(x).
+\]
+Podemos enunciar como consecuencia el siguiente teorema
+\begin{teo}\hfill
+
+Sea $\Omega$ un dominio acotado con frontera $\partial \Omega$ regular respecto al Laplaciano. Entonces, si $f$ es acotada, localmente H\"older continua en $\Omega$, entonces el problema de Dirichlet
+\[
+\begin{cases}
+	\Delta u = f \, \, \text{, en }  \Omega,\\
+	u = \varphi	\, \, \text{, sobre } \partial \Omega
+\end{cases}
+\]
+tiene una \'unica solución para cada $\varphi$ continua como valores de frontera.
+\end{teo}
+Si suponemos la existencia de soluciones de la ecuación de Poisson, o de un operador diferencial de segundo orden, podemos estudiar condiciones necesarias que estas deben satisfacer, estas se denominan estimaciones a priori. Nuestro objetivo es establecer estimaciones a priori de un operador elíptico con coeficientes H\"older continuos, para esto, en el siguiente lema introducimos \textbf{estimaciones para las derivadas de segundo orden}.
+\begin{lem}\label{lemma 3 schauder poisson}\hfill
+
+Sean $B_1 = B_R(x_0)$ y $B_2 = B_{2R} (x_0)$ bolas conc\'entricas en $\real^n$. Si $f \in \mathcal{C}^{\alpha}(\overline{B_2})$, para $0<\alpha <1$, y sea $w$ el potencial Newtoniano de $f$ en $B_2$. Entonces $w \in \mathcal{C}^{2,\alpha}$ y 
+\[
+\Vert \partial^2 w \Vert_{\mathcal{C}(B_2)} + R^{\alpha} [\partial^2 w ]_{\alpha, B_1}\leq C \left( \Vert f \Vert_{\mathcal{C}(B_2)}+R^{\alpha}[f]_{\alpha, B_2}\right)
+\]
+\begin{proof}
+Por el lema \ref{lema 2 schauder} sabemos que, para cada $x \in B_1$,
+\[
+\partial_i \partial_j w(x)= \int_{B_2}\partial_i \partial_j N(x-y)\left(f(y)-f(x)\right) dy - f(x)\int_{\partial B_2} \partial_i N(x-y)\hat{n}_j (y) dS(y)
+\]
+De esta manera, podemos calcular las siguientes cotas para las derivadas de segundo orden
+\begin{align*}
+\vert \partial_i \partial_j w(x) \vert &\leq \frac{\vert f (x)\vert}{n C_n}R^{1-n}\int_{\partial B_2}dS(y) + \frac{[f]_{\alpha, x}}{C_n} \int_{B_2}\vert x-y\vert^{\alpha-n}dy \\
+&\leq 2^{1-n}\vert f(x)\vert + \frac{n}{\alpha}\left(3R\right)^\alpha [f]_{\alpha,x} \\
+&\leq C_1 \left( \vert f(x)\vert + R^{\alpha} [f]_{\alpha,x}\right).
+\end{align*}
+Donde $C_1 = C_1 (n,\alpha)$ es una constante que depende solamente de la dimension $n$ y la H\"older-continuidad de $f$.\\
+Por otro lado, si consideramos otro punto $x' \in B_1$, de tal manera que $\delta:= \vert x -x'\vert$ y $\xi = \frac{1}{2}(x-x')$. Veamos entonces que
+\begin{align*}
+\partial_i \partial_j w(x)  - \partial_i \partial_j w(x') = f(x)I_1 +(f(x) - f(x')) I_2 + I_3 + I_4 + (f(x)-f(x'))I_5 + I_6
+\end{align*}
+Donde los t\'erminos $I_j$ son t\'erminos integrales de la forma
+\begin{align*}
+I_1 &= \int_{\partial B_2} \left( \partial_i N(x-y) - \partial_i N(x' -y) \right) \partial_i N(x' -y) \hat{n}_j(y) dS(y) \\
+I_2 &= \int_{\partial B_2} \partial_i N(x' -y)\hat{n}_j(y) dS(y)\\
+I_3 &= \int_{B_{\delta(\xi)}}\partial_i \partial_j N(x-y) (f(x)-f(y))dy\\
+I_4 &= -\int_{B_{\delta(\xi)}}\partial_i\partial_j N(x' -y)(f(x')-f(y))dy \\
+I_5 &= \int_{B_2\backslash B_{\delta(\xi)}}\partial_i\partial_j N(x-y)dy\\
+I_6 &= \int_{B_2\backslash B_{\delta(\xi)}} \left( \partial_i \partial_j N(x-y) - \partial_i \partial_j N(x' -y) \right) (f(x') - f(y)) dy.
+\end{align*}
+A continuaci\'on acotaremos los términos integrales ya detallados. Para $I_1$ si consideramos $\overline{x} \in [x,x']$ (el segmento entre $x$ y $x'$) podemos ver que
+\[
+\vert I_1 \vert \leq \vert x -x'\vert \int_{\partial B_2} \vert \nabla \partial_i N(\overline{x}-y )\vert dS(y)
+\]  
+Luego, como $\delta = \vert \overline{x} - y\vert\geq R$ para $y\in \partial B_2$ y finalmente utilizando que $\delta < 2R$ concluimos que
+\[
+\vert I_1 \vert \leq \frac{n^2 2^{n-1} \vert x - x' \vert}{R} \leq n^2 2^{n-1} \left( \frac{\delta}{R}\right)^{\alpha}.
+\]
+Para $I_2$, basta notar que 
+\[
+\vert I_2 \vert \leq \frac{R^{1-n}}{n C_n} \int_{\partial B_2} dS(y) = 2^{n-1}.
+\]
+Para $I_3$ procedemos como sigue, 
+\begin{align*}
+\vert I_3 \vert &\leq \int_{B_{\delta(\xi)}} \vert \partial_i \partial_j N(x-y) \vert \vert f(x) -f(y) \vert dy \\
+&\leq  \frac{1}{C_n} R^{1-n} \int_{\partial B_{3\delta /2}(x)} \vert x - y\vert^{\alpha -n} dy \\
+&= \frac{n}{\alpha}\left( \frac{3\delta}{2} \right)^{\alpha} [f]_{\alpha, x}
+\end{align*}
+Asimismo, para $I_4$ concluimos que
+\[
+\vert I_4 \vert \leq \frac{n}{\alpha}\left( \frac{3\delta}{2}\right)^{\alpha} \left[ f\right]_{\alpha,x'}
+\]
+Por otro lado, integrando por partes en el t\'ermino $I_5$ obtenemos 
+\begin{align*}
+\vert I_5 \vert &= \left\vert \int_{\partial\left( B_2\backslash B_\delta (\xi) \right)} \partial_i N(x-y)\hat{n}_j (y) dS(y) \right\vert \\
+&\leq \left\vert \int_{\partial B_2} \partial_i N(x-y)\hat{n}_j  dS(y)\right\vert + \left\vert \int_{\partial B_{\delta}(\xi)} \partial_i N(x-y) \hat{n}_j (y) dS(y)\right\vert \\
+&\leq 2^{n-1} + \frac{1}{n C_n}\left( \frac{\delta}{2}\right)^{1-n}\int_{\partial B_\delta (\xi)} dS(y) \\
+&= 2^n.
+\end{align*}
+Finalmente, podemos ver que para alg\'un $\overline{x}$ entre $x$ y $x'$ se debe tener que
+\begin{align*}
+	\vert I_6 \vert &\leq \vert x - x'\vert \int_{B_2\backslash B_\delta (xi)}  \vert \nabla \partial_i \partial_j N(\overline{x}-y )\vert \vert f(x') - f(y)\vert dy \\
+	&\leq c \delta \int_{\vert y- \xi \vert \geq \delta}\frac{\vert f(x') - f(y) \vert}{\vert \overline{x} - y \vert^{n+1}}dy \\
+	&\leq c \delta [f]_{\alpha, x'} \int_{\vert y- \xi \vert \geq \delta} \frac{\vert x' - y \vert^{\alpha}}{\vert \overline{x} - y \vert^{n+1}}dy\\
+	&\leq c \left( \frac{3}{2}\right)^{\alpha} 2^{n+1} \delta [f]_{\alpha, x'} \int_{\vert y - \xi \vert\geq \delta} \vert \xi - y \vert^{\alpha-n-1}dy.
+\end{align*}
+Donde $c = \frac{n(n+5)}{C_n}$. Finalmente, como $\vert x' - y\vert \leq \frac{3}{2}\vert \xi - y \vert \leq 3 \vert \overline{x}-y \vert$, concluimos que 
+\[
+\vert I_6 \vert \leq  \frac{n^2 (n+5)}{1-\alpha}2^{n+1} \left( \frac{3}{2}\right)^{\alpha} \delta^\alpha [f]_{\alpha,x'}
+\]
+Utilizando las estimaciones anteriores, obtenemos
+\begin{equation}\label{paso 2}
+	\frac{\vert \partial_i \partial_j w(x') - \partial_i \partial_j w(x) \vert}{\vert x - x'\vert^{\alpha}} \leq C_2 \left[ \left( \frac{1}{R}\right)^\alpha \vert f(x)\vert + [f]_{\alpha, x} + [ f ]_{\alpha, x'}\right]
+\end{equation}
+Donde $C_2$ es una constante que solo depende de $n$ y $\alpha$. Para concluir, utilizamos \ref{lema 2 schauder} y tomamos el supremo sobre \ref{paso 2} obteniendo la desigualdad deseada.
+\end{proof}
+\end{lem}
+De este \'ultimo resultado deducimos las estimaciones de Schauder para una solución de la ecuación de Poisson. 
+
+
+\begin{teo}[Estimaciones de Schauder, \textbf{Caso Poisson}]\label{Schauder 1, Poisson}\hfill
+
+Sea $\Omega$ un dominio en $\real^n$ y sea $u \in \mathcal{C}^2{\Omega}$, $f\in \mathcal{C}^{\alpha}(\Omega)$ que satisfacen la ecuación de Poisson $\Delta u = f$. Entonces $u \in \mathcal{C}^{2,\alpha}(\Omega)$ y, para cada par de bolas conc\'entricas $B_1$ y $B_2$ como en las hipótesis de \ref{lemma 3 schauder poisson} se tiene que
+\[
+\Vert u \Vert_{C^{2,\alpha}(B_1)} \leq C\left( \Vert u \Vert_{\mathcal{C}^{0}(B_2)} + \Vert f \Vert_{C^{0,\alpha}(B_2)}\right)
+\]
+\end{teo}
+\begin{obs}
+Basta asumir que $f\in \mathcal{C}^2(M)$ para obtener que $f\in C^{k+2,\alpha}(M)$ siempre que $L(f)$ y los coeficientes de $L$ est\'en en $C^{k,\alpha}(M)$. 
+\end{obs}
+Este argumento se denomina \textbf{Bootstrapping} y veremos un ejemplo de su aplicaci\'on en el cap\'itulo 3.
+\subsection*{Estimaciones de Schauder para operadores el\'ipticos.}
+Las estimaciones que introduciremos a continuación se basan en la observación que las ecuaciones con coeficientes H\"older continuos pueden ser tratados como perturbaciones de ecuaciones de coeficientes constantes, esto fue utilizado por Schauder para construir una teoría global de operadores, en esta teoría, encontramos las estimaciones a priori de soluciones de ecuaciones que extiende la teoría de potenciales. Estas estimaciones proveen de resultados de existencia y regularidad, lo que las convierte en valiosas herramientas para el estudio de ecuaciones diferenciales y sus soluciones.\\
+En adelante, denotaremos por $L(u) =f$ a la ecuación \ref{L eliptico}
+\begin{equation}
+L(u) = \sum_{j,k=1}^n a_{jk} \dfrac{\partial^2 u}{\partial x^j \partial x^k} + \sum_{\ell =1}^n b_\ell \dfrac{\partial u}{\partial x^\ell} + cu = f
+\end{equation}
+Donde los coeficientes $a_{ij}$ y $f$ están definidos en $\Omega \subset \real^n$ y el operador $L$ es uniformemente el\'iptico (ver \ref{elipticidad uniforma}). Utilizaremos  las normas dadas por \cite[Sección 4.3, pag.61]{GilTru98}, estas son dadas como sigue. Dados $x,y \in \Omega \subset \real^n$, escribimos $d_x = \dist (x, \partial\Omega)$ y $d_{x,y} = \min\left( d_x , d_y \right)$. Sea $u \in \mathcal{C}^{k,\alpha}(\Omega)$, definimos entonces los siguientes coeficientes,
+\begin{equation}\label{k,0 coeficiente *}
+[u]_{k,0;\Omega}^{\ast} := [u]^{\ast}_{k; \alpha} = \sup_{\substack{x\in \Omega \\ \vert \beta \vert = k}} d_x^k \vert \partial^\beta u(x) \vert
+\end{equation}
+los cuales utilizamos para definir
+\begin{equation}\label{k-* coeficiente}
+\vert u \vert^{\ast}_{k;\Omega} = \vert u \vert^{\ast}_{k,0;\Omega}= \sum_{j=0}^{k} [u]^{\ast}_{j; \Omega}
+\end{equation}
+De forma similar a como hemos hecho anteriormente, para $0<\alpha \leq 1$ definimos el análogo al $\alpha$-coeficiente de H\"older de $u$ como
+\begin{equation}\label{k,alpha coeficiente *}
+[u]^{\ast}_{k,\alpha ; \Omega} = \sup_{\substack{x,y \in \Omega \\ \vert \beta \vert = k}} d^{k+\alpha}_{x,y} \frac{\vert\partial^{\beta} u(x)  \partial^{\beta} u(y)\vert}{\vert x - y\vert^{\alpha}}
+\end{equation}
+Y finalmente, podemos formular un análogo de la norma de H\"older como
+\begin{equation}\label{Cap2Sec4 Norma1}
+\Vert u \Vert^{\ast}_{k,\alpha ; \Omega} = \vert u \vert^{\ast}_{k;\Omega} + [u]^{\ast}_{k,\alpha ; \Omega}
+\end{equation}
+La cual se denomina como \textbf{norma interior}.
+\begin{obs}\hfill
+
+\begin{enumerate}
+\item En esta notaci\'on,
+\[
+[u]^{\ast}_{0; \Omega} = \vert u \vert^{\ast}_{0; \Omega} = \vert u \vert_{0 ; \Omega}.
+\]
+\item Notemos que $\vert u \vert^{\ast}_{k; \Omega}$ y $\vert u \vert^{\ast}_{k,\alpha; \Omega}$ son normas en los subespacios de funciones continuas $\mathcal{C}^k (\Omega)$ y $\mathcal{C}^{k,\alpha} (\Omega)$ respectivamente. Si $\Omega$ es acotado y su diámetro es $d$, entonces las normas interiores y las de H\"older se relacionan por
+\[
+\vert u \vert^{\ast}_{k,\alpha; \Omega} \leq \max (1, d^{k+\alpha}) \vert u \vert_{k,\alpha ; \Omega}
+\]
+Si $\Omega' \subset\subset \Omega$, es decir $\overline{\Omega'}$ es compacto en $\Omega$ y $\sigma = \dist (\Omega' , \partial \Omega)$, entonces
+\begin{equation*}
+\min (1, \sigma^{k+\alpha}) \vert u \vert_{k,\alpha ; \Omega} \leq \vert u \vert^{\ast}_{k,\alpha ; \Omega}
+\end{equation*}
+\end{enumerate}
+\end{obs}
+Considerando la observación anterior, si introducimos la cantidad 
+\begin{equation}\label{Cap2Sec4 Norma2}
+\vert f \vert^{(k)}_{0,\alpha ; \Omega} = \sup_{x\in\Omega} d^{k}_{x}\vert f(x) \vert + \sup_{x,y \in \Omega} d^{k+\alpha}_{x,y} \frac{\vert f(x) - f(y)\vert}{\vert x- y \vert^\alpha}
+\end{equation}
+podemos reescribir el teorema \ref{Schauder 1, Poisson} como en \cite[Pag. 62]{GilTru98}
+\begin{teo}[Estimaciones de Schauder, \textbf{Caso Poisson}, (ver.2)]\label{Schauder 2, Poisson}\hfill
+
+Sea $u \in \mathcal{C}^2 (\Omega)$, que para $f\in \mathcal{C}^{\alpha}$ satisface la ecuación de Poisson $\Delta u = f$ sobre un dominio abierto $\Omega \subset \real^n$. Entonces, existe una constante $C>0$ tal que 
+\begin{equation}
+\vert u \vert^{\ast}_{2,\alpha; \Omega}\leq C \left( \vert u \vert_{0;\Omega} + \vert f\vert^{(2)}_{0,\alpha ; \Omega} \right)
+\end{equation}
+\end{teo}
+El resultado para el caso de un operador elíptico de coeficientes constantes es una consecuencia directa de las estimaciones que hemos obtenido para el Laplaciano en \ref{schauder laplace}, utilizado después de un cambio de variables adecuado. Para ilustrar este argumento y presentarlo formalmente enunciamos el siguiente lema
+
+\begin{lem}\label{eliptico coeficientes constantes a poisson}\hfill
+
+En la ecuacion de coeficientes constantes sobre $\Omega \subset \real^n$ abierto
+\[
+L_0 (u) = \sum_{j,k=1}^{n}a_{ij} \frac{\partial^2 u}{\partial x^j \partial x^k} = f(x).
+\]
+Donde $a_{ij}$ son los coeficientes constantes de una matriz simétrica $A$ de orden $n\times n$ que satisface la condición de elipticidad 
+\[
+\lambda \vert \xi \vert^2  \leq \xi^T A \xi \leq \Lambda \vert \xi \vert^2, \ \ \ \forall \xi \in \real^n
+\]
+para algunas $\lambda$ y $\Lambda$ constantes positivas. Se tiene que 
+\begin{enumerate}
+	\item Si $u \in \mathcal{C}^2(\Omega)$, $f \in \mathcal{C}^{\alpha}(\Omega)$ satisfacen $L_0 u =f$. Entonces
+	\[
+	\vert u \vert^{\ast}_{2,\alpha,\Omega} \leq C \left( \vert u \vert_{0; \Omega} + \vert f \vert^{(2)}_{0,\alpha, \Omega} \right)
+	\]
+	Donde $C$ es una constante que depende solamente de $n,\, \alpha,\, \lambda$ y $\Lambda$.
+	\item Si $\Omega \subset \real^{n}_{+}$ con una parte de su frontera $T \subset \partial\Omega$ sobre $x_n =0$, y  $u \in \mathcal{C}^2(\Omega)\cap \mathcal{C}^{0}(\Omega \cup T)$, $f \in  \mathcal{C}^{\alpha}(\Omega \cup T)$ satisfacen la ecuación
+	\[
+		\begin{cases}
+		L_0 u = f \, , \ \ \ \text{en } \Omega\\
+		u= 0 \, , \ \ \ \text{sobre } T.
+		\end{cases}	
+	\]
+	Entonces
+	\[
+	\vert u \vert^{\ast}_{2,\alpha, (\Omega \cup T)} \leq C \left(\vert u \vert_{0,\Omega} + \vert f \vert^{(2)}_{0,\alpha, (\Omega \cup T)} \right).
+	\]
+	Donde $C$ es una constante que depende solamente de $n,\, \alpha,\, \lambda$ y $\Lambda$.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+Consideremos una matriz constante $P$ que define una transformación lineal no singular dada por la aplicación de $P$ a vectores en $\real^n$, es decir,
+\begin{align*}
+	P: \real^n &\longrightarrow \real^n \\
+	      x &\longmapsto P(x) = Px =: y \in \real^n
+\end{align*}
+Haciendo $u(x) \xrightarrow{P} \tilde{u}(y)$ se puede verificar que
+\[
+A_{ij} \partial_i \partial_j u(x) = \tilde{A}_{ij} \partial_i\partial_j \tilde{u}(y)
+\]
+donde $\tilde{A} = P^\top A P$. Para alguna matriz ortogonal $P$ adecuada, $\tilde{A}$ es una matriz diagonal, cuyos elementos son los autovalores de $A$, que denotaremos por $\lambda_1, \ldots, \lambda_n$. M\'as a\'un, si definimos
+\[
+Q = PD
+\]
+donde $D$ es la matriz diagonal $(\delta^i_j \lambda_i^{-1/2})_{i,j}$, entonces la transformaci\'on $x\mapsto Qx = y$ mapea $L_0 u = f(x)$ al problema de Poisson $\Delta \tilde{u}(y)= \tilde{f}(x)$, considerando que 
+\[
+u(x) \xrightarrow{Q} \tilde{u}(y) \quad \text{ y } \quad f(x) \xrightarrow{Q} \tilde{f}(y)
+\]
+Utilizando una rotaci\'on adecuada podemos asumir que $Q$ mapea el semiespacio positivo $x_n >0$ sobreyectivamente al semiespacio $y_n >0$. Como $P$ es ortogonal, es en particular una isometr\'ia, por lo tanto
+\[
+\Lambda^{-1/2} \vert x \vert \leq \vert Qx \vert \leq \lambda^{-1/2} \vert x\vert.
+\]
+Sigue que si $\Omega \xrightarrow{Q} \tilde{\Omega}$ entonces las normas \ref{Cap2Sec4 Norma1} y \ref{Cap2Sec4 Norma2} definidas sobre $\Omega$ y $\tilde{\Omega}$ se relacionan entre si como sigue
+\begin{align*}\tag{2.4.3-1}\label{Cap2Sec4 IneqNormas1}
+	c^{-1} \vert v \vert^{\ast}_{k,\alpha; \Omega} &\leq \vert \tilde{v}\vert^{\ast}_{k,\alpha; \tilde{\Omega}} \leq c \vert v \vert^{\ast}_{k,\alpha; \Omega} \\
+	c^{-1} \vert v \vert^{(k)}_{0,\alpha; \Omega} &\leq \vert \tilde{v}\vert^{(k)}_{0,\alpha; \tilde{\Omega}} \leq c \vert v \vert^{(k)}_{0,\alpha; \Omega}
+\end{align*}
+para $k\in\bbN$, $\alpha \in [0,1]$ y una constante $c= c(k,n,\lambda,\Lambda)$.\par
+De la forma similar si $\Omega$ es un subconjunto abierto del semiplano $\mathbb{R}^n_{+}$ con una porcion de su frontera $T$ sobre el plano $x_n =0$ que se mapea por $Q$ al conjunto $\tilde{\Omega}\subset \bbR^n_{+}$ con una porción de frontera mapeada como $T \xrightarrow{Q} \tilde{T}$. Las normas de la forma \ref{k-* coeficiente} en $\Omega$ y $\tilde{\Omega}$ satisfacen que
+\begin{align*}\tag{2.4.3-2}\label{Cap2Sec4 IneqNormas2}
+	c^{-1} \vert v\vert^{\ast}_{k,\alpha; \Omega \cup T} &\leq \vert \tilde{v}\vert^{\ast}_{k,\alpha ; \tilde{\Omega}\cup \tilde{T}} \leq c \vert v \vert^{\ast}_{k,\alpha; \Omega\cup T} \\
+	c^{-1} \vert v\vert^{(k)}_{0,\alpha; \Omega \cup T} &\leq \vert \tilde{v}\vert^{(k)}_{0,\alpha ; \tilde{\Omega}\cup \tilde{T}} \leq c \vert v \vert^{(k)}_{0,\alpha; \Omega\cup T}
+\end{align*}
+Utilizando el teorema \ref{eliptico coeficientes constantes a poisson} en las desigualdades \ref{Cap2Sec4 IneqNormas1} concluimos que 
+\[
+\vert u \vert^{\ast}_{2,\alpha; \Omega} \leq C \vert \tilde{u}\vert^{\ast}_{2,\alpha; \tilde{\Omega}} \leq C\left( \vert \tilde{u} \vert_{0; \Omega} + \vert \tilde{f}\vert^{(2)}_{0,\alpha;\Omega} \right) \leq C \left( \vert u \vert_{0; \Omega} + \vert f \vert^{(2)}_{0,\alpha;\Omega} \right)
+\]
+de forma similar (Ver \cite[Teoremas 4.11 y 4.12]{GilTru98}) y utilizando las desigualdades \ref{Cap2Sec4 IneqNormas2} se concluye la estimación  del punto (2) del resultado.
+\end{proof}
+
+Utilizando el m\'etodo de continuidad, que se presentar\'a a modo de conclusi\'on de esta sección, se puede establecer una forma de estudiar problemas el\'ipticos generales utilizando las propiedades que hasta ahora hemos discutido utilizando problemas de coeficientes (localmente) constantes. Este m\'etodo nos permite pensar en los problemas el\'ipticos m\'as generales como perturbaciones del problema del Laplaciano, o de la ecuaci\'on de Poisson. En particular, es relevante para nuestro trabajo el siguiente resultado.
+
+
+\begin{teo}[Estimaciones de Schauder]\label{Schauder para operador eliptico}\hfill
+
+Sean $\Omega \subset \real^n$ un dominio de clase $\mathcal{C}^{2,\alpha}$ y $u\in\mathcal{C}^{2,\alpha}(\overline{\Omega})$ una solución de $L(u) = f$ en $\Omega$, para $f\in\mathcal{C}^{\alpha}(\overline{\Omega})$ y para constantes positivas $\lambda$ y $\Lambda$ los coeficientes de $L$ satisfacen 
+\[
+\sum_{j,k=1}^{n} a_{jk}(x)\xi_j \xi_k \geq \lambda \vert \xi \vert^2, \ \ \ \forall \, x\in\Omega, \forall\, \xi \in \real^n
+\]
+y los coeficientes del operador están controlados como sigue
+\[
+\vert a_{ij} \vert_{0,\alpha; \Omega},\, \vert b_j\vert_{0,\alpha;\Omega},\, \vert c \vert_{0,\alpha; \Omega} \leq \Lambda.
+\]
+Sea $\varphi \in \mathcal{C}^{2,\alpha}(\overline{\Omega})$, si $u=\varphi$ sobre $\partial \Omega$, entonces
+\begin{equation}\label{resultado schauder eliptico}
+\vert u \vert_{2,\alpha;\Omega} \leq C \left( \vert u \vert_{0;\Omega} + \vert \varphi \vert_{2,\alpha;\Omega} + \vert f \vert_{0,\alpha;\Omega} \right).
+\end{equation}
+Donde $C$ es una constante que depende únicamente de $n$, $\alpha$, $\lambda$, $\Lambda$ y $\Omega$.
+\end{teo}
+
+Para concluir esta sección, introduciremos el \textbf{m\'etodo de continuidad} para presentar una aplicación de los resultados previos en el estudio de la existencia de soluciones en un problema de tipo Dirichlet.
+\begin{teo}[Método de Continuidad]\label{metodo de continuidad}\hfill
+
+Sean $\left(\mathbb{B}, \Vert \cdot \Vert_{\mathbb{B}}\right)$ un espacio de Banach y $\left(\mathbb{V}, \Vert \cdot \Vert_{\mathbb{V}} \right)$ un espacio vectorial normado. Sean $L_0$ y $L_1$ dos operadores lineales acotados de $\mathbb{B}$ en $\mathbb{V}$. Para cada $t \in [0,1]$ definimos el problema $L_t$ como
+\[
+L_t = (1-t)L_0 + t L_1.
+\]
+Si existe una constante positiva $C$ tal que
+\begin{equation}\label{inyectividad en metodo continuidad}
+\Vert x \Vert_{\mathbb{B}} \leq C \Vert L_t (x) \Vert_{\mathbb{V}}
+\end{equation}
+para cada $t\in[0,1]$. Entonces $L_1$ mapea $\mathbb{B}$ en $\mathbb{V}$ sobreyectivamente si y solo si $L_0$ mapea $\mathbb{B}$ en $\mathbb{V}$ sobreyectivamente.
+\end{teo}
+\begin{proof}
+Comenzamos suponiendo que $L_s$ es sobreyectiva para algún $s\in[0,1]$. Desde \ref{inyectividad en metodo continuidad} concluimos que $L_s$ es inyectiva, y por lo tanto $\mathbb{V}$ es, de hecho, un espacio de Banach isomorfo a $\mathbb{B}$, y podemos considerar su inversa
+\[
+L^{-1}_s : \mathbb{V}\longrightarrow \mathbb{B}.
+\]
+Por otro lado, para $t\in[0,1]$ e $y\in \mathbb{V}$, la ecuación $L_t (x) = y$ equivale a 
+\begin{align*}
+L_s(x) &= y + (L_s - L_t ) x\\
+	&= y + (t-s)L_0 (x) - (t-s)L_1 (x).
+\end{align*}
+Podemos escribir entonces
+\[
+x = L_s^{-1}(y) + (t-s)L_s^{-1} (L_0 - L_1 )(x).
+\]
+Consideremos la aplicación
+\begin{align*}
+T : \mathbb{B} &\longrightarrow \mathbb{B}\\
+x &\longmapsto Tx =L_s^{-1}(y) + (t-s)L_s^{-1} (L_0 - L_1 )(x)
+\end{align*}
+Y notemos que si $\vert s - t \vert < \delta := \left( C \left(\Vert L_0 \Vert + \Vert L_1 \Vert \right)\right)^{-1}$, $T$ corresponde a una contracci\'on, por lo que por el teorema de punto fijo de Banach podemos concluir que $T$ es sobreyectiva para cada $t\in[0,1]$, tal que $\vert s-t\vert < \delta$. Dividiendo el intervalo $[0,1]$ en subintervalos de largo menor que $\delta$, vemos que si $L_t$ es sobreyectivo para un $t\in [0,1]$ dado, entonces debe serlo para cada $t\in [0,1]$, y particularmente para $t=0$ y $t=1$, por lo que concluimos el resultado.
+\end{proof}
+
+Como veremos m\'as adelante, el punto clave del uso de este m\'etodo es dado por probar que el conjunto
+\[
+\lbrace t \in [0,1] \, \text{tal que, la ecuaci\'on  $L_t (u) = f$ tiene soluci\'on} \rbrace
+\]
+es conexo, lo cual usualmente corresponderá a probar que es abierto y cerrado. Gran parte de las veces la condición de ser abierto es menos compleja, pues, en general esta es dada por el hecho de que los conjuntos de aplicaciones invertibles son (en general) abiertos dadas las condiciones necesarias. Por otro lado, para abordar la demostración de que este conjunto es cerrado, es necesario utilizar resultados de compacidad que generalmente revisten una mayor complejidad.\\
+
+A continuación, aplicaremos el método de continuidad para estudiar la existencia de soluciones para el problema $L(u)=f$ desde la ecuación de Poisson $\Delta u =f$ utilizando soluciones para una familia continua de ecuaciones que se encuentran entre $\Delta u =f$ y $L(u) =f$. Es decir, el resultado anterior, en las circunstancias correctas nos permitirá estudiar una ecuación elíptica y sus soluciones(al menos localmente en el caso de variedades) como la perturbación de una ecuación de Poisson, desde la cual podremos deducir la existencia de soluciones para $L(u)=f$.
+\begin{teo}\label{existencia soluciones poisson continuidad}\hfill
+
+Sea $\Omega \subset \real^n$ un dominio de clase $\mathcal{C}^{2,\alpha}$, en el cual el operador $L$ es estrictamente elíptico, con coeficientes de clase $\mathcal{C}^{\alpha}(\overline{\Omega})$ y con $c\geq 0$. Si el problema de Dirichlet
+\[
+\begin{cases}
+ \Delta u = f \, \, \text{ en } \Omega, \\
+ u = \varphi \, \, \text{ sobre } \partial\Omega
+\end{cases}
+\]
+tiene una solución $u\in \mathcal{C}^{2,\alpha}(\overline{\Omega})$ para cada $f \in \mathcal{C}^{\alpha}(\overline{\Omega})$ y $\varphi \in \mathcal{C}^{2,\alpha}(\overline{\Omega})$, entonces, el problema
+\begin{equation}\label{eliptic dirichlet continuity method}
+\begin{cases}
+	L(u) = f \, \, \text{ en } \Omega, \\
+	u = \varphi \, \, \text{ sobre } \partial\Omega
+\end{cases}
+\end{equation}
+también posee una solución $v \in \mathcal{C}^{2,\alpha}(\overline{\Omega})$ para cada $f$ y $\varphi$ como en el primer problema.
+\end{teo}
+\begin{proof}
+Por las hipótesis, podemos asumir la existencia de constantes positivas $\lambda$ y $\Lambda$ tales que 
+\begin{equation}\label{cond.1 continuity app}
+\lambda \vert \xi \vert^2 \leq \sum_{j,k=1}^{n}a_{ij}(x) \xi_j \xi_k \ \ \ \forall x\in \Omega, \, \forall \xi \in \real^n
+\end{equation}
+y
+\begin{equation}\label{cond.2 continuity app}
+\vert a_{ij} \vert_{0,\alpha; \Omega},\,\, \vert b_j\vert_{0,\alpha;\Omega},\,\, \vert c \vert_{0,\alpha; \Omega} \leq \Lambda.
+\end{equation}
+Por simplicidad, en adelante omitiremos el $\Omega$ en las normas provisto que no deja espacio a ambigüedad en su interpretación.\\
+Notemos que es suficiente estudiar el problema para condición de frontera cero, esto pues, considerando $v = u-\varphi$ el problema \ref{eliptic dirichlet continuity method} es equivalente a 
+\begin{equation}\label{equivalente a problema dirichlet frontera cero}
+\begin{cases}
+L(v) = f -L(\varphi) &= f' ,\, \text{ en } \Omega \\
+v &= 0 ,\, \text{ sobre } \partial \Omega.
+\end{cases}
+\end{equation}
+Consideraremos entonces, la familia de ecuaciones
+\begin{equation}\label{continuidad 1}
+L_t (u) := t L (u) + (1-t)\Delta u=f , \, \, \text{ para } t \in[0,1]
+\end{equation}
+Notemos que para $t=0$ obtenemos un problema tipo Dirichlet para la ecuación de Poisson, mientras que para $t=1$ se obtiene el problema que deseamos estudiar, adem\'as, los coeficientes de $L_t$ deben satisfacer \ref{cond.1 continuity app} y \ref{cond.2 continuity app} con
+\[
+\lambda_t  = \min (1,\lambda), \ \ \ \Lambda_t = \max (1,\Lambda).
+\]
+Si consideramos al operador $L_t$ como un operador lineal continuo entre los espacios de Banach $\mathbb{B}_1 = \lbrace u\in \mathcal{C}^{2,\alpha}(\overline{\Omega}),\text{ tal que } u=0 \text{ sobre } \partial\Omega \rbrace$ y $\mathbb{B}_2 =\mathcal{C}^{\alpha}(\overline{\Omega})$. La solubilidad del problema de Dirichlet
+\begin{equation}
+\begin{cases}
+	L_t (u) = f \, \text{ en } \Omega \\
+	u = 0 \, \, \text{ sobre } \partial\Omega
+\end{cases}
+\end{equation}
+para alg\'un $f\in \mathcal{C}^{\alpha}(\overline{\Omega})$ arbitrario ser\'a equivalente a la invertibilidad de la aplicaci\'on $L_t$. Si denotamos por $u_t$ a la solución de este ultimo problema. Podemos encontrar que (ver \cite{GilTru98}[Teorema 3.7])
+\[
+\vert u_t \vert_0 \leq C \sup_{x \in \Omega} \vert f(x) \vert \leq C \vert f_{0,\alpha}\vert,
+\]
+donde $C$ es una constante que solo depende de $\lambda$, $\Lambda$ y el diámetro de $\Omega$. As\'i, desde \ref{resultado schauder eliptico} obtenemos
+\begin{equation}
+\vert u_t \vert_{2,\alpha}\leq C \vert f \vert_{0,\alpha},
+\end{equation}
+esto es, 
+\[
+\Vert u \Vert_{\mathbb{B}_1}\leq C \Vert L_t u \Vert_{\mathbb{B}_2}
+\]
+Donde la constante $C$ es independiente del $t$ en particular. Dado que, por hipotesis $L_0 = \Delta$ lleva sobreyectivamente $\mathbb{B}_1$ en $\mathbb{B}_2$, podemos aplicar el método de continuidad \ref{metodo de continuidad} obteniendo el resultado deseado.
+\end{proof}
+
+\section{El operador Laplaciano en variedades de K\"ahler}\label{seccion 2.5}
+La teoría de Hodge, llamada as\'i en honor a su desarrollador W. Hodge es un m\'etodo de estudio de los grupos de cohomolog\'ia de una variedad diferencial que utiliza t\'enicas del c\'alculo diferencial y de ecuaciones en derivadas parciales. Concluiremos este capitulo presentando la definición dada desde la Teoría de Hodge para operadores diferenciales, y en particular el operador Laplaciano.\\
+
+En primer lugar, recordemos que si $X$ es una variedad compleja, entonces, una m\'etrica Riemanniana $g$ sobre $X$ es una \textbf{estructura hermitiana} sobre $X$ si para todo $x\in X$ el producto interno $g_x$ sobre el espacio tangente $T_x X$ es compatible con la estructura casi compleja $I_x$. Con lo anterior, la $(1,1)$-forma inducida 
+		\[
+		\omega := g(I(\cdot),(\cdot))
+		\]
+	es llamada \textbf{forma fundamental}, que en termino de coordenadas locales $\lbrace z^1, \ldots , z^m\rbrace$ se escribe como
+		\[
+		\omega = \frac{\ii}{2} \sum_{i,j=1}^m h_{ij} dz^i \wedge dz^j
+		\]
+	donde $\left( h_{ij}(x)\right)$ corresponde a una matriz definida positiva para todo $x\in X$. Dado lo anterior $(X,g)$ se denomina variedad hermitiana y sobre sus \'algebras exteriores podemos definir los siguientes operadores.
+\begin{itemize}
+\item[1)] \textbf{El operador de Lefschetz} es el homomorfismo de fibrados vectoriales dado por
+	\begin{align}\label{Operador de Leschetz}
+	L : \bigwedge\nolimits^{\!k} X &\longrightarrow \bigwedge\nolimits^{\!k+2}X,\\
+\nonumber		\alpha &\longmapsto \alpha \wedge \omega
+	\end{align}
+\item[2)] \textbf{El operador $\star$ de Hodge}, corresponde al emparejamiento definido para $\beta \in \bigwedge\nolimits^{\!k}X$, como $\star \beta \in \bigwedge\nolimits^{\!n-k}X$ que debe satisfacer la igualdad
+	\[
+	\alpha \wedge \star\beta = \langle \alpha , \beta \rangle \cdot \operatorname{vol} ,\ \ \ \forall \alpha \in \bigwedge\nolimits^{\!k}X.
+	\]
+	Es inducido por la m\'etrica y la orientaci\'on de $X$.
+\item[3)] \textbf{El operador dual de Lefschetz} corresponde al operador adjunto a $L$, se define por la condici\'on
+	\[
+	\langle \Lambda \alpha , \beta \rangle = \langle \alpha , L\beta\rangle, \ \ \ \forall \beta\in \bigwedge\nolimits^{\!k}X.
+	\]
+	Adem\'as $\Lambda$ es  de grado $-2$ y depende de la forma fundamental $\omega$ y la métrica $g$.
+\end{itemize}
+
+\begin{obs}\hfill
+
+\begin{enumerate}
+\item Para el producto exterior, $\star$ define un emparejamiento no degenerado
+\[
+ \bigwedge\nolimits^{\!k}X \times \bigwedge\nolimits^{\! n-k}X \longrightarrow \bigwedge\nolimits^{\!n}X = \operatorname{vol} \cdot \real
+\]
+\item Podemos ver que $\Lambda$ es dado por
+	\begin{align*}
+	\Lambda : \bigwedge\nolimits^{\!k} X &\longrightarrow \bigwedge\nolimits^{\!k-2} X,\\
+	\alpha &\longmapsto \left(\star^{-1}\circ L \circ \star \right)(\alpha)
+	\end{align*}
+	Para esto, veamos que 
+	\begin{align*}
+	\langle \alpha, L\beta \rangle \cdot \operatorname{vol} &= \langle L \beta, \alpha \rangle \cdot \operatorname{vol} \\ 
+	&= L\beta \wedge \star \alpha \\
+	&= \omega \wedge \beta \wedge \star \alpha \\
+	&= \beta \wedge \left( \omega \wedge \star \alpha \right) \\
+	&= \langle \beta , \star^{-1}\left(L(\star \alpha)\right)\rangle \cdot \operatorname{vol} \\
+	&= \langle \beta , \left(\star^{-1}\circ L \circ \star \right)(\alpha)\rangle \cdot \operatorname{vol}
+	\end{align*}
+De lo que concluimos la forma de $\Lambda$
+\end{enumerate}
+\end{obs}
+\begin{notacion}
+ Denotaremos indistintamente $\Lambda, L$ y $\star$ a la extensiones $\comp$-lineales de los operadores de Lefschetz y Hodge ya definidos.
+\end{notacion}
+Como en el primer cap\'itulo, consideramos las $(p,q)$-formas diferenciales con coeficientes suaves sobre $X$ como se presentan en la definición \ref{p,q - formas} cuyo diferencial se obtiene mediante los operadores $\partial$ y $\overline{\partial}$ como en \ref{diferencial de una funcion}. De esta manera podemos encontrar el operador adjunto de $\dd$, que corresponde a 
+\begin{equation}\label{d adjunto}
+\dd^{\ast} = (-1)^{m(k+1)+1} \ast \circ \dd \circ \ast : \mathcal{A}^{k} (X) \longrightarrow \mathcal{A}^{k-1}(X)
+\end{equation}
+\begin{obs}
+La definición anterior puede presentarse para una variedad Riemanniana $(M,g)$. Esto nos permite ver, que si $m = \dim_\real (M)$ es par (como cuando es compatible con una estructura compleja), entonces el operador adjunto anterior corresponde exactamente a
+\[
+\dd^{\ast} =  - \ast \circ \dd \circ \ast.
+\]
+\end{obs}
+Considerando la definición anterior del operador adjunto $\dd^{\ast}$ proponemos la siguiente definición de operador Laplaciano, que denominamos de Hodge-Laplace-Beltrami debido a su importancia en teoría de Hodge y sus aplicaciones en el estudio de ecuaciones diferenciales en variedades (en nuestro caso, de K\"ahler).
+\begin{defn}[Operador de Hodge-Laplace-Beltrami]\hfill
+	
+	El operador de \textbf{Hodge-Laplace-Beltrami}, o simplemente \textbf{Laplaciano}, se define como
+\begin{align}\label{Laplaciano}	
+	\nonumber \Delta : \bigwedge\nolimits^{\!k} X &\longrightarrow \bigwedge\nolimits^{\!k} X,\\
+	\alpha &\longmapsto \Delta \alpha := (d^{\ast}d + d d^{\ast}) (\alpha)
+\end{align}
+\end{defn}
+De la misma forma en que encontramos $\dd^{\ast}$ podemos definir $\partial^{\ast}$ y $\overline{\partial}^{\ast}$ como sigue.
+\begin{defn}\hfill
+
+Sea $(X,g)$ una variedad hermitiana, entonces, los operadores adjuntos por $\ast$ de $\partial$ y $\overline{\partial}$ se definen como
+\begin{align}
+	\partial^{\ast} &:= - \ast \circ \overline{\partial} \circ \ast, \\
+	\overline{\partial}^{\ast} &:= - \ast \circ \partial \circ \ast
+\end{align}
+De esta manera, como el operador $\ast$ de Hodge mapea $\mathcal{A}^{p,q}(X)$ en $\mathcal{A}^{n-q,n-p}(X)$, podemos ver que
+\end{defn}
+\[
+\begin{matrix}
+\mathcal{A}^{p,q}(X) & {\stackrel{\partial^{\ast}}{\xrightarrow{\hspace*{1cm}}}} &\mathcal{A}^{p-1,q}(X) \\
+\Big\downarrow \ast& & -\ast \Big\uparrow\\
+\mathcal{A}^{n-q,n-p}(X)& \stackrel{\overline{\partial}}{\xrightarrow{\hspace*{1cm}}}& \mathcal{A}^{n-q,n-p+1}(X) \\
+\end{matrix}
+\]
+es decir, $\partial^{\ast}(\mathcal{A}^{p,q}(X))\subset \mathcal{A}^{p-1,q}(X)$. De igual manera, también viendo el diagrama análogo para $\overline{\partial}^{\ast}$
+\[
+\begin{matrix}
+\mathcal{A}^{p,q}(X) & {\stackrel{\overline{\partial}^{\ast}}{\xrightarrow{\hspace*{1cm}}}} &\mathcal{A}^{p,q-1}(X) \\
+\Big\downarrow \ast& & -\ast \Big\uparrow\\
+\mathcal{A}^{n-q,n-p}(X)& \stackrel{\partial}{\xrightarrow{\hspace*{1cm}}}& \mathcal{A}^{n-q+1,n-p}(X) \\
+\end{matrix}
+\]
+concluimos que $\overline{\partial}^{\ast}(\mathcal{A}^{p,q}(X))\subset \mathcal{A}^{p,q-1}(X)$. Utilizando la definición anterior y nuestras observaciones posteriores, podemos ver que que si $(X,g)$ es una variedad Hermitiana, entonces
+\begin{align*}
+\dd^{\ast} &= -\ast \circ d \circ \ast \\
+&= -\ast \circ (\partial + \overline{\partial}) \circ \ast \\
+&= (-\ast\circ \partial \circ \ast) + (-\ast\circ\overline\partial\circ\ast) \\
+&= \overline{\partial}^{\ast} + \partial^{\ast}
+\end{align*}
+De manera que las aplicaciones de $\star$ se comportan de buena manera con los operadores $\dd$, $\partial$ y $\overline{\partial}$. Luego, de igual forma que con el operador $\dd$ y $\dd^{\ast}$ podemos utilizar $\overline{\partial}$ y $\partial$ como derivadas para definir operadores Laplacianos respecto a estas derivadas.
+\begin{defn}\hfill
+
+Sea $(X,g)$ una variedad hermitiana, los operadores \textbf{Laplacianos asociados a} $\partial$ y $\overline{\partial}$, respectivamente, se definen como
+\begin{align}
+\Delta_{\partial} &:= \partial^{\ast} \partial + \partial \partial^{\ast} \\
+\Delta_{\overline{\partial}} &:= \overline{\partial}^{\ast} \overline{\partial} + \overline{\partial}\overline{\partial}^{\ast}
+\end{align}
+As\'i, para ambos operadores el bigrado es invariante, es decir,
+\[
+\Delta_\partial , \, \Delta_{\overline{\partial}}: \mathcal{A}^{p,q}(X) \longrightarrow\mathcal{A}^{p,q}(X).
+\]
+\end{defn}
+Todos los operadores lineales y diferenciales que hemos introducido en esta sección se enmarcan en el contexto de variedades hermitianas. En el caso de variedades de K\"ahler, es decir, variedades donde la métrica $g$ define una forma fundamental $\omega$ cerrada (Recordar definición en sección \ref{definicion metrica Kahler}) tendremos que las propiedades de estos operadores son especialmente buenas. Precisaremos esto a continuación de los siguientes comentarios.
+\begin{obs}\label{Cap2-Sec5-Obs1}\hfill
+
+\begin{enumerate}
+\item En algunos casos, se dice que una variedad compleja $X$ es de K\"ahler si existe una estructura o métrica K\"ahleriana sin necesariamente fijar una. De forma mas precisa, nos referiremos a este caso como \textbf{variedades de tipo K\"ahleriana.}
+\item Como en el caso de variedades diferenciales, que siempre admiten métricas de Riemann, toda variedad compleja (de hecho, casi compleja) admite una métrica Hermitiana. Esto pues, si consideramos una métrica Riemanniana $g$ sobre una variedad compleja $X$ podemos construir una nueva métrica $h$ compatible con una estructura (casi) compleja $J$ como
+\[
+h(u,v) = \frac{1}{2}\left( g(u,v) + g(Ju, Jv) \right).
+\]
+\item De forma análoga, una métrica Hermitiana $h$ sobre una variedad (casi) compleja define una métrica Riemanniana $g$ en la variedad diferencial subyacente. Esta se define como la parte real de $h$, es decir
+\[
+g = \frac{1}{2} \left( h + \overline{h}\right)
+\]
+\end{enumerate}
+\end{obs}
+A diferencia del caso hermitiano, la existencia de una métrica K\"ahleriana no es trivial, y de hecho, como hemos comentado entrega una serie de propiedades de interés para nuestro estudio. Comenzamos introduciendo las identidades siguientes, denominadas, \textbf{identidades de K\"ahler}. Para esto, recordemos que el \textbf{conmutador} $[A,B]$ de dos operadores de bigrado $(a',a'')$ y $(b',b'')$ respectivamente, y grado total $a=a'+a''$ y $b=b'+b''$  se define como
+\begin{equation}\label{conmutador}
+[A,B] := AB - (-1)^{ab} BA.
+\end{equation}
+\begin{prop}[Identidades de K\"ahler]\label{Kahler identidades}\hfill
+
+Sea $(X,g)$ una variedad de K\"ahler. Entonces, se tienen las siguientes identidades
+\begin{enumerate}
+	\item[1)] $ [\overline{\partial}^{\ast} , L] = \ii \partial$, $[\partial^{\ast}, L] = - \ii \overline{\partial}$, $[\Lambda, \overline{\partial}]=-\ii \partial^{\ast}$ y $[\Lambda , \partial] = \ii \overline{\partial}^{\ast}$.
+	\item[2)] $[\partial, \overline{\partial}^{\ast}] =0 $ y $[\overline{\partial}, \partial^{\ast}]=0$.
+	\item[3)] $\Delta_\partial = \Delta_{\overline{\partial}} = \frac{1}{2}\Delta$, adem\'as $\Delta$ conmuta con los operadores $\ast,\, \partial,\, \overline{\partial},\, \partial^{\ast},\, \overline{\partial}^{\ast},\, L$ y $\Lambda$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Notemos que la primera y segunda relación de \textbf{(1)} son conjugadas entre si, de igual manera que la tercera y cuarta relación. Adem\'as, la primera y tercera son adjuntas la una de la otra. De esta observación concluimos que las cuatro igualdades del punto \textbf{(1)} son equivalentes entre si, por lo que basta probar solo una de ellas. Ver procedimiento en detalle en \cite[Pag. 111-114]{GriHar78}, este consta de probar el resultado primero para $\bbC^n$ y luego utilizar coordenadas adecuadas (cuya existencia se asegura en \ref{Coord normales Kahler}) para demostrar la igualdad en una variedad de K\"ahler.\par
+Luego, podemos ver que en \textbf{(2)} las relaciones son conjugadas la una de la otra, de modo que probar la primera ser\'a suficiente para concluir este punto. Tenemos que
+\begin{align*}
+\ii (\partial \overline{\partial}^{\ast}+\overline{\partial}^{\ast}\partial) &= \partial\left( \ii \overline{\partial}^{\ast}\right) + (\ii \overline{\partial}^{\ast})\partial \\
+&= \partial (\Lambda \partial - \partial \Lambda) + (\Lambda \partial - \partial \Lambda ) \partial \\
+&= \partial \Lambda \partial - \partial^2 \Lambda + \Lambda \partial^2 - \partial \Lambda\partial \\
+&= 0.
+\end{align*}
+Lo que nos permite concluir el punto \textbf{(2)}.\par
+Probaremos ahora la ultima relaci\'on. En primer lugar, tenemos la igualdad
+\begin{align*}
+\Delta &= (\partial + \overline{\partial})(\partial^{\ast} + \overline{\partial}^{\ast}) + (\partial^{\ast} + \overline{\partial}^{\ast})(\partial + \overline{\partial})\\
+&= \partial \partial^{\ast} + \partial \overline{\partial}^{\ast} + \overline{\partial}\partial^{\ast} + \overline{\partial}\overline{\partial}^{\ast} +\partial^{\ast}\partial + \partial^{\ast}\overline{\partial} +\overline{\partial}^{\ast}\partial +\overline{\partial}^{\ast} \overline{\partial} \\
+&= (\partial\partial^{\ast} + \partial^{\ast}\partial) + (\overline{\partial}\overline{\partial}^{\ast} + \overline{\partial}^{\ast}\overline{\partial}) + (\partial\overline{\partial}^{\ast} + \overline{\partial}^{\ast} \partial) + (\overline{\partial}\partial^{\ast} + \partial^{\ast}\overline{\partial} )\\
+&= \Delta_{\partial} + \Delta_{\overline{\partial}}
+\end{align*}
+Para concluir, probamos que $\Delta_{\partial} = \Delta_{\overline{\partial}}$ utilizando las identidades anteriores como sigue
+\begin{align*}
+-\ii \Delta_{\partial}  = -\ii \partial \partial^{\ast} - \ii \partial^{\ast}\partial &= \partial( -\ii \partial^{\ast}) + (-\ii \partial^{\ast})\partial \\
+&= \partial (\Lambda \overline{\partial} - \overline{\partial}\Lambda) + (\Lambda \overline{\partial} -\overline{\partial}\Lambda) \partial \\
+&= \partial \Lambda \overline{\partial} - \partial\overline{\partial}\Lambda + \Lambda \overline{\partial}\partial - \overline{\partial}\Lambda \partial \\
+&= \partial \Lambda \overline{\partial} + \overline{\partial}\partial \Lambda -\Lambda \partial\overline{\partial} -\overline{\partial}\Lambda \partial\\
+&= -\left[ \overline{\partial}(\Lambda\partial - \partial \Lambda) + (\Lambda\partial - \partial\Lambda)\overline{\partial} \right]\\
+&= -\left[ \overline{\partial} (\ii \overline{\partial}) + (\ii \overline{\partial}^{\ast})\overline{\partial} \right]\\
+&= -\ii \Delta_{\overline{\partial}}
+\end{align*} 
+\end{proof}
+Notemos que este resultado se formula en función del conmutador entre operadores diferenciales, esto nos permite establecer que $\Delta$ conmuta con los operadores $\ast,\, \partial,\, \overline{\partial},\, \partial^{\ast},\, \overline{\partial}^{\ast},\, L$ y $\Lambda$. Hasta ahora hemos visto a los operadores $\partial$ y $\partial^{\ast}$ y sus conjugados como definiciones que provienen de la aplicación del operador $\star$ de Hodge, pero estos son, en efecto, adjuntos formales entre si, para esto veamos a continuación  una forma de entender $\partial^{\ast}$ y $\overline{\partial}^{\ast}$ como los operadores adjuntos formales de $\partial$ y $\overline{\partial}$ respectivamente. Para esto consideremos una variedad Riemanniana compleja $(X,g)$, si llamamos $h$ a la extensi\'on Hermitiana de $g$ (como en la observaci\'on \ref{Cap2-Sec5-Obs1}), esta induce naturalmente un producto Hermitiano sobre los fibrados de formas como sigue
+\begin{defn}\hfill
+
+Sea $(X,g)$ una variedad Hermitiana compacta. Entonces se define un producto Hermitiano sobre $\mathcal{A}^{\ast}_{\comp}(X)$ por
+\begin{equation}\label{producto hermitiano para A(X)}
+(\alpha, \beta ) := \int_X h(\alpha, \beta) dV = \int_X  \alpha\wedge\overline{\star \beta}.
+\end{equation}
+\end{defn}
+Utilizando este producto interno Hermitiano, podemos encontrar las siguientes descomposiciones ortogonales para los espacios de formas alternantes sobre $X$.
+\begin{prop}\label{Cap2-Sec5-PropDescomp}\hfill
+
+Sea $(X,g)$ una variedad Hermitiana compacta. Entonces las siguientes descomposiciones son ortogonales respecto al producto $(\, , \,)$
+\begin{enumerate}
+\item La descomposición de grado $\mathcal{A}^{\ast}_{\comp}(X) = \oplus_k \mathcal{A}^{k}_{\comp}(X)$.
+\item La descomposición en bigrado $\mathcal{A}^{k}_{\comp}(X) = \oplus_{p+q=k} \mathcal{A}^{p,q}(X)$.
+\item La descomposición de Lefschetz $\mathcal{A}^{k}_{\comp}(X) = \oplus_{i\geq 0}L^i P^{k-2i}(X)$.
+\end{enumerate}
+\end{prop}
+Este resultado nos dice que $\mathcal{A}^{p,q}(X)$ es un espacio vectorial infinito-dimensional dotado del producto interno $(\cdot , \cdot)$ y su norma inducida $\Vert \alpha \Vert = (\alpha, \alpha)$. La completaci\'on de $\mathcal{A}^{p,q}(X)$ espacio con respecto a este producto interno nos entrega el espacio de $L^2$-formas de bigrado $(p,q)$.
+\begin{lem}\hfill
+
+Sea $X$ una variedad Hermitiana compacta. Entonces con respecto al producto Hermitiano $(\, ,\,)$ los operadores $\partial^{\ast}$ y $\overline{\partial}^{\ast}$ son los adjuntos formales de $\partial$ y $\overline{\partial}$, respectivamente.
+\end{lem}
+\begin{proof}
+Sean $\alpha \in \mathcal{A}^{p-1,q}(X)$ y $\beta \in \mathcal{A}^{p,q}$, luego por la definici\'on del producto $(\, , \,)$ se tiene que
+\begin{align*}
+\left( \partial \alpha , \beta \right) &= \int_X h(\partial \alpha , \beta) dV \\
+&= \int_X \partial \alpha \wedge \star \overline{\beta}\\
+&= \int_X \partial (\alpha \wedge \star \overline{\beta}) - (-1)^{p+q-1}\int_X \alpha \wedge \partial (\star \overline{\beta})
+\end{align*}
+Notemos que por el teorema de Stokes, la primera integral se anula dado que $\alpha \wedge \star \overline{\beta}$ es una forma de bigrado
+\[
+(p-1,q) + (n-p, n-q) = (n-1,n)
+\]
+y por lo tanto $\partial( \alpha \wedge \star \overline{\beta})$ es de grado $(n,n)$, en consecuencia
+\[
+\partial (\alpha \wedge \star \overline{\beta}) =  \dd (\alpha \wedge \star \overline{\beta}).
+\]
+Para la segunda integral la calculamos utilizando que $\star^2 = (-1)^k$ sobre $\mathcal{A}^{k} (X)$ como sigue
+\begin{align*}
+\int_X \alpha \wedge \partial (\star \overline{\beta}) &= \varepsilon \int_X h(\alpha, \star(\overline{\partial}(\star \beta)) dV \\
+&= \varepsilon \int_X h(\alpha, -\partial^{\ast} \beta) dV \\
+&= -\varepsilon (\alpha,\partial^{\ast}\beta)
+\end{align*}
+donde $\varepsilon = (-1)^{2n-(p+q)+1}$, de modo que $\varepsilon \cdot (-1)^{p+q-1}=1$, de lo que concluimos el resultado para $\partial^\ast$, para su conjugado, el procedimiento es an\'alogo.
+\end{proof}
+Presentaremos ahora $\mathcal{H}^{k}(X,g)$, denominado como el espacio de $k$-formas armónicas respecto al diferencial $d$ (definido de forma usual, como en \ref{Laplaciano}), y luego, podemos definir los espacios de $(p,q)$-formas armónicas respecto a $d$. En general, cuando hemos fijado la métrica $g$ se omitirá su escritura.\par
+
+
+Se puede ver que la descomposición en bigrado proporcionada por la proposición \ref{Cap2-Sec5-PropDescomp} no preserva esta noción de funciones armónicas, en este caso, será mas natural considerar funciones armónicas respecto a $\partial$ o $\overline{\partial}$, estas se definen a continuación
+
+
+\begin{defn}[Espacios de funciones armónicas generales]\hfill
+
+Sea $(X,g)$ una variedad compleja Hermitiana. Una forma $\alpha \in \mathcal{A}^{k}(X)$ es llamada $\overline{\partial}$-arm\'onica si $\Delta_{\overline{\partial}}(\alpha)=0$. M\'as a\'un, definimos los espacios de funciones $\overline{\partial}$ armónicas como
+\begin{align*}
+\mathcal{H}^{k}_{\overline{\partial}}(X,g) &:= \left\lbrace \alpha\in\mathcal{A}^{k}_{\comp}(X) \, \vert \, \Delta_{\overline{\partial}}(\alpha) =0 \right\rbrace, \\
+\mathcal{H}^{p,q}_{\overline{\partial}}(X,g) &:= \left\lbrace \alpha \in \mathcal{A}^{p,q}_{\comp}(X) \, \vert \, \Delta_{\overline{\partial}}(\alpha)=0 \right\rbrace.
+\end{align*}
+De forma análoga, definimos una forma $\partial$-armónica y los espacios de formas $\partial$-armónicas $\mathcal{H}^{k}_{\partial}(X,g)$ y $\mathcal{H}^{p,q}_{\partial}(X,g)$.
+\end{defn}
+\begin{lem}\label{Cap2Sec5LemaCondicionesArmonicas}\hfill
+
+Sea $(X,g)$ una variedad Hermitiana compacta. Una forma $\alpha$ es $\partial$-armónica (resp. $\overline{\partial}$-armónica) si y solo si $\overline{\partial}\alpha = \overline{\partial}^{\ast}=0$ (resp. $\partial\alpha = \partial^{\ast}\alpha =0$).
+\end{lem}
+\begin{proof}
+Notemos que para $\alpha \in \mathcal{A}^{p,q}(X)$
+\begin{align*}
+\left( \Delta_{\overline{\partial}} \alpha , \alpha \right) &= \left( (\overline{\partial}\overline{\partial}^{\ast} + \overline{\partial}^{\ast}\overline{\partial})\alpha, \alpha \right) \\
+&= \left( \overline{\partial}\overline{\partial}^{\ast}\alpha, \alpha \right) + \left( \overline{\partial}^{\ast}\overline{\partial}\alpha , \alpha \right) \\
+&= \left( \overline{\partial}^{\ast}\alpha ,\overline{\partial}^{\ast}\alpha \right) + \left( \overline{\partial}\alpha, \overline{\partial}\alpha\right)\\
+&= \Vert \overline{\partial}^{\ast} \alpha \Vert^2 + \Vert \overline{\partial}\alpha \Vert^2.
+\end{align*}
+As\'i podemos ver que $\Delta_{\overline{\partial}}\alpha = 0$ implica que $\Vert \overline{\partial}^{\ast}\alpha\Vert = \Vert \overline{\partial} \alpha \Vert =0$ o equivalentemente que $\overline{\partial}^{\ast}\alpha =\overline{\partial}\alpha =0$ lo que concluye la demostración, pues el caso $\partial$-arm\'onico es totalmente an\'alogo.
+\end{proof}
+
+\begin{prop}\hfill
+
+Sea $(X,g)$ una variedad Hermitiana. Entonces
+\begin{enumerate}
+	\item[a)] Se tienen las descomposiciones en bigrado para funciones armónicas siguientes
+	\[
+	\mathcal{H}^{k}_{\overline{\partial}} (X,g) = \bigoplus_{p+q=k} \mathcal{H}^{p,q}_{\overline{\partial}} (X,g)\hspace{20pt} \text{ y } \hspace{20pt} \mathcal{H}^{k}_{\partial} (X,g) = \bigoplus_{p+q=k} \mathcal{H}^{p,q}_{\partial}(X,g)
+	\]
+	\item[b)] Si $(X,g)$ es de K\"ahler entonces ambas descomposiciones coinciden con
+	\[
+	\mathcal{H}^{k}(X,g)_{\comp} = \bigoplus_{p+q=k} \mathcal{H}^{p,q}(X,g)
+	\]
+	En particular, se tiene que
+	\[
+	\mathcal{H}^{k} (X,g)_{\comp} = \mathcal{H}^{k}_{\overline{\partial}}(X,g) = \mathcal{H}^{k}_{\partial}(X,g).
+	\]
+\end{enumerate}
+\end{prop}
+\begin{proof}
+
+\end{proof}
+\begin{obs}\label{Cap2-Sec5-Obs3}
+Se pueden establecer algunos hechos de gran utilidad sobre los espacios de funciones armónicas que hemos introducido hasta ahora, estos siguen de resultados conocidos sobre funciones armónicas sobre variedades Riemannianas  y del álgebra lineal sobre variedades Hermitianas. Detallamos algunas de estas propiedades a continuación
+\begin{enumerate}
+\item[a)] Si $(X,g)$ es una variedad Hermitiana. Entonces el operador $\star$ de Hodge induce un isomorfismo $\comp$-lineal
+\[
+\star : \mathcal{H}^{p,q}(X,g) \cong\mathcal{H}^{n-q,n-p}(X,g).
+\]
+De hecho, $\star$ induce un morfismo 
+\[
+\star: \mathcal{A}^{p,q}(X) \longrightarrow \mathcal{A}^{n-q,n-p}(X)
+\]
+sobre cualquier variedad Hermitiana. De forma similar, se tiene el isomorfismo
+\[
+\mathcal{H}^{p,q}_{\overline{\partial}} (X,g) \cong \mathcal{H}^{n-q,n-p}(X,g).
+\]
+\item[b)] Si $(X,g)$ es una variedad Hermitiana compacta y conexa. Entonces el emparejamiento
+\begin{align*}
+\mathcal{H}^{p,q}_{\overline{\partial}} (X,g) \times \mathcal{H}^{n-q,n-p}_{\overline{\partial}} (X,g) &\longrightarrow \comp \\
+(\alpha, \beta) &\longmapsto	\int_X \alpha\wedge \beta	
+\end{align*}
+De hecho si $0\neq \alpha \in \mathcal{H}^{p,q}_{\overline{\partial}} (X,g)$ entonces $\star\overline{\alpha} \in \mathcal{H}^{n-p,n-q}_{\overline{\partial}} (X,g)$ y se tiene que
+\[
+\int_X \alpha \wedge \star\overline{\alpha} = \Vert \alpha \Vert^{2} >0.
+\]
+Esto nos d\'a la dualidad de Serre para formas arm\'onicas
+\[
+\mathcal{H}^{p,q}_{\overline{\partial}} (X,g) \cong \mathcal{H}^{n-p,n-q}_{\overline{\partial}} (X,g)^{\ast}.
+\]
+Aqu\'i, este resultado es una consecuencia de la introducción a teoría de Hodge que hemos realizado en esta sección (el desarrollo original del resultado se puede ver en \cite{Serre55}).
+\item[c)] Si $(X,g)$ es una variedad de K\"ahler de dimensi\'on $n$, entonces, para todo $k\leq n $ y $0\leq p\leq k$ el operador de Lefschetz (definido en \ref{Operador de Leschetz}) define un isomorfismo
+\[
+L^{n-k} : \mathcal{H}^{p,k-p} (X,g) \cong \mathcal{H}^{n+p-k,n-p} (X,g)
+\]
+\end{enumerate}
+\end{obs}
+En general, ser\'ia muy conveniente tener resultados de isomorf\'ia y descomposiciones similares para los grupos de cohomolog\'ia. Para esto, es necesario presentar el teorema de descomposición de Hodge y algunas de sus consecuencias.
+\begin{teo}[Teorema de descomposición de Hodge]\label{Teo. Descomposicion de Hodge}\hfill
+
+Sea $(X,g)$ una variedad Hermitiana compacta. Entonces existen las dos siguientes descomposiciones ortogonales
+\[
+\mathcal{A}^{p,q}(X) = \partial \mathcal{A}^{p-1,q}(X) \oplus \mathcal{H}^{p,q}_{\partial} (X,g) \oplus \partial^{\ast}\mathcal{A}^{p+1,q}(X)
+\]
+y
+\[
+\mathcal{A}^{p,q}(X) = \overline{\partial} \mathcal{A}^{p-1,q}(X) \oplus \mathcal{H}^{p,q}_{\overline{\partial}} (X,g) \oplus \overline{\partial}^{\ast}\mathcal{A}^{p+1,q}(X)
+\]
+Donde $\mathcal{H}^{p,q}_{\overline{\partial}} (X,g)$ es un espacio vectorial de dimensi\'on finita, y cuando $(X,g)$ es de K\"ahler, entonces
+\[
+\mathcal{H}^{p,q}_{\partial} (X,g) = \mathcal{H}^{p,q}_{\overline{\partial}} (X,g).
+\]
+\end{teo}
+Para este teorema, la demostración de la ortogonalidad viene de la aplicación del producto Hermitiano definido en \ref{producto hermitiano para A(X)} y la ultima afirmación es consecuencia de la tercera identidad de K\"ahler (Prop. \ref{Kahler identidades}). El punto cr\'itico de la prueba es la existencia de tal descomposición, para ver los detalles de esto ver \cite[Pag. 128-130]{Huy05}.\par
+Veamos ahora, como esta descomposición nos permite relacionar los espacios de formas armónicas con los grupos de Cohomolog\'ia (en particular, de Dolbeault).
+\begin{coro}[Isomorfismo de Hodge]\label{Hodge Isomorfismo}\hfill
+
+Sea $(X,g)$ una variedad Hermitiana compacta. Entonces, la proyección
+\begin{align}\label{iso Hodge}
+\mathcal{H}^{p,q}_{\overline{\partial}} (X,g) &\longrightarrow \cohom^{p,q}(X)\\
+\nonumber \alpha &\longmapsto [\alpha] \in \cohom^{p,q}(X)
+\end{align}
+es un isomorfismo.
+\end{coro}
+\begin{proof}
+Como toda forma $\alpha \in \mathcal{H}^{p,q}_{\overline{\partial}}(X,g)$ es $\overline{\partial}$ cerrada, proyectarla a su clase de Cohomolog\'ia de Dolbeault $[\alpha ] \in \cohom^{p,q}(X)$ define canónicamente una aplicación $\mathcal{H}^{p,q}_{\overline{\partial}} (X,g) \longrightarrow \cohom^{p,q}(X)$.\\
+M\'as a\'un, como $\overline{\partial}\overline{\partial}^{\ast}\beta = 0$ si y solo si $\overline{\partial}^{\ast}\beta =0$, podemos ver que
+\[
+\ker \left( \overline{\partial} : \, \mathcal{A}^{p,q}(X) \rightarrow \mathcal{A}^{p,q+1}(X) \right) = \overline{\partial}(\mathcal{A}^{p,q-1}(X) \oplus \mathcal{H}^{p,q}_{\overline{\partial}}(X,g).
+\]
+De hecho, $\overline{\partial}\overline{\partial}^{\ast}\beta = 0$ nos dice que $0= (\overline{\partial}\overline{\partial}^{\ast}\beta,\beta)= \Vert \overline{\partial}\beta\Vert^2$.
+De lo anterior concluimos que \ref{iso Hodge} define un isomorfismo.
+\end{proof}
+En consideración del teorema de descomposición de Hodge, podemos ver que el espacio de $(p,q)$-formas arm\'onicas aparece en ambas descomposiciones. El siguiente resultado ejemplifica algunas consecuencias directas de este hecho.
+\begin{coro}[$\partial\overline{\partial}$-lema]\label{ddbarra lema Hodge}\hfill
+
+Sea $(X,g)$ una variedad de K\"ahler compacta. Si una $(p,q)$-forma $\alpha$ es $\dd$-cerrada, es decir, $\dd \alpha =0$ . Entonces, las siguientes condiciones son equivalentes
+\begin{enumerate}
+	\item[(1)] $\alpha \in \mathcal{A}^{p+q}_{\comp}(X)$ es $\dd$-exacta, es decir, $\alpha = \dd \beta$ para alg\'un $\beta \in \mathcal{A}^{p+q-1}_{\comp}(X)$.
+	\item[(2)]$\alpha\in\mathcal{A}^{p+q}(X)$ es $\partial$-exacta, es decir, $\alpha = \partial \beta$ para alg\'un $\beta \in \mathcal{A}^{p-1,q}(X)$
+	\item[(3)]$\alpha\in\mathcal{A}^{p+q}(X)$ es $\overline{\partial}$-exacta, es decir, $\alpha = \overline{\partial} \beta$ para alg\'un $\beta \in \mathcal{A}^{p,q-1}(X)$
+	\item[(4)] $\alpha\in\mathcal{A}^{p+q}(X)$ es $\partial\overline{\partial}$-exacta, es decir, $\alpha = \partial\overline{\partial} \beta$ para alg\'un $\beta \in \mathcal{A}^{p-1,q-1}(X)$
+	\item[(5)]$\alpha\in\mathcal{A}^{p+q}(X)$ es ortogonal a $\mathcal{H}^{p,q}(X,g)$ para $g$ una m\'etrica de K\"ahler cualquiera sobre $X$.
+\end{enumerate}
+\end{coro}
+\begin{proof}
+Notemos que en la condición \textbf{(5)} no necesitamos especificar respecto a que operador es armónica la forma $\alpha$ pues estamos en el caso K\"ahler.\par
+Por otro lado, utilizando la descomposición de Hodge podemos ver que \textbf{(5)} es consecuencia de todas las otras condiciones. M\'as a\'un, tenemos que \textbf{(4)}$\Rightarrow$\textbf{(1),(2)} y \textbf{(3)}. De esta manera, ser\'a suficiente demostrar \textbf{(5)} $\Rightarrow$ \textbf{(4)}.\par
+Si $\alpha\in\mathcal{A}^{p+q}(X)$ es $\dd$-cerrada (y por lo tanto $\partial$-cerrada) y ortogonal al espacio de formas armónicas $\mathcal{H}^{p,q}(X,g)$, entonces la descomposición de Hodge respecto a $\partial$ nos dice que existe un $\gamma \in \mathcal{A}^{p-1,q}(X)$ tal que $\alpha = \partial \gamma$. Ahora aplicamos la descomposición de Hodge respecto a $\overline{\partial}$ sobre $\gamma$. Esto nos dice que 
+\[
+\gamma = \overline{\partial} \beta + \overline{\partial}^{\ast} \beta' + \beta''
+\]
+Donde $\beta''$ es una forma armónica, $\beta \in \mathcal{A}^{p-1,q}(X)$ y $\beta' \in \mathcal{A}^{p+1,q}(X)$. De esta forma, sigue que
+\[
+\alpha = \partial\overline{\partial}\beta  + \overline{\partial}^{\ast} \beta'.
+\]
+Utilizando que $\partial \overline{\partial}^{\ast} = - \overline{\partial}^{\ast} \partial$ y que $\overline\partial \alpha=0$ concluimos que $\overline{\partial}\overline{\partial}^{\ast}\partial \beta' = 0$.\par
+Finalmente, como 
+\[
+(\overline{\partial}\overline{\partial}^{\ast} \partial\beta' , \partial \beta') = \Vert \overline{\partial}^{\ast}\partial \beta'\Vert^2\]
+ de lo que concluimos que 
+\[
+\partial\overline{\partial}^{\ast}\beta' = - \overline{\partial}^{\ast}\partial \beta' = 0.
+\]
+Por lo tanto, $\alpha = \partial \overline{\partial}\beta$.
+\end{proof}
+Se puede establecer una version local del $\partial\overline{\partial}$-lema (con $X$ un polidisco). En este caso la condición de K\"ahler no es necesaria. Esto muestra que una importante consecuencia de la condición de K\"ahler es que esta permite extender resultados de forma global.\\
+Para concluir este cap\'itulo, presentamos una \'ultima consecuencia del teorema de descomposición de Hodge, que establece la existencia de una descomposición con independencia de la estructura de K\"ahler.
+\begin{coro}\hfill
+
+Sea $(X,g)$ una variedad de K\"ahler compacta. Entonces existe una descomposición en bigrado para los grupos de cohomolog\'ia
+\begin{equation}
+\cohom^{k}(X,\comp) = \bigoplus_{p+q=k} \cohom^{p,q}(X).
+\end{equation}
+Esta descomposici\'on no depende de la estructura de K\"ahler escogida.\\
+M\'as a\'un, con respecto a la conjugaci\'on compleja sobre $\cohom^{\bullet}(X,\comp) = \cohom^{\bullet}(X,\real)\otimes \comp$, se tiene que
+\[
+\overline{\cohom^{p,q}(X)}= \cohom^{q,p}(X)
+\]
+y por dualidad de Serre obtenemos que
+\[
+\cohom^{p,q}(X) \cong \cohom^{n-p,n-q}(X)^{\ast}.
+\]
+\end{coro}
+\begin{proof}
+La descomposición en cuesti\'on es inducida por
+\[
+\cohom^{k}\left(X,\comp \right) = \mathcal{H}^{k}(X,g)_{\comp} = \bigoplus_{p+q=k} \mathcal{H}^{p,q}(X,g) = \bigoplus_{p+q=k} \cohom^{p,q}(X),
+\]
+que a priori podría depender de la métrica de K\"ahler $g$. Sea $g'$ otra m\'etrica de K\"ahler. Los espacios $\mathcal{H}^{p,q}(X,g)$ y $\mathcal{H}^{p,q}(X,g')$ se identifican naturalmente por
+\[
+\mathcal{H}^{p,q}(X,g) \cong \cohom^{p,q}(X) \cong \mathcal{H}^{p,q}(X,g').
+\]
+Sea $\alpha \in \mathcal{H}^{p,q}(X,g)$ y denotamos al elemento correspondiente en $\mathcal{H}^{p,q}(X,g')$ por $\alpha'$. Probaremos que las clases de cohomolog\'ia asociadas $[\alpha], [\alpha'] \in \cohom^{k} (X,\comp)$ coinciden.\\
+Dado que $\alpha$ y $\alpha'$ inducen el mismo elemento en $\cohom^{p,q}(X)$, estos deben diferir por alg\'un elemento $\overline{\partial}\gamma$, es decir,
+\[
+\alpha' = \alpha + \overline{\partial}\gamma.
+\]
+Pero $\dd \overline{\partial} \gamma = \dd (\alpha' -\alpha) = 0$. M\'as a\'un, $\overline{\partial}\gamma$ es ortogonal a $\mathcal{H}^{k}(X,g)_{\comp}$. Por la descomposición de Hodge con respecto al diferencial exterior $\dd$ esto nos da que
+\[
+\overline{\partial}\gamma \in \dd \left( \mathcal{A}^{k-1}_{\comp}(X) \right)
+\]
+y por lo tanto, $[\alpha] = [\alpha'] \in \cohom^{k}(X,\comp)$. Los puntos \textbf{(a)} y\textbf{(c)} de la observación \ref{Cap2-Sec5-Obs3} nos d\'an la \'ultima afirmación respecto a la conjugación en cohomolog\'ia y la dualidad de Serre.
+\end{proof}
+Como ya hemos mencionado, la descomposición en bigrado
+\[
+\cohom^{k}(X,\comp) = \bigoplus_{p+q=k} \cohom^{p,q}(X) 
+\]
+y de la misma forma, la conjugación compleja
+\[
+\overline{\cohom^{p,q}(X)} = \cohom^{q,p}(X)
+\]
+son aspectos topol\'ogicos y/o diferenciales de $X$, de hecho, estos no dependen de la elección de la estructura de K\"ahler. Se puede detallar que los operadores $\ast$ de Hodge y los adjuntos que define por el operador de Lefschetz $L$ y $\Lambda$ dependen únicamente de la clase de K\"ahler $[\omega]\in \cohom^{1,1}(X)$, esto se detalla en \cite[\S  3.3]{Huy05} y \cite[Cap.7]{deCataldo07}
+
+
+
+
+
+
+
+
+
+
+
+
+
